@@ -1,0 +1,102 @@
+---
+import '../components/GlobalStyle.astro'
+import FontDisplay from '../components/FontDisplay.astro'
+import InputFields from '../components/InputFields.astro';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Barely Accurate NIKKE Font Generator</title>
+	</head>
+	<body>
+		<h1>Barely Accurate NIKKE Font Generator</h1>
+		<FontDisplay />
+		<p><i>Generated output you see may be barely accurate to inaccurate to official media.<br>Click the image for a fast download!</i></p>
+
+		<InputFields />
+
+		<script>
+			// We out here with the terrible JS code
+			// We got that shit running 24/7
+			const canvas = document.getElementById("font-canvas");
+			const ctx = canvas.getContext("2d");
+			let loaded = {}
+
+			let logoglyphs = 'abcdefghijklmnopqrstuvwxyz'
+			for (let i = 0; i < logoglyphs.length; i++) {
+				let img = new Image();
+				img.src = `../nikke-font-generator/images/nikkefont/${logoglyphs.split('')[i]}.png`;
+				img.onload = function(e) {
+					loaded[logoglyphs.split('')[i]] = img;
+				}
+			}
+
+			const myFont = new FontFace('Butch', "url('../nikke-font-generator/fonts/butch-sundance.ttf')");
+			await myFont.load();
+			document.fonts.add(myFont);
+
+			ctx.font = "48px Butch";
+			ctx.letterSpacing = "32px";
+			ctx.fillStyle = "white";
+			ctx.textAlign = "center";
+
+			document.querySelectorAll('#generate')[0].addEventListener('click', () => {
+				var text = document.getElementById('text').value;
+				var subtext = document.getElementById('subtext').value;
+
+				generateLogoText(text, subtext)
+			});
+
+			setTimeout(() => {
+				generateLogoText('BARELY', 'ACCURATE NIKKE FONT GENERATOR')
+			}, 1000, 1);
+
+			let curx = 0;
+			let cury = 0;
+			function generateLogoText(text, subtext) {
+				let lower = text.toLowerCase();
+				curx = 0;
+				cury = 0;
+
+				let textwidth = ctx.measureText(subtext).width
+
+				for (let i = 0; i < lower.length; i++) {
+					if (lower.split('')[i] == ' ') {
+						curx += 64;
+						continue;
+					}
+					curx += loaded[lower.split('')[i]].width + (i + 1 == lower.length ? 0 : 32);
+					if (loaded[lower.split('')[i]].height >= cury) {
+						cury = loaded[lower.split('')[i]].height;
+					}
+				}
+				canvas.width = textwidth > curx ? textwidth : curx;
+				let xoffset = 0
+				if (textwidth > curx) {
+					xoffset = (textwidth - curx) / 2
+				}
+				canvas.height = cury + 100;
+
+				curx = xoffset;
+				for (let i = 0; i < lower.length; i++) {
+					if (lower.split('')[i] == ' ') {
+						curx += 64;
+						continue;
+					}
+					ctx.drawImage(loaded[lower.split('')[i]], curx > 0 ? curx : 0, 0);
+					curx += loaded[lower.split('')[i]].width + 32;
+				}
+
+				ctx.font = "48px Butch";
+				ctx.letterSpacing = "32px";
+				ctx.fillStyle = "white";
+				ctx.textAlign = "center";
+				ctx.fillText(subtext.trim(), Math.abs(textwidth - canvas.width) <= 5 ? textwidth / 2 + 16 : curx / 2, cury + 90);
+			}
+		</script>
+	</body>
+</html>

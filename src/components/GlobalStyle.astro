@@ -1,0 +1,42 @@
+<script>
+    (function(d) {
+      var config = {
+        kitId: 'ion6nwq',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+</script>
+
+<style is:global>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+    :root {
+        --main-color: #f4d259;
+        --lighter: #353535;
+        --light: #303030;
+        --dark: #252525;
+        --darker: #1d1d1d;
+        --darkerer: #151515;
+        --darkest: #101010;
+    }
+    html {
+        color: white;
+        background-color: var(--darkest);
+        font-family: 'pretendard', sans-serif;
+        background-size: 32px 32px;
+        background-image:
+            linear-gradient(to right, var(--darker) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--darker) 1px, transparent 1px);
+    }
+    h1 {
+        text-align: center;
+        margin: 32px;
+    }
+    p {
+        text-align: center;
+        opacity: 0.5;
+        margin: 32px;
+    }
+</style>

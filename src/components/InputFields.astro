@@ -1,0 +1,96 @@
+---
+
+---
+
+<div class="input-fields">
+    <table>
+        <tr>
+            <td>
+                <input
+                    type="text"
+                    id="text"
+                    autocomplete="off"
+                    placeholder='"NIKKE" text here...'
+                />
+            </td>
+            <td rowspan="2"><button id="generate">Generate Text</button></td>
+        </tr>
+        <tr>
+            <td>
+                <input
+                    type="text"
+                    id="subtext"
+                    autocomplete="off"
+                    placeholder='"Goddess of Victory" text here...'
+                />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<style>
+    div.input-fields {
+        width: fit-content;
+        margin: auto;
+        background-color: var(--darkerer);
+        border-radius: 4px;
+    }
+
+    div > table {
+        margin: auto;
+    }
+
+    input {
+        width: 256px;
+        height: 32px;
+        font-family: "pretendard";
+        padding: 4px;
+        padding-left: 8px;
+        margin: 4px;
+        outline: none;
+        border: 0;
+        background-color: var(--dark);
+        border-radius: 4px;
+        caret-color: white;
+        color: lightgray;
+        font-size: 16px;
+    }
+
+    input#subtext {
+        margin-top: 0;
+    }
+
+    button {
+        all: unset;
+    }
+
+    button:focus {
+        outline: revert;
+    }
+
+    button#generate {
+        width: 88px;
+        height: 88px;
+        background-color: var(--darker);
+        border-radius: 4px;
+        color: lightgray;
+        font-family: "pretendard";
+        text-align: center;
+
+        transition-property: color, background-color, box-shadow;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-in-out;
+    }
+
+    button#generate:hover {
+        width: 88px;
+        height: 88px;
+        background-color: #f4d2594b;
+        color: white;
+        text-decoration: none;
+
+        transition-property: color, background-color, box-shadow;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-in-out;
+    }
+</style>
