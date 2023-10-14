@@ -9,7 +9,7 @@ import Anise from '../components/Anise.astro';
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" href="/nikke-font-generator/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Barely Accurate NIKKE Font Generator</title>
@@ -26,6 +26,8 @@ import Anise from '../components/Anise.astro';
 		<Anise />
 
 		<script>
+			import { hexToCSSFilter } from 'hex-to-css-filter';
+
 			// We out here with the terrible JS code
 			// We got that shit running 24/7
 			const canvas = document.getElementById("font-canvas");
@@ -54,6 +56,23 @@ import Anise from '../components/Anise.astro';
 				var text = document.getElementById('text').value;
 				var subtext = document.getElementById('subtext').value;
 
+				generateLogoText(text, subtext);
+			});
+
+			let color = '#ffffff';
+			let size = 100;
+
+			document.querySelectorAll('#color')[0].addEventListener('change', () => {
+				var text = document.getElementById('text').value;
+				var subtext = document.getElementById('subtext').value;
+				color = document.getElementById('color').value;
+				generateLogoText(text, subtext)
+			});
+
+			document.querySelectorAll('#size')[0].addEventListener('change', () => {
+				var text = document.getElementById('text').value;
+				var subtext = document.getElementById('subtext').value;
+				size = parseInt(document.getElementById('size').value);
 				generateLogoText(text, subtext)
 			});
 
@@ -63,7 +82,7 @@ import Anise from '../components/Anise.astro';
 
 			let curx = 0;
 			let cury = 0;
-			function generateLogoText(text, subtext) {
+			function generateLogoText(text: String, subtext: String) {
 				let lower = text.toLowerCase();
 				curx = 0;
 				cury = 0;
@@ -80,12 +99,15 @@ import Anise from '../components/Anise.astro';
 						cury = loaded[lower.split('')[i]].height;
 					}
 				}
-				canvas.width = textwidth > curx ? textwidth : curx;
+				canvas.width = (textwidth > curx ? textwidth : curx) * size/100;
 				let xoffset = 0
 				if (textwidth > curx) {
 					xoffset = (textwidth - curx) / 2
 				}
-				canvas.height = cury + 100;
+				canvas.height = (cury + 100) * size/100;
+
+				ctx.filter = 'brightness(0) ' + hexToCSSFilter(color)['filter'].replace(';', '');
+				ctx.scale(size/100, size/100);
 
 				curx = xoffset;
 				for (let i = 0; i < lower.length; i++) {

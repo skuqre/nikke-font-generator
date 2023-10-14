@@ -13,7 +13,17 @@
                     placeholder='"NIKKE" text here...'
                 />
             </td>
-            <td rowspan="2"><button id="generate">Generate Text</button></td>
+            <td>
+                <button id="generate">Generate</button>
+            </td>
+            <td rowspan="2">
+                <input
+                    type="color"
+                    id="color"
+                    autocomplete="off"
+                    value="#ffffff"
+                />
+            </td>
         </tr>
         <tr>
             <td>
@@ -23,6 +33,15 @@
                     autocomplete="off"
                     placeholder='"Goddess of Victory" text here...'
                 />
+            </td>
+            <td>
+                <select id="size" name="Size">
+                    <option value="100">100%</option>
+                    <option value="75">75%</option>
+                    <option value="50">50%</option>
+                    <option value="25">25%</option>
+                    <option value="10">10%</option>
+                </select>
             </td>
         </tr>
     </table>
@@ -61,6 +80,20 @@
         margin-top: 0;
     }
 
+    select#size {
+        width: 90px;
+        height: 40px;
+        padding-left: 8px;
+        font-size: 16px;
+        top: -2px; /* perfectionism */
+        background-color: var(--darker);
+        color: lightgray;
+        border: none;
+        border-radius: 4px;
+        font-family: 'pretendard', sans-serif;
+        position: relative;
+    }
+
     button {
         all: unset;
     }
@@ -69,9 +102,17 @@
         outline: revert;
     }
 
+    input#color {
+        width: 40px;
+        height: 90px;
+
+        margin: 0;
+        padding: 0px 2px;
+    }
+
     button#generate {
-        width: 88px;
-        height: 88px;
+        width: 90px;
+        height: 40px;
         background-color: var(--darker);
         border-radius: 4px;
         color: lightgray;
@@ -82,12 +123,11 @@
         transition-duration: 0.1s;
         transition-timing-function: ease-in-out;
 
+        margin-left: 0px;
         margin-right: 4px;
     }
 
     button#generate:hover {
-        width: 88px;
-        height: 88px;
         background-color: #f4d2594b;
         color: white;
         text-decoration: none;
