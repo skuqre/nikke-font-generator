@@ -34,7 +34,7 @@ import Anise from '../components/Anise.astro';
 			const ctx = canvas.getContext("2d");
 			let loaded = {}
 
-			let logoglyphs = 'abcdefghijklmnopqrstuvwxyz'
+			let logoglyphs = 'abcdefghijklmnopqrstuvwxyz,.!$&'
 			for (let i = 0; i < logoglyphs.length; i++) {
 				let img = new Image();
 				img.src = `../nikke-font-generator/images/nikkefont/${logoglyphs.split('')[i]}.png`;
