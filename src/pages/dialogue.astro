@@ -1,0 +1,209 @@
+---
+import '../components/GlobalStyle.astro';
+import DialogDisplay from '../components/DialogDisplay.astro';
+import DialogueInput from '../components/DialogueInput.astro'
+import Credits from '../components/Credits.astro';
+import Anise from '../components/Anise.astro';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/nikke-font-generator/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Barely Accurate NIKKE Dialogue Generator</title>
+
+		<meta name="description" content="Create dialogue images like NIKKE with the click of some buttons!">
+  		<meta name="keywords" content="nikke">
+	</head>
+	<body>
+		<h1>Barely Accurate NIKKE Dialogue Generator</h1>
+		<DialogDisplay />
+		<p><i>Generated output you see may be barely accurate to inaccurate to official media.<br>Click the image for a fast download!</i></p>
+		<DialogueInput />
+		<p><i><b>****BE WARY OF POSTING IMAGES FROM THIS ON OFFICIAL CHANNELS!****</b><br>I (skuqre) do not recommend doing so the images may be rulebreaking.<br>I am not liable for anything that happens to you (in the Discord). I entrust you to keep yourself safe.<br>If you'd like to keep yourself safe in the official Discord, use fanart for your images!</i></p>
+		<p><i>NIKKE assets can be found on NikkeDB's <a href="https://nikke-db.pages.dev/gallery">gallery</a> and <a href="https://nikke-db.pages.dev/visualiser">Live2D visualizer</a> page for the NIKKEs.<br><b>I plead you keep the watermark on to refrain from spreading misinformation.</b></i></p>
+		<Credits />
+		<Anise />
+
+		<script>
+			import { hexToCSSFilter } from 'hex-to-css-filter';
+
+			const canvas = document.getElementById("dialogue-canvas");
+			const ctx = canvas.getContext("2d");
+
+			const myFont = new FontFace('PEB', "url('../nikke-font-generator/fonts/Pretendard-ExtraBold.ttf')");
+			await myFont.load();
+			document.fonts.add(myFont);
+
+			const myFont2 = new FontFace('PB', "url('../nikke-font-generator/fonts/Pretendard-Bold.ttf')");
+			await myFont2.load();
+			document.fonts.add(myFont2);
+
+			let text2 = '';
+			let subtext2 = '';
+			let size = 100;
+			let color = '#f4d259';
+
+			let wmrk = new Image();
+			wmrk.crossOrigin="anonymous"
+			wmrk.src = `../nikke-font-generator/favicon.png`;
+
+			let img = new Image();
+			img.crossOrigin="anonymous"
+			img.src = `../nikke-font-generator/images/dialogue/vignette.png`;
+
+			let bg = new Image();
+			bg.crossOrigin="anonymous"
+			bg.src = `../nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
+
+			let char = new Image();
+			char.crossOrigin="anonymous"
+			char.src = `https://media.discordapp.net/attachments/1154460728179314710/1172492683420368917/NIKKE-DB_c012_fb_234.png?ex=656083e7&is=654e0ee7&hm=566d77d4c1bd46ce779c3e6fd6ea8439952eaed66ed0b441281d55c83bc744d1&=&width=1500&height=1500`;
+
+			setTimeout(() => {
+				generateText("Anis", "Heya Commander! How's it going?")
+			}, 1000);
+
+			document.querySelectorAll('#generate')[0].addEventListener('click', () => {
+				var text = document.getElementById('character').value;
+				var subtext = document.getElementById('dialog').value;
+
+				generateText(text, subtext);
+			});
+
+			document.querySelectorAll('#rlbg')[0].addEventListener('click', () => {
+				if (document.getElementById('lbg').value.trim() <= 0) return;
+				bg.src = document.getElementById('lbg').value;
+				bg.onload = function(e) {
+					generateText(text2, subtext2);
+				}
+			});
+
+			document.querySelectorAll('#rlc')[0].addEventListener('click', () => {
+				if (document.getElementById('lbg').value.trim() <= 0) return;
+				char.src = document.getElementById('lcr').value;
+				char.onload = function(e) {
+					generateText(text2, subtext2);
+				}
+			});
+
+			document.querySelectorAll('#clear-char')[0].addEventListener('click', () => {
+				char.src = '../nikke-font-generator/images/transparent.png';
+				char.onload = function(e) {
+					generateText(text2, subtext2);
+				}
+			});
+
+			document.querySelectorAll('#clear-bg')[0].addEventListener('click', () => {
+				bg.src = '../nikke-font-generator/images/transparent.png';
+				bg.onload = function(e) {
+					generateText(text2, subtext2);
+				}
+			});
+
+			document.querySelectorAll('#size')[0].addEventListener('change', () => {
+				size = parseInt(document.getElementById('size').value);
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#color')[0].addEventListener('change', () => {
+				color = document.getElementById('color').value;
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#bg-img-up')[0].addEventListener('change', () => {
+				const fileList = document.querySelectorAll('#bg-img-up')[0].files;
+				const filer = new FileReader();
+				filer.onload = (e) => {
+					bg.src = e.target.result;
+					bg.onload = (e) => {
+						generateText(text2, subtext2)
+					}
+				};
+				if (fileList.length > 0) {
+					filer.readAsDataURL(fileList[0]);
+				}
+			}, false);
+
+			document.querySelectorAll('#char-img-up')[0].addEventListener('change', () => {
+				const fileList = document.querySelectorAll('#char-img-up')[0].files;
+				const filer = new FileReader();
+				filer.onload = (e) => {
+					char.src = e.target.result;
+					char.onload = (e) => {
+						generateText(text2, subtext2)
+					}
+				};
+				if (fileList.length > 0) {
+					filer.readAsDataURL(fileList[0]);
+				}
+			}, false);
+
+			function generateText(text: String, subtext: String) {
+				ctx.globalAlpha = 1;
+				text2 = text;
+				subtext2 = subtext;
+
+				ctx.clearRect(0, 0, 1080, 1080)
+				canvas.width = 1080 * size/100;
+				canvas.height = 1080 * size/100;
+				ctx.scale(size/100, size/100);
+
+				if (bg.width > bg.height) {
+					ctx.drawImage(bg, 0, 0, 1080 * (bg.width / bg.height), 1080)
+				} else {
+					ctx.drawImage(bg, 0, 0, 1080, 1080 * (bg.height / bg.width))
+				}
+
+				ctx.drawImage(char, (1080 - char.width) / 2, char.height > 1080 ? 0 : 1080 - char.height)
+
+				ctx.drawImage(img, 0, 0)
+
+
+				ctx.fillStyle = color;
+				ctx.fillRect(110, 883, 5, 24);
+
+				ctx.font = "25px PEB";
+				ctx.fillStyle = "#ffffff";
+				ctx.textBaseline = "top";
+				ctx.fillText(text, 125, 877 + 8, 830);
+
+				ctx.font = "23px PB";
+				ctx.fillStyle = "#dcdcdc";
+				ctx.textBaseline = "top";
+
+				var lines = getLines(ctx, subtext, 830)
+
+				for (let i = 0; i<lines.length; i++) {
+					ctx.fillText(lines[i], 125, 929 + 7 + (39 * i), 830);
+				}
+
+				ctx.globalAlpha = 0.1;
+				ctx.drawImage(wmrk, 1080-128 - 16, 1080-128+16, 128, 128);
+			}
+
+			// https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element
+			// im fucking stupid -skuqre
+			function getLines(ctx, text, maxWidth) {
+				var words = text.split(" ");
+				var lines = [];
+				var currentLine = words[0];
+
+				for (var i = 1; i < words.length; i++) {
+					var word = words[i];
+					var width = ctx.measureText(currentLine + " " + word).width;
+					if (width < maxWidth) {
+						currentLine += " " + word;
+					} else {
+						lines.push(currentLine);
+						currentLine = word;
+					}
+				}
+				lines.push(currentLine);
+				return lines;
+			}
+		</script>
+	</body>
+</html>

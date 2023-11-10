@@ -1,0 +1,31 @@
+---
+
+---
+
+<div class='dialogue-display'>
+    <canvas id="dialogue-canvas" width="1080" height="1080"></canvas>
+</div>
+
+<script>
+    document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('click', () => {
+        var link = document.createElement('a');
+        var canvas: HTMLCanvasElement = document.getElementById('dialogue-canvas') as HTMLCanvasElement
+        link.download = 'nikke-dialogue.png';
+        link.href = canvas.toDataURL()
+        link.click();
+    });
+</script>
+
+<style>
+    div.dialogue-display {
+        display: flex;
+        width: 100%;
+        margin: 0;
+    }
+
+    canvas#dialogue-canvas {
+        max-width: 90%;
+        max-height: 540px;
+        margin: auto;
+    }
+</style>
