@@ -152,7 +152,7 @@ import Anise from '../components/Anise.astro';
 				ctx.scale(size/100, size/100);
 
 				if (bg.width > bg.height) {
-					ctx.drawImage(bg, 0, 0, 1080 * (bg.width / bg.height), 1080)
+					ctx.drawImage(bg, (1080 - 1080 * (bg.width / bg.height)) / 2, 0, 1080 * (bg.width / bg.height), 1080)
 				} else {
 					ctx.drawImage(bg, 0, 0, 1080, 1080 * (bg.height / bg.width))
 				}
