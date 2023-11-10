@@ -33,11 +33,11 @@ import Anise from '../components/Anise.astro';
 			const canvas = document.getElementById("dialogue-canvas");
 			const ctx = canvas.getContext("2d");
 
-			const myFont = new FontFace('PEB', "url('../nikke-font-generator/fonts/Pretendard-ExtraBold.ttf')");
+			const myFont = new FontFace('PEB', "url('/nikke-font-generator/fonts/Pretendard-ExtraBold.ttf')");
 			await myFont.load();
 			document.fonts.add(myFont);
 
-			const myFont2 = new FontFace('PB', "url('../nikke-font-generator/fonts/Pretendard-Bold.ttf')");
+			const myFont2 = new FontFace('PB', "url('/nikke-font-generator/fonts/Pretendard-Bold.ttf')");
 			await myFont2.load();
 			document.fonts.add(myFont2);
 
