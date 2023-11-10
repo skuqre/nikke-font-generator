@@ -48,15 +48,15 @@ import Anise from '../components/Anise.astro';
 
 			let wmrk = new Image();
 			wmrk.crossOrigin="anonymous"
-			wmrk.src = `../nikke-font-generator/favicon.png`;
+			wmrk.src = `/nikke-font-generator/favicon.png`;
 
 			let img = new Image();
 			img.crossOrigin="anonymous"
-			img.src = `../nikke-font-generator/images/dialogue/vignette.png`;
+			img.src = `/nikke-font-generator/images/dialogue/vignette.png`;
 
 			let bg = new Image();
 			bg.crossOrigin="anonymous"
-			bg.src = `../nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
+			bg.src = `/nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
 
 			let char = new Image();
 			char.crossOrigin="anonymous"
@@ -90,14 +90,14 @@ import Anise from '../components/Anise.astro';
 			});
 
 			document.querySelectorAll('#clear-char')[0].addEventListener('click', () => {
-				char.src = '../nikke-font-generator/images/transparent.png';
+				char.src = '/nikke-font-generator/images/transparent.png';
 				char.onload = function(e) {
 					generateText(text2, subtext2);
 				}
 			});
 
 			document.querySelectorAll('#clear-bg')[0].addEventListener('click', () => {
-				bg.src = '../nikke-font-generator/images/transparent.png';
+				bg.src = '/nikke-font-generator/images/transparent.png';
 				bg.onload = function(e) {
 					generateText(text2, subtext2);
 				}
