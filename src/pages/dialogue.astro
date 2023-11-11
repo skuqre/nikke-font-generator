@@ -93,7 +93,7 @@ import SizingTool from '../components/SizingTool.astro';
 			});
 
 			document.querySelectorAll('#rlc')[0].addEventListener('click', () => {
-				if (document.getElementById('lbg').value.trim() <= 0) return;
+				if (document.getElementById('lcr').value.trim() <= 0) return;
 				char.src = document.getElementById('lcr').value;
 				char.onload = function(e) {
 					chpos = [(1080 - char.width) / 2, char.height > 1080 ? 0 : 1080 - char.height];
