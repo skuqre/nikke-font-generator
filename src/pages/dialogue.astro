@@ -4,6 +4,7 @@ import DialogDisplay from '../components/DialogDisplay.astro';
 import DialogueInput from '../components/DialogueInput.astro'
 import Credits from '../components/Credits.astro';
 import Anise from '../components/Anise.astro';
+import SizingTool from '../components/SizingTool.astro';
 ---
 
 <html lang="en">
@@ -20,6 +21,7 @@ import Anise from '../components/Anise.astro';
 	<body>
 		<h1>Barely Accurate NIKKE Dialogue Generator</h1>
 		<DialogDisplay />
+		<SizingTool />
 		<p><i>Generated output you see may be barely accurate to inaccurate to official media.<br>Click the image for a fast download!</i></p>
 		<DialogueInput />
 		<p><i><b>****BE WARY OF POSTING IMAGES FROM THIS ON OFFICIAL CHANNELS!****</b><br>I (skuqre) do not recommend doing so the images may be rulebreaking.<br>I am not liable for anything that happens to you (in the Discord). I entrust you to keep yourself safe.<br>If you'd like to keep yourself safe in the official Discord, use fanart for your images!</i></p>
@@ -45,6 +47,10 @@ import Anise from '../components/Anise.astro';
 			let subtext2 = '';
 			let size = 100;
 			let color = '#f4d259';
+			let scalebg = 100;
+			let scalech = 100;
+			let bgpos = [0, 0]
+			let chpos = [0, 0]
 
 			let wmrk = new Image();
 			wmrk.crossOrigin="anonymous"
@@ -77,6 +83,11 @@ import Anise from '../components/Anise.astro';
 				if (document.getElementById('lbg').value.trim() <= 0) return;
 				bg.src = document.getElementById('lbg').value;
 				bg.onload = function(e) {
+					if (bg.width > bg.height) {
+						bgpos = [(1080 - 1080 * (bg.width / bg.height)) / 2, 0];
+					} else {
+						bgpos = [0, 0];
+					}
 					generateText(text2, subtext2);
 				}
 			});
@@ -85,6 +96,7 @@ import Anise from '../components/Anise.astro';
 				if (document.getElementById('lbg').value.trim() <= 0) return;
 				char.src = document.getElementById('lcr').value;
 				char.onload = function(e) {
+					chpos = [(1080 - char.width) / 2, char.height > 1080 ? 0 : 1080 - char.height];
 					generateText(text2, subtext2);
 				}
 			});
@@ -119,13 +131,18 @@ import Anise from '../components/Anise.astro';
 				filer.onload = (e) => {
 					bg.src = e.target.result;
 					bg.onload = (e) => {
+						if (bg.width > bg.height) {
+							bgpos = [(1080 - 1080 * (bg.width / bg.height)) / 2, 0];
+						} else {
+							bgpos = [0, 0];
+						}
 						generateText(text2, subtext2)
 					}
 				};
 				if (fileList.length > 0) {
 					filer.readAsDataURL(fileList[0]);
 				}
-			}, false);
+			});
 
 			document.querySelectorAll('#char-img-up')[0].addEventListener('change', () => {
 				const fileList = document.querySelectorAll('#char-img-up')[0].files;
@@ -133,31 +150,92 @@ import Anise from '../components/Anise.astro';
 				filer.onload = (e) => {
 					char.src = e.target.result;
 					char.onload = (e) => {
+						chpos = [(1080 - char.width) / 2, char.height > 1080 ? 0 : 1080 - char.height];
 						generateText(text2, subtext2)
 					}
 				};
 				if (fileList.length > 0) {
 					filer.readAsDataURL(fileList[0]);
 				}
-			}, false);
+			});
+
+			document.querySelectorAll('#xposbg')[0].addEventListener('input', () => {
+				bgpos[0] = parseInt(document.getElementById('xposbg').value);
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#yposbg')[0].addEventListener('input', () => {
+				bgpos[1] = parseInt(document.getElementById('yposbg').value);
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#xposch')[0].addEventListener('input', () => {
+				chpos[0] = parseInt(document.getElementById('xposch').value);
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#yposch')[0].addEventListener('input', () => {
+				chpos[1] = parseInt(document.getElementById('yposch').value);
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#scalebg')[0].addEventListener('input', () => {
+				scalebg = parseInt(document.getElementById('scalebg').value);
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#scalech')[0].addEventListener('input', () => {
+				scalech = parseInt(document.getElementById('scalech').value);
+				generateText(text2, subtext2)
+			});
+
+			bg.onload = (e) => {
+				if (bg.width > bg.height) {
+				bgpos = [(1080 - 1080 * (bg.width / bg.height)) / 2, 0];
+				} else {
+					bgpos = [0, 0];
+				}
+			}
+
+			char.onload = (e) => {
+				chpos = [(1080 - char.width) / 2, char.height > 1080 ? 0 : 1080 - char.height];
+			}
+
+			let sizetools = false;
+
+			document.getElementById('sizing-tool').style['display'] = "none";
+			document.querySelectorAll('#enable-sizing')[0].addEventListener('click', () => {
+				sizetools = !sizetools
+				document.getElementById('sizing-tool').style['display'] = sizetools ? "block" : "none";
+			});
 
 			function generateText(text: String, subtext: String) {
 				ctx.globalAlpha = 1;
 				text2 = text;
 				subtext2 = subtext;
+				color = document.getElementById('color').value;
 
-				ctx.clearRect(0, 0, 1080, 1080)
+				ctx.clearRect(0, 0, 1080, 1080);
 				canvas.width = 1080 * size/100;
 				canvas.height = 1080 * size/100;
 				ctx.scale(size/100, size/100);
 
+				let bgs = scalebg/100;
+				let chs = scalech/100;
+
 				if (bg.width > bg.height) {
-					ctx.drawImage(bg, (1080 - 1080 * (bg.width / bg.height)) / 2, 0, 1080 * (bg.width / bg.height), 1080)
+					ctx.drawImage(bg, bgpos[0], bgpos[1], 1080 * (bg.width / bg.height) * bgs, 1080 * bgs);
 				} else {
-					ctx.drawImage(bg, 0, 0, 1080, 1080 * (bg.height / bg.width))
+					ctx.drawImage(bg, bgpos[0], bgpos[1], 1080 * bgs, 1080 * (bg.height / bg.width) * bgs);
 				}
 
-				ctx.drawImage(char, (1080 - char.width) / 2, char.height > 1080 ? 0 : 1080 - char.height)
+				document.getElementById('xposbg').value = bgpos[0];
+				document.getElementById('yposbg').value = bgpos[1];
+
+				document.getElementById('xposch').value = chpos[0];
+				document.getElementById('yposch').value = chpos[1];
+
+				ctx.drawImage(char, chpos[0], chpos[1], char.width * chs, char.height * chs)
 
 				ctx.drawImage(img, 0, 0)
 
