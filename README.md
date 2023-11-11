@@ -9,7 +9,7 @@ With a canvas and a dream, you can generate anything you'd like!
 ## Examples
 
 ### Logo Generator
-<table>
+<table border="0">
     <tr>
         <td width="50%">
             <img src="https://cdn.discordapp.com/attachments/1154460728179314710/1172775140967333959/VJL41ryDQAAAAASUVORK5CYII.png"/>
@@ -29,7 +29,7 @@ With a canvas and a dream, you can generate anything you'd like!
 </table>
 
 ### Dialogue Generator
-<table>
+<table border="0">
     <tr>
         <td width="50%">
             <img src="https://media.discordapp.net/attachments/946719897390563328/1172723522292953188/KgXaRzrSvbTJNV4zmgtKAd4b5v9mo1sePOqnTAAAAAElFTkSuQmCC.png"/>
