@@ -52,6 +52,9 @@ import SizingTool from '../components/SizingTool.astro';
 			let bgpos = [0, 0]
 			let chpos = [0, 0]
 
+			let dragbg = false;
+			let dragch = false;
+
 			let wmrk = new Image();
 			wmrk.crossOrigin="anonymous"
 			wmrk.src = `/nikke-font-generator/favicon.png`;
@@ -207,6 +210,82 @@ import SizingTool from '../components/SizingTool.astro';
 			document.querySelectorAll('#enable-sizing')[0].addEventListener('click', () => {
 				sizetools = !sizetools
 				document.getElementById('sizing-tool').style['display'] = sizetools ? "block" : "none";
+			});
+
+			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('click', () => {
+				if (dragbg || dragch) return;
+				var link = document.createElement('a');
+				var canvas: HTMLCanvasElement = document.getElementById('dialogue-canvas') as HTMLCanvasElement
+				link.download = 'nikke-dialogue.png';
+				link.href = canvas.toDataURL()
+				link.click();
+			});
+
+			let mousecapture = [0, 0];
+			let previousbg = [0, 0];
+			let previousch = [0, 0];
+			let dragging = false;
+
+			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mousedown', (e) => {
+				if (dragging) return;
+				dragging = true;
+
+				if (dragbg) {
+					previousbg[0] = bgpos[0];
+					previousbg[1] = bgpos[1];
+				}
+				if (dragch) {
+					previousch[0] = chpos[0];
+					previousch[1] = chpos[1];
+				}
+				mousecapture[0] = e.clientX;
+				mousecapture[1] = e.clientY;
+			});
+
+			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mousemove', (e) => {
+				if (!dragging) return;
+
+				if (dragbg) {
+					bgpos[0] = e.clientX + (previousbg[0] - mousecapture[0]);
+					bgpos[1] = e.clientY + (previousbg[1] - mousecapture[1]);
+				}
+
+				if (dragch) {
+					chpos[0] = e.clientX + (previousch[0] - mousecapture[0]);
+					chpos[1] = e.clientY + (previousch[1] - mousecapture[1]);
+				}
+				generateText(text2, subtext2);
+			});
+
+			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mouseup', (e) => {
+				if (!dragging) return;
+				dragging = false;
+			});
+
+			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mouseleave', (e) => {
+				dragging = false;
+			});
+
+			document.querySelectorAll('button#dch')[0].addEventListener('click', () => {
+				dragch = !dragch;
+
+				if (dragbg) {
+					dragbg = false;
+				}
+
+				document.querySelectorAll('button#dch')[0].innerHTML = dragch ? "ON" : "OFF";
+				document.querySelectorAll('button#dbg')[0].innerHTML = dragbg ? "ON" : "OFF";
+			});
+
+			document.querySelectorAll('button#dbg')[0].addEventListener('click', () => {
+				dragbg = !dragbg;
+
+				if (dragch) {
+					dragch = false;
+				}
+
+				document.querySelectorAll('button#dch')[0].innerHTML = dragch ? "ON" : "OFF";
+				document.querySelectorAll('button#dbg')[0].innerHTML = dragbg ? "ON" : "OFF";
 			});
 
 			function generateText(text: String, subtext: String) {

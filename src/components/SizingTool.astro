@@ -35,6 +35,10 @@
                     value="100"
                 />
             </td>
+            <td>
+                <p class="tool-label">Drag</p>
+                <button class="but" id="dbg">OFF</button>
+            </td>
         </tr>
 
         <th colspan="3">Character</th>
@@ -47,6 +51,7 @@
                     autocomplete="off"
                     value="0"
                     step="10"
+                    style="margin-bottom: 4px;"
                 />
             </td>
             <td>
@@ -57,6 +62,7 @@
                     autocomplete="off"
                     value="0"
                     step="10"
+                    style="margin-bottom: 4px;"
                 />
             </td>
             <td>
@@ -66,7 +72,12 @@
                     id="scalech"
                     autocomplete="off"
                     value="100"
+                    style="margin-bottom: 4px;"
                 />
+            </td>
+            <td>
+                <p class="tool-label">Drag</p>
+                <button class="but" id="dch" style="margin-bottom: 4px;">OFF</button>
             </td>
         </tr>
     </table>
@@ -84,7 +95,7 @@
 
     p.tool-label {
         /* width: min-content; */
-        margin: 4px 4px 0px 8px;
+        margin: 0px 0px 4px 0px;
         text-align: left;
     }
 
@@ -98,8 +109,12 @@
 
     th {
         text-align: left;
-        padding-left: 8px;
+        padding-left: 4px;
         padding-top: 8px;
+    }
+
+    td {
+        padding-left: 5px;
     }
 
     input, textarea {
@@ -108,7 +123,7 @@
         font-family: "pretendard";
         padding: 4px;
         padding-left: 8px;
-        margin: 4px;
+        /* margin: 4px; */
         outline: none;
         border: 0;
         background-color: var(--dark);
@@ -151,5 +166,33 @@
 
     .wholerow {
         padding: 0 5px;
+    }
+
+    button.but {
+        border: 0;
+        width: 40px;
+        height: 40px;
+        background-color: var(--darker);
+        border-radius: 4px;
+        color: lightgray;
+        font-family: "pretendard";
+        text-align: center;
+
+        transition-property: color, background-color, box-shadow;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-in-out;
+
+        margin: 0px;
+        margin-right: 4px;
+    }
+
+    button.but:hover {
+        background-color: #f4d2594b;
+        color: white;
+        text-decoration: none;
+
+        transition-property: color, background-color, box-shadow;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-in-out;
     }
 </style>
