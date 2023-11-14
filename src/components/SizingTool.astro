@@ -80,6 +80,53 @@
                 <button class="but" id="dch" style="margin-bottom: 4px;">OFF</button>
             </td>
         </tr>
+
+        <th colspan="3">Post-processing</th>
+        <tr class="wholerow">
+            <td>
+                <p class="tool-label">Grayscale (%)</p>
+                <input
+                    type="number"
+                    id="gsnum"
+                    autocomplete="off"
+                    value="0"
+                    step="1"
+                />
+            </td>
+            <td>
+                <p class="tool-label">Blur (pixels)</p>
+                <input
+                    type="number"
+                    id="blnum"
+                    autocomplete="off"
+                    value="0"
+                    step="1"
+                />
+            </td>
+            <td>
+                <p class="tool-label">Brightness (%)</p>
+                <input
+                    type="number"
+                    id="brnum"
+                    autocomplete="off"
+                    value="100"
+                />
+            </td>
+            <td>
+                <p class="tool-label">Draw</p>
+                <button class="but" id="df" style="margin-bottom: 4px;">ON</button>
+            </td>
+        </tr>
+
+        <tr class="wholerow">
+            <td colspan="4">
+                <textarea
+                    id="customfil"
+                    autocomplete="off"
+                    placeholder='Custom CSS filter code...'
+                />
+            </td>
+        </tr>
     </table>
 </div>
 
@@ -194,5 +241,11 @@
         transition-property: color, background-color, box-shadow;
         transition-duration: 0.1s;
         transition-timing-function: ease-in-out;
+    }
+
+    textarea {
+        resize: vertical;
+        width: 360px;
+        min-height: 32px;
     }
 </style>
