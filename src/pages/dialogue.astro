@@ -63,6 +63,14 @@ import SizingTool from '../components/SizingTool.astro';
 			img.crossOrigin="anonymous"
 			img.src = `/nikke-font-generator/images/dialogue/vignette.png`;
 
+			let img2 = new Image();
+			img2.crossOrigin="anonymous"
+			img2.src = `/nikke-font-generator/images/dialogue/vignette2.png`;
+
+			let choicepng = new Image();
+			choicepng.crossOrigin="anonymous"
+			choicepng.src = `/nikke-font-generator/images/dialogue/choice.png`;
+
 			let bg = new Image();
 			bg.crossOrigin="anonymous"
 			bg.src = `/nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
@@ -319,6 +327,12 @@ import SizingTool from '../components/SizingTool.astro';
 				generateText(text2, subtext2)
 			});
 
+			let cs = ''
+			document.querySelectorAll('#choices')[0].addEventListener('input', () => {
+				cs = parseInt(document.getElementById('choices').value);
+				generateText(text2, subtext2)
+			});
+
 			function generateText(text: String, subtext: String) {
 				ctx.globalAlpha = 1;
 				text2 = text;
@@ -354,29 +368,67 @@ import SizingTool from '../components/SizingTool.astro';
 
 				ctx.filter = "none";
 
-				ctx.drawImage(img, 0, 0)
+				if (document.getElementById('choices').value.trim().length > 0) {
+					let shit = document.getElementById('choices').value;
+					shit = shit.replaceAll('\\n', String.fromCharCode(13, 10));
 
-				ctx.fillStyle = color;
-				ctx.fillRect(110, 883, 5, 24);
+					let split = shit.trim().split('\n');
+					console.log(split.length)
+					if (split.length > 1) {
+						ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+						ctx.fillRect(0, 0, 1080, 1080);
+					}
 
-				ctx.font = "25px PEB";
-				ctx.fillStyle = "#ffffff";
-				ctx.textBaseline = "top";
-				ctx.fillText(text, 125, 877 + 8, 830);
+					ctx.drawImage(img2, 0, 0);
 
-				ctx.font = "23px PB";
-				ctx.fillStyle = "#dcdcdc";
-				ctx.textBaseline = "top";
+					let startY = 765 - ((choicepng.height * split.length) + (14 * (split.length - 1))) / 2;
 
-				var lines = getLines(ctx, subtext, 830)
+					let curY = startY;
+					for (let i = 0; i < split.length; i++) {
+						let item = split[i];
 
-				for (let i = 0; i<lines.length; i++) {
-					ctx.fillText(lines[i], 125, 929 + 7 + (39 * i), 830);
+						ctx.drawImage(choicepng, (1080-choicepng.width) / 2, curY);
+
+						ctx.font = "21px PEB";
+						ctx.fillStyle = "#ffffff";
+						ctx.textBaseline = "middle";
+						ctx.textAlign = "center";
+						ctx.fillText(item.trim(), 1080/ 2, curY + choicepng.height / 2);
+						
+						curY += choicepng.height + 14;
+					}
+
+
+				} else {
+					ctx.drawImage(img, 0, 0)
+
+					ctx.fillStyle = color;
+					ctx.fillRect(110, 883, 5, 24);
+
+					ctx.font = "25px PEB";
+					ctx.fillStyle = "#ffffff";
+					ctx.textBaseline = "top";
+					ctx.fillText(text, 125, 877 + 8, 830);
+
+					ctx.font = "23px PB";
+					ctx.fillStyle = "#dcdcdc";
+					ctx.textBaseline = "top";
+
+					var lines = getLines(ctx, subtext, 830)
+
+					for (let i = 0; i<lines.length; i++) {
+						ctx.fillText(lines[i], 125, 929 + 7 + (39 * i), 830);
+					}
 				}
 
 				ctx.globalAlpha = 0.1;
 				ctx.drawImage(wmrk, 16, -16, 128, 128);
 			}
+
+			/*
+			center: 765
+			padding between choices: 14px
+			*/
 
 			// https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element
 			// im fucking stupid -skuqre
