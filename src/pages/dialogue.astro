@@ -414,7 +414,7 @@ import SizingTool from '../components/SizingTool.astro';
 					ctx.fillStyle = "#dcdcdc";
 					ctx.textBaseline = "top";
 
-					var lines = getLines(ctx, subtext, 830)
+					let lines = getLines(ctx, subtext, 830)
 
 					for (let i = 0; i<lines.length; i++) {
 						ctx.fillText(lines[i], 125, 929 + 7 + (39 * i), 830);
@@ -425,23 +425,20 @@ import SizingTool from '../components/SizingTool.astro';
 				ctx.drawImage(wmrk, 16, -16, 128, 128);
 			}
 
-			/*
-			center: 765
-			padding between choices: 14px
-			*/
-
 			// https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element
 			// im fucking stupid -skuqre
 			function getLines(ctx, text, maxWidth) {
-				var words = text.split(" ");
+				var separator = text.includes(" ") ? " " : "";
+
+				var words = text.split(separator);
 				var lines = [];
 				var currentLine = words[0];
-
+				
 				for (var i = 1; i < words.length; i++) {
 					var word = words[i];
-					var width = ctx.measureText(currentLine + " " + word).width;
+					var width = ctx.measureText(currentLine + separator + word).width;
 					if (width < maxWidth) {
-						currentLine += " " + word;
+						currentLine += separator + word;
 					} else {
 						lines.push(currentLine);
 						currentLine = word;
