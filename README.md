@@ -58,15 +58,10 @@ With a canvas and a dream, you can generate anything you'd like!
 
 ## Credits
 
-Fonts used:
-- Pretendard
-- Docteur Atomic (cleaned up and is edited to resemble the current NIKKE logo)
-- Butch and Sundance
-
-**Credits to NIKKE-DB** for some NIKKE assets. [Go visit!](https://nikke-db.pages.dev)
+[Up-to-date site credits](https://skuqre.github.io/nikke-font-generator/credits/)
 
 Example art:
 - Top left ([onedoo on PIXIV](https://www.pixiv.net/en/users/3474388)): <https://www.pixiv.net/en/artworks/97149647>
 - Bottom right ([lunacle on PIXIV](https://www.pixiv.net/en/users/15657814)): <https://www.pixiv.net/en/artworks/102024795>
 
-Made with [Astro](astro.build).
+Made with [Astro](https://astro.build).
