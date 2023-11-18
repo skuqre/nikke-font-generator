@@ -248,6 +248,10 @@ import SizingTool from '../components/SizingTool.astro';
 				}
 				mousecapture[0] = e.clientX;
 				mousecapture[1] = e.clientY;
+
+				if (dragbg || dragch) {
+					disableScroll();
+				}
 			});
 
 			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mousemove', (e) => {
@@ -268,10 +272,14 @@ import SizingTool from '../components/SizingTool.astro';
 			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mouseup', (e) => {
 				if (!dragging) return;
 				dragging = false;
+
+				enableScroll();
 			});
 
 			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mouseleave', (e) => {
 				dragging = false;
+
+				enableScroll();
 			});
 
 			document.querySelectorAll('button#dch')[0].addEventListener('click', () => {
@@ -332,6 +340,33 @@ import SizingTool from '../components/SizingTool.astro';
 				cs = parseInt(document.getElementById('choices').value);
 				generateText(text2, subtext2)
 			});
+
+			function disableScroll() {
+				let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+				let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+				window.onscroll = function() {
+					window.scrollTo(scrollLeft, scrollTop, "instant");
+				};
+
+				window.onwheel = (e) => {
+					if (dragbg) {
+						scalebg += (e.deltaY / -100);
+					}
+					if (dragch) {
+						scalech += (e.deltaY / -100);
+					}
+
+					document.getElementById('scalebg').value = scalebg;
+					document.getElementById('scalech').value = scalech;
+					generateText(text2, subtext2)
+				}
+			}
+
+			function enableScroll() {
+				window.onscroll = function() {};
+				window.onwheel = (e) => {}
+			}
 
 			function generateText(text: String, subtext: String) {
 				ctx.globalAlpha = 1;
