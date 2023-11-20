@@ -56,27 +56,31 @@ import SizingTool from '../components/SizingTool.astro';
 			let dragch = false;
 
 			let wmrk = new Image();
-			wmrk.crossOrigin="anonymous"
+			wmrk.crossOrigin = "anonymous"
 			wmrk.src = `/nikke-font-generator/favicon.png`;
 
 			let img = new Image();
-			img.crossOrigin="anonymous"
+			img.crossOrigin = "anonymous"
 			img.src = `/nikke-font-generator/images/dialogue/vignette.png`;
 
 			let img2 = new Image();
-			img2.crossOrigin="anonymous"
+			img2.crossOrigin = "anonymous"
 			img2.src = `/nikke-font-generator/images/dialogue/vignette2.png`;
 
+			let arrow = new Image();
+			arrow.crossOrigin = "anonymous"
+			arrow.src = `/nikke-font-generator/images/dialogue/arrow.png`;
+
 			let choicepng = new Image();
-			choicepng.crossOrigin="anonymous"
+			choicepng.crossOrigin = "anonymous"
 			choicepng.src = `/nikke-font-generator/images/dialogue/choice.png`;
 
 			let bg = new Image();
-			bg.crossOrigin="anonymous"
+			bg.crossOrigin = "anonymous"
 			bg.src = `/nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
 
 			let char = new Image();
-			char.crossOrigin="anonymous"
+			char.crossOrigin = "anonymous"
 			char.src = `https://media.discordapp.net/attachments/1154460728179314710/1172492683420368917/NIKKE-DB_c012_fb_234.png?ex=656083e7&is=654e0ee7&hm=566d77d4c1bd46ce779c3e6fd6ea8439952eaed66ed0b441281d55c83bc744d1&=&width=1500&height=1500`;
 
 			setTimeout(() => {
@@ -312,6 +316,14 @@ import SizingTool from '../components/SizingTool.astro';
 				generateText(text2, subtext2)
 			});
 
+			let arrowOn = true;
+			document.querySelectorAll('#arrow-toggle')[0].addEventListener('click', () => {
+				arrowOn = !arrowOn;
+
+				document.querySelectorAll('#arrow-toggle')[0].innerHTML = "Bottom right arrow: " + (arrowOn ? "ON" : "OFF");
+				generateText(text2, subtext2)
+			});
+
 			document.querySelectorAll('#customfil')[0].addEventListener('input', () => {
 				generateText(text2, subtext2)
 			});
@@ -456,7 +468,11 @@ import SizingTool from '../components/SizingTool.astro';
 					}
 				}
 
-				ctx.globalAlpha = 0.1;
+				if (arrowOn) {
+					ctx.drawImage(arrow, 0, 0);
+				}
+
+				ctx.globalAlpha = 0.065;
 				ctx.drawImage(wmrk, 16, -16, 128, 128);
 			}
 

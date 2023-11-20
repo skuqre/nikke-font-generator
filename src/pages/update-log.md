@@ -8,6 +8,16 @@ title: Update Log
 ---
 <br>
 
+## Adjustments `Nov 20, 2023`
+
+- added the ability to include/exclude the bottom right arrow that appears when lines finish in-game
+- reduced the opacity of the watermark (less noticeable but obvious when looking at it properly)
+
+<br>
+
+---
+<br>
+
 ## Choices `Nov 17, 2023`
 
 Should have been in there since the beginning, but whatever.
