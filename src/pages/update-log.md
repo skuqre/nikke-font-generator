@@ -12,6 +12,7 @@ title: Update Log
 
 - added the ability to include/exclude the bottom right arrow that appears when lines finish in-game
 - reduced the opacity of the watermark (less noticeable but obvious when looking at it properly)
+- added the ability to include/exclude the top right dialogue controls
 
 <br>
 

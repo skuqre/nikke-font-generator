@@ -71,6 +71,10 @@ import SizingTool from '../components/SizingTool.astro';
 			arrow.crossOrigin = "anonymous"
 			arrow.src = `/nikke-font-generator/images/dialogue/arrow.png`;
 
+			let controls = new Image();
+			controls.crossOrigin = "anonymous"
+			controls.src = `/nikke-font-generator/images/dialogue/controls.png`;
+
 			let choicepng = new Image();
 			choicepng.crossOrigin = "anonymous"
 			choicepng.src = `/nikke-font-generator/images/dialogue/choice.png`;
@@ -324,6 +328,14 @@ import SizingTool from '../components/SizingTool.astro';
 				generateText(text2, subtext2)
 			});
 
+			let controlsOn = true;
+			document.querySelectorAll('#controls-toggle')[0].addEventListener('click', () => {
+				controlsOn = !controlsOn;
+
+				document.querySelectorAll('#controls-toggle')[0].innerHTML = "Top right controls: " + (controlsOn ? "ON" : "OFF");
+				generateText(text2, subtext2)
+			});
+
 			document.querySelectorAll('#customfil')[0].addEventListener('input', () => {
 				generateText(text2, subtext2)
 			});
@@ -470,6 +482,10 @@ import SizingTool from '../components/SizingTool.astro';
 
 				if (arrowOn) {
 					ctx.drawImage(arrow, 0, 0);
+				}
+
+				if (controlsOn) {
+					ctx.drawImage(controls, 0, 0);
 				}
 
 				ctx.globalAlpha = 0.065;
