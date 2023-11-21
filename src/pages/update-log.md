@@ -8,6 +8,15 @@ title: Update Log
 ---
 <br>
 
+## Small Mobile Support `Nov 21, 2023`
+
+- mobile support for drag
+
+<br>
+
+---
+<br>
+
 ## Adjustments `Nov 20, 2023`
 
 - added the ability to include/exclude the bottom right arrow that appears when lines finish in-game

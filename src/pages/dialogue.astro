@@ -254,7 +254,7 @@ import SizingTool from '../components/SizingTool.astro';
 			let previousch = [0, 0];
 			let dragging = false;
 
-			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mousedown', (e) => {
+			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointerdown', (e) => {
 				if (dragging) return;
 				dragging = true;
 
@@ -274,7 +274,7 @@ import SizingTool from '../components/SizingTool.astro';
 				}
 			});
 
-			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mousemove', (e) => {
+			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointermove', (e) => {
 				if (!dragging) return;
 
 				if (dragbg) {
@@ -289,14 +289,14 @@ import SizingTool from '../components/SizingTool.astro';
 				generateText(text2, subtext2);
 			});
 
-			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mouseup', (e) => {
+			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointerup', (e) => {
 				if (!dragging) return;
 				dragging = false;
 
 				enableScroll();
 			});
 
-			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('mouseleave', (e) => {
+			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointerleave', (e) => {
 				dragging = false;
 
 				enableScroll();
