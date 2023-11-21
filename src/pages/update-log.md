@@ -10,7 +10,7 @@ title: Update Log
 
 ## Small Mobile Support `Nov 21, 2023`
 
-- mobile support for drag
+- *SHITTY mobile support for drag
 
 <br>
 
