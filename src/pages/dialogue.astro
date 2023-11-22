@@ -789,7 +789,7 @@ import SizingTool from '../components/SizingTool.astro';
 					// ctx.drawImage(img2, 0, 0);
 					drawGradients(true);
 
-					let startY = 765 - ((choicepng.height * split.length) + (14 * (split.length - 1))) / 2;
+					let startY = (canvassize[1] * (765/1080)) - ((choicepng.height * split.length) + (14 * (split.length - 1))) / 2;
 
 					let curY = startY;
 					for (let i = 0; i < split.length; i++) {
