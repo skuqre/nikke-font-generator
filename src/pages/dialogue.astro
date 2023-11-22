@@ -29,16 +29,18 @@ import SizingTool from '../components/SizingTool.astro';
 		<Credits />
 		<Anise />
 
-		<div align='center' style="opacity: 0.5; margin-top: 128px;">
-			<a href='https://www.free-website-hit-counter.com'>
-				<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=159038&s=2' border='0' alt='Free Website Hit Counter'>
-			</a>
-			<br>
-			<small>
-				<a href='https://www.free-website-hit-counter.com' title="Free Website Hit Counter">
-					Free website hit counter
+		<div style="text-align: center; margin: 0; margin-top: 128px; display: flex; justify-content: center;">
+			<div style="opacity: 0.5;">
+				<a href='https://www.free-website-hit-counter.com'>
+					<img src='https://www.free-website-hit-counter.com/c.php?d=9&id=159038&s=2' alt='Free Website Hit Counter'>
 				</a>
-			</small>
+				<br>
+				<small>
+					<a href='https://www.free-website-hit-counter.com' title="Free Website Hit Counter">
+						Free website hit counter
+					</a>
+				</small>
+			</div>
 		</div>
 
 		<script>
@@ -59,25 +61,25 @@ import SizingTool from '../components/SizingTool.astro';
 			let subtext2 = '';
 			let size = 100;
 			let color = '#f4d259';
-			let scalebg = 100;
+			let scalebg = 120;
 			let scalech = 100;
 			let bgpos = [0, 0]
 			let chpos = [0, 0]
 
-			let dragbg = false;
-			let dragch = false;
+			let canvassize = [1080, 1080];
+			let keepuioffsets = true;
 
 			let wmrk = new Image();
 			wmrk.crossOrigin = "anonymous"
 			wmrk.src = `/nikke-font-generator/favicon.png`;
 
-			let img = new Image();
-			img.crossOrigin = "anonymous"
-			img.src = `/nikke-font-generator/images/dialogue/vignette.png`;
+			// let img = new Image();
+			// img.crossOrigin = "anonymous"
+			// img.src = `/nikke-font-generator/images/dialogue/vignette.png`;
 
-			let img2 = new Image();
-			img2.crossOrigin = "anonymous"
-			img2.src = `/nikke-font-generator/images/dialogue/vignette2.png`;
+			// let img2 = new Image();
+			// img2.crossOrigin = "anonymous"
+			// img2.src = `/nikke-font-generator/images/dialogue/vignette2.png`;
 
 			let arrow = new Image();
 			arrow.crossOrigin = "anonymous"
@@ -103,6 +105,50 @@ import SizingTool from '../components/SizingTool.astro';
 				generateText("Anis", "Heya Commander! How's it going?")
 			}, 1000);
 
+			let tpos = [125, 877];
+			let dpos = [125, 929];
+			let cpos = [110, 883];
+			let copos = [769, 14];
+			let arpos = [953, 1027];
+
+			let tsize = 25;
+			let dsize = 23;
+			let scaledc = 100;
+			let scalecb = 100;
+			let scalear = 100;
+
+			let dvig = new Image();
+			dvig.crossOrigin = "anonymous"
+			dvig.src = `/nikke-font-generator/images/dialogue/dvig.png`;
+
+			let lvig = new Image();
+			lvig.crossOrigin = "anonymous"
+			lvig.src = `/nikke-font-generator/images/dialogue/lvig.png`;
+
+			let rvig = new Image();
+			rvig.crossOrigin = "anonymous"
+			rvig.src = `/nikke-font-generator/images/dialogue/rvig.png`;
+
+			let uvig = new Image();
+			uvig.crossOrigin = "anonymous"
+			uvig.src = `/nikke-font-generator/images/dialogue/uvig.png`;
+
+			let bvig = new Image();
+			bvig.crossOrigin = "anonymous"
+			bvig.src = `/nikke-font-generator/images/dialogue/bvig.png`;
+
+			function drawGradients(haschoices) {
+				ctx.drawImage(uvig, 0, 0, canvassize[0], uvig.height);
+				ctx.drawImage(lvig, 0, 0, lvig.width, canvassize[1]);
+				ctx.drawImage(rvig, canvassize[0] - rvig.width, 0, rvig.width, canvassize[1]);
+
+				if (haschoices) {
+					ctx.drawImage(bvig, 0, canvassize[1] - bvig.height, canvassize[0], bvig.height);
+				} else {
+					ctx.drawImage(dvig, 0, canvassize[1] - dvig.height, canvassize[0], dvig.height);
+				}
+			}
+
 			document.querySelectorAll('#generate')[0].addEventListener('click', () => {
 				var text = document.getElementById('character').value;
 				var subtext = document.getElementById('dialog').value;
@@ -115,7 +161,7 @@ import SizingTool from '../components/SizingTool.astro';
 				bg.src = document.getElementById('lbg').value;
 				bg.onload = function(e) {
 					if (bg.width > bg.height) {
-						bgpos = [(1080 - 1080 * (bg.width / bg.height)) / 2, 0];
+						bgpos = [(canvassize[0] - 1080 * (bg.width / bg.height)) / 2, 0];
 					} else {
 						bgpos = [0, 0];
 					}
@@ -127,7 +173,7 @@ import SizingTool from '../components/SizingTool.astro';
 				if (document.getElementById('lcr').value.trim() <= 0) return;
 				char.src = document.getElementById('lcr').value;
 				char.onload = function(e) {
-					chpos = [(1080 - char.width) / 2, char.height > 1080 ? 0 : 1080 - char.height];
+					chpos = [(canvassize[0] - char.width) / 2, char.height > canvassize[1] ? 0 : canvassize[1] - char.height];
 					generateText(text2, subtext2);
 				}
 			});
@@ -163,7 +209,7 @@ import SizingTool from '../components/SizingTool.astro';
 					bg.src = e.target.result;
 					bg.onload = (e) => {
 						if (bg.width > bg.height) {
-							bgpos = [(1080 - 1080 * (bg.width / bg.height)) / 2, 0];
+							bgpos = [(canvassize[0] - 1080 * (bg.width / bg.height)) / 2, 0];
 						} else {
 							bgpos = [0, 0];
 						}
@@ -181,7 +227,7 @@ import SizingTool from '../components/SizingTool.astro';
 				filer.onload = (e) => {
 					char.src = e.target.result;
 					char.onload = (e) => {
-						chpos = [(1080 - char.width) / 2, char.height > 1080 ? 0 : 1080 - char.height];
+						chpos = [(canvassize[0] - char.width) / 2, char.height > canvassize[1] ? 0 : canvassize[1] - char.height];
 						generateText(text2, subtext2)
 					}
 				};
@@ -220,16 +266,128 @@ import SizingTool from '../components/SizingTool.astro';
 				generateText(text2, subtext2)
 			});
 
+			document.querySelectorAll('#scaledc')[0].addEventListener('input', () => {
+				let prev = scaledc / 100;
+				scaledc = parseInt(document.getElementById('scaledc').value);
+				copos[0] += controls.width * prev - controls.width * scaledc / 100;
+				copos[1] -= controls.height * prev - controls.height * scaledc / 100;
+
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#scalecb')[0].addEventListener('input', () => {
+				let prev = scalecb / 100;
+				scalecb = parseInt(document.getElementById('scalecb').value);
+
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#scalear')[0].addEventListener('input', () => {
+				let prev = scalear / 100;
+				scalear = parseInt(document.getElementById('scalear').value);
+				arpos[0] += arrow.width * prev - arrow.width * scalear / 100;
+				arpos[1] += arrow.height * prev - arrow.height * scalear / 100;
+
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#wca')[0].addEventListener('input', () => {
+				let prevwidth = canvassize[0];
+				canvassize[0] = parseInt(document.getElementById('wca').value);
+				let diff = canvassize[0] - prevwidth;
+
+				copos[0] += diff;
+				arpos[0] += diff;
+
+				document.getElementById('xposdc').value = copos[0];
+				document.getElementById('xposar').value = arpos[0];
+
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#hca')[0].addEventListener('input', () => {
+				let prevheight = canvassize[1];
+				canvassize[1] = parseInt(document.getElementById('hca').value);
+				let diff = canvassize[1] - prevheight;
+
+				tpos[1] += diff;
+				dpos[1] += diff;
+				cpos[1] += diff;
+				arpos[1] += diff;
+
+				document.getElementById('yposcn').value = tpos[1];
+				document.getElementById('yposdt').value = dpos[1];
+				document.getElementById('yposcb').value = cpos[1];
+				document.getElementById('yposar').value = arpos[1];
+
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#xposcn')[0].addEventListener('input', () => {
+				tpos[0] = parseInt(document.getElementById('xposcn').value);
+
+				generateText(text2, subtext2)
+			});
+			document.querySelectorAll('#yposcn')[0].addEventListener('input', () => {
+				tpos[1] = parseInt(document.getElementById('yposcn').value);
+
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#xposdt')[0].addEventListener('input', () => {
+				dpos[0] = parseInt(document.getElementById('xposdt').value);
+
+				generateText(text2, subtext2)
+			});
+			document.querySelectorAll('#yposdt')[0].addEventListener('input', () => {
+				dpos[1] = parseInt(document.getElementById('yposdt').value);
+
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#xposdc')[0].addEventListener('input', () => {
+				copos[0] = parseInt(document.getElementById('xposdc').value);
+
+				generateText(text2, subtext2)
+			});
+			document.querySelectorAll('#yposdc')[0].addEventListener('input', () => {
+				copos[1] = parseInt(document.getElementById('yposdc').value);
+
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#xposcb')[0].addEventListener('input', () => {
+				cpos[0] = parseInt(document.getElementById('xposcb').value);
+
+				generateText(text2, subtext2)
+			});
+			document.querySelectorAll('#yposcb')[0].addEventListener('input', () => {
+				cpos[1] = parseInt(document.getElementById('yposcb').value);
+
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#xposar')[0].addEventListener('input', () => {
+				arpos[0] = parseInt(document.getElementById('xposar').value);
+
+				generateText(text2, subtext2)
+			});
+			document.querySelectorAll('#yposar')[0].addEventListener('input', () => {
+				arpos[1] = parseInt(document.getElementById('yposar').value);
+
+				generateText(text2, subtext2)
+			});
+
 			bg.onload = (e) => {
 				if (bg.width > bg.height) {
-				bgpos = [(1080 - 1080 * (bg.width / bg.height)) / 2, 0];
+					bgpos = [(canvassize[0] - 1080 * (bg.width / bg.height)) / 2, 0];
 				} else {
 					bgpos = [0, 0];
 				}
 			}
 
 			char.onload = (e) => {
-				chpos = [(1080 - char.width) / 2, char.height > 1080 ? 0 : 1080 - char.height];
+				chpos = [(canvassize[0] - char.width) / 2, char.height > canvassize[1] ? 0 : canvassize[1] - char.height];
 			}
 
 			let sizetools = false;
@@ -241,7 +399,7 @@ import SizingTool from '../components/SizingTool.astro';
 			});
 
 			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('click', () => {
-				if (dragbg || dragch) return;
+				if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar) return;
 				var link = document.createElement('a');
 				var canvas: HTMLCanvasElement = document.getElementById('dialogue-canvas') as HTMLCanvasElement
 				link.download = 'nikke-dialogue.png';
@@ -249,10 +407,25 @@ import SizingTool from '../components/SizingTool.astro';
 				link.click();
 			});
 
+			let dragbg = false;
+			let dragch = false;
+
+			let dragcn = false;
+			let dragdt = false;
+			let dragdc = false;
+			let dragcb = false;
+			let dragar = false;
+
 			let mousecapture = [0, 0];
 			let previousbg = [0, 0];
 			let previousch = [0, 0];
 			let dragging = false;
+
+			let previouscn = [0, 0];
+			let previousdt = [0, 0];
+			let previousdc = [0, 0];
+			let previouscb = [0, 0];
+			let previousar = [0, 0];
 
 			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointerdown', (e) => {
 				if (dragging) return;
@@ -266,10 +439,33 @@ import SizingTool from '../components/SizingTool.astro';
 					previousch[0] = chpos[0];
 					previousch[1] = chpos[1];
 				}
+
+				// end me
+				if (dragcn) {
+					previouscn[0] = tpos[0];
+					previouscn[1] = tpos[1];
+				}
+				if (dragdt) {
+					previousdt[0] = dpos[0];
+					previousdt[1] = dpos[1];
+				}
+				if (dragdc) {
+					previousdc[0] = copos[0];
+					previousdc[1] = copos[1];
+				}
+				if (dragcb) {
+					previouscb[0] = cpos[0];
+					previouscb[1] = cpos[1];
+				}
+				if (dragar) {
+					previousar[0] = arpos[0];
+					previousar[1] = arpos[1];
+				}
+
 				mousecapture[0] = e.clientX;
 				mousecapture[1] = e.clientY;
 
-				if (dragbg || dragch) {
+				if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar) {
 					disableScroll();
 				}
 			});
@@ -281,11 +477,33 @@ import SizingTool from '../components/SizingTool.astro';
 					bgpos[0] = e.clientX + (previousbg[0] - mousecapture[0]);
 					bgpos[1] = e.clientY + (previousbg[1] - mousecapture[1]);
 				}
-
 				if (dragch) {
 					chpos[0] = e.clientX + (previousch[0] - mousecapture[0]);
 					chpos[1] = e.clientY + (previousch[1] - mousecapture[1]);
 				}
+
+				// end me pt 2
+				if (dragcn) {
+					tpos[0] = e.clientX + (previouscn[0] - mousecapture[0]);
+					tpos[1] = e.clientY + (previouscn[1] - mousecapture[1]);
+				}
+				if (dragdt) {
+					dpos[0] = e.clientX + (previousdt[0] - mousecapture[0]);
+					dpos[1] = e.clientY + (previousdt[1] - mousecapture[1]);
+				}
+				if (dragdc) {
+					copos[0] = e.clientX + (previousdc[0] - mousecapture[0]);
+					copos[1] = e.clientY + (previousdc[1] - mousecapture[1]);
+				}
+				if (dragcb) {
+					cpos[0] = e.clientX + (previouscb[0] - mousecapture[0]);
+					cpos[1] = e.clientY + (previouscb[1] - mousecapture[1]);
+				}
+				if (dragar) {
+					arpos[0] = e.clientX + (previousar[0] - mousecapture[0]);
+					arpos[1] = e.clientY + (previousar[1] - mousecapture[1]);
+				}
+
 				generateText(text2, subtext2);
 			});
 
@@ -303,26 +521,82 @@ import SizingTool from '../components/SizingTool.astro';
 			});
 
 			document.querySelectorAll('button#dch')[0].addEventListener('click', () => {
-				dragch = !dragch;
-
-				if (dragbg) {
-					dragbg = false;
-				}
-
-				document.querySelectorAll('button#dch')[0].innerHTML = dragch ? "ON" : "OFF";
-				document.querySelectorAll('button#dbg')[0].innerHTML = dragbg ? "ON" : "OFF";
+				let cap = !dragch;
+				disableAllDrag();
+				dragch = cap;
+				updateDragButtons();
 			});
-
 			document.querySelectorAll('button#dbg')[0].addEventListener('click', () => {
-				dragbg = !dragbg;
+				let cap = !dragbg;
+				disableAllDrag();
+				dragbg = cap;
+				updateDragButtons();
+			});
 
-				if (dragch) {
-					dragch = false;
-				}
+			document.querySelectorAll('button#dcn')[0].addEventListener('click', () => {
+				let cap = !dragcn;
+				disableAllDrag();
+				dragcn = cap;
+				updateDragButtons();
+			});
+			document.querySelectorAll('button#ddt')[0].addEventListener('click', () => {
+				let cap = !dragdt;
+				disableAllDrag();
+				dragdt = cap;
+				updateDragButtons();
+			});
+			document.querySelectorAll('button#ddc')[0].addEventListener('click', () => {
+				let cap = !dragdc;
+				disableAllDrag();
+				dragdc = cap;
+				updateDragButtons();
+			});
+			document.querySelectorAll('button#dcb')[0].addEventListener('click', () => {
+				let cap = !dragcb;
+				disableAllDrag();
+				dragcb = cap;
+				updateDragButtons();
+			});
+			document.querySelectorAll('button#dar')[0].addEventListener('click', () => {
+				let cap = !dragar;
+				disableAllDrag();
+				dragar = cap;
+				updateDragButtons();
+			});
 
+			document.querySelectorAll('button#bgtocan')[0].addEventListener('click', () => {
+				let bgs = scalebg/100;
+				document.getElementById('wca').value = bg.width * bgs;
+				document.getElementById('hca').value = bg.height * bgs;
+				// canvassize = [bg.width * bgs, bg.height * bgs];
+				bgpos = [0, 0];
+
+				document.getElementById('wca').dispatchEvent(new Event('input'));
+				document.getElementById('hca').dispatchEvent(new Event('input'));
+				generateText(text2, subtext2)
+			});
+
+			function updateDragButtons() {
 				document.querySelectorAll('button#dch')[0].innerHTML = dragch ? "ON" : "OFF";
 				document.querySelectorAll('button#dbg')[0].innerHTML = dragbg ? "ON" : "OFF";
-			});
+
+				document.querySelectorAll('button#dcn')[0].innerHTML = dragcn ? "ON" : "OFF";
+				document.querySelectorAll('button#ddt')[0].innerHTML = dragdt ? "ON" : "OFF";
+				document.querySelectorAll('button#ddc')[0].innerHTML = dragdc ? "ON" : "OFF";
+				document.querySelectorAll('button#dcb')[0].innerHTML = dragcb ? "ON" : "OFF";
+				document.querySelectorAll('button#dar')[0].innerHTML = dragar ? "ON" : "OFF";
+			}
+
+			function disableAllDrag() {
+				dragch = false;
+				dragbg = false;
+
+				dragcn = false;
+				dragdt = false;
+				dragdc = false;
+				dragcb = false;
+				dragar = false;
+			}
 
 			let drawfil = true;
 			document.querySelectorAll('button#df')[0].addEventListener('click', () => {
@@ -377,6 +651,16 @@ import SizingTool from '../components/SizingTool.astro';
 				generateText(text2, subtext2)
 			});
 
+			document.querySelectorAll('#scalecn')[0].addEventListener('input', () => {
+				tsize = parseInt(document.getElementById('scalecn').value);
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#scaledt')[0].addEventListener('input', () => {
+				dsize = parseInt(document.getElementById('scaledt').value);
+				generateText(text2, subtext2)
+			});
+
 			function disableScroll() {
 				let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 				let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
@@ -393,8 +677,30 @@ import SizingTool from '../components/SizingTool.astro';
 						scalech += (e.deltaY / -100);
 					}
 
+					if (dragcn) {
+						tsize += (e.deltaY / -100);
+					}
+					if (dragdt) {
+						dsize += (e.deltaY / -100);
+					}
+					if (dragdc) {
+						scaledc += (e.deltaY / -100);
+					}
+					if (dragcb) {
+						scalecb += (e.deltaY / -100);
+					}
+					if (dragar) {
+						scalear += (e.deltaY / -100);
+					}
+
 					document.getElementById('scalebg').value = scalebg;
 					document.getElementById('scalech').value = scalech;
+
+					document.getElementById('scalecn').value = tsize;
+					document.getElementById('scaledt').value = dsize;
+					document.getElementById('scaledc').value = scaledc;
+					document.getElementById('scalecb').value = scalecb;
+					document.getElementById('scalear').value = scalear;
 					generateText(text2, subtext2)
 				}
 			}
@@ -410,9 +716,9 @@ import SizingTool from '../components/SizingTool.astro';
 				subtext2 = subtext;
 				color = document.getElementById('color').value;
 
-				ctx.clearRect(0, 0, 1080, 1080);
-				canvas.width = 1080 * size/100;
-				canvas.height = 1080 * size/100;
+				ctx.clearRect(0, 0, canvassize[0], canvassize[1]);
+				canvas.width = canvassize[0] * size/100;
+				canvas.height = canvassize[1] * size/100;
 				ctx.scale(size/100, size/100);
 
 				let bgs = scalebg/100;
@@ -423,17 +729,28 @@ import SizingTool from '../components/SizingTool.astro';
 					ctx.filter = `grayscale(${gsnum}%) blur(${blnum}px) brightness(${brnum}%) ` + custom;	
 				}
 
-				if (bg.width > bg.height) {
-					ctx.drawImage(bg, bgpos[0], bgpos[1], 1080 * (bg.width / bg.height) * bgs, 1080 * bgs);
-				} else {
-					ctx.drawImage(bg, bgpos[0], bgpos[1], 1080 * bgs, 1080 * (bg.height / bg.width) * bgs);
-				}
+				ctx.drawImage(bg, bgpos[0], bgpos[1], bg.width * bgs, bg.height * bgs);
 
 				document.getElementById('xposbg').value = bgpos[0];
 				document.getElementById('yposbg').value = bgpos[1];
 
 				document.getElementById('xposch').value = chpos[0];
 				document.getElementById('yposch').value = chpos[1];
+
+				document.getElementById('xposcn').value = tpos[0];
+				document.getElementById('yposcn').value = tpos[1];
+				
+				document.getElementById('xposdt').value = dpos[0];
+				document.getElementById('yposdt').value = dpos[1];
+
+				document.getElementById('xposdc').value = copos[0];
+				document.getElementById('yposdc').value = copos[1];
+
+				document.getElementById('xposcb').value = cpos[0];
+				document.getElementById('yposcb').value = cpos[1];
+
+				document.getElementById('xposar').value = arpos[0];
+				document.getElementById('yposar').value = arpos[1];
 
 				ctx.drawImage(char, chpos[0], chpos[1], char.width * chs, char.height * chs)
 
@@ -447,10 +764,11 @@ import SizingTool from '../components/SizingTool.astro';
 					console.log(split.length)
 					if (split.length > 1) {
 						ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
-						ctx.fillRect(0, 0, 1080, 1080);
+						ctx.fillRect(0, 0, canvassize[0], canvassize[1]);
 					}
 
-					ctx.drawImage(img2, 0, 0);
+					// ctx.drawImage(img2, 0, 0);
+					drawGradients(true);
 
 					let startY = 765 - ((choicepng.height * split.length) + (14 * (split.length - 1))) / 2;
 
@@ -458,46 +776,47 @@ import SizingTool from '../components/SizingTool.astro';
 					for (let i = 0; i < split.length; i++) {
 						let item = split[i];
 
-						ctx.drawImage(choicepng, (1080-choicepng.width) / 2, curY);
+						ctx.drawImage(choicepng, (canvassize[0]-choicepng.width) / 2, curY);
 
 						ctx.font = "21px PEB";
 						ctx.fillStyle = "#ffffff";
 						ctx.textBaseline = "middle";
 						ctx.textAlign = "center";
-						ctx.fillText(item.trim(), 1080/ 2, curY + choicepng.height / 2);
+						ctx.fillText(item.trim(), canvassize[0]/ 2, curY + choicepng.height / 2);
 						
 						curY += choicepng.height + 14;
 					}
 
 
 				} else {
-					ctx.drawImage(img, 0, 0)
+					// ctx.drawImage(img, 0, 0)
+					drawGradients(false);
 
 					ctx.fillStyle = color;
-					ctx.fillRect(110, 883, 5, 24);
+					ctx.fillRect(cpos[0], cpos[1], 5 * scalecb/100, 24 * scalecb/100);
 
-					ctx.font = "25px PEB";
+					ctx.font = tsize + "px PEB";
 					ctx.fillStyle = "#ffffff";
 					ctx.textBaseline = "top";
-					ctx.fillText(text, 125, 877 + 8, 830);
+					ctx.fillText(text, tpos[0], tpos[1] + 8, canvassize[0] - 250);
 
-					ctx.font = "23px PB";
+					ctx.font = dsize + "px PB";
 					ctx.fillStyle = "#dcdcdc";
 					ctx.textBaseline = "top";
 
-					let lines = getLines(ctx, subtext, 830)
+					let lines = getLines(ctx, subtext, canvassize[0] - 250)
 
 					for (let i = 0; i<lines.length; i++) {
-						ctx.fillText(lines[i], 125, 929 + 7 + (39 * i), 830);
+						ctx.fillText(lines[i], dpos[0], dpos[1] + 7 + (39 * i), canvassize[0] - 250);
 					}
 				}
 
 				if (arrowOn && document.getElementById('choices').value.trim().length == 0) {
-					ctx.drawImage(arrow, 0, 0);
+					ctx.drawImage(arrow, arpos[0], arpos[1], arrow.width * scalear/100, arrow.height * scalear/100);
 				}
 
 				if (controlsOn) {
-					ctx.drawImage(controls, 0, 0);
+					ctx.drawImage(controls, copos[0], copos[1], controls.width * scaledc/100, controls.height * scaledc/100);
 				}
 
 				ctx.globalAlpha = 0.065;

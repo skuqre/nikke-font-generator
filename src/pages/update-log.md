@@ -8,6 +8,23 @@ title: Update Log
 ---
 <br>
 
+## Resize-able `Nov 22, 2023`
+
+- added the ability to resize and reposition any text/ui element in the image (thank you Δionion for the idea)
+- added the ability to resize the entire canvas
+- fixed use of deprecated HTML in the file itself (see [`src/pages/dialogue.astro`](https://github.com/skuqre/nikke-font-generator/blob/src/pages/dialogue.astro))
+- changed the layout of the sizing tool a bit
+- code is now deemed "shitter than Ever *guaranteed*"
+- **BREAKING** backgrounds will not fit to empty spaces anymore
+    - this is moreso for the make canvas size same as bg size button that you can press
+
+huge shoutout to folks at the [Official Server](https://discord.gg/nikke-en) who use this. y'alls creations make me happy.
+
+<br>
+
+---
+<br>
+
 ## Small Mobile Support `Nov 21, 2023`
 
 - *SHITTY mobile support for drag
