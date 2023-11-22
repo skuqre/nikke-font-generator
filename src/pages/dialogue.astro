@@ -150,21 +150,21 @@ import SizingTool from '../components/SizingTool.astro';
 					ctx.drawImage(bvig, 0, canvassize[1] - bvig.height, canvassize[0], bvig.height);
 				} else {
 					ctx.drawImage(dvig, 0, canvassize[1] - dvig.height, canvassize[0], dvig.height);
+
+					// create temp canvas to put the weird mesh thing
+					const canvasTemp = document.createElement("canvas");
+					const ctxTemp = canvasTemp.getContext("2d");
+
+					canvasTemp.width = canvassize[0];
+					canvasTemp.height = canvassize[1];
+					ctxTemp.fillStyle = color;
+					ctxTemp.fillRect(canvassize[0] - mesh.width, canvassize[1] - mesh.height, mesh.width, mesh.height);
+					ctxTemp.globalCompositeOperation = "destination-in";
+					ctxTemp.drawImage(mesh, canvassize[0] - mesh.width, canvassize[1] - mesh.height);
+					ctxTemp.globalCompositeOperation = "source-over";
+
+					ctx.drawImage(canvasTemp, 0, 0);
 				}
-
-				// create temp canvas to put the weird mesh thing
-				const canvasTemp = document.createElement("canvas");
-				const ctxTemp = canvasTemp.getContext("2d");
-
-				canvasTemp.width = canvassize[0];
-				canvasTemp.height = canvassize[1];
-				ctxTemp.fillStyle = color;
-				ctxTemp.fillRect(canvassize[0] - mesh.width, canvassize[1] - mesh.height, mesh.width, mesh.height);
-				ctxTemp.globalCompositeOperation = "destination-in";
-				ctxTemp.drawImage(mesh, canvassize[0] - mesh.width, canvassize[1] - mesh.height);
-				ctxTemp.globalCompositeOperation = "source-over";
-
-				ctx.drawImage(canvasTemp, 0, 0);
 			}
 
 			document.querySelectorAll('#generate')[0].addEventListener('click', () => {
