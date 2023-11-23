@@ -141,6 +141,10 @@ import SizingTool from '../components/SizingTool.astro';
 			mesh.crossOrigin = "anonymous"
 			mesh.src = `/nikke-font-generator/images/dialogue/mesh.png`;
 
+			let action = new Image();
+			action.crossOrigin = "anonymous"
+			action.src = `/nikke-font-generator/images/dialogue/actionbox.png`;
+
 			function drawGradients(haschoices) {
 				ctx.drawImage(uvig, 0, 0, canvassize[0], uvig.height);
 				ctx.drawImage(lvig, 0, 0, lvig.width, canvassize[1]);
@@ -165,6 +169,35 @@ import SizingTool from '../components/SizingTool.astro';
 
 					ctx.drawImage(canvasTemp, 0, 0);
 				}
+			}
+
+			// squareslice = [x, y, w, h]
+			function draw9slice(img, squareslice, x, y, w, h) {
+				const sx = squareslice[0];
+				const sy = squareslice[1];
+				const sw = squareslice[2];
+				const sh = squareslice[3];
+
+				let cw = w - sx - (img.width - (sx + sw));
+				let ch = h - sy - (img.height - (sy + sh));
+
+				cw = cw < 0 ? 0 : cw;
+				ch = ch < 0 ? 0 : ch;
+
+				// corners
+				ctx.drawImage(img, 0, 0, sx, sy, x, y, sx, sy); // top left
+				ctx.drawImage(img, 0, sy + sh, sx, img.height - (sy + sh), x, y + sy + ch, sx, img.height - (sy + sh)); // bot left
+				ctx.drawImage(img, sx + sw, 0, img.width - (sx + sw), sy, x + sx + cw, y, img.width - (sx + sw), sy); // top right
+				ctx.drawImage(img, sx + sw, sy + sh, img.width - (sx + sw), img.height - (sy + sh), x + sx + cw, y + sy + ch, img.width - (sx + sw), img.height - (sy + sh)); // bot right
+
+				// sides
+
+				ctx.drawImage(img, 0, sy, sx, sh, x, y + sy, sx, ch); // left
+				ctx.drawImage(img, sx + sw, sy, img.width - (sx + sw), sh, x + sx + cw, y + sy, img.width - (sx + sw), ch); // right
+				ctx.drawImage(img, sx, 0, sw, sy, x + sx, y, cw, sy) // up
+				ctx.drawImage(img, sx, sy + sh, sw, img.height - (sy + sh), x + sx, y + sy + ch, cw, img.height - (sy + sh)) // down
+
+				ctx.drawImage(img, sx, sy, sw, sh, x + sx, y + sy, cw, ch); // center
 			}
 
 			document.querySelectorAll('#generate')[0].addEventListener('click', () => {
@@ -663,9 +696,11 @@ import SizingTool from '../components/SizingTool.astro';
 				generateText(text2, subtext2)
 			});
 
-			let cs = ''
 			document.querySelectorAll('#choices')[0].addEventListener('input', () => {
-				cs = parseInt(document.getElementById('choices').value);
+				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('#actionbox')[0].addEventListener('input', () => {
 				generateText(text2, subtext2)
 			});
 
@@ -780,7 +815,6 @@ import SizingTool from '../components/SizingTool.astro';
 					shit = shit.replaceAll('\\n', String.fromCharCode(13, 10));
 
 					let split = shit.trim().split('\n');
-					console.log(split.length)
 					if (split.length > 1) {
 						ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
 						ctx.fillRect(0, 0, canvassize[0], canvassize[1]);
@@ -806,7 +840,30 @@ import SizingTool from '../components/SizingTool.astro';
 						curY += choicepng.height + 14;
 					}
 
+				} else if (document.getElementById('actionbox').value.trim().length > 0) {
+					drawGradients(true);
+					
+					let ay = canvassize[1] * (952 / 1080) - 248 / 2;
 
+					draw9slice(action, [54, 54, 566, 140], 203, ay, canvassize[0] - 203 * 2, 248);
+
+					ctx.font = dsize + "px PB";
+					ctx.fillStyle = "#dcdcdc";
+					ctx.textBaseline = "top";
+					ctx.textAlign = "center";
+
+					let cw = (canvassize[0] - 203 * 2) - 54 - (action.width - (54 + 566));
+					let ch = 140;
+					let lines = getLines(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
+					let ath = (39 * lines.length)
+
+					for (let i = 0; i<lines.length; i++) {
+						ctx.fillText(lines[i], canvassize[0] / 2, (ay + 248 / 2 - ath / 2) + 7 + 4 + (39 * i), cw - 32 * 2);
+					}
+
+					if (arrowOn) {
+						ctx.drawImage(arrow, 230 + cw, canvassize[1] * (952 / 1080) + 43, arrow.width * scalear/100, arrow.height * scalear/100);
+					}
 				} else {
 					// ctx.drawImage(img, 0, 0)
 					drawGradients(false);
@@ -828,10 +885,10 @@ import SizingTool from '../components/SizingTool.astro';
 					for (let i = 0; i<lines.length; i++) {
 						ctx.fillText(lines[i], dpos[0], dpos[1] + 7 + (39 * i), canvassize[0] - 250);
 					}
-				}
 
-				if (arrowOn && document.getElementById('choices').value.trim().length == 0) {
-					ctx.drawImage(arrow, arpos[0], arpos[1], arrow.width * scalear/100, arrow.height * scalear/100);
+					if (arrowOn) {
+						ctx.drawImage(arrow, arpos[0], arpos[1], arrow.width * scalear/100, arrow.height * scalear/100);
+					}
 				}
 
 				if (controlsOn) {

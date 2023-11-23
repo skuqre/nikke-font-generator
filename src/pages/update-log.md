@@ -8,6 +8,15 @@ title: Update Log
 ---
 <br>
 
+## Action / Narration `Nov 23, 2023`
+
+- added the ability to add Narration / Action style dialogue
+
+<br>
+
+---
+<br>
+
 ## Resize-able `Nov 22, 2023`
 
 - added the ability to resize and reposition any text/ui element in the image (thank you Δionion for the idea)
