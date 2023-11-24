@@ -8,6 +8,19 @@ title: Update Log
 ---
 <br>
 
+## Newlines `Nov 24, 2023`
+
+- added the ability to type in new lines (when you press enter) on narration and normal dialogue
+
+| | |
+|-|-|
+| <img src='https://cdn.discordapp.com/attachments/1154460728179314710/1177549114142101584/ATA9GNkXiWy6AAAAAElFTkSuQmCC.png' width="100%" /> | <img src='https://media.discordapp.net/attachments/1154460728179314710/1177549114989355048/QX9iLnuJOSTH6vE2w563Xc5HPUALElU4Jja6tQa4fKw78NJ1r35NneoGAAAAAElFTkSuQmCC.png' width="100%"> |
+
+<br>
+
+---
+<br>
+
 ## Action / Narration `Nov 23, 2023`
 
 - added the ability to add Narration / Action style dialogue

@@ -854,7 +854,7 @@ import SizingTool from '../components/SizingTool.astro';
 
 					let cw = (canvassize[0] - 203 * 2) - 54 - (action.width - (54 + 566));
 					let ch = 140;
-					let lines = getLines(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
+					let lines = getLinesForParagraphs(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
 					let ath = (39 * lines.length)
 
 					for (let i = 0; i<lines.length; i++) {
@@ -880,7 +880,7 @@ import SizingTool from '../components/SizingTool.astro';
 					ctx.fillStyle = "#dcdcdc";
 					ctx.textBaseline = "top";
 
-					let lines = getLines(ctx, subtext, canvassize[0] - 250)
+					let lines = getLinesForParagraphs(ctx, subtext, canvassize[0] - 250)
 
 					for (let i = 0; i<lines.length; i++) {
 						ctx.fillText(lines[i], dpos[0], dpos[1] + 7 + (39 * i), canvassize[0] - 250);
@@ -920,6 +920,10 @@ import SizingTool from '../components/SizingTool.astro';
 				}
 				lines.push(currentLine);
 				return lines;
+			}
+
+			function getLinesForParagraphs(ctx, text, maxWidth) {
+				return text.split("\n").map(para => getLines(ctx, para, maxWidth))
 			}
 		</script>
 	</body>
