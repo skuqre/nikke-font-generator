@@ -260,8 +260,16 @@ import SizingTool from '../components/SizingTool.astro';
 					bg.src = e.target.result;
 					bg.onload = (e) => {
 						if (bg.width > bg.height) {
+							if (bgautofit) {
+								scalebg = (canvassize[1] / bg.height) * 100;
+								document.getElementById('scalebg').value = parseInt(scalebg);
+							}
 							bgpos = [(canvassize[0] - 1080 * (bg.width / bg.height)) / 2, 0];
 						} else {
+							if (bgautofit) {
+								scalebg = (canvassize[0] / bg.width) * 100;
+								document.getElementById('scalebg').value = parseInt(scalebg);
+							}
 							bgpos = [0, 0];
 						}
 						generateText(text2, subtext2)
@@ -472,6 +480,8 @@ import SizingTool from '../components/SizingTool.astro';
 			let previousch = [0, 0];
 			let dragging = false;
 
+			let bgautofit = true;
+
 			let previouscn = [0, 0];
 			let previousdt = [0, 0];
 			let previousdc = [0, 0];
@@ -558,6 +568,29 @@ import SizingTool from '../components/SizingTool.astro';
 				generateText(text2, subtext2);
 			});
 
+			// not using this yet
+			// var prevd = 0;
+			// var scalepre = 0;
+			// var curscaling = '';
+
+			// document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('touchstart', (e) => {
+			// 	if (!dragging) return;
+			// 	if (e.touches.length === 2) {
+			// 		prevd = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
+			// 		scalepre = scalebg;
+			// 	}
+			// });
+
+			// document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('touchmove', (e) => {
+			// 	if (!dragging) return;
+			// 	if (e.touches.length === 2) {
+			// 		var dist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
+					
+			// 		scalebg = scalepre * dist/prevd;
+			// 		document.getElementById('scalebg').value = scalebg;
+			// 	}
+			// });
+
 			document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointerup', (e) => {
 				if (!dragging) return;
 				dragging = false;
@@ -625,6 +658,12 @@ import SizingTool from '../components/SizingTool.astro';
 				document.getElementById('wca').dispatchEvent(new Event('input'));
 				document.getElementById('hca').dispatchEvent(new Event('input'));
 				generateText(text2, subtext2)
+			});
+
+			document.querySelectorAll('button#bgautofit')[0].addEventListener('click', () => {
+				bgautofit = !bgautofit;
+
+				document.querySelectorAll('button#bgautofit')[0].innerHTML = "Auto Fit: " + (bgautofit ? "ON" : "OFF");
 			});
 
 			function updateDragButtons() {

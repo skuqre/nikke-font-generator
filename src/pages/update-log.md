@@ -11,6 +11,9 @@ title: Update Log
 ## Newlines `Nov 24, 2023`
 
 - added the ability to type in new lines (when you press enter) on narration and normal dialogue
+- added back in Background Auto Fitting
+- added the ability to toggle Background Auto Fitting
+- fixed Drag being stupid on touch devices
 
 | | |
 |-|-|
