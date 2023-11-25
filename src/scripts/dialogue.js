@@ -53,7 +53,7 @@ bg.src = `/nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
 
 let char = new Image();
 char.crossOrigin = "anonymous"
-char.src = `https://media.discordapp.net/attachments/1154460728179314710/1172492683420368917/NIKKE-DB_c012_fb_234.png?ex=656083e7&is=654e0ee7&hm=566d77d4c1bd46ce779c3e6fd6ea8439952eaed66ed0b441281d55c83bc744d1&=&width=1500&height=1500`;
+char.src = `https://media.discordapp.net/attachments/1154460728179314710/1172492683420368917/NIKKE-DB_c012_fb_234.png`;
 
 setTimeout(() => {
     generateText("Anis", "Heya Commander! How's it going?")
