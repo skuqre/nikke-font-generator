@@ -8,6 +8,16 @@ title: Update Log
 ---
 <br>
 
+## Fixes `Nov 25, 2023`
+
+- fixed newlines not working properly
+- fixed font size not changing line spacing
+
+<br>
+
+---
+<br>
+
 ## Newlines `Nov 24, 2023`
 
 - added the ability to type in new lines (when you press enter) on narration and normal dialogue
