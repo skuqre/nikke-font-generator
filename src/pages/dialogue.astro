@@ -207,28 +207,6 @@ import SizingTool from '../components/SizingTool.astro';
 				generateText(text, subtext);
 			});
 
-			document.querySelectorAll('#rlbg')[0].addEventListener('click', () => {
-				if (document.getElementById('lbg').value.trim() <= 0) return;
-				bg.src = document.getElementById('lbg').value;
-				bg.onload = function(e) {
-					if (bg.width > bg.height) {
-						bgpos = [(canvassize[0] - 1080 * (bg.width / bg.height)) / 2, 0];
-					} else {
-						bgpos = [0, 0];
-					}
-					generateText(text2, subtext2);
-				}
-			});
-
-			document.querySelectorAll('#rlc')[0].addEventListener('click', () => {
-				if (document.getElementById('lcr').value.trim() <= 0) return;
-				char.src = document.getElementById('lcr').value;
-				char.onload = function(e) {
-					chpos = [(canvassize[0] - char.width) / 2, char.height > canvassize[1] ? 0 : canvassize[1] - char.height];
-					generateText(text2, subtext2);
-				}
-			});
-
 			document.querySelectorAll('#clear-char')[0].addEventListener('click', () => {
 				char.src = '/nikke-font-generator/images/transparent.png';
 				char.onload = function(e) {

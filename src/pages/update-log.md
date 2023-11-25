@@ -12,6 +12,8 @@ title: Update Log
 
 - fixed newlines not working properly
 - fixed font size not changing line spacing
+- removed usage of links in backgrounds
+    - **REASON FOR REMOVAL**: this would break half the time, plus no one really uses it
 
 <br>
 
