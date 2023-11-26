@@ -900,17 +900,19 @@ function animateTypewrite() {
         const palette = quantize(data, 256);
         const index = applyPalette(data, palette);
 
-        encoder.writeFrame(index, width, height, { palette: palette, delay: 75, repeat: -1 });
+        encoder.writeFrame(index, width, height, { palette: palette, delay: 75, repeat: 0 });
     }
 
     arrowOn = wasArrowOn;
     generateText(textc, curText)
 
-    const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const palette = quantize(data, 256);
-    const index = applyPalette(data, palette);
+    for (let i = 0; i <= 10; i++) {
+        const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const palette = quantize(data, 256);
+        const index = applyPalette(data, palette);
 
-    encoder.writeFrame(index, width, height, { palette: palette, delay: 75, repeat: -1 });
+        encoder.writeFrame(index, width, height, { palette: palette, delay: 75, repeat: 0 });
+    }
 
     encoder.finish();
 
@@ -963,10 +965,14 @@ function downloadIndividualFrames() {
 
     arrowOn = wasArrowOn;
     generateText(textc, curText)
-    imgs.push({
-        name: "nikke-frame" + individual.length + ".png",
-        input: dataURLtoFile(canvas.toDataURL(), "nikke-frame" + individual.length + ".png")
-    })
+
+    for (let i = 0; i < 4; i++) {
+        imgs.push({
+            name: "nikke-frame" + (individual.length + i) + ".png",
+            input: dataURLtoFile(canvas.toDataURL(), "nikke-frame" + (individual.length + i) + ".png")
+        })
+    }
+    
 
     downloadZip(imgs).blob().then((blob) => {
         const link = document.createElement("a")
