@@ -1,7 +1,10 @@
-import { draw9slice } from "./util.js";
+import { draw9slice, dataURLtoFile } from "./util.js";
+import { GIFEncoder, quantize, applyPalette } from "https://unpkg.com/gifenc";
+import { downloadZip } from "https://cdn.jsdelivr.net/npm/client-zip/index.js"
+import { Buffer } from "buffer";
 
 const canvas = document.getElementById("dialogue-canvas");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
 const myFont = new FontFace('PEB', "url('/nikke-font-generator/fonts/Pretendard-ExtraBold.ttf')");
 await myFont.load();
@@ -360,14 +363,7 @@ document.querySelectorAll('#enable-sizing')[0].addEventListener('click', () => {
     document.getElementById('sizing-tool').style['display'] = sizetools ? "block" : "none";
 });
 
-document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('click', () => {
-    if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar) return;
-    var link = document.createElement('a');
-    var canvas = document.getElementById('dialogue-canvas')
-    link.download = 'nikke-dialogue.png';
-    link.href = canvas.toDataURL()
-    link.click();
-});
+document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('click', downloadImage);
 
 let dragbg = false;
 let dragch = false;
@@ -568,6 +564,10 @@ document.querySelectorAll('button#bgautofit')[0].addEventListener('click', () =>
 
     document.querySelectorAll('button#bgautofit')[0].innerHTML = "Auto Fit: " + (bgautofit ? "ON" : "OFF");
 });
+
+document.querySelectorAll('button#export-png')[0].addEventListener('click', downloadImage);
+document.querySelectorAll('button#export-gif')[0].addEventListener('click', animateTypewrite);
+document.querySelectorAll('button#export-frames')[0].addEventListener('click', downloadIndividualFrames);
 
 function updateDragButtons() {
     document.querySelectorAll('button#dch')[0].innerHTML = dragch ? "ON" : "OFF";
@@ -863,6 +863,126 @@ function getLines(ctx, text, maxWidth) {
     }
     lines.push(currentLine);
     return lines;
+}
+
+let exporting = false;
+function animateTypewrite() {
+    if (exporting) return;
+    exporting = true;
+
+    let textc = text2;
+    let subtextc = subtext2;
+
+    let individual = subtextc.split('');
+
+    const encoder = new GIFEncoder(canvassize[0], canvassize[1]);
+
+    let wasArrowOn = arrowOn;
+
+    arrowOn = false;
+    let curText = "";
+    individual.splice(0, 0, '');
+    for (let i = 0; i < individual.length; i++) {
+        curText += individual[i];
+
+        if (individual[i+1] == ' ') {
+            curText += individual[i+1];
+            i++;
+        }
+        if (individual[i+1] == '\\n') {
+            curText += individual[i+1];
+            i++;
+        }
+
+        generateText(textc, curText)
+
+        const { data, width, height } = ctx.getImageData(0, 0, canvassize[0], canvassize[1]);
+        const palette = quantize(data, 256);
+        const index = applyPalette(data, palette);
+
+        encoder.writeFrame(index, width, height, { palette: palette, delay: 75, repeat: -1 });
+    }
+
+    arrowOn = wasArrowOn;
+    generateText(textc, curText)
+
+    const { data, width, height } = ctx.getImageData(0, 0, canvassize[0], canvassize[1]);
+    const palette = quantize(data, 256);
+    const index = applyPalette(data, palette);
+
+    encoder.writeFrame(index, width, height, { palette: palette, delay: 75, repeat: -1 });
+
+    encoder.finish();
+
+    let output = encoder.bytes();
+    let b64 = Buffer.from(output).toString('base64');
+
+    var link = document.createElement('a');
+    link.download = 'nikke-dialogue.gif';
+    link.href = "data:image/gif;base64," + b64;
+    link.click();
+
+    exporting = false;
+}
+
+function downloadIndividualFrames() {
+    let imgs = []
+
+    let textc = text2;
+    let subtextc = subtext2;
+
+    let individual = subtextc.split('');
+
+    let wasArrowOn = arrowOn;
+
+    arrowOn = false;
+    let curText = "";
+    individual.splice(0, 0, '');
+
+    for (let i = 0; i < individual.length; i++) {
+        curText += individual[i];
+
+        if (individual[i+1] == ' ') {
+            curText += individual[i+1];
+            i++;
+        }
+        if (individual[i+1] == '\\n') {
+            curText += individual[i+1];
+            i++;
+        }
+
+        generateText(textc, curText)
+
+        imgs.push({
+            name: "nikke-frame" + i + ".png",
+            input: dataURLtoFile(canvas.toDataURL(), "nikke-frame" + i + ".png")
+        })
+    }
+
+    arrowOn = wasArrowOn;
+    generateText(textc, curText)
+    imgs.push({
+        name: "nikke-frame" + individual.length + ".png",
+        input: dataURLtoFile(canvas.toDataURL(), "nikke-frame" + individual.length + ".png")
+    })
+
+    downloadZip(imgs).blob().then((blob) => {
+        const link = document.createElement("a")
+        link.href = window.URL.createObjectURL(blob)
+        link.download = "nikke-dialogue.zip"
+        link.click()
+        link.remove()
+    })
+}
+
+function downloadImage() {
+    if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar) return;
+    var link = document.createElement('a');
+    var canvas = document.getElementById('dialogue-canvas')
+    link.download = 'nikke-dialogue.png';
+    link.href = canvas.toDataURL();
+    link.click();
+    link.remove();
 }
 
 function getLinesForParagraphs(ctx, text, maxWidth) {

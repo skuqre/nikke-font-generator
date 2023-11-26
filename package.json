@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "astro": "^3.3.0",
+    "buffer": "^6.0.3",
+    "gif-encoder": "^0.7.2",
+    "gifencoder": "^2.0.1",
     "hex-to-css-filter": "^5.4.0"
   }
 }

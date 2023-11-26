@@ -8,6 +8,20 @@ title: Update Log
 ---
 <br>
 
+## Export `Nov 26, 2023`
+
+- added the ability to download/export in 3 different types
+    - **Export as PNG...**: downloads the output you currently see as an image file. it's the download button!
+    - **Export as animated GIF...**: not necessarily animates the character if you uploaded the gif of the character, BUT, animates the dialogue text *(only, currently)*, as if it were typing itself, then it downloads as a gif.
+    - **Export as individual frames (as ZIP)...**: imagine typing the same stuff one by one and exporting it one by one to create the typing effect. this one does it automatically and wraps it up in a present for you!
+
+the site now uses tools like `Buffer`, `gif-encoder`, and `client-zip` for things like this. hope y'all enjoy.
+
+<br>
+
+---
+<br>
+
 ## Fixes `Nov 25, 2023`
 
 - fixed newlines not working properly
