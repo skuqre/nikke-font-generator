@@ -875,7 +875,7 @@ function animateTypewrite() {
 
     let individual = subtextc.split('');
 
-    const encoder = new GIFEncoder(canvassize[0], canvassize[1]);
+    const encoder = new GIFEncoder(canvas.width, canvas.height);
 
     let wasArrowOn = arrowOn;
 
@@ -896,7 +896,7 @@ function animateTypewrite() {
 
         generateText(textc, curText)
 
-        const { data, width, height } = ctx.getImageData(0, 0, canvassize[0], canvassize[1]);
+        const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const palette = quantize(data, 256);
         const index = applyPalette(data, palette);
 
@@ -906,7 +906,7 @@ function animateTypewrite() {
     arrowOn = wasArrowOn;
     generateText(textc, curText)
 
-    const { data, width, height } = ctx.getImageData(0, 0, canvassize[0], canvassize[1]);
+    const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const palette = quantize(data, 256);
     const index = applyPalette(data, palette);
 
