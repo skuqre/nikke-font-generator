@@ -966,7 +966,7 @@ function downloadIndividualFrames() {
     arrowOn = wasArrowOn;
     generateText(textc, curText)
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i <= 10; i++) {
         imgs.push({
             name: "nikke-frame" + (individual.length + i) + ".png",
             input: dataURLtoFile(canvas.toDataURL(), "nikke-frame" + (individual.length + i) + ".png")
