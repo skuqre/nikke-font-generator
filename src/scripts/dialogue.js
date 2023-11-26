@@ -2,6 +2,7 @@ import { draw9slice, dataURLtoFile } from "./util.js";
 import { GIFEncoder, quantize, applyPalette } from "https://unpkg.com/gifenc";
 import { downloadZip } from "https://cdn.jsdelivr.net/npm/client-zip/index.js"
 import { Buffer } from "buffer";
+import * as HME from "h264-mp4-encoder";
 
 const canvas = document.getElementById("dialogue-canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
@@ -567,6 +568,7 @@ document.querySelectorAll('button#bgautofit')[0].addEventListener('click', () =>
 
 document.querySelectorAll('button#export-png')[0].addEventListener('click', downloadImage);
 document.querySelectorAll('button#export-gif')[0].addEventListener('click', animateTypewrite);
+document.querySelectorAll('button#export-mp4')[0].addEventListener('click', downloadVideo);
 document.querySelectorAll('button#export-frames')[0].addEventListener('click', downloadIndividualFrames);
 
 function updateDragButtons() {
@@ -990,6 +992,72 @@ function downloadImage() {
     link.click();
     link.remove();
 }
+
+// 30 fps
+
+function downloadVideo() {
+    if (exporting) return;
+    exporting = true;
+
+    HME.createH264MP4Encoder().then(encoder => {
+
+        let textc = text2;
+        let subtextc = subtext2;
+
+        let individual = subtextc.split('');
+
+        encoder.width = canvas.width % 2 == 0 ? canvas.width : canvas.width + 1;
+        encoder.height = canvas.height % 2 == 0 ? canvas.height : canvas.height + 1;
+        encoder.initialize();
+        // encoder.frameRate = 30;
+
+        let wasArrowOn = arrowOn;
+
+        arrowOn = false;
+        let curText = "";
+        individual.splice(0, 0, '');
+        for (let i = 0; i < individual.length; i++) {
+            curText += individual[i];
+
+            if (individual[i+1] == ' ') {
+                curText += individual[i+1];
+                i++;
+            }
+            if (individual[i+1] == '\\n') {
+                curText += individual[i+1];
+                i++;
+            }
+
+            generateText(textc, curText)
+
+            for (let i = 0; i <= 2; i++) {
+                encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
+            }
+        }
+
+        arrowOn = wasArrowOn;
+        generateText(textc, curText)
+
+        for (let i = 0; i <= 2; i++) {
+            encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
+        }
+
+        encoder.finalize();
+
+        let output = encoder.FS.readFile(encoder.outputFilename);
+        let b64 = Buffer.from(output).toString('base64');
+
+        var link = document.createElement('a');
+        link.download = 'nikke-dialogue.mp4';
+        link.href = "data:video/mp4;base64," + b64;
+        link.click();
+
+        encoder.delete();
+        exporting = false;
+
+    });
+}
+
 
 function getLinesForParagraphs(ctx, text, maxWidth) {
     let ass = text.split("\n").map(para => getLines(ctx, para, maxWidth))
