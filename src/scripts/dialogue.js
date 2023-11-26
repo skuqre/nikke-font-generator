@@ -926,6 +926,8 @@ function animateTypewrite() {
 }
 
 function downloadIndividualFrames() {
+    if (exporting) return;
+    exporting = true;
     let imgs = []
 
     let textc = text2;
@@ -972,6 +974,7 @@ function downloadIndividualFrames() {
         link.download = "nikke-dialogue.zip"
         link.click()
         link.remove()
+        exporting = false;
     })
 }
 
