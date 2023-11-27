@@ -8,6 +8,21 @@ title: Update Log
 ---
 <br>
 
+## Motion `Nov 27, 2023`
+
+it's time for some motion!
+
+i pretty much overcomplicated the addition of this, so it's in the essence of "scripting"
+
+it's pretty limited right now, but more to come if the people ask of it!
+
+[motion explanation](/nikke-font-generator/what-is/motion)
+
+<br>
+
+---
+<br>
+
 ## Export `Nov 26, 2023`
 
 - added the ability to download/export in 4 different types

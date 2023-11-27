@@ -58,6 +58,25 @@ const {frontmatter} = Astro.props;
                 padding: 4px;
                 border-radius: 6px;
             }
+
+            .github-dark {
+                background-color: var(--darker) !important;
+                border-radius: 6px;
+                overflow-y: hidden !important;
+                padding: 8px 16px;
+                white-space: pre;
+            }
+
+            .astro-code > code {
+                background-color: rgba(0, 0, 0, 0);
+            }
+
+            .astro-code > code > span.line {
+                text-align: left;
+                width: 100%;
+                display: block;
+                margin: -4px 0px;
+            }
         </style>
 	</head>
 	<body>

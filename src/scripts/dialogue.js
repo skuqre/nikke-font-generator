@@ -568,7 +568,9 @@ document.querySelectorAll('button#bgautofit')[0].addEventListener('click', () =>
 
 document.querySelectorAll('button#export-png')[0].addEventListener('click', downloadImage);
 document.querySelectorAll('button#export-gif')[0].addEventListener('click', animateTypewrite);
-document.querySelectorAll('button#export-mp4')[0].addEventListener('click', downloadVideo);
+document.querySelectorAll('button#export-mp4')[0].addEventListener('click', () => {
+   downloadVideo()
+});
 document.querySelectorAll('button#export-frames')[0].addEventListener('click', downloadIndividualFrames);
 
 function updateDragButtons() {
@@ -707,20 +709,166 @@ function enableScroll() {
     window.onwheel = (e) => { }
 }
 
-function generateText(text, subtext) {
+let capture = {}
+
+let frame = 0;
+let maxframes = 0;
+
+function captureAnimatables() {
+    frame = 0
+    maxframes = 0
+    capture = {
+        brightness: brnum,
+        bgvals: [bgpos[0], bgpos[1], scalebg], // x, y, scale
+        chvals: [chpos[0], chpos[1], scalech]
+    }
+}
+
+function resetAnimatables() {
+    bgpos[0] = capture.bgvals[0];
+    bgpos[1] = capture.bgvals[1];
+    scalebg = capture.bgvals[2];
+
+    chpos[0] = capture.chvals[0]
+    chpos[1] = capture.chvals[1]
+
+    brnum = capture.brightness;
+
+    generateText(text2, subtext2);
+}
+
+// just use sine for everything...
+const easeInOutSine = t => (1 + Math.sin(Math.PI * t - Math.PI / 2)) / 2;
+
+function generateText(text, subtext, exporting=false) {
     ctx.globalAlpha = 1;
     text2 = text;
     subtext2 = subtext;
     color = document.getElementById('color').value;
     ctx.globalCompositeOperation = "source-over";
 
-    ctx.clearRect(0, 0, canvassize[0], canvassize[1]);
     canvas.width = canvassize[0] * size / 100;
     canvas.height = canvassize[1] * size / 100;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.scale(size / 100, size / 100);
 
     let bgs = scalebg / 100;
     let chs = scalech / 100;
+
+    if (exporting) {
+        if (document.getElementById('motion').value.trim().length > 0) {
+            let shit = document.getElementById('motion').value;
+            shit = shit.replaceAll('\\n', String.fromCharCode(13, 10));
+    
+            let split = shit.trim().split('\n');
+
+            let fadeInFrames = 0;
+            let posbgFrames = [[0, 0], [0, 0]] // frames, goal value
+            let scalebgFrames = [0, 'center', 0] // frames, anchor, goal value
+
+            let poschFrames = [[0, 0], [0, 0]]
+
+            for (let i = 0; i < split.length; i++) {
+                let data = split[i].trim().split("::");
+
+                switch (data[0]) {
+                    case 'fadein':
+                        fadeInFrames = parseFloat(data[1]) / (1/30);
+                        break;
+
+                    case 'posxbg':
+                        posbgFrames[0] = [parseFloat(data[2]) / (1/30), parseFloat(data[1])];
+                        break;
+
+                    case 'posybg':
+                        posbgFrames[1] = [parseFloat(data[2]) / (1/30), parseFloat(data[1])];
+                        break;
+
+                    case 'scalebg':
+                        scalebgFrames = [parseFloat(data[3]) / (1/30), data[2], parseFloat(data[1])] 
+                        break;
+
+                    case 'posxch':
+                        poschFrames[0] = [parseFloat(data[2]) / (1/30), parseFloat(data[1])];
+                        break;
+
+                    case 'posych':
+                        poschFrames[1] = [parseFloat(data[2]) / (1/30), parseFloat(data[1])];
+                        break;
+                
+                    default:
+                        break;
+                }
+            }
+
+            if (fadeInFrames > 0) {
+                brnum = ((frame < fadeInFrames ? frame : fadeInFrames) / fadeInFrames) * capture.brightness;
+            }
+
+            if (posbgFrames[0][0] > 0) {
+                let daFrame = (frame < posbgFrames[0][0] ? frame : posbgFrames[0][0])
+                bgpos[0] = capture.bgvals[0] + easeInOutSine(daFrame / posbgFrames[0][0]) * (posbgFrames[0][1] - capture.bgvals[0]);
+            }
+
+            if (posbgFrames[1][0] > 0) {
+                let daFrame = (frame < posbgFrames[1][0] ? frame : posbgFrames[1][0])
+                bgpos[1] = capture.bgvals[1] + easeInOutSine(daFrame / posbgFrames[1][0]) * (posbgFrames[1][1] - capture.bgvals[1]);
+            }
+
+            if (poschFrames[0][0] > 0) {
+                let daFrame = (frame < poschFrames[0][0] ? frame : poschFrames[0][0])
+                chpos[0] = capture.chvals[0] + easeInOutSine(daFrame / poschFrames[0][0]) * (poschFrames[0][1] - capture.chvals[0]);
+            }
+
+            if (poschFrames[1][0] > 0) {
+                let daFrame = (frame < poschFrames[1][0] ? frame : poschFrames[1][0])
+                chpos[1] = capture.chvals[1] + easeInOutSine(daFrame / poschFrames[1][0]) * (poschFrames[1][1] - capture.chvals[1]);
+            }
+
+            if (scalebgFrames[0] > 0) {
+                let daFrame = (frame < scalebgFrames[0] ? frame : scalebgFrames[0])
+                scalebg = capture.bgvals[2] + easeInOutSine(daFrame / scalebgFrames[0]) * (scalebgFrames[2] - capture.bgvals[2]);
+                let anchors = scalebgFrames[1].split('-')
+                let scalen = scalebg / capture.bgvals[2];
+                bgs = scalebg / 100;
+
+                let xoff = capture.bgvals[0] * scalen;
+                let yoff = capture.bgvals[1] * scalen;
+
+                let midxoff = Math.abs(capture.bgvals[0] - canvas.width / 2);
+                let midyoff = Math.abs(capture.bgvals[1] - canvas.height / 2);
+
+                if (anchors.length > 1) {
+                    switch (anchors[0]) {
+                        case 'top':
+                            bgpos[1] = yoff;
+                            break;
+                        case 'mid':
+                            bgpos[1] = (canvas.height / 2) - midyoff * scalen;
+                            break;
+                        case 'bot':
+                            bgpos[1] = (canvas.height - (bg.height * bgs)) + (yoff);
+                            break;
+                    }
+    
+                    switch (anchors[1]) {
+                        case 'left':
+                            bgpos[0] = xoff;
+                            break;
+                        case 'center':
+                            bgpos[0] = (canvas.width / 2) - midxoff * scalen;
+                            break;
+                        case 'right':
+                            bgpos[0] = (canvas.width - (bg.width * bgs)) + (xoff);
+                            break;
+                    }
+                } else {
+                    if (scalebgFrames[1].trim() == 'none') {
+                    }
+                }
+            }
+        }
+    }
 
     if (drawfil) {
         let custom = document.getElementById('customfil').value + '';
@@ -872,6 +1020,8 @@ function animateTypewrite() {
     if (exporting) return;
     exporting = true;
 
+    captureAnimatables()
+
     let textc = text2;
     let subtextc = subtext2;
 
@@ -896,24 +1046,28 @@ function animateTypewrite() {
             i++;
         }
 
-        generateText(textc, curText)
+        generateText(textc, curText, true)
 
-        const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const palette = quantize(data, 256);
-        const index = applyPalette(data, palette);
+        for (let i = 0; i <= 1; i++) {
+            const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const palette = quantize(data, 256);
+            const index = applyPalette(data, palette);
 
-        encoder.writeFrame(index, width, height, { palette: palette, delay: 75, repeat: 0 });
+            encoder.writeFrame(index, width, height, { palette: palette, delay: 33.333333, repeat: 0 });
+            frame++;
+        }
     }
 
     arrowOn = wasArrowOn;
-    generateText(textc, curText)
+    generateText(textc, curText, true)
 
     for (let i = 0; i <= 10; i++) {
         const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const palette = quantize(data, 256);
         const index = applyPalette(data, palette);
 
-        encoder.writeFrame(index, width, height, { palette: palette, delay: 75, repeat: 0 });
+        encoder.writeFrame(index, width, height, { palette: palette, delay: 33.333333, repeat: 0 });
+        frame++;
     }
 
     encoder.finish();
@@ -999,7 +1153,9 @@ function downloadVideo() {
     if (exporting) return;
     exporting = true;
 
-    HME.createH264MP4Encoder().then(encoder => {
+    captureAnimatables()
+
+    HME.createH264MP4Encoder().then((encoder) => {
 
         let textc = text2;
         let subtextc = subtext2;
@@ -1028,18 +1184,19 @@ function downloadVideo() {
                 i++;
             }
 
-            generateText(textc, curText)
-
-            for (let i = 0; i <= 2; i++) {
+            for (let i = 0; i <= 1; i++) {
+                generateText(textc, curText, true)
                 encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
+                frame++;
             }
         }
 
         arrowOn = wasArrowOn;
-        generateText(textc, curText)
 
-        for (let i = 0; i <= 2; i++) {
+        for (let i = 0; i <= 1; i++) {
+            generateText(textc, curText, true)
             encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
+            frame++;
         }
 
         encoder.finalize();
@@ -1053,9 +1210,10 @@ function downloadVideo() {
         link.click();
 
         encoder.delete();
-        exporting = false;
 
-    });
+        resetAnimatables()
+        exporting = false;
+    })
 }
 
 

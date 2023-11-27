@@ -22,3 +22,5 @@ Here's what each one does, explained more elaborately by an idiot.
 When clicking on one of them, your browser may lag for a bit; this is your device processing the images, so don't panic. 
 
 The whole thing you're working with here is made to use YOUR device as no servers are involved in this site.
+
+Exporting in MP4/GIF will provide you with a file that runs on 30 FPS at most. I'm excluding motion effects when exporting to individual frames as effects are fps based.
