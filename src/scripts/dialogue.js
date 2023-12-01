@@ -1059,13 +1059,25 @@ function animateTypewrite() {
     }
 
     arrowOn = wasArrowOn;
-    generateText(textc, curText, true)
 
-    for (let i = 0; i <= 10; i++) {
+    let extra = 1;
+
+    let newframes = document.getElementById('fa').value;
+
+    if (newframes != null) {
+        if (newframes > 0) {
+            if (true) { // document.getElementById('fa-how').value == 'add'
+                extra = parseInt(newframes) + 1 // a frame of peace
+            }
+        }
+    }
+
+    for (let i = 0; i < extra; i++) {
         const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const palette = quantize(data, 256);
         const index = applyPalette(data, palette);
 
+        generateText(textc, curText, true)
         encoder.writeFrame(index, width, height, { palette: palette, delay: 33.333333, repeat: 0 });
         frame++;
     }
@@ -1120,6 +1132,7 @@ function downloadIndividualFrames() {
     }
 
     arrowOn = wasArrowOn;
+
     generateText(textc, curText)
     imgs.push({
         name: "nikke-frame" + (individual.length) + ".png",
@@ -1193,7 +1206,19 @@ function downloadVideo() {
 
         arrowOn = wasArrowOn;
 
-        for (let i = 0; i <= 1; i++) {
+        let extra = 1;
+
+        let newframes = document.getElementById('fa').value;
+
+        if (newframes != null) {
+            if (newframes > 0) {
+                if (true) {
+                    extra = parseInt(newframes) + 1 // a frame of peace
+                }
+            }
+        }
+
+        for (let i = 0; i < extra; i++) {
             generateText(textc, curText, true)
             encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
             frame++;

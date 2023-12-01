@@ -110,22 +110,22 @@
         </th>
         <tr>
             <td colspan="3" class="wholerow">
-                <button class="whole-row" id="export-png" title="THE DOWNLOAD BUTTON">Export as PNG...</button>
+                <button class="whole-row" id="export-png">Export as PNG...</button>
             </td>
         </tr>
         <tr>
             <td colspan="3" class="wholerow">
-                <button class="whole-row" id="export-gif" title="Download as GIF file that animates like the game.">Export as animated GIF...</button>
+                <button class="whole-row" id="export-gif">Export as animated GIF...</button>
             </td>
         </tr>
         <tr>
             <td colspan="3" class="wholerow">
-                <button class="whole-row" id="export-mp4" title="Download as MP4 file that animates like the game.">Export as animated MP4...</button>
+                <button class="whole-row" id="export-mp4">Export as animated MP4...</button>
             </td>
         </tr>
         <tr>
             <td colspan="3" class="wholerow">
-                <button class="whole-row" id="export-frames" title="Frames will have each letter appear one by one, making a 'typewriting' effect once put together in some software. Use the GIF option instead if you'd like to see what I mean.">Export as individual frames (as ZIP)...</button>
+                <button class="whole-row" id="export-frames">Export as individual frames (as ZIP)...</button>
             </td>
         </tr>
 
@@ -143,6 +143,30 @@
                 />
             </td>
         </tr>
+
+        <th colspan="3">
+            Frame Allowance <!-- <span style="font-size: 13px"><a href="/nikke-font-generator/what-is/frame-allowance">See explanation</a> -->
+        </th>
+        <tr>
+            <td colspan="3">
+                <input
+                    type="number"
+                    id="fa"
+                    autocomplete="off"
+                    placeholder='Frames to add... (30 frames = 1 second)'
+                    min="0"
+                    style="width: calc(100% - 20px)"
+                />
+            </td>
+            <!-- This feature is soon! -->
+            <!-- <td colspan="2">
+                <select id="fa-how" name="How this number should interact with the frames" style="position: inherit; width: calc(100% - 4px)">
+                    <option value="add">Add</option>
+                    <option value="set">Set</option>
+                </select>
+            </td> -->
+        </tr>
+        
 
         <th>
             Other
@@ -234,6 +258,11 @@
         font-size: 16px;
     }
 
+    textarea {
+        padding-top: 8px;
+        padding-bottom: 0;
+    }
+
     label > input {
         width: 24px;
         height: 24px;
@@ -264,7 +293,7 @@
         margin-top: 0;
     }
 
-    select#size {
+    select {
         width: 90px;
         height: 40px;
         padding-left: 8px;

@@ -8,6 +8,21 @@ title: Update Log
 ---
 <br>
 
+## Frame Allowance `Dec 1, 2023`
+
+ladies and germs we are now able to prolong the video/gif
+
+i intentionally did not include exporting to individual frames to be prolonged because i want that to be as "raw" as possible
+
+the sole purpose of "individual frames" is to use such media for your editing shenanigans, but if you're against that idea, just holler at me at discord or smn
+
+thank you!
+
+<br>
+
+---
+<br>
+
 ## Motion `Nov 27, 2023`
 
 it's time for some motion!
