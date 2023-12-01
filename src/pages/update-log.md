@@ -22,7 +22,9 @@ don't worry about Anis's default btw, she'll comeback in ~12 hours after this up
 
 if you'd like to give a feature request or bug report, you can holler me there!
 
-- fixed Color Bar not being the default color (`#f4d259` on Anis, `#ff2450` currently on Nihilister)
+- fixed Color Bar not being the default color (`#f4d259` on Anis)
+
+update 1: now changed to "Kenny"
 
 <br>
 

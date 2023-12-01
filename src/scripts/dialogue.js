@@ -64,7 +64,14 @@ char.src = "https://cdn.discordapp.com/attachments/1154460728179314710/118015086
 
 setTimeout(() => {
     // generateText("Anis", "Heya Commander! How's it going?")
-    generateText("Nihilister", "Happy birthday, Kevin from the hit Pixar Movie, Up!")
+    let rng = [
+        "Have a good one, lad.",
+        "Better not get in any crisis next time, yeah?",
+        "Any chance I can call you \"Kevin from the Pixar Movie Up\" next time?",
+        "",
+        "(i do NOT know how Nihil talks at all... 😭)"
+    ]
+    generateText("Nihilister", "Happy birthday, commander Kenny!\n" + rng[Math.round(Math.random() * (rng.length - 1))])
 }, 1000);
 
 let tpos = [125, 877];
