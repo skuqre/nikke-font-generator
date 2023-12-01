@@ -19,6 +19,7 @@ let text2 = '';
 let subtext2 = '';
 let size = 100;
 let color = '#f4d259';
+color = '#ff2450'
 let scalebg = 120;
 let scalech = 100;
 let bgpos = [0, 0]
@@ -53,14 +54,17 @@ choicepng.src = `/nikke-font-generator/images/dialogue/choice.png`;
 
 let bg = new Image();
 bg.crossOrigin = "anonymous"
-bg.src = `/nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
+// bg.src = `/nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
+bg.src = "https://cdn.discordapp.com/attachments/1154460728179314710/1180150111830036490/Volcano_02.png"
 
 let char = new Image();
 char.crossOrigin = "anonymous"
-char.src = `https://media.discordapp.net/attachments/1154460728179314710/1172492683420368917/NIKKE-DB_c012_fb_234.png`;
+// char.src = `https://media.discordapp.net/attachments/1154460728179314710/1172492683420368917/NIKKE-DB_c012_fb_234.png`;
+char.src = "https://cdn.discordapp.com/attachments/1154460728179314710/1180150868574736394/NIKKE-DB_c261_fb_638.png"
 
 setTimeout(() => {
-    generateText("Anis", "Heya Commander! How's it going?")
+    // generateText("Anis", "Heya Commander! How's it going?")
+    generateText("Nihilister", "Happy birthday, Kevin from the hit Pixar Movie, Up!")
 }, 1000);
 
 let tpos = [125, 877];
@@ -744,7 +748,6 @@ function generateText(text, subtext, exporting=false) {
     ctx.globalAlpha = 1;
     text2 = text;
     subtext2 = subtext;
-    color = document.getElementById('color').value;
     ctx.globalCompositeOperation = "source-over";
 
     canvas.width = canvassize[0] * size / 100;

@@ -8,6 +8,27 @@ title: Update Log
 ---
 <br>
 
+## temp: Happy birthday, Kevin `Dec 2, 2023`
+
+<img src="https://haxeflixel.is-terrible.com/6lhGtIcWB.png" width="100%" />
+
+just a temporary happy birthday Kevin
+
+in all seriousness, this is a small little birthday thing for KennyP1, one of the people who first played with the Dialogue Generator! big thanks to you for using it avidly when it was in it's bones.
+
+also: this is now a thing in the NIKKE Community server! there was a time where i would think to ask "i wonder how much would it take to get to #community-projects" but now it's in there since one of the big guys, Reed, noticed the site, and gave me the pass to post there!
+
+don't worry about Anis's default btw, she'll comeback in ~12 hours after this update's release!
+
+if you'd like to give a feature request or bug report, you can holler me there!
+
+- fixed Color Bar not being the default color (`#f4d259` on Anis, `#ff2450` currently on Nihilister)
+
+<br>
+
+---
+<br>
+
 ## Frame Allowance `Dec 1, 2023`
 
 ladies and germs we are now able to prolong the video/gif
