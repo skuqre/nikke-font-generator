@@ -1003,7 +1003,7 @@ function generateText(text, subtext, exporting=false) {
         }
 
         if (arrowOn) {
-            ctx.drawImage(arrow, (canvassize[0] + cw) / 2 - 27 + xoff, canvassize[1] * (952 / 1080) + (ch / 2) - 29 + yoff, arrow.width * scalear / 100, arrow.height * scalear / 100);
+            ctx.drawImage(arrow, (canvassize[0] + cw) / 2 - 27 + xoff + (document.getElementById('xposar').value - 953), canvassize[1] * (952 / 1080) + (ch / 2) - 29 + yoff + (document.getElementById('yposar').value - 1027), arrow.width * scalear / 100, arrow.height * scalear / 100);
         }
     } else {
         // ctx.drawImage(img, 0, 0)
