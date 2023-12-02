@@ -19,7 +19,7 @@ Here's what each one does, explained more elaborately by an idiot.
 <br>
 
 ## Behavior warning
-When clicking on one of them, your browser may lag for a bit; this is your device processing the images, so don't panic. 
+When clicking on one of them, your browser may lag for a bit; this is your device processing the images, so don't panic. **The title of the tab up top will show the export progress**. <span style="font-size: 14px; opacity: 0.5;">as much as i'd like it to be in the site itself, my dumbass can't find a way to do so.</span>
 
 The whole thing you're working with here is made to use YOUR device as no servers are involved in this site.
 

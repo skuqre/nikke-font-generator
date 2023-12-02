@@ -28,7 +28,8 @@ Anything with a `duration` value is the value in seconds, e.g. `fadein::0.2` is 
 
 | Keyword | Format | Description
 | - | - | - |
-| **fadein** | `fadein::duration` | Fade the image (excluding the UI) for a certain amount of seconds. |
+| **fadein** | `fadein::duration` | Fade the image *from black* (excluding the UI) for a certain amount of seconds. |
+| **fadeout** | `fadeout::duration` | Fade the image *to black* (excluding the UI) for a certain amount of seconds. |
 | **scalebg** | `scalebg::finalScale::anchor::duration` | Scale the background. <ul><li>**finalScale**: The value you want the background to smoothly transition to</li><li>**anchor**: Where the background will "scale" from. Can be `top-left`, `top-center`, `top-right`, `mid-left`, `mid-center`, `mid-right`, `bot-left`, `bot-center`, `bot-right`. If you want to just change scale, and no position, this can be `none` instead.</li></ul> |
 | **posxbg** | `posxbg::toXpos::duration` | Move the background to a new place, horizontally. <ul><li>**toXpos**: Where the background will go to in the horizontal axis.</li></ul> |
 | **posybg** | `posybg::toYpos::duration` | Move the background to a new place, vertically. <ul><li>**toYpos**: Where the background will go to in the vertical axis.</li></ul> |

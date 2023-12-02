@@ -5,6 +5,21 @@ title: Update Log
 
 # Update Log
 
+<br>
+
+---
+<br>
+
+## Stuff `Dec 2, 2023`
+
+- anis is back!
+- the narration box is now resizable.
+- the title can now show the export progress in video/gif. really out of the line but i don't know how to make the site not halt when exporting LMAO
+- the site now alerts when exporting is finished
+- added `fadeout` motion effect
+
+<br>
+
 ---
 <br>
 

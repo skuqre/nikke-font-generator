@@ -606,9 +606,9 @@ document.querySelectorAll('button#bgautofit')[0].addEventListener('click', () =>
 
 document.querySelectorAll('button#export-png')[0].addEventListener('click', downloadImage);
 document.querySelectorAll('button#export-gif')[0].addEventListener('click', animateTypewrite);
-document.querySelectorAll('button#export-mp4')[0].addEventListener('click', () => {
-   downloadVideo()
-});
+document.querySelectorAll('button#export-mp4')[0].addEventListener('click', downloadVideo);
+
+
 document.querySelectorAll('button#export-frames')[0].addEventListener('click', downloadIndividualFrames);
 
 function updateDragButtons() {
@@ -760,12 +760,45 @@ let maxframes = 0;
 
 function captureAnimatables() {
     frame = 0
-    maxframes = 0
     capture = {
         brightness: brnum,
         bgvals: [bgpos[0], bgpos[1], scalebg], // x, y, scale
         chvals: [chpos[0], chpos[1], scalech]
     }
+
+    let curFrame = 0;
+
+    let individual = subtext2.split('');
+    individual.splice(0, 0, '');
+    for (let i = 0; i < individual.length; i++) {
+
+        if (individual[i+1] == ' ') {
+            i++;
+        }
+        if (individual[i+1] == '\\n') {
+            i++;
+        }
+
+        for (let i = 0; i <= 1; i++) {
+            curFrame++;
+        }
+    }
+
+    let extra = 1;
+
+    let newframes = document.getElementById('fa').value;
+
+    if (newframes != null) {
+        if (newframes > 0) {
+            if (true) { // document.getElementById('fa-how').value == 'add'
+                extra = parseInt(newframes) + 1 // a frame of peace
+            }
+        }
+    }
+
+    curFrame += extra;
+
+    maxframes = curFrame;
 }
 
 function resetAnimatables() {
@@ -779,6 +812,8 @@ function resetAnimatables() {
     brnum = capture.brightness;
 
     generateText(text2, subtext2);
+
+    document.title = "Barely Accurate NIKKE Dialogue Generator"
 }
 
 // just use sine for everything...
@@ -806,6 +841,7 @@ function generateText(text, subtext, exporting=false) {
             let split = shit.trim().split('\n');
 
             let fadeInFrames = 0;
+            let fadeOutFrames = 0;
             let posbgFrames = [[0, 0], [0, 0]] // frames, goal value
             let scalebgFrames = [0, 'center', 0] // frames, anchor, goal value
 
@@ -816,27 +852,31 @@ function generateText(text, subtext, exporting=false) {
 
                 switch (data[0]) {
                     case 'fadein':
-                        fadeInFrames = parseFloat(data[1]) / (1/30);
+                        fadeInFrames = Math.round(parseFloat(data[1]) / (1/30));
+                        break;
+
+                    case 'fadeout':
+                        fadeOutFrames = Math.round(parseFloat(data[1]) / (1/30));
                         break;
 
                     case 'posxbg':
-                        posbgFrames[0] = [parseFloat(data[2]) / (1/30), parseFloat(data[1])];
+                        posbgFrames[0] = [Math.round(parseFloat(data[2]) / (1/30)), parseFloat(data[1])];
                         break;
 
                     case 'posybg':
-                        posbgFrames[1] = [parseFloat(data[2]) / (1/30), parseFloat(data[1])];
+                        posbgFrames[1] = [Math.round(parseFloat(data[2]) / (1/30)), parseFloat(data[1])];
                         break;
 
                     case 'scalebg':
-                        scalebgFrames = [parseFloat(data[3]) / (1/30), data[2], parseFloat(data[1])] 
+                        scalebgFrames = [Math.round(parseFloat(data[3]) / (1/30)), data[2], parseFloat(data[1])] 
                         break;
 
                     case 'posxch':
-                        poschFrames[0] = [parseFloat(data[2]) / (1/30), parseFloat(data[1])];
+                        poschFrames[0] = [Math.round(parseFloat(data[2]) / (1/30)), parseFloat(data[1])];
                         break;
 
                     case 'posych':
-                        poschFrames[1] = [parseFloat(data[2]) / (1/30), parseFloat(data[1])];
+                        poschFrames[1] = [Math.round(parseFloat(data[2]) / (1/30)), parseFloat(data[1])];
                         break;
                 
                     default:
@@ -846,6 +886,12 @@ function generateText(text, subtext, exporting=false) {
 
             if (fadeInFrames > 0) {
                 brnum = ((frame < fadeInFrames ? frame : fadeInFrames) / fadeInFrames) * capture.brightness;
+            }
+
+            if (fadeOutFrames > 0) {
+                if (frame >= maxframes - fadeOutFrames) {
+                    brnum = ((maxframes - frame < fadeOutFrames ? maxframes - frame : fadeOutFrames) / fadeOutFrames) * capture.brightness;
+                }
             }
 
             if (posbgFrames[0][0] > 0) {
@@ -993,8 +1039,8 @@ function generateText(text, subtext, exporting=false) {
         ctx.textBaseline = "top";
         ctx.textAlign = "center";
 
-        let cw = (result * (scalena / 100)) - 54 - (action.width - (54 + 566));
-        let ch = 248 * scalena / 100 - 54 - (action.height - (54 + 140))
+        let cw = ((result * scalena / 100) - 54 - (action.width - (54 + 566)));
+        let ch = (248 * scalena / 100 - 54 - (action.height - (54 + 140)))
         let lines = getLinesForParagraphs(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
         let ath = ((39 * dsc) * lines.length)
 
@@ -1003,7 +1049,7 @@ function generateText(text, subtext, exporting=false) {
         }
 
         if (arrowOn) {
-            ctx.drawImage(arrow, (canvassize[0] + cw) / 2 - 27 + xoff + (document.getElementById('xposar').value - 953), canvassize[1] * (952 / 1080) + (ch / 2) - 29 + yoff + (document.getElementById('yposar').value - 1027), arrow.width * scalear / 100, arrow.height * scalear / 100);
+            ctx.drawImage(arrow, (canvassize[0] + cw) / 2 - 27 + xoff + (document.getElementById('xposar').value - 953) / scalena / 100, canvassize[1] * (952 / 1080) + (ch / 2) - 29 + yoff + (document.getElementById('yposar').value - 1027) / scalena / 100, arrow.width * scalear / 100, arrow.height * scalear / 100);
         }
     } else {
         // ctx.drawImage(img, 0, 0)
@@ -1101,6 +1147,8 @@ function animateTypewrite() {
 
             encoder.writeFrame(index, width, height, { palette: palette, delay: 33.333333, repeat: 0 });
             frame++;
+
+            document.title = "Exporting: " + (frame / maxframes * 100).toFixed(2) + "%";
         }
     }
 
@@ -1126,6 +1174,8 @@ function animateTypewrite() {
         generateText(textc, curText, true)
         encoder.writeFrame(index, width, height, { palette: palette, delay: 33.333333, repeat: 0 });
         frame++;
+
+        document.title = "Exporting: " + (frame / maxframes * 100).toFixed(2) + "%";
     }
 
     encoder.finish();
@@ -1138,6 +1188,8 @@ function animateTypewrite() {
     link.href = "data:image/gif;base64," + b64;
     link.click();
 
+    resetAnimatables()
+    alert("Exporting finished!")
     exporting = false;
 }
 
@@ -1192,6 +1244,8 @@ function downloadIndividualFrames() {
         link.download = "nikke-dialogue.zip"
         link.click()
         link.remove()
+
+        alert("Exporting finished!")
         exporting = false;
     })
 }
@@ -1247,6 +1301,8 @@ function downloadVideo() {
                 generateText(textc, curText, true)
                 encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
                 frame++;
+
+                document.title = "Exporting: " + (frame / maxframes * 100).toFixed(2) + "%";
             }
         }
 
@@ -1268,6 +1324,8 @@ function downloadVideo() {
             generateText(textc, curText, true)
             encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
             frame++;
+
+            document.title = "Exporting: " + (frame / maxframes * 100).toFixed(2) + "%";
         }
 
         encoder.finalize();
@@ -1283,6 +1341,7 @@ function downloadVideo() {
         encoder.delete();
 
         resetAnimatables()
+        alert("Exporting finished!")
         exporting = false;
     })
 }
