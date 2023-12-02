@@ -19,7 +19,6 @@ let text2 = '';
 let subtext2 = '';
 let size = 100;
 let color = '#f4d259';
-color = '#ff2450'
 let scalebg = 120;
 let scalech = 100;
 let bgpos = [0, 0]
@@ -54,24 +53,26 @@ choicepng.src = `/nikke-font-generator/images/dialogue/choice.png`;
 
 let bg = new Image();
 bg.crossOrigin = "anonymous"
-// bg.src = `/nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
-bg.src = "https://cdn.discordapp.com/attachments/1154460728179314710/1180150111830036490/Volcano_02.png"
+bg.src = `/nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
 
 let char = new Image();
 char.crossOrigin = "anonymous"
-// char.src = `https://media.discordapp.net/attachments/1154460728179314710/1172492683420368917/NIKKE-DB_c012_fb_234.png`;
-char.src = "https://cdn.discordapp.com/attachments/1154460728179314710/1180150868574736394/NIKKE-DB_c261_fb_638.png"
+char.src = `https://media.discordapp.net/attachments/1154460728179314710/1172492683420368917/NIKKE-DB_c012_fb_234.png`;
+
+let rng = [
+    "Heya Commander! How's it going?",
+    "Commander, do you perhaps have the money to buy me some soda?",
+    "Let's do this again.\nBetween bullets and food, which one do you need more?",
+    "I use my hands for two things.\nOne, to play the game, and two, to hold the Bible.",
+    "How would one make my swimsuit?\nThree standard medical masks should be fine.",
+    "Ever thought about putting all our month's allowance on soda?",
+    "Wanna see me do a backflip?",
+    "Doing this again? Putting false words on me?",
+    "Ever heard of Cheese flavored ice cream? Sounds nice, wouldn't ya think?"
+]
 
 setTimeout(() => {
-    // generateText("Anis", "Heya Commander! How's it going?")
-    let rng = [
-        "Have a good one, lad.",
-        "Better not get in any crisis next time, yeah?",
-        "Any chance I can call you \"Kevin from the Pixar Movie Up\" next time?",
-        "",
-        "(i do NOT know how Nihil talks at all... 😭)"
-    ]
-    generateText("Nihilister", "Happy birthday, commander Kenny!\n" + rng[Math.round(Math.random() * (rng.length - 1))])
+    generateText("Anis", rng[Math.round(Math.random() * (rng.length - 1))]);
 }, 1000);
 
 let tpos = [125, 877];
