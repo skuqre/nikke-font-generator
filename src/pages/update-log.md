@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/md.astro
 title: Update Log
+embeddesc: the update log
 ---
 
 # Update Log

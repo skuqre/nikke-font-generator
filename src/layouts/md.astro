@@ -12,8 +12,10 @@ const {frontmatter} = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{frontmatter.title}</title>
 
-		<meta name="description" content="NIKKE logo generator. Create images that look like the Goddess of Victory logo from a click of a button!">
+		<meta name="description" content={ frontmatter.embeddesc }>
   		<meta name="keywords" content="nikke">
+		<meta name="theme-color" content="#f4d259">
+		<meta name="og:site_name" content="Barely Accurate NIKKE Font Generator" />
 
         <style is:inline>
             body {

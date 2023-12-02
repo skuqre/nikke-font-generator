@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/md.astro
 title: Every Button Definition - Logo Generator
+embeddesc: The definitions of each button on the Logo Generator's UI.
 ---
 
 # Every Button Definition - Logo Generator

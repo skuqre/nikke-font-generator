@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/md.astro
 title: Frame Allowance - Dialogue Generator
+embeddesc: what the hell does Frame Allowance even mean?
 ---
 
 # Frame Allowance - Dialogue Generator

@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/md.astro
 title: Every Button Definition - Dialogue Generator
+embeddesc: The definition of every button in the Dialogue Generator's UI.
 ---
 
 # Every Button Definition - Dialogue Generator

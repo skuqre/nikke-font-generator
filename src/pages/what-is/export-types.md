@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/md.astro
 title: Export Types - Dialogue Generator
+embeddesc: What are the export types for the Dialogue Generator? What do each of them do?
 ---
 
 # Export Types - Dialogue Generator

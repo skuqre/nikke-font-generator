@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/md.astro
 title: Motion - Dialogue Generator
+embeddesc: This guy "skuqre" really put a dumb system in just to add motion 😂😂😂😂
 ---
 
 # Motion - Dialogue Generator

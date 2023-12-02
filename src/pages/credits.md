@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/md.astro
 title: Credits
+embeddesc: The site's credits!
 ---
 
 # Credits
