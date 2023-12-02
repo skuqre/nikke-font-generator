@@ -25,7 +25,6 @@ let bgpos = [0, 0]
 let chpos = [0, 0]
 
 let canvassize = [1080, 1080];
-let keepuioffsets = true;
 
 let wmrk = new Image();
 wmrk.crossOrigin = "anonymous"
@@ -86,6 +85,8 @@ let dsize = 23;
 let scaledc = 100;
 let scalecb = 100;
 let scalear = 100;
+
+let scalena = 100;
 
 let dvig = new Image();
 dvig.crossOrigin = "anonymous"
@@ -269,6 +270,14 @@ document.querySelectorAll('#scalear')[0].addEventListener('input', () => {
     generateText(text2, subtext2)
 });
 
+document.querySelectorAll('#scalena')[0].addEventListener('input', () => {
+    scalena = parseInt(document.getElementById('scalena').value);
+    generateText(text2, subtext2)
+});
+
+document.getElementById('xposna').addEventListener('input', generateText.bind(text2, subtext2));
+document.getElementById('yposna').addEventListener('input', generateText.bind(text2, subtext2));
+
 document.querySelectorAll('#wca')[0].addEventListener('input', () => {
     let prevwidth = canvassize[0];
     canvassize[0] = parseInt(document.getElementById('wca').value);
@@ -386,6 +395,7 @@ let dragdt = false;
 let dragdc = false;
 let dragcb = false;
 let dragar = false;
+let dragna = false
 
 let mousecapture = [0, 0];
 let previousbg = [0, 0];
@@ -399,6 +409,7 @@ let previousdt = [0, 0];
 let previousdc = [0, 0];
 let previouscb = [0, 0];
 let previousar = [0, 0];
+let previousna = [0, 0];
 
 document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointerdown', (e) => {
     if (dragging) return;
@@ -434,11 +445,15 @@ document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointer
         previousar[0] = arpos[0];
         previousar[1] = arpos[1];
     }
+    if (dragna) {
+        previousna[0] = parseInt(document.getElementById('xposna').value);
+        previousna[1] = parseInt(document.getElementById('yposna').value);
+    }
 
     mousecapture[0] = e.clientX;
     mousecapture[1] = e.clientY;
 
-    if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar) {
+    if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar || dragna) {
         disableScroll();
     }
 });
@@ -475,6 +490,11 @@ document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointer
     if (dragar) {
         arpos[0] = e.clientX + (previousar[0] - mousecapture[0]);
         arpos[1] = e.clientY + (previousar[1] - mousecapture[1]);
+    }
+
+    if (dragna) {
+        document.getElementById('xposna').value = e.clientX + (previousna[0] - mousecapture[0]);
+        document.getElementById('yposna').value = e.clientY + (previousna[1] - mousecapture[1]);
     }
 
     generateText(text2, subtext2);
@@ -559,6 +579,12 @@ document.querySelectorAll('button#dar')[0].addEventListener('click', () => {
     dragar = cap;
     updateDragButtons();
 });
+document.querySelectorAll('button#dna')[0].addEventListener('click', () => {
+    let cap = !dragna;
+    disableAllDrag();
+    dragna = cap;
+    updateDragButtons();
+});
 
 document.querySelectorAll('button#bgtocan')[0].addEventListener('click', () => {
     let bgs = scalebg / 100;
@@ -594,6 +620,7 @@ function updateDragButtons() {
     document.querySelectorAll('button#ddc')[0].innerHTML = dragdc ? "ON" : "OFF";
     document.querySelectorAll('button#dcb')[0].innerHTML = dragcb ? "ON" : "OFF";
     document.querySelectorAll('button#dar')[0].innerHTML = dragar ? "ON" : "OFF";
+    document.querySelectorAll('button#dna')[0].innerHTML = dragna ? "ON" : "OFF";
 }
 
 function disableAllDrag() {
@@ -605,6 +632,7 @@ function disableAllDrag() {
     dragdc = false;
     dragcb = false;
     dragar = false;
+    dragna = false;
 }
 
 let drawfil = true;
@@ -703,6 +731,9 @@ function disableScroll() {
         if (dragar) {
             scalear += (e.deltaY / -100);
         }
+        if (dragna) {
+            scalena += (e.deltaY / -100);
+        }
 
         document.getElementById('scalebg').value = scalebg;
         document.getElementById('scalech').value = scalech;
@@ -712,6 +743,7 @@ function disableScroll() {
         document.getElementById('scaledc').value = scaledc;
         document.getElementById('scalecb').value = scalecb;
         document.getElementById('scalear').value = scalear;
+        document.getElementById('scalena').value = scalena;
         generateText(text2, subtext2)
     }
 }
@@ -948,27 +980,30 @@ function generateText(text, subtext, exporting=false) {
     } else if (document.getElementById('actionbox').value.trim().length > 0) {
         drawGradients(true);
 
-        let ay = canvassize[1] * (952 / 1080) - 248 / 2;
+        let ay = canvassize[1] * (952 / 1080) - 248 * (scalena / 100) / 2;
         let result = canvassize[0] - 203 * 2 > 674 ? canvassize[0] - 203 * 2 : 674;
 
-        draw9slice(ctx, action, [54, 54, 566, 140], (canvassize[0] - result) / 2, ay, result, 248);
+        let xoff = parseInt(document.getElementById('xposna').value);
+        let yoff = parseInt(document.getElementById('yposna').value);
+
+        draw9slice(ctx, action, [54, 54, 566, 140], (canvassize[0] - result * (scalena / 100)) / 2 + xoff, ay + yoff, result * (scalena / 100), 248 * scalena / 100);
 
         ctx.font = dsize + "px PB";
         ctx.fillStyle = "#dcdcdc";
         ctx.textBaseline = "top";
         ctx.textAlign = "center";
 
-        let cw = (result) - 54 - (action.width - (54 + 566));
-        let ch = 140;
+        let cw = (result * (scalena / 100)) - 54 - (action.width - (54 + 566));
+        let ch = 248 * scalena / 100 - 54 - (action.height - (54 + 140))
         let lines = getLinesForParagraphs(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
         let ath = ((39 * dsc) * lines.length)
 
         for (let i = 0; i < lines.length; i++) {
-            ctx.fillText(lines[i], canvassize[0] / 2, (ay + 248 / 2 - ath / 2) + (7 * dsc) + 4 + ((39 * dsc) * i), cw - 32 * 2);
+            ctx.fillText(lines[i], canvassize[0] / 2 + xoff, (ay + 248 * (scalena / 100) / 2 - ath / 2) + (7 * dsc) + 4 + ((39 * dsc) * i) + yoff, cw - 32 * 2);
         }
 
         if (arrowOn) {
-            ctx.drawImage(arrow, (canvassize[0] + cw) / 2 - 27, canvassize[1] * (952 / 1080) + 41, arrow.width * scalear / 100, arrow.height * scalear / 100);
+            ctx.drawImage(arrow, (canvassize[0] + cw) / 2 - 27 + xoff, canvassize[1] * (952 / 1080) + (ch / 2) - 29 + yoff, arrow.width * scalear / 100, arrow.height * scalear / 100);
         }
     } else {
         // ctx.drawImage(img, 0, 0)
@@ -1162,7 +1197,7 @@ function downloadIndividualFrames() {
 }
 
 function downloadImage() {
-    if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar) return;
+    if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar || dragna) return;
     var link = document.createElement('a');
     var canvas = document.getElementById('dialogue-canvas')
     link.download = 'nikke-dialogue.png';

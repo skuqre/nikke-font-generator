@@ -2,7 +2,7 @@
 
 ---
 
-<div class="input-fields" id="sizing-tool">
+<div class="input-fields" id="sizing-tool" style="display: none;">
     <table>
         <th style="text-align: center;" colspan="4">
             <button class="but" style="width: calc(50% - 6px); margin-right: 8px;" id="go-main">Images</button>
@@ -321,6 +321,43 @@
                 <td>
                     <p class="tool-label">Drag</p>
                     <button class="but" id="dar">OFF</button>
+                </td>
+            </tr>
+
+            <th colspan="3">Narration Box</th>
+            <tr>
+                <td>
+                    <p class="tool-label">X Offset</p>
+                    <input
+                        type="number"
+                        id="xposna"
+                        autocomplete="off"
+                        value="0"
+                        step="10"
+                    />
+                </td>
+                <td>
+                    <p class="tool-label">Y Offset</p>
+                    <input
+                        type="number"
+                        id="yposna"
+                        autocomplete="off"
+                        value="0"
+                        step="10"
+                    />
+                </td>
+                <td>
+                    <p class="tool-label">Scale (%)</p>
+                    <input
+                        type="number"
+                        id="scalena"
+                        autocomplete="off"
+                        value="100"
+                    />
+                </td>
+                <td>
+                    <p class="tool-label">Drag</p>
+                    <button class="but" id="dna">OFF</button>
                 </td>
             </tr>
 
