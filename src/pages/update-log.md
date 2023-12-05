@@ -6,6 +6,20 @@ embeddesc: the update log
 
 # Update Log
 
+---
+<br>
+
+## More motion `Dec 5, 2023`
+
+- added `jump` motion effect
+    - makes the character do a little "jump" commonly from VNs
+- added `scalech` motion effect
+    - scales the character. same syntax as `scalebg`
+
+||
+|-|
+| <video width="100%" controls autoplay src="https://cdn.discordapp.com/attachments/1154460728179314710/1181592901080322178/nikke-dialogue_1.mp4" /> |
+
 <br>
 
 ---

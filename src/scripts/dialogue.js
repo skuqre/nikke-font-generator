@@ -24,6 +24,8 @@ let scalech = 100;
 let bgpos = [0, 0]
 let chpos = [0, 0]
 
+let chposoff = [0, 0];
+
 let canvassize = [1080, 1080];
 
 let wmrk = new Image();
@@ -766,6 +768,8 @@ function captureAnimatables() {
         chvals: [chpos[0], chpos[1], scalech]
     }
 
+    chposoff = [0, 0];
+
     let curFrame = 0;
 
     let individual = subtext2.split('');
@@ -808,6 +812,9 @@ function resetAnimatables() {
 
     chpos[0] = capture.chvals[0]
     chpos[1] = capture.chvals[1]
+    scalech = capture.chvals[2];
+
+    chposoff = [0, 0];
 
     brnum = capture.brightness;
 
@@ -844,6 +851,8 @@ function generateText(text, subtext, exporting=false) {
             let fadeOutFrames = 0;
             let posbgFrames = [[0, 0], [0, 0]] // frames, goal value
             let scalebgFrames = [0, 'center', 0] // frames, anchor, goal value
+            let scalechFrames = [0, 'center', 0]
+            let chjumpFrames = 0;
 
             let poschFrames = [[0, 0], [0, 0]]
 
@@ -852,31 +861,39 @@ function generateText(text, subtext, exporting=false) {
 
                 switch (data[0]) {
                     case 'fadein':
-                        fadeInFrames = Math.round(parseFloat(data[1]) / (1/30));
+                        fadeInFrames = Math.round(parseFloat(data[1]) * 30);
                         break;
 
                     case 'fadeout':
-                        fadeOutFrames = Math.round(parseFloat(data[1]) / (1/30));
+                        fadeOutFrames = Math.round(parseFloat(data[1]) * 30);
                         break;
 
                     case 'posxbg':
-                        posbgFrames[0] = [Math.round(parseFloat(data[2]) / (1/30)), parseFloat(data[1])];
+                        posbgFrames[0] = [Math.round(parseFloat(data[2]) * 30), parseFloat(data[1])];
                         break;
 
                     case 'posybg':
-                        posbgFrames[1] = [Math.round(parseFloat(data[2]) / (1/30)), parseFloat(data[1])];
+                        posbgFrames[1] = [Math.round(parseFloat(data[2]) * 30), parseFloat(data[1])];
                         break;
 
                     case 'scalebg':
-                        scalebgFrames = [Math.round(parseFloat(data[3]) / (1/30)), data[2], parseFloat(data[1])] 
+                        scalebgFrames = [Math.round(parseFloat(data[3]) * 30), data[2], parseFloat(data[1])] 
                         break;
 
                     case 'posxch':
-                        poschFrames[0] = [Math.round(parseFloat(data[2]) / (1/30)), parseFloat(data[1])];
+                        poschFrames[0] = [Math.round(parseFloat(data[2]) * 30), parseFloat(data[1])];
                         break;
 
                     case 'posych':
-                        poschFrames[1] = [Math.round(parseFloat(data[2]) / (1/30)), parseFloat(data[1])];
+                        poschFrames[1] = [Math.round(parseFloat(data[2]) * 30), parseFloat(data[1])];
+                        break;
+                    
+                    case 'scalech':
+                        scalechFrames = [Math.round(parseFloat(data[3]) * 30), data[2], parseFloat(data[1])] 
+                        break;
+                    
+                    case 'jump':
+                        chjumpFrames = Math.round(parseFloat(data[1]) * 30);
                         break;
                 
                     default:
@@ -951,10 +968,52 @@ function generateText(text, subtext, exporting=false) {
                             bgpos[0] = (canvas.width - (bg.width * bgs)) + (xoff);
                             break;
                     }
-                } else {
-                    if (scalebgFrames[1].trim() == 'none') {
+                }
+            }
+
+            if (scalechFrames[0] > 0) {
+                let daFrame = (frame < scalechFrames[0] ? frame : scalechFrames[0])
+                scalech = capture.chvals[2] + easeInOutSine(daFrame / scalechFrames[0]) * (scalechFrames[2] - capture.chvals[2]);
+                let anchors = scalechFrames[1].split('-')
+                let scalen = scalech / capture.chvals[2];
+                chs = scalech / 100;
+
+                let xoff = capture.chvals[0] * scalen;
+                let yoff = capture.chvals[1] * scalen;
+
+                let midxoff = Math.abs(capture.chvals[0] - canvas.width / 2);
+                let midyoff = Math.abs(capture.chvals[1] - canvas.height / 2);
+
+                if (anchors.length > 1) {
+                    switch (anchors[0]) {
+                        case 'top':
+                            chpos[1] = yoff;
+                            break;
+                        case 'mid':
+                            chpos[1] = (canvas.height / 2) - midyoff * scalen;
+                            break;
+                        case 'bot':
+                            chpos[1] = (canvas.height - (ch.width * chs)) + (yoff);
+                            break;
+                    }
+    
+                    switch (anchors[1]) {
+                        case 'left':
+                            chpos[0] = xoff;
+                            break;
+                        case 'center':
+                            chpos[0] = (canvas.width / 2) - midxoff * scalen;
+                            break;
+                        case 'right':
+                            chpos[0] = (canvas.width - (ch.width * chs)) + (xoff);
+                            break;
                     }
                 }
+            }
+
+            if (chjumpFrames > 0) {
+                let daFrame = (frame < chjumpFrames ? frame : chjumpFrames)
+                chposoff[1] = parseFloat(Math.abs(Math.sin(3.14159 * easeInOutSine(daFrame / chjumpFrames))).toFixed(2)) * -15 * (canvas.height / 1080);
             }
         }
     }
@@ -987,7 +1046,7 @@ function generateText(text, subtext, exporting=false) {
     document.getElementById('xposar').value = arpos[0];
     document.getElementById('yposar').value = arpos[1];
 
-    ctx.drawImage(char, chpos[0], chpos[1], char.width * chs, char.height * chs)
+    ctx.drawImage(char, chpos[0] + chposoff[0], chpos[1] + chposoff[1], char.width * chs, char.height * chs)
 
     ctx.filter = "none";
 
