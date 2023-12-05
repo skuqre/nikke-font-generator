@@ -12,6 +12,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Project-specific files
+src/pages/shit.md
 
 # environment variables
 .env

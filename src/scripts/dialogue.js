@@ -1082,7 +1082,7 @@ function generateText(text, subtext, exporting=false) {
         ctx.drawImage(controls, copos[0], copos[1], controls.width * scaledc / 100, controls.height * scaledc / 100);
     }
 
-    ctx.globalAlpha = 0.065;
+    ctx.globalAlpha = 0.1;
     ctx.drawImage(wmrk, 16, -16, 128, 128);
 }
 
