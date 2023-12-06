@@ -7,13 +7,29 @@ const ctx = canvas.getContext("2d");
 let loaded = {}
 let heights = {}
 
-let logoglyphs = 'abcdefghijklmnopqrstuvwxyz,.!$&0123456789'
+let replacements = {
+    "\\" : "backslash",
+    "/" : "forslash",
+    ":" : "colon",
+    "?" : "qmark",
+    "\"" : "dquote",
+}
+
+let logoglyphs = 'abcdefghijklmnopqrstuvwxyz,.!$&0123456789\'\\/:?"'
+
 for (let i = 0; i < logoglyphs.length; i++) {
     let img = new Image();
-    img.src = `../nikke-font-generator/images/nikkefont/${logoglyphs.split('')[i]}.png`;
+
+    let shit = logoglyphs.split('')[i]
+
+    if (shit in replacements) {
+        shit = replacements[shit];
+    }
+
+    img.src = `../nikke-font-generator/images/nikkefont/${shit}.png`;
     img.onload = function (e) {
-        loaded[logoglyphs.split('')[i]] = img;
-        heights[logoglyphs.split('')[i]] = img.height;
+        loaded[shit] = img;
+        heights[shit] = img.height;
     }
 }
 
@@ -91,21 +107,34 @@ let curx = 0;
 let cury = 0;
 function generateLogoText(text, subtext) {
     let lower = text.toLowerCase();
+    let shit = lower.split('')
     curx = 0;
     cury = 0;
 
     let textwidth = ctx.measureText(subtext).width
 
-    for (let i = 0; i < lower.length; i++) {
-        if (lower.split('')[i] == ' ') {
+    let tallest = 0;
+
+    for (let i = 0; i < shit.length; i++) { 
+        if (shit[i] == ' ') {
             curx += 64;
-            continue;
+            continue
         }
-        curx += loaded[lower.split('')[i]].width + (i + 1 == lower.length ? 0 : 32);
-        if (loaded[lower.split('')[i]].height >= cury) {
-            cury = loaded[lower.split('')[i]].height;
+
+        if (shit[i] in replacements) {
+            shit[i] = replacements[shit[i]]
+        }
+
+        if (loaded[shit[i]].height > tallest) {
+            tallest = loaded[shit[i]].height;
+        }
+
+        curx += loaded[shit[i]].width + (i + 1 == lower.length ? 0 : 32);
+        if (loaded[shit[i]].height >= cury) {
+            cury = loaded[shit[i]].height;
         }
     }
+
     canvas.width = (textwidth > curx ? textwidth : curx) * size / 100;
     let xoffset = 0
     if (textwidth > curx) {
@@ -113,22 +142,17 @@ function generateLogoText(text, subtext) {
     }
     canvas.height = (cury + 100) * size / 100;
 
-    // ctx.filter = 'brightness(0) ' + hexToCSSFilter(color)['filter'].replace(';', '');
     ctx.scale(size / 100, size / 100);
 
     curx = xoffset;
-    let tallest = 0;
-    for (let i = 0; i < lower.length; i++) {
-        if (lower.split('')[i] == ' ') {
+
+    for (let i = 0; i < shit.length; i++) {
+        if (shit[i] == ' ') {
             curx += 64;
             continue;
         }
 
-        let image = loaded[lower.split('')[i]];
-
-        if (image.height > tallest) {
-            tallest = image.height
-        }
+        let image = loaded[shit[i]];
 
         canvasTemp.width = image.width;
         canvasTemp.height = image.height;
