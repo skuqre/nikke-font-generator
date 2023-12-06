@@ -9,6 +9,24 @@ embeddesc: the update log
 ---
 <br>
 
+## Numbers `Dec 6, 2023`
+
+- added Numbers to the logo generator
+- added the ability to change seperate colors in the logo generator
+- reduced file size of glyphs for the logo generator
+- **BREAKING** default site behavior changed, outputs now change when you're typing, no more clicking "generate" when creating your images
+    - button has been renamed to "Refresh" instead of "Generate"
+    - old behavior can be toggled with by right clicking the button
+- **BREAKING** behavior on Logo Generator changed
+    - the big font's (one for the "NIKKE" text) way of being positioned vertically has been changed a bit:
+    letters will now be centered vertically with the tallest letter in the word, there should be a small
+    visual difference but everything would be fine.
+
+<br>
+
+---
+<br>
+
 ## More motion `Dec 5, 2023`
 
 - added `jump` motion effect

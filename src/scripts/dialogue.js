@@ -151,6 +151,28 @@ document.querySelectorAll('#generate')[0].addEventListener('click', () => {
     generateText(text, subtext);
 });
 
+let autogen = true;
+
+document.getElementById('generate').oncontextmenu = (e) => {
+    e.preventDefault();
+
+    autogen = !autogen;
+
+    document.getElementById('generate').innerHTML = autogen ? 'Refresh' : 'Generate';
+    document.getElementById('generate').disabled = autogen;
+}
+
+function autogent() {
+    if (autogen) {
+        var text = document.getElementById('character').value;
+        var subtext = document.getElementById('dialog').value;
+        generateText(text, subtext)
+    }
+}
+
+document.getElementById('character').oninput = autogent;
+document.getElementById('dialog').oninput = autogent;
+
 document.querySelectorAll('#clear-char')[0].addEventListener('click', () => {
     char.src = '/nikke-font-generator/images/transparent.png';
     char.onload = function (e) {
