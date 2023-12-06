@@ -1,5 +1,3 @@
-import { hexToCSSFilter } from 'hex-to-css-filter';
-
 // We out here with the terrible JS code
 // We got that shit running 24/7
 const canvas = document.getElementById("font-canvas");
