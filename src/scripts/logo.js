@@ -15,7 +15,7 @@ let replacements = {
     "\"" : "dquote",
 }
 
-let logoglyphs = 'abcdefghijklmnopqrstuvwxyz,.!$&0123456789\'\\/:?"'
+let logoglyphs = 'abcdefghijklmnopqrstuvwxyz,.!$&0123456789\'\\/:?"-='
 
 for (let i = 0; i < logoglyphs.length; i++) {
     let img = new Image();
