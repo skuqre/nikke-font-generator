@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^3.3.0",
+    "astro": "^3.6.4",
     "buffer": "^6.0.3",
     "gifencoder": "^2.0.1",
     "h264-mp4-encoder": "^1.0.12"
