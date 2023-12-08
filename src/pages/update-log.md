@@ -9,6 +9,21 @@ embeddesc: the update log
 ---
 <br>
 
+## Dialogue Control Types `Dec 8, 2023`
+
+- added four new dialogue control types (from the Neverland Update!)
+    - Auto-Log-Skip
+    - Auto-Log-Fast
+    - Hide-Auto-Log-Skip
+    - Hide-Auto-Log-Fast
+- added the ability to hide UI
+    - this also hides the watermark as it's just all gradients.
+
+<br>
+
+---
+<br>
+
 ## Numbers `Dec 6, 2023`
 
 - added Numbers to the logo generator

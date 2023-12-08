@@ -1,4 +1,4 @@
-import { draw9slice, dataURLtoFile } from "./util.js";
+import { draw9slice, dataURLtoFile, eyeOn, eyeOff } from "./util.js";
 import { GIFEncoder, quantize, applyPalette } from "https://unpkg.com/gifenc";
 import { downloadZip } from "https://cdn.jsdelivr.net/npm/client-zip/index.js"
 import { Buffer } from "buffer";
@@ -46,7 +46,7 @@ arrow.src = `/nikke-font-generator/images/dialogue/arrow.png`;
 
 let controls = new Image();
 controls.crossOrigin = "anonymous"
-controls.src = `/nikke-font-generator/images/dialogue/controls.png`;
+controls.src = `/nikke-font-generator/images/dialogue/controls/autoskip.png`;
 
 let choicepng = new Image();
 choicepng.crossOrigin = "anonymous"
@@ -65,7 +65,7 @@ let rng = [
     "Commander, do you perhaps have the money to buy me some soda?",
     "Let's do this again.\nBetween bullets and food, which one do you need more?",
     "I use my hands for two things.\nOne, to play the game, and two, to hold the Bible.",
-    "How would one make my swimsuit?\nThree standard medical masks should be fine.",
+    "How would someone make my swimsuit?\nThree standard medical masks should be fine.",
     "Ever thought about putting all our month's allowance on soda?",
     "Wanna see me do a backflip?",
     "Doing this again? Putting false words on me?",
@@ -79,8 +79,10 @@ setTimeout(() => {
 let tpos = [125, 877];
 let dpos = [125, 929];
 let cpos = [110, 883];
-let copos = [769, 14];
+let copos = [773, 18];
 let arpos = [953, 1027];
+
+let coposoffset = [-6, -6];
 
 let tsize = 25;
 let dsize = 23;
@@ -190,6 +192,26 @@ document.querySelectorAll('#clear-bg')[0].addEventListener('click', () => {
 document.querySelectorAll('#size')[0].addEventListener('change', () => {
     size = parseInt(document.getElementById('size').value);
     generateText(text2, subtext2)
+});
+
+document.querySelectorAll('#cotype')[0].addEventListener('change', () => {
+    let n = document.getElementById('cotype').value;
+
+    let prev = [coposoffset[0], coposoffset[1]];
+
+    if (n.startsWith('auto')) {
+        coposoffset = [-6, -6];
+    } else if (n.startsWith('hide')) {
+        coposoffset = [-102, -11];
+    }
+
+    copos[0] += (coposoffset[0] - prev[0]) * scaledc / 100;
+    copos[1] += (coposoffset[1] - prev[1]) * scaledc / 100;
+
+    controls.src = `/nikke-font-generator/images/dialogue/controls/${n}.png`;
+    controls.onload = () => {
+        generateText(text2, subtext2)
+    }
 });
 
 document.querySelectorAll('#color')[0].addEventListener('change', () => {
@@ -679,7 +701,16 @@ let controlsOn = true;
 document.querySelectorAll('#controls-toggle')[0].addEventListener('click', () => {
     controlsOn = !controlsOn;
 
-    document.querySelectorAll('#controls-toggle')[0].innerHTML = "Top right controls: " + (controlsOn ? "ON" : "OFF");
+    document.querySelectorAll('#controls-toggle')[0].innerHTML = controlsOn ? eyeOn : eyeOff;
+    generateText(text2, subtext2)
+});
+
+let uiOn = true;
+
+document.querySelectorAll('#ui-toggle')[0].addEventListener('click', () => {
+    uiOn = !uiOn;
+
+    document.querySelectorAll('#ui-toggle')[0].innerHTML = "UI: " + (uiOn ? "ON" : "OFF");
     generateText(text2, subtext2)
 });
 
@@ -1074,97 +1105,100 @@ function generateText(text, subtext, exporting=false) {
 
     let dsc = dsize / 23;
 
-    if (document.getElementById('choices').value.trim().length > 0) {
-        let shit = document.getElementById('choices').value;
-        shit = shit.replaceAll('\\n', String.fromCharCode(13, 10));
+    if (uiOn) {
+        if (document.getElementById('choices').value.trim().length > 0) {
+            let shit = document.getElementById('choices').value;
+            shit = shit.replaceAll('\\n', String.fromCharCode(13, 10));
 
-        let split = shit.trim().split('\n');
-        if (split.length > 1) {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
-            ctx.fillRect(0, 0, canvassize[0], canvassize[1]);
-        }
+            let split = shit.trim().split('\n');
+            if (split.length > 1) {
+                ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+                ctx.fillRect(0, 0, canvassize[0], canvassize[1]);
+            }
 
-        // ctx.drawImage(img2, 0, 0);
-        drawGradients(true);
+            drawGradients(true);
 
-        let startY = (canvassize[1] * (765 / 1080)) - ((choicepng.height * split.length) + (14 * (split.length - 1))) / 2;
+            let startY = (canvassize[1] * (765 / 1080)) - ((choicepng.height * split.length) + (14 * (split.length - 1))) / 2;
 
-        let curY = startY;
-        for (let i = 0; i < split.length; i++) {
-            let item = split[i];
+            let curY = startY;
+            for (let i = 0; i < split.length; i++) {
+                let item = split[i];
 
-            ctx.drawImage(choicepng, (canvassize[0] - choicepng.width) / 2, curY);
+                ctx.drawImage(choicepng, (canvassize[0] - choicepng.width) / 2, curY);
 
-            ctx.font = "21px PEB";
+                ctx.font = "21px PEB";
+                ctx.fillStyle = "#ffffff";
+                ctx.textBaseline = "middle";
+                ctx.textAlign = "center";
+                ctx.fillText(item.trim(), canvassize[0] / 2, curY + choicepng.height / 2);
+
+                curY += choicepng.height + 14;
+            }
+
+        } else if (document.getElementById('actionbox').value.trim().length > 0) {
+            drawGradients(true);
+
+            let ay = canvassize[1] * (952 / 1080) - 248 * (scalena / 100) / 2;
+            let result = canvassize[0] - 203 * 2 > 674 ? canvassize[0] - 203 * 2 : 674;
+
+            let xoff = parseInt(document.getElementById('xposna').value);
+            let yoff = parseInt(document.getElementById('yposna').value);
+
+            draw9slice(ctx, action, [54, 54, 566, 140], (canvassize[0] - result * (scalena / 100)) / 2 + xoff, ay + yoff, result * (scalena / 100), 248 * scalena / 100);
+
+            ctx.font = dsize + "px PB";
+            ctx.fillStyle = "#dcdcdc";
+            ctx.textBaseline = "top";
+            ctx.textAlign = "left";
+
+            let cw = ((result * scalena / 100) - 54 - (action.width - (54 + 566)));
+            let ch = (248 * scalena / 100 - 54 - (action.height - (54 + 140)))
+            let lines = getLinesForParagraphs(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
+            let ath = ((39 * dsc) * lines.length)
+
+            for (let i = 0; i < lines.length; i++) {
+                ctx.fillText(lines[i], (canvassize[0] - ctx.measureText(lines[i]).width) / 2 + xoff, (ay + 248 * (scalena / 100) / 2 - ath / 2) + (7 * dsc) + 4 + ((39 * dsc) * i) + yoff, cw - 32 * 2);
+            }
+
+            if (arrowOn) {
+                ctx.drawImage(arrow, (canvassize[0] + cw) / 2 - 27 + xoff + (document.getElementById('xposar').value - 953) / scalena / 100, canvassize[1] * (952 / 1080) + (ch / 2) - 29 + yoff + (document.getElementById('yposar').value - 1027) / scalena / 100, arrow.width * scalear / 100, arrow.height * scalear / 100);
+            }
+        } else {
+            // ctx.drawImage(img, 0, 0)
+            drawGradients(false);
+
+            ctx.fillStyle = color;
+            ctx.fillRect(cpos[0], cpos[1], 5 * scalecb / 100, 24 * scalecb / 100);
+
+            ctx.font = tsize + "px PEB";
             ctx.fillStyle = "#ffffff";
-            ctx.textBaseline = "middle";
-            ctx.textAlign = "center";
-            ctx.fillText(item.trim(), canvassize[0] / 2, curY + choicepng.height / 2);
+            ctx.textBaseline = "top";
+            ctx.fillText(text, tpos[0], tpos[1] + 8, canvassize[0] - 250);
 
-            curY += choicepng.height + 14;
+            ctx.font = dsize + "px PB";
+            ctx.fillStyle = "#dcdcdc";
+            ctx.textBaseline = "top";
+
+            let lines = getLinesForParagraphs(ctx, subtext, canvassize[0] - 250)
+
+            for (let i = 0; i < lines.length; i++) {
+                ctx.fillText(lines[i], dpos[0], dpos[1] + (7 * dsc) + ((39 * dsc) * i), canvassize[0] - 250);
+            }
+
+            if (arrowOn) {
+                ctx.drawImage(arrow, arpos[0], arpos[1], arrow.width * scalear / 100, arrow.height * scalear / 100);
+            }
         }
 
-    } else if (document.getElementById('actionbox').value.trim().length > 0) {
-        drawGradients(true);
-
-        let ay = canvassize[1] * (952 / 1080) - 248 * (scalena / 100) / 2;
-        let result = canvassize[0] - 203 * 2 > 674 ? canvassize[0] - 203 * 2 : 674;
-
-        let xoff = parseInt(document.getElementById('xposna').value);
-        let yoff = parseInt(document.getElementById('yposna').value);
-
-        draw9slice(ctx, action, [54, 54, 566, 140], (canvassize[0] - result * (scalena / 100)) / 2 + xoff, ay + yoff, result * (scalena / 100), 248 * scalena / 100);
-
-        ctx.font = dsize + "px PB";
-        ctx.fillStyle = "#dcdcdc";
-        ctx.textBaseline = "top";
-        ctx.textAlign = "center";
-
-        let cw = ((result * scalena / 100) - 54 - (action.width - (54 + 566)));
-        let ch = (248 * scalena / 100 - 54 - (action.height - (54 + 140)))
-        let lines = getLinesForParagraphs(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
-        let ath = ((39 * dsc) * lines.length)
-
-        for (let i = 0; i < lines.length; i++) {
-            ctx.fillText(lines[i], canvassize[0] / 2 + xoff, (ay + 248 * (scalena / 100) / 2 - ath / 2) + (7 * dsc) + 4 + ((39 * dsc) * i) + yoff, cw - 32 * 2);
+        if (controlsOn) {
+            ctx.drawImage(controls, copos[0], copos[1], controls.width * scaledc / 100, controls.height * scaledc / 100);
         }
 
-        if (arrowOn) {
-            ctx.drawImage(arrow, (canvassize[0] + cw) / 2 - 27 + xoff + (document.getElementById('xposar').value - 953) / scalena / 100, canvassize[1] * (952 / 1080) + (ch / 2) - 29 + yoff + (document.getElementById('yposar').value - 1027) / scalena / 100, arrow.width * scalear / 100, arrow.height * scalear / 100);
-        }
+        ctx.globalAlpha = 0.1;
+        ctx.drawImage(wmrk, 16, -16, 128, 128);
     } else {
-        // ctx.drawImage(img, 0, 0)
-        drawGradients(false);
-
-        ctx.fillStyle = color;
-        ctx.fillRect(cpos[0], cpos[1], 5 * scalecb / 100, 24 * scalecb / 100);
-
-        ctx.font = tsize + "px PEB";
-        ctx.fillStyle = "#ffffff";
-        ctx.textBaseline = "top";
-        ctx.fillText(text, tpos[0], tpos[1] + 8, canvassize[0] - 250);
-
-        ctx.font = dsize + "px PB";
-        ctx.fillStyle = "#dcdcdc";
-        ctx.textBaseline = "top";
-
-        let lines = getLinesForParagraphs(ctx, subtext, canvassize[0] - 250)
-
-        for (let i = 0; i < lines.length; i++) {
-            ctx.fillText(lines[i], dpos[0], dpos[1] + (7 * dsc) + ((39 * dsc) * i), canvassize[0] - 250);
-        }
-
-        if (arrowOn) {
-            ctx.drawImage(arrow, arpos[0], arpos[1], arrow.width * scalear / 100, arrow.height * scalear / 100);
-        }
+        drawGradients(true);
     }
-
-    if (controlsOn) {
-        ctx.drawImage(controls, copos[0], copos[1], controls.width * scaledc / 100, controls.height * scaledc / 100);
-    }
-
-    ctx.globalAlpha = 0.1;
-    ctx.drawImage(wmrk, 16, -16, 128, 128);
 }
 
 // https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element

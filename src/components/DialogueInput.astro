@@ -1,5 +1,5 @@
 ---
-
+import { eyeOn } from "../scripts/util.js";
 ---
 
 <div class="input-fields">
@@ -102,6 +102,25 @@
                     style="left: -4px; position: relative; min-width: calc(100% - 12px);"
                     class="whole-row"
                 />
+            </td>
+        </tr>
+
+        <th>
+            Dialogue Controls
+        </th>
+        <tr>
+            <td colspan="2" style="vertical-align: top;">
+                <p class="tool-label">Control Type</p>
+                <select id="cotype" name="Control Type" style="position: inherit; margin-left: 4px; width: calc(100% - 8px);">
+                    <option value="autoskip">Auto-Log-Skip (Default)</option>
+                    <option value="autofast">Auto-Log-Fast</option>
+                    <option value="hideskip">Hide-Auto-Log-Skip</option>
+                    <option value="hidefast">Hide-Auto-Log-Fast</option>
+                </select>
+            </td>
+            <td>
+                <p class="tool-label">&nbsp;</p>
+                <button class="but" id="controls-toggle" style="margin-bottom: 4px;" set:html={eyeOn}></button>
             </td>
         </tr>
 
@@ -210,7 +229,7 @@
         </tr>
         <tr>
             <td colspan="3" class="wholerow">
-                <button class="whole-row" id="controls-toggle">Top right controls: ON</button>
+                <button class="whole-row" id="ui-toggle">UI: ON</button>
             </td>
         </tr>
         <tr>
@@ -389,5 +408,39 @@
 
     .wholerow {
         padding: 0 5px;
+    }
+
+    p.tool-label {
+        /* width: min-content; */
+        margin: 0px 0px 4px 6px;
+        text-align: left;
+    }
+
+    button.but {
+        border: 0;
+        width: 40px;
+        height: 40px;
+        background-color: var(--darker);
+        border-radius: 4px;
+        color: lightgray;
+        font-family: "pretendard";
+        text-align: center;
+
+        transition-property: color, background-color, box-shadow;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-in-out;
+
+        margin: 0px;
+        margin-right: 4px;
+    }
+
+    button.but:hover {
+        background-color: #f4d2594b;
+        color: white;
+        text-decoration: none;
+
+        transition-property: color, background-color, box-shadow;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-in-out;
     }
 </style>
