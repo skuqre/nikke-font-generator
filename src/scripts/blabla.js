@@ -146,7 +146,7 @@ function generateBlabla() {
 
         let width = ctx.measureText(item.message).width > 418 ? 418 : ctx.measureText(item.message).width;
         let actualWidth = width + 22 * 2 > 418 ? 418 : width + 22 * 2;
-        let lines = getLinesForParagraphs(ctx, item.message, 418);
+        let lines = getLinesForParagraphs(ctx, item.message, actualWidth);
         let height = lines.length > 1 ? 19 + ((31) * (lines.length + 1)) : 81;
 
         let ass = curSpeaker.toLowerCase() != 'commander' ? 37 : 34;
