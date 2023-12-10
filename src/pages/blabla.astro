@@ -1,0 +1,36 @@
+---
+import '../components/GlobalStyle.astro';
+import BlablaDisplay from '../components/BlablaDisplay.astro';
+import BlablaInput from '../components/BlablaInput.astro';
+import Credits from '../components/Credits.astro';
+import Anise from '../components/Anise.astro';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/nikke-font-generator/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Barely Accurate NIKKE Blabla Generator</title>
+
+		<meta name="description" content="(BETA) Create a spoof of a Blabla chat from NIKKE easily!">
+  		<meta name="keywords" content="nikke">
+		<meta name="theme-color" content="#f4d259">
+		
+		<meta name="twitter:title" content="Barely Accurate NIKKE BlaBla Generator">
+		<meta name="twitter:description" content="Create a spoof of a Blabla chat from NIKKE easily!">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="twitter:image:src" content="/nikke-font-generator/blabla-example1.png" />
+	</head>
+	<body>
+		<h1>Barely Accurate NIKKE Blabla Generator (BETA)</h1>
+		<BlablaDisplay />
+		<p><i>Generated output you see may be barely accurate to inaccurate to official media.<br>Click the image for a fast download!</i></p>
+		<BlablaInput />
+		<Credits />
+		<Anise />
+
+		<script src="../scripts/blabla.js"></script>
+	</body>
+</html>

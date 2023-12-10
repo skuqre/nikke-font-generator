@@ -9,6 +9,26 @@ embeddesc: the update log
 ---
 <br>
 
+## Blabla Generator (BETA) `Dec 10, 2023`
+
+**blabla generator!!**
+- BETA phase, may have RIDICULOUS bugs
+- sizing for it is currently disabled
+    - *now that i think about it, it's small enough!*
+
+**other changes**
+- optimized some images
+
+blabla generator! the next tool on the roster!
+i find it odd how it turned out -- i myself thought it was going to be the skills screen.
+
+either way, enjoy!
+
+<br>
+
+---
+<br>
+
 ## Dialogue Control Types `Dec 8, 2023`
 
 - added four new dialogue control types (from the Neverland Update!)

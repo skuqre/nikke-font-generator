@@ -1,4 +1,20 @@
-export function draw9slice(ctx, img, squareslice, x, y, w, h) {
+export function draw9slice(ctx, img2, squareslice, x, y, w, h, color = "#ffffff") {
+    const canvasTemp = document.createElement("canvas");
+    const ctxTemp = canvasTemp.getContext("2d");
+
+    canvasTemp.width = img2.width;
+    canvasTemp.height = img2.height;
+
+    if (color != '#ffffff') {
+        ctxTemp.fillStyle = color;
+        ctxTemp.fillRect(0, 0, canvasTemp.width, canvasTemp.height);
+        ctxTemp.globalCompositeOperation = "destination-in";
+    }
+    ctxTemp.drawImage(img2, 0, 0);
+    ctxTemp.globalCompositeOperation = "source-over";
+
+    let img = canvasTemp;
+
     const sx = squareslice[0];
     const sy = squareslice[1];
     const sw = squareslice[2];
