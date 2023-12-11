@@ -1,4 +1,5 @@
 import { draw9slice } from "./util.js";
+import fuzzysort from "fuzzysort";
 
 const canvas = document.getElementById("blabla-canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
@@ -37,6 +38,14 @@ var chats = [
         'color': '#fea50a'
     }
 ];
+
+const nikkepfps = {}
+const response = await fetch('https://api.dotgg.gg/nikke/characters/');
+response.json().then((e) => {
+    for (let i = 0; i < e.length; i++) {
+        nikkepfps[e[i].name.toLowerCase()] = e[i].img;
+    }
+});
 
 let top = new Image();
 top.crossOrigin = "anonymous"
@@ -146,7 +155,7 @@ function generateBlabla() {
 
         let width = ctx.measureText(item.message).width > 418 ? 418 : ctx.measureText(item.message).width;
         let actualWidth = width + 22 * 2 > 418 ? 418 : width + 22 * 2;
-        let lines = getLinesForParagraphs(ctx, item.message, actualWidth - 22*2);
+        let lines = getLinesForParagraphs(ctx, item.message, actualWidth);
         let height = lines.length > 1 ? 19 + ((31) * (lines.length + 1)) : 81;
 
         let ass = curSpeaker.toLowerCase() != 'commander' ? 37 : 34;
@@ -160,10 +169,10 @@ function generateBlabla() {
 
             if (lines.length > 1) {
                 for (let j = 0; j < lines.length; j++) {
-                    ctx.fillText(lines[j], curx - 6 + 21, cury + 19 + ((31) * j), actualWidth);
+                    ctx.fillText(lines[j].trim(), curx - 6 + 21, cury + 19 + ((31) * j), actualWidth);
                 }
             } else {
-                ctx.fillText(item.message, curx - 6 + 21, cury + 19, actualWidth);
+                ctx.fillText(item.message.trim(), curx - 6 + 21, cury + 19, actualWidth);
             }
 
             if (switchedSpeakers) {
@@ -193,10 +202,10 @@ function generateBlabla() {
 
             if (lines.length > 1) {
                 for (let j = 0; j < lines.length; j++) {
-                    ctx.fillText(lines[j], curx - actualWidth + 17, cury + 14 + ((31) * j), actualWidth - 22 * 2);
+                    ctx.fillText(lines[j].trim(), curx - actualWidth + 17, cury + 14 + ((31) * j), actualWidth - 22 * 2);
                 }
             } else {
-                ctx.fillText(item.message, curx - actualWidth + 17, cury + 14, actualWidth - 22 * 2);
+                ctx.fillText(item.message.trim(), curx - actualWidth + 17, cury + 14, actualWidth - 22 * 2);
             }
         }
 
@@ -234,6 +243,7 @@ document.getElementById("char-img-up").onchange = (e) => {
     const filer = new FileReader();
     filer.onload = (e) => {
         currentImage = e.target.result.toString();
+        document.getElementById("pfp-preview").src = currentImage;
     };
     if (fileList.length > 0) {
         filer.readAsDataURL(fileList[0]);
@@ -262,7 +272,7 @@ document.getElementById("del-spec").onclick = (e) => {
 }
 
 document.getElementById("res-color").onclick = (e) => {
-    document.getElementById("color").value = '#fea50a';
+    document.getElementById("color").value = document.getElementById("com-color").value;
     generateBlabla();
 }
 
@@ -273,6 +283,16 @@ document.getElementById("arrow-toggle").onclick = (e) => {
     generateBlabla();
 }
 
+document.getElementById("set-oth").onclick = (e) => {
+    document.getElementById("charname").value = '';
+    document.getElementById("color").value = '#ffffff';
+}
+
+document.getElementById("set-com").onclick = (e) => {
+    document.getElementById("charname").value = 'Commander';
+    document.getElementById("color").value = document.getElementById("com-color").value;
+}
+
 document.getElementById("message-index-edit").onclick = (e) => {
     let item = chats[parseInt(document.getElementById("message-index-edit").value)];
     document.getElementById("message-index-edit").setAttribute('max', chats.length - 1);
@@ -280,6 +300,8 @@ document.getElementById("message-index-edit").onclick = (e) => {
     document.getElementById("charname-edit").value = item.name;
     document.getElementById("chatter-edit").value = item.message;
     document.getElementById("color-edit").value = item.color;
+
+    document.getElementById("pfp-preview-edit").src = item.image.length > 0 ? item.image : '/nikke-font-generator/images/blabla/pfp/nochat.png';
 }
 
 document.getElementById("charname-edit").oninput = (e) => {
@@ -302,8 +324,43 @@ document.getElementById("ypos").oninput = (e) => {
     generateBlabla();
 }
 
+document.getElementById("char-pres-up").oninput = (e) => {
+    currentImage = '';
+    if (Object.keys(nikkepfps).length > 0) {
+        if (document.getElementById("char-pres-up").value.trim().length > 0) {
+            const results = fuzzysort.go(document.getElementById("char-pres-up").value, Object.keys(nikkepfps));
+            if (results.length > 0) {
+                currentImage = `https://raw.githubusercontent.com/Nikke-db/Nikke-db.github.io/main/images/sprite/${nikkepfps[results[0].target]}.png`;
+                document.getElementById("pfp-preview").src = currentImage;
+            } else {
+                document.getElementById("pfp-preview").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
+            }
+        } else {
+            document.getElementById("pfp-preview").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
+        }
+    }
+}
+
+document.getElementById("char-pres-edit").oninput = (e) => {
+    currentImage = '';
+    if (Object.keys(nikkepfps).length > 0) {
+        if (document.getElementById("char-pres-edit").value.trim().length > 0) {
+            const results = fuzzysort.go(document.getElementById("char-pres-edit").value, Object.keys(nikkepfps));
+            if (results.length > 0) {
+                chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://raw.githubusercontent.com/Nikke-db/Nikke-db.github.io/main/images/sprite/${nikkepfps[results[0].target]}.png`;
+                document.getElementById("pfp-preview-edit").src = chats[parseInt(document.getElementById("message-index-edit").value)].image;
+            } else {
+                document.getElementById("pfp-preview-edit").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
+            }
+        } else {
+            document.getElementById("pfp-preview-edit").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
+        }
+
+        generateBlabla();
+    }
+}
+
 document.getElementById("color-edit").onchange = (e) => {
-    console.log(chats[parseInt(document.getElementById("message-index-edit").value)].color)
     chats[parseInt(document.getElementById("message-index-edit").value)].color = document.getElementById("color-edit").value
     generateBlabla();
 }
@@ -314,6 +371,7 @@ document.getElementById("char-img-edit").onchange = (e) => {
     const filer = new FileReader();
     filer.onload = (e) => {
         chats[parseInt(document.getElementById("message-index-edit").value)].image = e.target.result.toString();
+        document.getElementById('pfp-preview-edit').src = e.target.result.toString();
         generateBlabla();
     };
     if (fileList.length > 0) {

@@ -10,7 +10,7 @@ embeddesc: The site's credits!
 | | |
 | --- | --- |
 | **skuqre** | Programming, some research, and all that jazz. |
-| [**NIKKE-DB**](https://nikke-db.pages.dev) | This site uses some assets from NIKKE-DB.<br>Their work has been really helpful for the dialogue generator! |
+| [**NIKKE-DB**](https://nikke-db.pages.dev) | This site uses some assets from NIKKE-DB.<br>Their work has been really helpful for the dialogue generator!<br>This site also uses their GitHub Database for character profile pictures for the BlaBla generator!!! |
 | [**GitHub Pages**](https://pages.github.com) | Site hosting. Where else can I tend to? |
 | [**Astro**](https://astro.build) | For being dope to work with. |
 

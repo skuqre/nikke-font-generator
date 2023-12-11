@@ -2,6 +2,9 @@
 
 ---
 
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
 <div class="input-fields">
     <table>
         <th>
@@ -39,21 +42,25 @@
                 />
             </td>
             <td style="vertical-align: top;">
-                <!-- <select id="size" name="Size">
-                    <option value="100">100%</option>
-                    <option value="75">75%</option>
-                    <option value="50">50%</option>
-                    <option value="25">25%</option>
-                    <option value="10">10%</option>
-                </select> -->
+                <button id="set-oth" style="width: calc(50% - 6px); display: inline-block;"><i class='bx bx-message-square-minus'></i></button>
+                <button id="set-com" style="width: calc(50% - 6px); display: inline-block;"><i class='bx bxs-message-square-minus bx-flip-horizontal' ></i></button>
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="wholerow">
+            <td colspan="1" class="wholerow">
                 <label class="whole-row" for="char-img-up">
                     Upload Character image...
                     <input type="file" id="char-img-up">
                 </label>
+                <input
+                    type="text"
+                    id="char-pres-up"
+                    autocomplete="off"
+                    placeholder="Type a NIKKE here for a lookup..."
+                />
+            </td>
+            <td class="imgpre">
+                <img id="pfp-preview" src="/nikke-font-generator/images/blabla/pfp/nochat.png" class="image-preview" alt="Image preview (if empty, upload one!)" />
             </td>
         </tr>
 
@@ -96,11 +103,20 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="wholerow">
+            <td colspan="1" class="wholerow">
                 <label class="whole-row" for="char-img-edit">
                     Change Character image...
                     <input type="file" id="char-img-edit">
                 </label>
+                <input
+                    type="text"
+                    id="char-pres-edit"
+                    autocomplete="off"
+                    placeholder="Type a NIKKE here for a lookup..."
+                />
+            </td>
+            <td class="imgpre">
+                <img id="pfp-preview-edit" src="/nikke-font-generator/images/blabla/pfp/nochat.png" class="image-preview" alt="Image preview (if empty, upload one!)" />
             </td>
         </tr>
 
@@ -123,6 +139,15 @@
         <tr>
             <td colspan="1">
                 <input type="number" id="ypos" step="10" value="0" style="width: 256px; margin: 0; margin-left: 4px; margin-bottom: 4px;" placeholder="Global Y-Position Offset/Scroll" />
+            </td>
+            <td colspan="2">
+                <!-- <input
+                    type="color"
+                    id="chat-theme"
+                    autocomplete="off"
+                    value="#fea50a"
+                    style="top: -2px; position: relative; width: 138px; height: 40px;"
+                /> -->
             </td>
         </tr>
 
@@ -148,10 +173,19 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="wholerow">
+            <td colspan="1" class="wholerow">
                 <label class="whole-row" id="res-color">
                     Set Color to Commander's Color...
                 </label>
+            </td>
+            <td colspan="2">
+                <input
+                    type="color"
+                    id="com-color"
+                    autocomplete="off"
+                    value="#fea50a"
+                    style="top: -2px; position: relative; width: 138px; height: 40px;"
+                />
             </td>
         </tr>
     </table>
@@ -218,7 +252,7 @@
         outline: revert;
     }
 
-    input#color, input#color-edit {
+    input#color, input#color-edit, input#com-color, input#chat-theme {
         width: 40px;
         height: 90px;
 
@@ -227,7 +261,7 @@
         padding: 0px 2px;
     }
 
-    button#add, button#edit, button#arrow-toggle {
+    button#add, button#edit, button#arrow-toggle, button#set-com, button#set-oth {
         width: 90px;
         height: 40px;
         background-color: var(--darker);
@@ -244,7 +278,7 @@
         margin-right: 4px;
     }
 
-    button#add:hover, button#edit:hover, button#arrow-toggle:hover {
+    button#add:hover, button#edit:hover, button#arrow-toggle:hover, button#set-com:hover, button#set-oth:hover {
         background-color: #f4d2594b;
         color: white;
         text-decoration: none;
@@ -252,6 +286,10 @@
         transition-property: color, background-color, box-shadow;
         transition-duration: 0.1s;
         transition-timing-function: ease-in-out;
+    }
+
+    button#set-com, button#set-oth {
+        font-size: 24px;
     }
 
     input[type="file"] {
@@ -274,7 +312,7 @@
 
     label.whole-row {
         width: calc(100% - 8px);
-        height: 30px;
+        height: 40px;
         background-color: var(--darker);
         border-radius: 4px;
         color: lightgray;
@@ -299,13 +337,15 @@
         transition-property: color, background-color, box-shadow;
         transition-duration: 0.1s;
         transition-timing-function: ease-in-out;
+
+        height: 40px;
     }
 
     #del-late {
         user-select: none;
     }
 
-    #del-spec {
+    #del-spec, #res-color, #char-pre-img, #char-pre-edit {
         height: 40px;
         user-select: none;
     }
@@ -314,5 +354,20 @@
         text-align: left;
         padding-left: 8px;
         padding-top: 8px;
+    }
+
+    .image-preview {
+        width: 90px;
+        height: 90px;
+        border-radius: 4px;
+        background-color: var(--darker);
+    }
+
+    .wholerow {
+        vertical-align: top;
+    }
+
+    td.imgpre {
+        vertical-align: top;
     }
 </style>

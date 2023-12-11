@@ -9,6 +9,25 @@ embeddesc: the update log
 ---
 <br>
 
+## qol `Dec 11, 2023`
+
+**blabla gen**
+- added a way to quickly switch between "commander" and other chatters (it's the two buttons btw)
+- added an image preview
+- added a way to quickly get a nikke's pfp easily. SHOUTOUTS TO [NIKKE-DB](https://nikke-db.pages.dev) & [NIKKE.GG](https://nikke.gg) Y'ALL ROCK
+- [the reddit post has reached a hefty ton of attraction. thank you all.](https://www.reddit.com/r/NikkeMobile/comments/18f3ned/nikke_font_generator_blabla_update/)
+
+HELLOO!!! the post got a lot of stuff goin on in it so im really happy rn... <br>NIKKE-DB is a glorious life-saver. some sort of personal blogpost may elaborate on this.
+
+some qol stuff to feast on to, as this week am busy!
+
+enjoy!!
+
+<br>
+
+---
+<br>
+
 ## Blabla Generator (BETA) `Dec 10, 2023`
 
 **blabla generator!!**
