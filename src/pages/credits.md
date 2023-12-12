@@ -11,6 +11,7 @@ embeddesc: The site's credits!
 | --- | --- |
 | **skuqre** | Programming, some research, and all that jazz. |
 | [**NIKKE-DB**](https://nikke-db.pages.dev) | This site uses some assets from NIKKE-DB.<br>Their work has been really helpful for the dialogue generator!<br>This site also uses their GitHub Database for character profile pictures for the BlaBla generator!!! |
+| [**NIKKE.GG**](https://nikke.gg) | This site gets NIKKE data from NIKKE.GG! |
 | [**GitHub Pages**](https://pages.github.com) | Site hosting. Where else can I tend to? |
 | [**Astro**](https://astro.build) | For being dope to work with. |
 
@@ -39,7 +40,7 @@ I had the fonts on standby, so why not make some use out of them? It had to be d
 I do other NIKKE-related projects too, but it's [Anisé](https://github.com/skuqre/anise) for now.<br>
 These projects are created by me for both you and me.
 
-If you're wondering about usage guidelines, please head to [this point of the GitHub page](https://github.com/skuqre/nikke-font-generator#usage).<br>
+If you're wondering about usage guidelines, please head [here](/nikke-font-generator/usage).<br>
 Note that this is not **legal advise**, this is only my interpretation of what one should actually use the generators for.
 
 <br>
@@ -49,6 +50,7 @@ Here's how much time it took for me to make this site:
 | --- | --- |
 | **Logo Generator** | About 6 hours for the base generator. About 2 more hours to get the UI up and running |
 | **Dialogue Generator** | About a day to get the base generator done (includes research as well). About another day or two to get the UI up and running. The UI for it is more convoluted, so... |
+| **Blabla Generator** | One whole day to get the beta out on time. |
 
 For the sake of experience!
 

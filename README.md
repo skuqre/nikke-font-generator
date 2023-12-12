@@ -49,12 +49,10 @@ With a canvas and a dream, you can generate anything you'd like!
 </table>
 
 ## Usage
-- Anything you create with the Generators **are your own**.
-- All fonts are **free for personal use**.
-- When images generated from the site are posted in official channels, **I (skuqre) am not liable for whatever happens to you**.
-    - Some parts of the site may be considered as rule breaking (per the rules of the official server).
-- **The Site does not obtain any information from you**; all files you "upload" are loaded locally on your machine.
-- Please **refrain from misinforming people** using images generated from this site.
+
+[Usage guidelines](https://skuqre.github.io/nikke-font-generator/usage/)
+
+It's been moved to the site for ease-of-access.
 
 ## Credits
 

@@ -155,7 +155,7 @@ function generateBlabla() {
 
         let width = ctx.measureText(item.message).width > 418 ? 418 : ctx.measureText(item.message).width;
         let actualWidth = width + 22 * 2 > 418 ? 418 : width + 22 * 2;
-        let lines = getLinesForParagraphs(ctx, item.message, actualWidth);
+        let lines = getLinesForParagraphs(ctx, item.message, actualWidth - 22 * 2);
         let height = lines.length > 1 ? 19 + ((31) * (lines.length + 1)) : 81;
 
         let ass = curSpeaker.toLowerCase() != 'commander' ? 37 : 34;
@@ -169,10 +169,10 @@ function generateBlabla() {
 
             if (lines.length > 1) {
                 for (let j = 0; j < lines.length; j++) {
-                    ctx.fillText(lines[j].trim(), curx - 6 + 21, cury + 19 + ((31) * j), actualWidth);
+                    ctx.fillText(lines[j].trim(), curx - 6 + 21, cury + 19 + ((31) * j), actualWidth - 22 * 2);
                 }
             } else {
-                ctx.fillText(item.message.trim(), curx - 6 + 21, cury + 19, actualWidth);
+                ctx.fillText(item.message.trim(), curx - 6 + 21, cury + 19, actualWidth - 22 * 2);
             }
 
             if (switchedSpeakers) {

@@ -9,6 +9,17 @@ embeddesc: the update log
 ---
 <br>
 
+## usage changes `Dec 12, 2023`
+
+- usage page has now been updated and put into the site itself instead of the github's README. it also now contains *specific font availability/usage guidelines*.
+- credits now updated to reflect the proper people!
+- fixed blabla text line width thing shenanigan bug
+
+<br>
+
+---
+<br>
+
 ## qol `Dec 11, 2023`
 
 **blabla gen**
