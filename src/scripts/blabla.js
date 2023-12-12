@@ -153,9 +153,10 @@ function generateBlabla() {
         ctx.textAlign = "left";
         ctx.letterSpacing = '-0.8px'; // ?
 
-        let width = ctx.measureText(item.message).width > 418 ? 418 : ctx.measureText(item.message).width;
-        let actualWidth = width + 22 * 2 > 418 ? 418 : width + 22 * 2;
-        let lines = getLinesForParagraphs(ctx, item.message, actualWidth - 22 * 2);
+        let width = ctx.measureText(item.message).width;
+        let actualWidth = width + 22 * 2 > 418 ? 418 - 22 * 2 : width + 22 * 2;
+        let textWidth = actualWidth;
+        let lines = getLinesForParagraphs(ctx, item.message, textWidth);
         let height = lines.length > 1 ? 19 + ((31) * (lines.length + 1)) : 81;
 
         let ass = curSpeaker.toLowerCase() != 'commander' ? 37 : 34;
@@ -169,10 +170,10 @@ function generateBlabla() {
 
             if (lines.length > 1) {
                 for (let j = 0; j < lines.length; j++) {
-                    ctx.fillText(lines[j].trim(), curx - 6 + 21, cury + 19 + ((31) * j), actualWidth - 22 * 2);
+                    ctx.fillText(lines[j].trim(), curx - 6 + 21, cury + 19 + ((31) * j), textWidth);
                 }
             } else {
-                ctx.fillText(item.message.trim(), curx - 6 + 21, cury + 19, actualWidth - 22 * 2);
+                ctx.fillText(item.message.trim(), curx - 6 + 21, cury + 19, textWidth);
             }
 
             if (switchedSpeakers) {
@@ -202,10 +203,10 @@ function generateBlabla() {
 
             if (lines.length > 1) {
                 for (let j = 0; j < lines.length; j++) {
-                    ctx.fillText(lines[j].trim(), curx - actualWidth + 17, cury + 14 + ((31) * j), actualWidth - 22 * 2);
+                    ctx.fillText(lines[j].trim(), curx - actualWidth + 17, cury + 14 + ((31) * j), textWidth);
                 }
             } else {
-                ctx.fillText(item.message.trim(), curx - actualWidth + 17, cury + 14, actualWidth - 22 * 2);
+                ctx.fillText(item.message.trim(), curx - actualWidth + 17, cury + 14, textWidth);
             }
         }
 
