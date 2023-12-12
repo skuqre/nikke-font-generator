@@ -154,8 +154,8 @@ function generateBlabla() {
         ctx.letterSpacing = '-0.8px'; // ?
 
         let width = ctx.measureText(item.message).width;
-        let actualWidth = width + 22 * 2 > 418 ? 418 - 22 * 2 : width + 22 * 2;
-        let textWidth = actualWidth;
+        let actualWidth = width + 22 * 2 > 418 ? 418 : width + 22 * 2;
+        let textWidth = actualWidth - 22 * 2;
         let lines = getLinesForParagraphs(ctx, item.message, textWidth);
         let height = lines.length > 1 ? 19 + ((31) * (lines.length + 1)) : 81;
 
@@ -410,7 +410,7 @@ function getLines(ctx, text, maxWidth) {
     for (var i = 1; i < words.length; i++) {
         var word = words[i];
         var width = ctx.measureText(currentLine + " " + word).width;
-        if (width < maxWidth) {
+        if (width <= maxWidth) {
             currentLine += " " + word;
         } else {
             lines.push(currentLine);
