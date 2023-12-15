@@ -42,26 +42,29 @@
                 />
             </td>
             <td style="vertical-align: top;">
-                <button id="set-oth" style="width: calc(50% - 6px); display: inline-block;"><i class='bx bx-message-square-minus'></i></button>
-                <button id="set-com" style="width: calc(50% - 6px); display: inline-block;"><i class='bx bxs-message-square-minus bx-flip-horizontal' ></i></button>
+                <button id="set-oth" style="width: calc(50% - 7px); display: inline-block;"><i class='bx bx-message-square-minus'></i></button>
+                <button id="set-com" style="width: calc(50% - 7px); display: inline-block; left: 2px; position: relative;"><i class='bx bxs-message-square-minus bx-flip-horizontal' ></i></button>
             </td>
         </tr>
         <tr>
             <td colspan="1" class="wholerow">
                 <label class="whole-row" for="char-img-up">
                     Upload Character image...
-                    <input type="file" id="char-img-up">
+                    <input type="file" id="char-img-up" accept=".png">
                 </label>
                 <input
                     type="text"
                     id="char-pres-up"
                     autocomplete="off"
-                    placeholder="Type a NIKKE here for a lookup..."
+                    placeholder="Type a character here..."
                 />
             </td>
             <td class="imgpre">
                 <img id="pfp-preview" src="/nikke-font-generator/images/blabla/pfp/nochat.png" class="image-preview" alt="Image preview (if empty, upload one!)" />
             </td>
+            <!-- <td style="vertical-align: top;">
+                <button class="history-but" style=""><i class='bx bx-history'></i></button>
+            </td> -->
         </tr>
 
         <th>
@@ -106,13 +109,13 @@
             <td colspan="1" class="wholerow">
                 <label class="whole-row" for="char-img-edit">
                     Change Character image...
-                    <input type="file" id="char-img-edit">
+                    <input type="file" id="char-img-edit" accept=".png">
                 </label>
                 <input
                     type="text"
                     id="char-pres-edit"
                     autocomplete="off"
-                    placeholder="Type a NIKKE here for a lookup..."
+                    placeholder="Type a character here..."
                 />
             </td>
             <td class="imgpre">
@@ -123,7 +126,7 @@
         <th>
             Chat
         </th>
-        <tr>
+        <tr style="display: table-row;" id="convo-page-shit">
             <td>
                 <input
                     type="text"
@@ -136,11 +139,24 @@
                 <button id="arrow-toggle" style="width: 137px;">Arrow: ON</button>
             </td>
         </tr>
+        <tr style="display: none;" id="chats-page-tabs">
+            <td style="vertical-align: top; padding-top: 4px; padding-bottom: 5px;" colspan="3">
+                <button id="mission-page" class="button-bs" style="width: calc(33.33% - 8px); margin-left: 4px; margin-right: 3px; font-weight: normal;">
+                    <img src="/nikke-font-generator/images/blabla/logo_mission.png" class="logo-img" alt=""> Mission
+                </button>
+                <button id="nikke-page" class="button-bs" style="width: calc(33.33% - 8px); font-weight: bold;">
+                    <img src="/nikke-font-generator/images/blabla/logo_nikke.png" class="logo-img" alt=""> Nikke
+                </button>
+                <button id="group-page" class="button-bs" style="width: calc(33.33% - 8px); font-weight: normal; top: 1px; position: relative;">
+                    <img src="/nikke-font-generator/images/blabla/logo_group.png" class="logo-img" alt=""> Group
+                </button>
+            </td>
+        </tr>
         <tr>
             <td colspan="1">
                 <input type="number" id="ypos" step="10" value="0" style="width: 256px; margin: 0; margin-left: 4px; margin-bottom: 4px;" placeholder="Global Y-Position Offset/Scroll" />
             </td>
-            <td colspan="2">
+            <td colspan="1">
                 <!-- <input
                     type="color"
                     id="chat-theme"
@@ -148,6 +164,22 @@
                     value="#fea50a"
                     style="top: -2px; position: relative; width: 138px; height: 40px;"
                 /> -->
+                <input
+                    type="text"
+                    id="chattime"
+                    autocomplete="off"
+                    placeholder='Time'
+                    style="width: 82px; height: 32px; margin: 0; top: -2px; position: relative; text-align: center; padding: 4px"
+                />
+            </td>
+            <td>
+                <button id="wifi-toggle" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px"><i class='bx bx-wifi'></i></button>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;" colspan="3">
+                <button id="set-chats" style="width: calc(50% - 8px); display: inline-block; margin-left: 4px; margin-right: 3px; font-weight: normal;">Chats screen</button>
+                <button id="set-convo" style="width: calc(50% - 8px); display: inline-block; font-weight: bold;">Conversation screen</button>
             </td>
         </tr>
 
@@ -261,7 +293,8 @@
         padding: 0px 2px;
     }
 
-    button#add, button#edit, button#arrow-toggle, button#set-com, button#set-oth {
+    button#add, button#edit, button#arrow-toggle, button#set-com, button#set-oth,
+    button#set-chats, button#set-convo, button#wifi-toggle, .button-bs {
         width: 90px;
         height: 40px;
         background-color: var(--darker);
@@ -278,7 +311,8 @@
         margin-right: 4px;
     }
 
-    button#add:hover, button#edit:hover, button#arrow-toggle:hover, button#set-com:hover, button#set-oth:hover {
+    button#add:hover, button#edit:hover, button#arrow-toggle:hover, button#set-com:hover, button#set-oth:hover,
+    button#set-chats:hover, button#set-convo:hover, button#wifi-toggle:hover, .button-bs:hover {
         background-color: #f4d2594b;
         color: white;
         text-decoration: none;
@@ -288,7 +322,7 @@
         transition-timing-function: ease-in-out;
     }
 
-    button#set-com, button#set-oth {
+    button#set-com, button#set-oth, .history-but {
         font-size: 24px;
     }
 
@@ -369,5 +403,17 @@
 
     td.imgpre {
         vertical-align: top;
+    }
+
+    .history-but {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        background-color: var(--darker);
+        border-radius: 4px;
+    }
+
+    .logo-img {
+        width: 16px;
     }
 </style>

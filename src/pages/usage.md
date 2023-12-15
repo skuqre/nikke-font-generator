@@ -38,6 +38,7 @@ Fonts used in this site are **not** made by me. Rightful credits are in the [cre
 | [**Pretendard**](https://cactus.tistory.com/306) | Available under **SIL Open Font License 1.1**. See [LICENSE](https://github.com/orioncactus/pretendard/blob/main/LICENSE). |
 | [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Available under **personal use**. [See DAFONT page](https://www.dafont.com/docteur-atomic.font). |
 | [**Butch and Sundance**](https://www.dafont.com/butch-sundance.font) | Available under **donationware**. [See DAFONT page](https://www.dafont.com/butch-sundance.font).  |
+| [**SUIT**](https://sun.fo/suit/) | Available under **SIL Open Font License 1.1**. See [LICENSE](https://scripts.sil.org/OFL).  |
 
 <br>
 

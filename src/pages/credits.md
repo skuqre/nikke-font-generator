@@ -23,6 +23,7 @@ embeddesc: The site's credits!
 | [**Pretendard**](https://cactus.tistory.com/306) | Made by [Kil Hyung-jin (orioncactus)](https://github.com/orioncactus). Used throughout the site and Dialogue Generator. Found through research. |
 | [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Made by Jonathan Paquette. Used on Logo Generator. Found through a lousy "font-surfing" session one night. |
 | [**Butch and Sundance**](https://www.dafont.com/butch-sundance.font) | Made by [Dan Zadorozny (Iconian Fonts)](https://www.iconian.com). Used on Logo Generator. Found through research. |
+| [**SUIT**](https://sun.fo/suit/) | Made by the folks at [sun.fo](https://sun.fo/suit/). Used on the Blabla Generator. |
 
 <br>
 

@@ -9,6 +9,87 @@ embeddesc: the update log
 ---
 <br>
 
+## banger! `Dec 15, 2023`
+
+**blabla gen**
+- **BREAKING** added the conversations page.
+    - you can toggle it in the "Chat" category.
+    - currently very buggy pls do scream at me if you encounter one 
+- added npcs to the pfp look up pool
+    - andersen
+    - andersen but naked (type `andersen: soaky shower` to get it)
+    - shifty
+    - shifty but old (type `shifty: old` to get it)
+    - ingrid
+    - syuen
+    - the goat, mustang
+    - male generic
+    - female generic
+    - male commander
+    - female commander
+    - einkk
+    - enikk
+    - burningum
+    - cecil
+    - doban
+    - elysion harper (type `e.h.` to get it)
+    - johan
+    - legendary commander
+    - ade
+    - anachiro (or `cinderella` if you feel fancy)
+    - ein
+    - indivillia
+    - k
+    - leona
+    - liberalio
+    - liliweiss
+    - mana
+    - moran
+    - papillion
+    - pinne
+    - rian
+    - rouge
+    - rumani
+    - zwei
+    - boss: blacksmith
+    - boss: gravedigger
+    - boss: alteisen
+    - boss: chatterbox
+    - boss: land eater
+    - boss: modernia
+    - boss: mother whale
+    - boss: harvester
+    - boss: material h
+    - boss: storm bringer
+    - boss: nihilister
+    - boss: gatekeeper red
+    - boss: gatekeeper green
+    - boss: gatekeeper blue
+- fixed inconsistencies
+    - added the wifi symbol and time
+    - changed font weight of the chat name (Extra Bold to just Bold)
+    - fixed profile images not clipping to the right height
+
+**general**
+- added file filters to upload buttons
+
+crown and chime unfortunately do not have official profile picture crops (yet), so i'm not adding them!
+<br>
+
+---
+<br>
+
+## usage changes `Dec 12, 2023`
+
+- usage page has now been updated and put into the site itself instead of the github's README. it also now contains *specific font availability/usage guidelines*.
+- credits now updated to reflect the proper people!
+- fixed blabla text line width thing shenanigan bug
+
+<br>
+
+---
+<br>
+
 ## usage changes `Dec 12, 2023`
 
 - usage page has now been updated and put into the site itself instead of the github's README. it also now contains *specific font availability/usage guidelines*.
