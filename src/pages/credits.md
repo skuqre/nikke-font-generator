@@ -13,6 +13,7 @@ embeddesc: The site's credits!
 | [**NIKKE-DB**](https://nikke-db.pages.dev) | This site uses some assets from NIKKE-DB.<br>Their work has been really helpful for the dialogue generator!<br>This site also uses their GitHub Database for character profile pictures for the BlaBla generator!!! |
 | [**NIKKE.GG**](https://nikke.gg) | This site gets NIKKE data from NIKKE.GG! |
 | [**GitHub Pages**](https://pages.github.com) | Site hosting. Where else can I tend to? |
+| [**Boxicons**](https://boxicons.com) | Some good web icons for everyone to use. No freemium bullshit. |
 | [**Astro**](https://astro.build) | For being dope to work with. |
 
 <br>
@@ -23,7 +24,7 @@ embeddesc: The site's credits!
 | [**Pretendard**](https://cactus.tistory.com/306) | Made by [Kil Hyung-jin (orioncactus)](https://github.com/orioncactus). Used throughout the site and Dialogue Generator. Found through research. |
 | [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Made by Jonathan Paquette. Used on Logo Generator. Found through a lousy "font-surfing" session one night. |
 | [**Butch and Sundance**](https://www.dafont.com/butch-sundance.font) | Made by [Dan Zadorozny (Iconian Fonts)](https://www.iconian.com). Used on Logo Generator. Found through research. |
-| [**SUIT**](https://sun.fo/suit/) | Made by the folks at [sun.fo](https://sun.fo/suit/). Used on the Blabla Generator. |
+| [**SUIT**](https://sun.fo/suit/) | Made by the folks at [sun.fo](https://sun.fo/). Used on the Blabla Generator. |
 
 <br>
 

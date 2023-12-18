@@ -199,10 +199,11 @@ document.querySelectorAll('#cotype')[0].addEventListener('change', () => {
 
     let prev = [coposoffset[0], coposoffset[1]];
 
+    let add = n.endsWith("cancel") ? -33 : 0;
     if (n.startsWith('auto')) {
-        coposoffset = [-6, -6];
+        coposoffset = [-6 + add, -6];
     } else if (n.startsWith('hide')) {
-        coposoffset = [-102, -11];
+        coposoffset = [-102 + add, -11];
     }
 
     copos[0] += (coposoffset[0] - prev[0]) * scaledc / 100;

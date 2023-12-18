@@ -9,6 +9,43 @@ embeddesc: the update log
 ---
 <br>
 
+## rewrite, indicators, choices, and more `Dec 18, 2023`
+
+**blabla gen**
+- **BREAKING** rewrote how blabla's are drawn
+    - this may or may not be good
+- **BREAKING** added choices
+    - they will always be on the end of the conversation and will not affect your chat's messages
+    - they will always be on the side of the Commander
+    - they will always take the color of the Commander's color
+- added in those "end" indicators -- type in "Indicator" as the character's name, and type in anything you want in place of the "END"
+- added in system messages -- type in "System" as the character's name, and type in anything you want in place of the "Syuen left the room." kinda text you see.
+- added in the Grid Background. it's unnoticeable in fullscreen (all of my refs did not have a grid background), but it subtle in other screens
+- made the scroll field more easy to know/use
+- added the ability to drag to scroll
+- added the ability to export as a json file and import as a json file
+    - this was meant to be dev only but i do not tend on removing it now
+    - you can open them on notepad to see what they contain; it's the conversation/chat you've been making.
+- added a cheeky warning below about Safari
+    - Apple, why.
+- the name you typed before switching to Commander will now be persistent when you switch back
+- fixed inconsistencies
+    - Commander's font is now always the Bold variant of Pretendard
+    - removed the weird letter spacing
+
+**dialogue gen**
+- added control type `Hide-Auto-Log-Cancel`
+- added control type `Auto-Log-Cancel`
+
+i unfortunately could not find a good fix for the Safari issue (text is offset vertically), but if i were to implement a fix, it would include manual user intervention; if yall want that, let me know.
+
+it seems that Reddit has been using this as well! i posted some feature previews in there and it gained some attention. to the folks at the Official Reddit -- thank you. the shitposting has been indeed awesome.
+
+<br>
+
+---
+<br>
+
 ## banger! `Dec 15, 2023`
 
 **blabla gen**

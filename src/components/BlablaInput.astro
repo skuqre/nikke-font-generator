@@ -140,21 +140,22 @@
             </td>
         </tr>
         <tr style="display: none;" id="chats-page-tabs">
-            <td style="vertical-align: top; padding-top: 4px; padding-bottom: 5px;" colspan="3">
+            <td style="vertical-align: top; padding-top: 5px; padding-bottom: 5px;" colspan="3">
                 <button id="mission-page" class="button-bs" style="width: calc(33.33% - 8px); margin-left: 4px; margin-right: 3px; font-weight: normal;">
                     <img src="/nikke-font-generator/images/blabla/logo_mission.png" class="logo-img" alt=""> Mission
                 </button>
                 <button id="nikke-page" class="button-bs" style="width: calc(33.33% - 8px); font-weight: bold;">
                     <img src="/nikke-font-generator/images/blabla/logo_nikke.png" class="logo-img" alt=""> Nikke
                 </button>
-                <button id="group-page" class="button-bs" style="width: calc(33.33% - 8px); font-weight: normal; top: 1px; position: relative;">
+                <button id="group-page" class="button-bs" style="width: calc(33.33% - 8px); font-weight: normal; position: relative;">
                     <img src="/nikke-font-generator/images/blabla/logo_group.png" class="logo-img" alt=""> Group
                 </button>
             </td>
         </tr>
         <tr>
             <td colspan="1">
-                <input type="number" id="ypos" step="10" value="0" style="width: 256px; margin: 0; margin-left: 4px; margin-bottom: 4px;" placeholder="Global Y-Position Offset/Scroll" />
+                <input type="number" id="ypos" step="10" style="width: 157px; margin: 0; margin-left: 4px; margin-right: 4px; margin-bottom: 4px;" placeholder="Scroll Offset" />
+                <button id="drag-toggle" class="button-bs" style="width: 90px; display: inline-block;">Drag: OFF</button>
             </td>
             <td colspan="1">
                 <!-- <input
@@ -180,6 +181,41 @@
             <td style="vertical-align: top;" colspan="3">
                 <button id="set-chats" style="width: calc(50% - 8px); display: inline-block; margin-left: 4px; margin-right: 3px; font-weight: normal;">Chats screen</button>
                 <button id="set-convo" style="width: calc(50% - 8px); display: inline-block; font-weight: bold;">Conversation screen</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="wholerow">
+                <label class="whole-row" id="grid-toggle" style="margin-top: 4px; user-select: none;">
+                    Grid Background: OFF
+                </label>
+            </td>
+        </tr>
+
+        <th>
+            Choices
+        </th>
+        <tr>
+            <td colspan="3" class="wholerow">
+                <textarea
+                    id="choices"
+                    autocomplete="off"
+                    placeholder='1 line = 1 choice...'
+                    style="min-width: calc(100% - 20px); text-align:center;"
+                    class="whole-row"
+                />
+            </td>
+        </tr>
+
+        <th>Other</th>
+        <tr>
+            <td style="vertical-align: top;" colspan="3">
+                <label id="import" class="button-bs" style="width: calc(50% - 8px); line-height: 40px; display: inline-block; margin-left: 4px; margin-right: 3px;">
+                    Import JSON
+                    <input type="file" id="chat-json-up" accept=".json">
+                </label>
+                <label id="export" class="button-bs" style="width: calc(50% - 8px); line-height: 40px; display: inline-block;">
+                    Export JSON
+                </label>
             </td>
         </tr>
 
