@@ -18,8 +18,10 @@ embeddesc: the update log
     - they will always be on the end of the conversation and will not affect your chat's messages
     - they will always be on the side of the Commander
     - they will always take the color of the Commander's color
-- added in those "end" indicators -- type in "Indicator" as the character's name, and type in anything you want in place of the "END"
-- added in system messages -- type in "System" as the character's name, and type in anything you want in place of the "Syuen left the room." kinda text you see.
+- added in those "end" indicators -- type in "Indicator" as the character's name.
+    ![](https://haxeflixel.is-terrible.com/6mQ3sFinN.png)
+- added in system messages -- type in "System" as the character's name.
+    ![](https://haxeflixel.is-terrible.com/6mQ3DA1Nc.png)
 - added in the Grid Background. it's unnoticeable in fullscreen (all of my refs did not have a grid background), but it subtle in other screens
 - made the scroll field more easy to know/use
 - added the ability to drag to scroll
