@@ -519,11 +519,10 @@ function generateBlabla() {
             ctx.font = "18px PR";
             ctx.fillText(item.message, curx + 123, cury + 50);
 
-            let pfpImg = new Image();
-            pfpImg.crossOrigin = "anonymous";
-            pfpImg.src = item.image;
-            let pfpy = cury;
-            pfpImg.onload = function() {
+            if (loaded[item.name] != null) {
+                let pfpImg = loaded[item.name];
+                let pfpy = cury;
+
                 chatterCtx.drawImage(chatter_mask, 0, 0);
                 chatterCtx.globalCompositeOperation = 'source-in';
 
@@ -535,11 +534,20 @@ function generateBlabla() {
                 let diff = 233 - pfpy;
                 let cond = (diff > 0 ? diff : 0);
 
-                // ctx.drawImage(pfpCanvas, 0, diff > 0 ? diff : 0, 74, 74 - cond, 107 - 74 - 19, pfpy - 19 + cond, 74, 74 - cond)
                 ctx.drawImage(chatterCanvas, 0, cond, chatterCanvas.width, chatterCanvas.height - cond, 18, pfpy + cond, chatterCanvas.width, chatterCanvas.height - cond);
-            }
-            pfpImg.onerror = function() {
-                pfpImg.src = '/nikke-font-generator/images/blabla/blabla_icon.png';
+            } else {
+                let pfpImg = new Image();
+                pfpImg.crossOrigin = "anonymous";
+                pfpImg.src = item.image;
+                pfpImg.onload = function() {
+                    if (loaded[item.name] == null) {
+                        loaded[item.name] = pfpImg;
+                        generateBlabla();
+                    }
+                }
+                pfpImg.onerror = function() {
+                    pfpImg.src = '/nikke-font-generator/images/blabla/blabla_icon.png';
+                }
             }
 
             cury += 90;
@@ -658,7 +666,7 @@ document.getElementById("set-com").onclick = (e) => {
     if (document.getElementById("charname").value.toLowerCase() != 'commander') {
         prevChat = document.getElementById("charname").value;
     }
-    
+
     document.getElementById("charname").value = 'Commander';
     document.getElementById("color").value = document.getElementById("com-color").value;
 }
