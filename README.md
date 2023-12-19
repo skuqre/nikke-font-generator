@@ -4,49 +4,19 @@
 
 It's a barely accurate NIKKE Font generator!
 
-With a canvas and a dream, you can generate anything you'd like!
+With a canvas and a dream, you can create anything you'd like!
 
-## Examples
+---
 
-### Logo Generator
-<table>
-    <tr>
-        <td width="50%">
-            <img src="https://cdn.discordapp.com/attachments/1154460728179314710/1172775140967333959/VJL41ryDQAAAAASUVORK5CYII.png"/>
-        </td>
-        <td width="50%">
-            <img src="https://cdn.discordapp.com/attachments/1154460728179314710/1172775254536486962/A5PtJfgSnhdAAAAAElFTkSuQmCC.png"/>
-        </td>
-    <tr>
-    <tr>
-        <td width="50%">
-            <img src="https://cdn.discordapp.com/attachments/1154460728179314710/1172775337256550410/2yY7xGF1LgZkR8JgwM13phiiw1wQMgvdaj7u9CiiggAIKKKCAAsULMk9klduwGC6WQ4FdBYr5mSMnMEfXJ2YcKwoogMcEB4ECCmQsYBCccefZdAUUUEABBRRQQAEFFFBAAQUUUEABBRRQoIyAQXAZJZdRQAEFFFBAAQUUUEABBRRQQAEFFFBAAQUyFjAIzrjzbLoCCiiggAIKKKCAAgoooIACCiiggAIKKFBG4P8DzWBu6lTJRWkAAAAASUVORK5CYII.png"/>
-        </td>
-        <td width="50%">
-            <img src="https://cdn.discordapp.com/attachments/1154460728179314710/1172775494832373800/4h9MoMCgAAAABJRU5ErkJggg.png"/>
-        </td>
-    <tr>
-</table>
+## Building
+You know the drill.
 
-### Dialogue Generator
-<table>
-    <tr>
-        <td width="50%">
-            <img src="https://media.discordapp.net/attachments/946719897390563328/1172723522292953188/KgXaRzrSvbTJNV4zmgtKAd4b5v9mo1sePOqnTAAAAAElFTkSuQmCC.png"/>
-        </td>
-        <td width="50%">
-            <img src="https://media.discordapp.net/attachments/1154460728179314710/1172776078012596286/sKEt0BJ5gIqArQzNRScSZbv4HIKM1QD5OuIoAAAAASUVORK5CYII.png"/>
-        </td>
-    <tr>
-    <tr>
-        <td width="50%">
-            <img src="https://media.discordapp.net/attachments/1154460728179314710/1172777583461552148/8XKcq61Q8F1t8AAAAASUVORK5CYII.png"/>
-        </td>
-        <td width="50%">
-            <img src="https://media.discordapp.net/attachments/1154460728179314710/1172776630234660864/J7Rjlhof0dwDltbi1TlgzePjvifet830gHrPwmJ7oFutNenII3GKJ0KA9DByKh3L8BioKAiKHGOiIAAAAASUVORK5CYII.png"/>
-        </td>
-    <tr>
-</table>
+```
+npm i
+npm run dev
+```
+
+The "meat" of the site is in `src\scripts`. `.astro` files are HTML files I *really* need to rewrite to be better. Styles are a mess.
 
 ## Usage
 

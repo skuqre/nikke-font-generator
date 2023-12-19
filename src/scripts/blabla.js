@@ -723,7 +723,7 @@ document.getElementById("char-pres-up").oninput = (e) => {
         if (document.getElementById("char-pres-up").value.trim().length > 0) {
             const results = fuzzysort.go(document.getElementById("char-pres-up").value, Object.keys(nikkepfps));
             if (results.length > 0) {
-                currentImage = `https://raw.githubusercontent.com/Nikke-db/Nikke-db.github.io/main/images/sprite/${nikkepfps[results[0].target]}.png`;
+                currentImage = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
                 document.getElementById("pfp-preview").src = currentImage;
             } else {
                 document.getElementById("pfp-preview").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
@@ -739,7 +739,7 @@ document.getElementById("char-pres-edit").oninput = (e) => {
         if (document.getElementById("char-pres-edit").value.trim().length > 0) {
             const results = fuzzysort.go(document.getElementById("char-pres-edit").value, Object.keys(nikkepfps));
             if (results.length > 0) {
-                chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://raw.githubusercontent.com/Nikke-db/Nikke-db.github.io/main/images/sprite/${nikkepfps[results[0].target]}.png`;
+                chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
                 document.getElementById("pfp-preview-edit").src = chats[parseInt(document.getElementById("message-index-edit").value)].image;
             } else {
                 document.getElementById("pfp-preview-edit").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
