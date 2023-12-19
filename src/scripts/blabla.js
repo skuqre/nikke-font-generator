@@ -380,8 +380,8 @@ function generateBlabla() {
 
                         ctx.fillText(item.name, curx + 9, cury - 5);
 
-                        if (loaded[item.name] != null) {
-                            let pfpImg = loaded[item.name];
+                        if (loaded[item.image] != null) {
+                            let pfpImg = loaded[item.image];
                             let pfpy = cury + height - 7 - 74;
                             pfpCtx.drawImage(pfpMask, 0, 0);
                             pfpCtx.globalCompositeOperation = 'source-in';
@@ -401,8 +401,8 @@ function generateBlabla() {
                             pfpImg.crossOrigin = "anonymous";
                             pfpImg.src = item.image;
                             pfpImg.onload = function() {
-                                if (loaded[item.name] == null) {
-                                    loaded[item.name] = pfpImg;
+                                if (loaded[item.image] == null) {
+                                    loaded[item.image] = pfpImg;
                                     generateBlabla();
                                 }
                             }
@@ -519,8 +519,8 @@ function generateBlabla() {
             ctx.font = "18px PR";
             ctx.fillText(item.message, curx + 123, cury + 50);
 
-            if (loaded[item.name] != null) {
-                let pfpImg = loaded[item.name];
+            if (loaded[item.image] != null) {
+                let pfpImg = loaded[item.image];
                 let pfpy = cury;
 
                 chatterCtx.drawImage(chatter_mask, 0, 0);
@@ -540,8 +540,8 @@ function generateBlabla() {
                 pfpImg.crossOrigin = "anonymous";
                 pfpImg.src = item.image;
                 pfpImg.onload = function() {
-                    if (loaded[item.name] == null) {
-                        loaded[item.name] = pfpImg;
+                    if (loaded[item.image] == null) {
+                        loaded[item.image] = pfpImg;
                         generateBlabla();
                     }
                 }
