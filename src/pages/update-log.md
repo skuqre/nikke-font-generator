@@ -9,6 +9,19 @@ embeddesc: the update log
 ---
 <br>
 
+## attachments `Dec 19, 2023`
+
+**blabla gen**
+- you can now upload attachments as the character you currently have set.
+
+**general**
+- all image upload stuff now accept any image file, not just `.png`
+
+<br>
+
+---
+<br>
+
 ## rewrite, indicators, choices, and more `Dec 18, 2023`
 
 **blabla gen**

@@ -224,9 +224,16 @@ let chatterCtx2 = chatterCanvas2.getContext('2d');
 chatterCtx2.width = 111;
 chatterCtx2.height = 84;
 
+let attachmentCanvas = document.createElement('canvas');
+let attachmentCtx = attachmentCanvas.getContext('2d');
+
 let pfpMask = new Image();
 pfpMask.crossOrigin = "anonymous";
 pfpMask.src = `/nikke-font-generator/images/blabla/mask.png`;
+
+let amask = new Image();
+amask.crossOrigin = "anonymous"
+amask.src = `/nikke-font-generator/images/blabla/attachmentmask.png`;
 
 // start xy 107, 174
 
@@ -244,10 +251,14 @@ let noname = [
 // loaded pfps
 let loaded = {};
 
+// loaded attachments
+let loadedAttachments = {}
+
 function generateBlabla() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     canvas.width = 540;
     canvas.height = 900;
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     ctx.drawImage(gridOn ? bot2 : bot, 0, top.height);
 
@@ -293,7 +304,6 @@ function generateBlabla() {
             ctx.textAlign = "left";
 
             let width = ctx.measureText(item.message).width;
-
             let innerBubbleWidth = width + 22 * 2 > 420 ? 420 : width + 22 * 2; // the bubble w/o shadow
             let textWidth = innerBubbleWidth - 22 * 2; // could either be 418 - 22 * 2 or width - 22 * 2
             let lines = getLinesForParagraphs(ctx, item.message, textWidth);
@@ -302,19 +312,74 @@ function generateBlabla() {
 
             let slicex = curSpeaker.toLowerCase() == 'commander' ? 33 : 37;
 
+            // WET (Write Everything Twice)
+            // TODO: make it so that the commander condition isn't just a copy LMAO
             switch (curSpeaker.toLowerCase()) {
                 case 'commander':
-                    ctx.fillStyle = "#ffffff"
-                    ctx.globalAlpha = 0.35;
-                    draw9slice(ctx, r_sbub, [slicex, 35, 2, 2], canvas.width - 39 - innerBubbleWidth, cury - 13, innerBubbleWidth + 28, height)
-                    ctx.globalAlpha = 1;
-                    draw9slice(ctx, r_bub, [slicex, 35, 2, 2], canvas.width - 39 - innerBubbleWidth, cury - 13, innerBubbleWidth + 28, height, item.color)
+                    if (item.attachment != null) {
+                        if (loadedAttachments[item.attachment] != null) {
+                            let attachment = loadedAttachments[item.attachment];
+                            let scale = 1.0;
+                            const margins = 13 * 2 + 5 * 2;
 
-                    for (let j = 0; j < lines.length; j++) {
-                        ctx.fillText(lines[j].trim(), canvas.width - 20 - innerBubbleWidth + 14, cury + 20 + ((31) * j), textWidth);
+                            if (attachment.width > 350) {
+                                scale = 350 / attachment.width;
+                            }
 
-                        // ctx.fillStyle = "#ff0000";
-                        // ctx.fillRect(canvas.width - 20 - innerBubbleWidth + 14, cury + 20 + ((31) * j), textWidth, 10);
+                            ctx.globalAlpha = 0.35;
+                            draw9slice(ctx, r_sbub, [slicex, 35, 2, 2], canvas.width - 39 - attachment.width * scale - 12, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins)
+                            ctx.globalAlpha = 1;
+                            draw9slice(ctx, r_bub, [slicex, 35, 2, 2], canvas.width - 39 - attachment.width * scale - 12, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins, item.color)
+
+                            attachmentCtx.globalCompositeOperation = 'source-over';
+                            attachmentCtx.clearRect(0, 0, attachmentCanvas.width, attachmentCanvas.height);
+                            attachmentCanvas.width = attachment.width * scale;
+                            attachmentCanvas.height = attachment.height * scale;
+                            draw9slice(attachmentCtx, amask, [15, 17, 2, 2], 0, 0, attachmentCanvas.width, attachmentCanvas.height, '#dfdddd');
+                            attachmentCtx.globalCompositeOperation = 'source-in';
+                            attachmentCtx.drawImage(attachment, 0, 0, attachmentCanvas.width, attachmentCanvas.height)
+
+                            ctx.drawImage(attachmentCanvas, canvas.width - 32 - attachment.width * scale - 1, cury + 5);
+
+                            height = attachment.height * scale + margins;
+                        } else {
+                            width = ctx.measureText('<Loading image...>').width;
+                            innerBubbleWidth = width + 22 * 2 > 420 ? 420 : width + 22 * 2; // the bubble w/o shadow
+                            textWidth = innerBubbleWidth - 22 * 2; // could either be 418 - 22 * 2 or width - 22 * 2
+
+                            ctx.globalAlpha = 0.35;
+                            draw9slice(ctx, r_sbub, [slicex, 35, 2, 2], canvas.width - 39 - innerBubbleWidth, cury - 13, innerBubbleWidth + 30, height)
+                            ctx.globalAlpha = 1;
+                            draw9slice(ctx, r_bub, [slicex, 35, 2, 2], canvas.width - 39 - innerBubbleWidth, cury - 13, innerBubbleWidth + 30, height, item.color)
+
+                            ctx.fillText('<Loading image...>', canvas.width - 20 - innerBubbleWidth + 14, cury + 20, textWidth);
+
+                            let attachmentImg = new Image();
+                            attachmentImg.crossOrigin = "anonymous";
+                            attachmentImg.src = item.attachment;
+                            attachmentImg.onload = function() {
+                                if (loadedAttachments[item.attachment] == null) {
+                                    loadedAttachments[item.attachment] = attachmentImg;
+                                    generateBlabla();
+                                }
+                            }
+                            attachmentImg.onerror = function() {
+                                attachmentImg.src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
+                            }
+                        }
+                    } else {
+                        ctx.fillStyle = "#ffffff"
+                        ctx.globalAlpha = 0.35;
+                        draw9slice(ctx, r_sbub, [slicex, 35, 2, 2], canvas.width - 39 - innerBubbleWidth, cury - 13, innerBubbleWidth + 28, height)
+                        ctx.globalAlpha = 1;
+                        draw9slice(ctx, r_bub, [slicex, 35, 2, 2], canvas.width - 39 - innerBubbleWidth, cury - 13, innerBubbleWidth + 28, height, item.color)
+
+                        for (let j = 0; j < lines.length; j++) {
+                            ctx.fillText(lines[j].trim(), canvas.width - 20 - innerBubbleWidth + 14, cury + 20 + ((31) * j), textWidth);
+
+                            // ctx.fillStyle = "#ff0000";
+                            // ctx.fillRect(canvas.width - 20 - innerBubbleWidth + 14, cury + 20 + ((31) * j), textWidth, 10);
+                        }
                     }
 
                     break;
@@ -360,16 +425,69 @@ function generateBlabla() {
                     break;
 
                 default:
-                    ctx.globalAlpha = 0.35;
-                    draw9slice(ctx, sbub, [slicex, 35, 2, 2], curx - 23, cury - 13, innerBubbleWidth + 30, height)
-                    ctx.globalAlpha = 1;
-                    draw9slice(ctx, bub, [slicex, 35, 2, 2], curx - 23, cury - 13, innerBubbleWidth + 30, height)
+                    if (item.attachment != null) {
+                        if (loadedAttachments[item.attachment] != null) {
+                            let attachment = loadedAttachments[item.attachment];
+                            let scale = 1.0;
+                            const margins = 13 * 2 + 5 * 2;
 
-                    for (let j = 0; j < lines.length; j++) {
-                        ctx.fillText(lines[j].trim(), curx + 16, cury + 20 + ((31) * j), textWidth);
+                            if (attachment.width > 350) {
+                                scale = 350 / attachment.width;
+                            }
 
-                        // ctx.fillStyle = "#ff0000";
-                        // ctx.fillRect(curx + 16, cury + 20 + ((31) * j), textWidth, 10);
+                            ctx.globalAlpha = 0.35;
+                            draw9slice(ctx, sbub, [slicex, 35, 2, 2], curx - 23, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins)
+                            ctx.globalAlpha = 1;
+                            draw9slice(ctx, bub, [slicex, 35, 2, 2], curx - 23, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins, item.color)
+
+                            attachmentCtx.globalCompositeOperation = 'source-over';
+                            attachmentCtx.clearRect(0, 0, attachmentCanvas.width, attachmentCanvas.height);
+                            attachmentCanvas.width = attachment.width * scale;
+                            attachmentCanvas.height = attachment.height * scale;
+                            draw9slice(attachmentCtx, amask, [15, 17, 2, 2], 0, 0, attachmentCanvas.width, attachmentCanvas.height, '#dfdddd');
+                            attachmentCtx.globalCompositeOperation = 'source-in';
+                            attachmentCtx.drawImage(attachment, 0, 0, attachmentCanvas.width, attachmentCanvas.height)
+
+                            ctx.drawImage(attachmentCanvas, curx - 1, cury + 5);
+
+                            height = attachment.height * scale + margins;
+                        } else {
+                            width = ctx.measureText('<Loading image...>').width;
+                            innerBubbleWidth = width + 22 * 2 > 420 ? 420 : width + 22 * 2; // the bubble w/o shadow
+                            textWidth = innerBubbleWidth - 22 * 2; // could either be 418 - 22 * 2 or width - 22 * 2
+
+                            ctx.globalAlpha = 0.35;
+                            draw9slice(ctx, sbub, [slicex, 35, 2, 2], curx - 23, cury - 13, innerBubbleWidth + 30, height)
+                            ctx.globalAlpha = 1;
+                            draw9slice(ctx, bub, [slicex, 35, 2, 2], curx - 23, cury - 13, innerBubbleWidth + 30, height, item.color)
+
+                            ctx.fillText('<Loading image...>', curx + 16, cury + 20, textWidth);
+
+                            let attachmentImg = new Image();
+                            attachmentImg.crossOrigin = "anonymous";
+                            attachmentImg.src = item.attachment;
+                            attachmentImg.onload = function() {
+                                if (loadedAttachments[item.attachment] == null) {
+                                    loadedAttachments[item.attachment] = attachmentImg;
+                                    generateBlabla();
+                                }
+                            }
+                            attachmentImg.onerror = function() {
+                                attachmentImg.src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
+                            }
+                        }
+                    } else {
+                        ctx.globalAlpha = 0.35;
+                        draw9slice(ctx, sbub, [slicex, 35, 2, 2], curx - 23, cury - 13, innerBubbleWidth + 30, height)
+                        ctx.globalAlpha = 1;
+                        draw9slice(ctx, bub, [slicex, 35, 2, 2], curx - 23, cury - 13, innerBubbleWidth + 30, height, item.color)
+
+                        for (let j = 0; j < lines.length; j++) {
+                            ctx.fillText(lines[j].trim(), curx + 16, cury + 20 + ((31) * j), textWidth);
+
+                            // ctx.fillStyle = "#ff0000";
+                            // ctx.fillRect(curx + 16, cury + 20 + ((31) * j), textWidth, 10);
+                        }
                     }
 
                     if (switchedSpeakers) {
@@ -634,6 +752,43 @@ function addChat(e) {
     generateBlabla();
 }
 
+document.getElementById("attachment-up").onchange = (e) => {
+    const fileList = document.querySelectorAll('#attachment-up')[0].files;
+    const filer = new FileReader();
+    filer.onload = (e) => {
+        chats.push({
+            name: document.getElementById("charname").value,
+            image: noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentImage,
+            attachment: e.target.result.toString(),
+            color: document.getElementById("color").value,
+            message: ''
+        })
+
+        document.getElementById('attachment-up').value = "";
+        generateBlabla();
+    };
+    if (fileList.length > 0) {
+        filer.readAsDataURL(fileList[0]);
+    }
+}
+
+document.getElementById("attachment-edit").onchange = (e) => {
+    const fileList = document.querySelectorAll('#attachment-edit')[0].files;
+    const filer = new FileReader();
+    filer.onload = (e) => {
+        chats[parseInt(document.getElementById("message-index-edit").value)].attachment = e.target.result.toString();
+        generateBlabla();
+    };
+    if (fileList.length > 0) {
+        filer.readAsDataURL(fileList[0]);
+    }
+}
+
+document.getElementById("attachment-remove").onclick = (e) => {
+    chats[parseInt(document.getElementById("message-index-edit").value)].attachment = null;
+    generateBlabla();
+}
+
 document.getElementById("del-late").onclick = (e) => {
     chats.pop();
     generateBlabla();
@@ -683,12 +838,12 @@ document.getElementById("message-index-edit").onclick = (e) => {
 }
 
 document.getElementById("charname-edit").oninput = (e) => {
-    chats[parseInt(document.getElementById("message-index-edit").value)].name = document.getElementById("charname-edit").value
+    chats[parseInt(document.getElementById("message-index-edit").value)].name = document.getElementById("charname-edit").value;
     generateBlabla();
 }
 
 document.getElementById("chatter-edit").oninput = (e) => {
-    chats[parseInt(document.getElementById("message-index-edit").value)].message = document.getElementById("chatter-edit").value
+    chats[parseInt(document.getElementById("message-index-edit").value)].message = document.getElementById("chatter-edit").value;
     generateBlabla();
 }
 

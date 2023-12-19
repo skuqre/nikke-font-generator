@@ -50,7 +50,7 @@
             <td colspan="1" class="wholerow">
                 <label class="whole-row" for="char-img-up">
                     Upload Character image...
-                    <input type="file" id="char-img-up" accept=".png">
+                    <input type="file" id="char-img-up" accept="image/*">
                 </label>
                 <input
                     type="text"
@@ -65,6 +65,14 @@
             <!-- <td style="vertical-align: top;">
                 <button class="history-but" style=""><i class='bx bx-history'></i></button>
             </td> -->
+        </tr>
+        <tr>
+            <td colspan="3">
+                <label class="whole-row" for="attachment-up">
+                    Upload attachment as character...
+                    <input type="file" id="attachment-up" accept="image/*">
+                </label>
+            </td>
         </tr>
 
         <th>
@@ -109,7 +117,7 @@
             <td colspan="1" class="wholerow">
                 <label class="whole-row" for="char-img-edit">
                     Change Character image...
-                    <input type="file" id="char-img-edit" accept=".png">
+                    <input type="file" id="char-img-edit" accept="image/*">
                 </label>
                 <input
                     type="text"
@@ -120,6 +128,17 @@
             </td>
             <td class="imgpre">
                 <img id="pfp-preview-edit" src="/nikke-font-generator/images/blabla/pfp/nochat.png" class="image-preview" alt="Image preview (if empty, upload one!)" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label class="whole-row" for="attachment-edit">
+                    Change attachment...
+                    <input type="file" id="attachment-edit" accept="image/*">
+                </label>
+            </td>
+            <td>
+                <button id="attachment-remove" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove attachment (if available)"><i class='bx bx-trash'></i></button>
             </td>
         </tr>
 
