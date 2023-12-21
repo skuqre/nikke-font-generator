@@ -636,7 +636,7 @@ function generateBlabla() {
 
             for (let i = 0; i < choices.length; i++) {
                 let fuck = choices[i];
-                let ibx = bx + ((maxWidth + 30 + 22 * 2) - fuck.boxwidth) / 2;
+                let ibx = bx + ((maxWidth + 30 + 22 * 2) - fuck.boxwidth) - 22 - 17;
                 let iby = innerbubcury + 26;
 
                 ctx.globalAlpha = 0.5 * alphaMult;
