@@ -9,6 +9,17 @@ embeddesc: the update log
 ---
 <br>
 
+## video exporting `Dec 21, 2023`
+
+**blabla gen**
+- you can now export it as a video with animations like the game
+- choices are now also included when exporting to JSON
+
+<br>
+
+---
+<br>
+
 ## attachments `Dec 19, 2023`
 
 **blabla gen**

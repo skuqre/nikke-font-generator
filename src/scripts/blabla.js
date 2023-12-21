@@ -1,6 +1,8 @@
 import { draw9slice } from "./util.js";
 import fuzzysort from "fuzzysort";
 import { wifiOffI, wifiOnI } from "./util.js";
+import * as HME from "h264-mp4-encoder";
+import { Buffer } from "buffer";
 
 const canvas = document.getElementById("blabla-canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
@@ -254,6 +256,29 @@ let loaded = {};
 // loaded attachments
 let loadedAttachments = {}
 
+/*
+0.3 seconds 
+75 pixel offset
+sine out
+*/
+
+let xOffset = 0.0; // 75 to 0
+let yOffset = 0.0; // 10 to 0
+let alphaMult = 1.0;
+let messageMaxFrames = 0; // (0.3 seconds + (0.05 * amount of letters in message)) * 30
+let curMessageFrames = 0;
+let exporting = false;
+
+const easeOutSine = x => Math.sin((x * Math.PI) / 2);
+
+function resetAnimatables() {
+    xOffset = 0;
+    yOffset = 0;
+    alphaMult = 1;
+    messageMaxFrames = 0;
+    curMessageFrames = 0;
+}
+
 function generateBlabla() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     canvas.width = 540;
@@ -277,6 +302,16 @@ function generateBlabla() {
             if (curSpeaker != item.name.toLowerCase()) {
                 curSpeaker = item.name.toLowerCase();
                 switchedSpeakers = true;
+            }
+
+            if (exporting && messageBeingAnimated == i) {
+                xOffset = 75 * (1 - easeOutSine(Math.min(curMessageFrames, 10) / 10));
+                yOffset = 10 * (1 - easeOutSine(Math.min(curMessageFrames, 10) / 10));
+                alphaMult = easeOutSine(Math.min(curMessageFrames, 10) / 10);
+            } else {
+                xOffset = 0;
+                yOffset = 0;
+                alphaMult = 1;
             }
 
             if (chats[i + 1] != null) {
@@ -326,10 +361,10 @@ function generateBlabla() {
                                 scale = 350 / attachment.width;
                             }
 
-                            ctx.globalAlpha = 0.35;
-                            draw9slice(ctx, r_sbub, [slicex, 35, 2, 2], canvas.width - 39 - attachment.width * scale - 12, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins)
-                            ctx.globalAlpha = 1;
-                            draw9slice(ctx, r_bub, [slicex, 35, 2, 2], canvas.width - 39 - attachment.width * scale - 12, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins, item.color)
+                            ctx.globalAlpha = 0.35 * alphaMult;
+                            draw9slice(ctx, r_sbub, [slicex, 35, 2, 2], canvas.width - 39 + xOffset - attachment.width * scale - 12, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins)
+                            ctx.globalAlpha = 1 * alphaMult;
+                            draw9slice(ctx, r_bub, [slicex, 35, 2, 2], canvas.width - 39 + xOffset - attachment.width * scale - 12, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins, item.color)
 
                             attachmentCtx.globalCompositeOperation = 'source-over';
                             attachmentCtx.clearRect(0, 0, attachmentCanvas.width, attachmentCanvas.height);
@@ -339,7 +374,7 @@ function generateBlabla() {
                             attachmentCtx.globalCompositeOperation = 'source-in';
                             attachmentCtx.drawImage(attachment, 0, 0, attachmentCanvas.width, attachmentCanvas.height)
 
-                            ctx.drawImage(attachmentCanvas, canvas.width - 32 - attachment.width * scale - 1, cury + 5);
+                            ctx.drawImage(attachmentCanvas, canvas.width - 32 + xOffset - attachment.width * scale - 1, cury + 5);
 
                             height = attachment.height * scale + margins;
                         } else {
@@ -347,12 +382,12 @@ function generateBlabla() {
                             innerBubbleWidth = width + 22 * 2 > 420 ? 420 : width + 22 * 2; // the bubble w/o shadow
                             textWidth = innerBubbleWidth - 22 * 2; // could either be 418 - 22 * 2 or width - 22 * 2
 
-                            ctx.globalAlpha = 0.35;
-                            draw9slice(ctx, r_sbub, [slicex, 35, 2, 2], canvas.width - 39 - innerBubbleWidth, cury - 13, innerBubbleWidth + 30, height)
-                            ctx.globalAlpha = 1;
-                            draw9slice(ctx, r_bub, [slicex, 35, 2, 2], canvas.width - 39 - innerBubbleWidth, cury - 13, innerBubbleWidth + 30, height, item.color)
+                            ctx.globalAlpha = 0.35 * alphaMult;
+                            draw9slice(ctx, r_sbub, [slicex, 35, 2, 2], canvas.width - 39 + xOffset - innerBubbleWidth, cury - 13, innerBubbleWidth + 30, height)
+                            ctx.globalAlpha = 1 * alphaMult;
+                            draw9slice(ctx, r_bub, [slicex, 35, 2, 2], canvas.width - 39 + xOffset - innerBubbleWidth, cury - 13, innerBubbleWidth + 30, height, item.color)
 
-                            ctx.fillText('<Loading image...>', canvas.width - 20 - innerBubbleWidth + 14, cury + 20, textWidth);
+                            ctx.fillText('<Loading image...>', canvas.width - 20 + xOffset - innerBubbleWidth + 14, cury + 20, textWidth);
 
                             let attachmentImg = new Image();
                             attachmentImg.crossOrigin = "anonymous";
@@ -369,13 +404,13 @@ function generateBlabla() {
                         }
                     } else {
                         ctx.fillStyle = "#ffffff"
-                        ctx.globalAlpha = 0.35;
-                        draw9slice(ctx, r_sbub, [slicex, 35, 2, 2], canvas.width - 39 - innerBubbleWidth, cury - 13, innerBubbleWidth + 28, height)
-                        ctx.globalAlpha = 1;
-                        draw9slice(ctx, r_bub, [slicex, 35, 2, 2], canvas.width - 39 - innerBubbleWidth, cury - 13, innerBubbleWidth + 28, height, item.color)
+                        ctx.globalAlpha = 0.35 * alphaMult;
+                        draw9slice(ctx, r_sbub, [slicex, 35, 2, 2], canvas.width - 39 + xOffset - innerBubbleWidth, cury - 13, innerBubbleWidth + 28, height)
+                        ctx.globalAlpha = 1 * alphaMult;
+                        draw9slice(ctx, r_bub, [slicex, 35, 2, 2], canvas.width - 39 + xOffset - innerBubbleWidth, cury - 13, innerBubbleWidth + 28, height, item.color)
 
                         for (let j = 0; j < lines.length; j++) {
-                            ctx.fillText(lines[j].trim(), canvas.width - 20 - innerBubbleWidth + 14, cury + 20 + ((31) * j), textWidth);
+                            ctx.fillText(lines[j].trim(), canvas.width - 20 + xOffset - innerBubbleWidth + 14, cury + 20 + ((31) * j), textWidth);
 
                             // ctx.fillStyle = "#ff0000";
                             // ctx.fillRect(canvas.width - 20 - innerBubbleWidth + 14, cury + 20 + ((31) * j), textWidth, 10);
@@ -387,13 +422,13 @@ function generateBlabla() {
                 case 'system':
                     ctx.fillStyle = "#dcdcdc"
                     ctx.textAlign = 'center';
-                    ctx.globalAlpha = 1;
+                    ctx.globalAlpha = 1 * alphaMult;
 
                     let shitwidth = width + 32 * 2 > 500 ? 500 : width + 32 * 2;
-                    draw9slice(ctx, sybub, [20, 22, 2, 2], (canvas.width - shitwidth) / 2, cury, shitwidth, lines.length == 1 ? 55 : 28 + ((29) * (lines.length)), ' #989898')
+                    draw9slice(ctx, sybub, [20, 22, 2, 2], (canvas.width - shitwidth) / 2, cury + yOffset, shitwidth, lines.length == 1 ? 55 : 28 + ((29) * (lines.length)), ' #989898')
 
                     for (let j = 0; j < lines.length; j++) {
-                        ctx.fillText(lines[j].trim(), canvas.width / 2, cury + 19 + ((29) * j), canvas.width);
+                        ctx.fillText(lines[j].trim(), canvas.width / 2, cury + 19 + ((29) * j) + yOffset, canvas.width);
                     }
 
                     ctx.textAlign = 'left';
@@ -435,10 +470,10 @@ function generateBlabla() {
                                 scale = 350 / attachment.width;
                             }
 
-                            ctx.globalAlpha = 0.35;
-                            draw9slice(ctx, sbub, [slicex, 35, 2, 2], curx - 23, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins)
-                            ctx.globalAlpha = 1;
-                            draw9slice(ctx, bub, [slicex, 35, 2, 2], curx - 23, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins, item.color)
+                            ctx.globalAlpha = 0.35 * alphaMult;
+                            draw9slice(ctx, sbub, [slicex, 35, 2, 2], curx - 23 - xOffset, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins)
+                            ctx.globalAlpha = 1 * alphaMult;
+                            draw9slice(ctx, bub, [slicex, 35, 2, 2], curx - 23 - xOffset, cury - 13, (attachment.width * scale) + margins + 4, (attachment.height * scale) + margins, item.color)
 
                             attachmentCtx.globalCompositeOperation = 'source-over';
                             attachmentCtx.clearRect(0, 0, attachmentCanvas.width, attachmentCanvas.height);
@@ -448,7 +483,7 @@ function generateBlabla() {
                             attachmentCtx.globalCompositeOperation = 'source-in';
                             attachmentCtx.drawImage(attachment, 0, 0, attachmentCanvas.width, attachmentCanvas.height)
 
-                            ctx.drawImage(attachmentCanvas, curx - 1, cury + 5);
+                            ctx.drawImage(attachmentCanvas, curx - 1 - xOffset, cury + 5);
 
                             height = attachment.height * scale + margins;
                         } else {
@@ -456,12 +491,12 @@ function generateBlabla() {
                             innerBubbleWidth = width + 22 * 2 > 420 ? 420 : width + 22 * 2; // the bubble w/o shadow
                             textWidth = innerBubbleWidth - 22 * 2; // could either be 418 - 22 * 2 or width - 22 * 2
 
-                            ctx.globalAlpha = 0.35;
-                            draw9slice(ctx, sbub, [slicex, 35, 2, 2], curx - 23, cury - 13, innerBubbleWidth + 30, height)
-                            ctx.globalAlpha = 1;
-                            draw9slice(ctx, bub, [slicex, 35, 2, 2], curx - 23, cury - 13, innerBubbleWidth + 30, height, item.color)
+                            ctx.globalAlpha = 0.35 * alphaMult;
+                            draw9slice(ctx, sbub, [slicex, 35, 2, 2], curx - 23 - xOffset, cury - 13, innerBubbleWidth + 30, height)
+                            ctx.globalAlpha = 1 * alphaMult;
+                            draw9slice(ctx, bub, [slicex, 35, 2, 2], curx - 23 - xOffset, cury - 13, innerBubbleWidth + 30, height, item.color)
 
-                            ctx.fillText('<Loading image...>', curx + 16, cury + 20, textWidth);
+                            ctx.fillText('<Loading image...>', curx + 16 - xOffset, cury + 20, textWidth);
 
                             let attachmentImg = new Image();
                             attachmentImg.crossOrigin = "anonymous";
@@ -477,13 +512,13 @@ function generateBlabla() {
                             }
                         }
                     } else {
-                        ctx.globalAlpha = 0.35;
-                        draw9slice(ctx, sbub, [slicex, 35, 2, 2], curx - 23, cury - 13, innerBubbleWidth + 30, height)
-                        ctx.globalAlpha = 1;
-                        draw9slice(ctx, bub, [slicex, 35, 2, 2], curx - 23, cury - 13, innerBubbleWidth + 30, height, item.color)
+                        ctx.globalAlpha = 0.35 * alphaMult;
+                        draw9slice(ctx, sbub, [slicex, 35, 2, 2], curx - 23 - xOffset, cury - 13, innerBubbleWidth + 30, height)
+                        ctx.globalAlpha = 1 * alphaMult;
+                        draw9slice(ctx, bub, [slicex, 35, 2, 2], curx - 23 - xOffset, cury - 13, innerBubbleWidth + 30, height, item.color)
 
                         for (let j = 0; j < lines.length; j++) {
-                            ctx.fillText(lines[j].trim(), curx + 16, cury + 20 + ((31) * j), textWidth);
+                            ctx.fillText(lines[j].trim(), curx + 16 - xOffset, cury + 20 + ((31) * j), textWidth);
 
                             // ctx.fillStyle = "#ff0000";
                             // ctx.fillRect(curx + 16, cury + 20 + ((31) * j), textWidth, 10);
@@ -496,7 +531,7 @@ function generateBlabla() {
                         ctx.textBaseline = "bottom";
                         ctx.textAlign = "left";
 
-                        ctx.fillText(item.name, curx + 9, cury - 5);
+                        ctx.fillText(item.name, curx + 9 - xOffset, cury - 5);
 
                         if (loaded[item.image] != null) {
                             let pfpImg = loaded[item.image];
@@ -513,7 +548,7 @@ function generateBlabla() {
                             let diff = top.height - pfpy + 19;
                             let cond = (diff > 0 ? diff : 0);
 
-                            ctx.drawImage(pfpCanvas, 0, diff > 0 ? diff : 0, 74, 74 - cond, 107 - 74 - 19, pfpy - 19 + cond, 74, 74 - cond)
+                            ctx.drawImage(pfpCanvas, 0, diff > 0 ? diff : 0, 74, 74 - cond, 107 - 74 - 19 - xOffset, pfpy - 19 + cond, 74, 74 - cond)
                         } else {
                             let pfpImg = new Image();
                             pfpImg.crossOrigin = "anonymous";
@@ -534,12 +569,34 @@ function generateBlabla() {
             }
 
             cury += height - 26 + gap;
+
+            if (exporting) {
+                if (cury > canvas.height) {
+                    ypos -= Math.abs(canvas.height - cury) - gap + 24;
+                }
+            }
         }
 
         // draw choices
         // someone please help me im fucking dying
 
         if (document.getElementById("choices").value.trim().length > 0) {
+            if (exporting) {
+                if (messageBeingAnimated == chats.length) {
+                    xOffset = 75 * (1 - easeOutSine(Math.min(curMessageFrames, 10) / 10));
+                    yOffset = 10 * (1 - easeOutSine(Math.min(curMessageFrames, 10) / 10));
+                    alphaMult = easeOutSine(Math.min(curMessageFrames, 10) / 10);
+                } else {
+                    xOffset = 75;
+                    yOffset = 10;
+                    alphaMult = 0;
+                }
+            } else {
+                xOffset = 0;
+                yOffset = 0;
+                alphaMult = 1;
+            }
+
             let shit = document.getElementById("choices").value.trim().split('\n');
             let maxWidth = 0;
             let bubbleHeight = 0;
@@ -569,12 +626,12 @@ function generateBlabla() {
                 bubbleHeight += lines.length * 31 + 22;
             }
 
-            const bx = canvas.width - 24 - (maxWidth + 30 + 22 * 2) + 13;
+            const bx = canvas.width - 24 - (maxWidth + 30 + 22 * 2) + 13 + xOffset;
             const by = cury - 13;
 
-            ctx.globalAlpha = 0.35;
+            ctx.globalAlpha = 0.35 * alphaMult;
             draw9slice(ctx, r_sbub, [37, 35, 2, 2], bx, by, maxWidth + 30 + 22 * 2, bubbleHeight + 7 * (choices.length - 1) + 13 * 4)
-            ctx.globalAlpha = 1;
+            ctx.globalAlpha = 1 * alphaMult;
             draw9slice(ctx, r_bub, [37, 35, 2, 2], bx, by, maxWidth + 30 + 22 * 2, bubbleHeight + 7 * (choices.length - 1) + 13 * 4, document.getElementById("com-color").value)
 
             for (let i = 0; i < choices.length; i++) {
@@ -582,9 +639,9 @@ function generateBlabla() {
                 let ibx = bx + ((maxWidth + 30 + 22 * 2) - fuck.boxwidth) / 2;
                 let iby = innerbubcury + 26;
 
-                ctx.globalAlpha = 0.5;
+                ctx.globalAlpha = 0.5 * alphaMult;
                 draw9slice(ctx, s_sybub, [26, 28, 2, 2], ibx - 6, iby - 2, fuck.boxwidth + 12, fuck.boxheight + 12);
-                ctx.globalAlpha = 1;
+                ctx.globalAlpha = 1 * alphaMult;
                 draw9slice(ctx, sybub, [20, 22, 2, 2], ibx, iby + 4, fuck.boxwidth, fuck.boxheight, ' #ffffff');
 
                 for (let j = 0; j < fuck.lines.length; j++) {
@@ -593,7 +650,16 @@ function generateBlabla() {
 
                 innerbubcury += fuck.boxheight + 7;
             }
+
+            if (exporting && messageBeingAnimated == chats.length) {
+                let add = (bubbleHeight + 7 * (choices.length - 1) + 13 * 2);
+                if (cury + add > canvas.height) {
+                    ypos -= Math.abs(canvas.height - cury - add) + 24;
+                }
+            }
         }
+
+        ctx.globalAlpha = 1;
 
         ctx.drawImage(top, 0, 0);
         ctx.globalAlpha = 0.4;
@@ -629,17 +695,27 @@ function generateBlabla() {
         for (let i = 0; i < chats.length; i++) {
             let item = chats[i];
 
-            ctx.drawImage(blabla_chatbox, curx - 13, cury - 13);
-            ctx.drawImage(nikkelogo_c, curx + 125, cury + 20);
+            if (exporting && messageBeingAnimated == i) {
+                yOffset = 10 * (1 - easeOutSine(Math.min(curMessageFrames, 10) / 10));
+                alphaMult = easeOutSine(Math.min(curMessageFrames, 10) / 10);
+            } else {
+                yOffset = 0;
+                alphaMult = 1;
+            }
+
+            ctx.globalAlpha = alphaMult;
+
+            ctx.drawImage(blabla_chatbox, curx - 13, cury - 13 + yOffset);
+            ctx.drawImage(nikkelogo_c, curx + 125, cury + 20 + yOffset);
 
             ctx.font = "18px PEB";
-            ctx.fillText(item.name, curx + 139, cury + 19);
+            ctx.fillText(item.name, curx + 139, cury + 19 + yOffset);
             ctx.font = "18px PR";
-            ctx.fillText(item.message, curx + 123, cury + 50);
+            ctx.fillText(item.message, curx + 123, cury + 50 + yOffset);
 
             if (loaded[item.image] != null) {
                 let pfpImg = loaded[item.image];
-                let pfpy = cury;
+                let pfpy = cury + yOffset;
 
                 chatterCtx.drawImage(chatter_mask, 0, 0);
                 chatterCtx.globalCompositeOperation = 'source-in';
@@ -670,6 +746,8 @@ function generateBlabla() {
 
             cury += 90;
         }
+
+        ctx.globalAlpha = 1;
 
         ctx.drawImage(top2, 0, 0);
 
@@ -977,7 +1055,10 @@ document.getElementById("char-img-edit").onchange = (e) => {
     }
 }
 
-document.getElementById("blabla-canvas").onclick = () => {
+document.getElementById("blabla-canvas").onclick = downloadPng;
+document.getElementById("export-png").onclick = downloadPng;
+
+function downloadPng() {
     if (dragOn) return;
 
     var link = document.createElement('a');
@@ -1076,6 +1157,10 @@ document.getElementById("chat-json-up").onchange = (e) => {
         document.getElementById("ypos").value = ypos;
         document.getElementById('chattime').value = json.chattime;
 
+        if (json.choices != null) {
+            document.getElementById("choices").value = json.choices.trim();
+        }
+
         generateBlabla();
     };
     if (fileList.length > 0) {
@@ -1083,6 +1168,8 @@ document.getElementById("chat-json-up").onchange = (e) => {
     }
 };
 document.getElementById("export").onclick = exportChat;
+
+document.getElementById("export-mp4").onclick = downloadVideo;
 
 document.getElementById("com-color").onchange = () => {
     generateBlabla();
@@ -1134,7 +1221,8 @@ function exportChat() {
     let item = {
         "chats": chats,
         "chatname": chatname,
-        "chattime": document.getElementById('chattime').value
+        "chattime": document.getElementById('chattime').value,
+        "choices": document.getElementById("choices").value.trim()
     }
     const link = document.createElement("a");
     const file = new Blob([JSON.stringify(item, null, "\t")], { type: 'application/json' });
@@ -1143,6 +1231,88 @@ function exportChat() {
     link.click();
 
     URL.revokeObjectURL(link.href);
+}
+
+let messageBeingAnimated = 0;
+
+function downloadVideo() {
+    let defaultYpos = ypos;
+    ypos = 0;
+    generateBlabla();
+
+    if (exporting) return;
+    exporting = true;
+
+    HME.createH264MP4Encoder().then((encoder) => {
+
+        encoder.width = canvas.width % 2 == 0 ? canvas.width : canvas.width + 1;
+        encoder.height = canvas.height % 2 == 0 ? canvas.height : canvas.height + 1;
+        encoder.quantizationParameter = 15;
+        encoder.frameRate = 30;
+        encoder.initialize();
+
+        let maxChats = chats.length;
+        let copy = chats.map((x) => x);
+        chats = [];
+
+        for (let i = 0; i < copy.length; i++) {
+            let item = copy[i];
+            resetAnimatables();
+
+            messageBeingAnimated = i;
+
+            chats[i] = item;
+            messageMaxFrames = Math.round(10 + (0.05 * item.message.length) * 30);
+
+            if (!chatmode) {
+                if (item.attachment != null) {
+                    messageMaxFrames = 20;
+                }
+            } else {
+                messageMaxFrames = 10;
+            }
+
+            while (curMessageFrames < messageMaxFrames) {
+                generateBlabla();
+                encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
+                curMessageFrames++;
+
+                document.title = "Exporting: " + chats.length + "/" + maxChats + " (" + (curMessageFrames / messageMaxFrames * 100).toFixed(2) + "%)";
+            }
+        }
+
+        if (document.getElementById("choices").value.trim().length > 0) {
+            messageBeingAnimated = chats.length;
+            resetAnimatables();
+            messageMaxFrames = 30;
+
+            while (curMessageFrames < messageMaxFrames) {
+                generateBlabla();
+                encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
+                curMessageFrames++;
+
+                document.title = "Exporting choices..." + " (" + (curMessageFrames / messageMaxFrames * 100).toFixed(2) + "%)";
+            }
+        }
+
+        encoder.finalize();
+
+        let output = encoder.FS.readFile(encoder.outputFilename);
+        let b64 = Buffer.from(output).toString('base64');
+
+        var link = document.createElement('a');
+        link.download = 'nikke-blabla.mp4';
+        link.href = "data:video/mp4;base64," + b64;
+        link.click();
+
+        encoder.delete();
+
+        resetAnimatables();
+        exporting = false;
+        document.title = "Barely Accurate NIKKE Blabla Generator";
+        ypos = defaultYpos;
+        generateBlabla();
+    })
 }
 
 function getLinesForParagraphs(ctx, text, maxWidth) {
