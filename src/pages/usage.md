@@ -16,7 +16,9 @@ embeddesc: the NIKKE FONT GENERATOR usage guidelines
 ## Main
 
 - Anything you create with these tools are **your own**, you're free to do anything you want with it.
-- **The site does not obtain any information from you**. Anything you upload is not stored to any sort of server. The only thing being tracked is the amount of site visits the Dialogue Generator gets.
+- **The site does not obtain any <u>PERSONAL</u> information from you**. Anything you upload is not stored to any sort of server.
+    - One exception is when the Feedback Form is accepting responses. The only information I get is your feedback. *No personal information is involved*.
+    - Another exception is the site hits the Dialogue Generator page gets.
 - When creations from this tool are posted in official channels (e.g. Official Discord, Reddit, Facebook), **I am not liable for anything that happens to you**.
     - On the [Official Discord](https://discord.gg/nikke-en), creations that use images from NIKKE-DB are prohibited from being posted. *Use fanart for your creations if you'd like to post something with this to there instead*.
     - On the [Official Reddit](https://reddit.com/r/NikkeMobile), there seems to be currently no consequence if creations with assets from NIKKE-DB are used. Please post at your own risk.
