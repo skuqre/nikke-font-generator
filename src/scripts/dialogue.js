@@ -1393,8 +1393,9 @@ function downloadVideo() {
 
         encoder.width = canvas.width % 2 == 0 ? canvas.width : canvas.width + 1;
         encoder.height = canvas.height % 2 == 0 ? canvas.height : canvas.height + 1;
+        encoder.quantizationParameter = 15;
+        encoder.frameRate = 30;
         encoder.initialize();
-        // encoder.frameRate = 30;
 
         let wasArrowOn = arrowOn;
 
