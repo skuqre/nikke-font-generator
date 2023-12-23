@@ -9,6 +9,36 @@ embeddesc: the update log
 ---
 <br>
 
+## characters `Dec 23, 2023`
+
+**blabla gen**
+- added characters to the image lookup pool
+    - marian
+    - angelina
+    - joseph
+    - beatrice
+    - booboo
+    - max
+    - 9s
+    - aki hayakawa
+    - denji
+    - denji chainsaw man (the chainsaw man variant, not denji himself)
+    - oswald
+    - ruru
+    - bolt
+    - bolt junior
+    - mass produced red
+    - mass produced blue
+    - mass produced orange
+    - mass produced green
+    - mass produced purple
+    - mass produced white
+
+<br>
+
+---
+<br>
+
 ## video exporting `Dec 21, 2023`
 
 **blabla gen**

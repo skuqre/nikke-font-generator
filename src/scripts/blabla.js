@@ -60,6 +60,8 @@ response.json().then((e) => {
         nikkepfps[e[i].name.toLowerCase()] = e[i].img;
     }
 
+    nikkepfps['marian'] = 'si_c013_00_s';
+
     nikkepfps['male generic'] = 'si_c911_00_s';
     nikkepfps['female generic'] = 'si_c912_00_s';
 
@@ -116,6 +118,30 @@ response.json().then((e) => {
     nikkepfps['boss: gatekeeper red'] = 'si_eba003_hsta_00_s';
     nikkepfps['boss: gatekeeper green'] = 'si_eba003_green_00_s';
     nikkepfps['boss: gatekeeper blue'] = 'si_eba003_00_s';
+
+    nikkepfps['angelina'] = 'si_c934_00_s';
+    nikkepfps['joseph'] = 'si_c935_00_s';
+    nikkepfps['beatrice'] = 'si_c930_00_s';
+    nikkepfps['booboo'] = 'si_c937_00_s';
+    nikkepfps['max'] = 'si_c936_00_s';
+
+    nikkepfps['9s'] = 'si_c813_00_s';
+
+    nikkepfps['aki hayakawa'] = 'si_c804_00_s';
+    nikkepfps['denji'] = 'si_c803_00_s';
+    nikkepfps['denji chainsaw man'] = 'si_c803_01_00_s';
+    
+    nikkepfps['oswald'] = 'si_c961_00_s';
+    nikkepfps['ruru'] = 'si_c946_00_s';
+    nikkepfps['bolt'] = 'si_c933_00_s';
+    nikkepfps['bolt junior'] = 'si_c932_00_s'
+
+    nikkepfps['mass produced red'] = 'si_c250_00_s';
+    nikkepfps['mass produced blue'] = 'si_c251_00_s';
+    nikkepfps['mass produced orange'] = 'si_c252_00_s';
+    nikkepfps['mass produced green'] = 'si_c253_00_s';
+    nikkepfps['mass produced purple'] = 'si_c254_00_s';
+    nikkepfps['mass produced white'] = 'si_c255_00_s';
 });
 
 let top = new Image();
