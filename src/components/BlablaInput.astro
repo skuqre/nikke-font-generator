@@ -48,7 +48,7 @@
         </tr>
         <tr>
             <td colspan="1" class="wholerow">
-                <label class="whole-row" for="char-img-up">
+                <label class="overflowingrow whole-row" for="char-img-up">
                     Upload Character image...
                     <input type="file" id="char-img-up" accept="image/*">
                 </label>
@@ -57,9 +57,10 @@
                     id="char-pres-up"
                     autocomplete="off"
                     placeholder="🔍 Search for a character's image"
+                    class="overflowingrow"
                 />
             </td>
-            <td class="imgpre">
+            <td class="imgpre" colspan="2">
                 <img id="pfp-preview" src="/nikke-font-generator/images/blabla/pfp/nochat.png" class="image-preview" alt="Image preview (if empty, upload one!)" />
             </td>
             <!-- <td style="vertical-align: top;">
@@ -115,7 +116,7 @@
         </tr>
         <tr>
             <td colspan="1" class="wholerow">
-                <label class="whole-row" for="char-img-edit">
+                <label class="overflowingrow whole-row" for="char-img-edit">
                     Change Character image...
                     <input type="file" id="char-img-edit" accept="image/*">
                 </label>
@@ -124,9 +125,10 @@
                     id="char-pres-edit"
                     autocomplete="off"
                     placeholder="🔍 Search for a character's image"
+                    class="overflowingrow"
                 />
             </td>
-            <td class="imgpre">
+            <td class="imgpre" colspan="2">
                 <img id="pfp-preview-edit" src="/nikke-font-generator/images/blabla/pfp/nochat.png" class="image-preview" alt="Image preview (if empty, upload one!)" />
             </td>
         </tr>
@@ -468,6 +470,9 @@
         height: 90px;
         border-radius: 4px;
         background-color: var(--darker);
+
+        float: right;
+        margin-right: 5px;
     }
 
     .wholerow {
@@ -488,5 +493,14 @@
 
     .logo-img {
         width: 16px;
+    }
+
+    label.overflowingrow {
+        width: calc(100% - 8px + 48px);
+    }
+
+    input.overflowingrow {
+        width: calc(100% - 8px + 36px);
+        margin-top: 5px;
     }
 </style>

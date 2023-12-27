@@ -9,6 +9,29 @@ embeddesc: the update log
 ---
 <br>
 
+## Accurate-r than ever `Dec 27, 2023`
+
+**blabla gen**
+- tweaked text weight of other chatters
+    - uses text stroke to do so
+- tweaked some ui peeves i got
+
+**dialogue gen**
+- added animation to choices when exporting
+- added animation to narration box when exporting
+- **BREAKING** removed gif exporting
+    - it just really isn't worth it anymore, go convert your mp4 to a gif for a better result
+
+**general**
+- tweaked the way the other tools are displayed (no, the Blabla interface isn't the only thing you can make in this site)
+
+yes I know the exporting indicator is not working as usual, I have to find a better way to find frames than this
+
+<br>
+
+---
+<br>
+
 ## characters `Dec 23, 2023`
 
 **blabla gen**

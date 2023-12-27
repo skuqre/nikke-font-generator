@@ -1,5 +1,4 @@
 import { draw9slice, dataURLtoFile, eyeOn, eyeOff } from "./util.js";
-import { GIFEncoder, quantize, applyPalette } from "https://unpkg.com/gifenc";
 import { downloadZip } from "https://cdn.jsdelivr.net/npm/client-zip/index.js"
 import { Buffer } from "buffer";
 import * as HME from "h264-mp4-encoder";
@@ -652,7 +651,6 @@ document.querySelectorAll('button#bgautofit')[0].addEventListener('click', () =>
 });
 
 document.querySelectorAll('button#export-png')[0].addEventListener('click', downloadImage);
-document.querySelectorAll('button#export-gif')[0].addEventListener('click', animateTypewrite);
 document.querySelectorAll('button#export-mp4')[0].addEventListener('click', downloadVideo);
 
 
@@ -817,6 +815,9 @@ let maxframes = 0;
 function captureAnimatables() {
     frame = 0
     capture = {
+        oldDialogueLines: subtext2,
+        oldActionLines: document.getElementById('actionbox').value.trim(),
+        oldChoices: document.getElementById('choices').value.trim(),
         brightness: brnum,
         bgvals: [bgpos[0], bgpos[1], scalebg], // x, y, scale
         chvals: [chpos[0], chpos[1], scalech]
@@ -871,6 +872,10 @@ function resetAnimatables() {
     chposoff = [0, 0];
 
     brnum = capture.brightness;
+
+    subtext2 = capture.oldDialogueLines;
+    document.getElementById('actionbox').value = capture.oldActionLines;
+    document.getElementById('choices').value = capture.oldChoices;
 
     generateText(text2, subtext2);
 
@@ -1119,11 +1124,19 @@ function generateText(text, subtext, exporting=false) {
 
             drawGradients(true);
 
-            let startY = (canvassize[1] * (765 / 1080)) - ((choicepng.height * split.length) + (14 * (split.length - 1))) / 2;
+            let mult = easeInOutSine(Math.min(8, frame) / 8);
+
+            if (!exporting) {
+                mult = 1;
+            }
+
+            let startY = (canvassize[1] * ((765 + (1 - mult) * 35) / 1080)) - ((choicepng.height * split.length) + (14 * (split.length - 1))) / 2;
 
             let curY = startY;
             for (let i = 0; i < split.length; i++) {
                 let item = split[i];
+
+                ctx.globalAlpha = mult;
 
                 ctx.drawImage(choicepng, (canvassize[0] - choicepng.width) / 2, curY);
 
@@ -1134,6 +1147,8 @@ function generateText(text, subtext, exporting=false) {
                 ctx.fillText(item.trim(), canvassize[0] / 2, curY + choicepng.height / 2);
 
                 curY += choicepng.height + 14;
+
+                ctx.globalAlpha = 1;
             }
 
         } else if (document.getElementById('actionbox').value.trim().length > 0) {
@@ -1155,10 +1170,16 @@ function generateText(text, subtext, exporting=false) {
             let cw = ((result * scalena / 100) - 54 - (action.width - (54 + 566)));
             let ch = (248 * scalena / 100 - 54 - (action.height - (54 + 140)))
             let lines = getLinesForParagraphs(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
+            let linesAlt = null;
             let ath = ((39 * dsc) * lines.length)
 
+            if (exporting) {
+                lines = getLinesForParagraphs(ctx, subtext, cw - 32 * 2);
+                linesAlt = getLinesForParagraphs(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
+            }
+
             for (let i = 0; i < lines.length; i++) {
-                ctx.fillText(lines[i], (canvassize[0] - ctx.measureText(lines[i]).width) / 2 + xoff, (ay + 248 * (scalena / 100) / 2 - ath / 2) + (7 * dsc) + 4 + ((39 * dsc) * i) + yoff, cw - 32 * 2);
+                ctx.fillText(lines[i], (canvassize[0] - ctx.measureText(linesAlt == null ? lines[i] : linesAlt[i]).width) / 2 + xoff, (ay + 248 * (scalena / 100) / 2 - ath / 2) + (7 * dsc) + 4 + ((39 * dsc) * i) + yoff, cw - 32 * 2);
             }
 
             if (arrowOn) {
@@ -1224,90 +1245,6 @@ function getLines(ctx, text, maxWidth) {
 }
 
 let exporting = false;
-function animateTypewrite() {
-    if (exporting) return;
-    exporting = true;
-
-    captureAnimatables()
-
-    let textc = text2;
-    let subtextc = subtext2;
-
-    let individual = subtextc.split('');
-
-    const encoder = new GIFEncoder(canvas.width, canvas.height);
-
-    let wasArrowOn = arrowOn;
-
-    arrowOn = false;
-    let curText = "";
-    individual.splice(0, 0, '');
-    for (let i = 0; i < individual.length; i++) {
-        curText += individual[i];
-
-        if (individual[i+1] == ' ') {
-            curText += individual[i+1];
-            i++;
-        }
-        if (individual[i+1] == '\\n') {
-            curText += individual[i+1];
-            i++;
-        }
-
-        generateText(textc, curText, true)
-
-        for (let i = 0; i <= 1; i++) {
-            const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const palette = quantize(data, 256);
-            const index = applyPalette(data, palette);
-
-            encoder.writeFrame(index, width, height, { palette: palette, delay: 33.333333, repeat: 0 });
-            frame++;
-
-            document.title = "Exporting: " + (frame / maxframes * 100).toFixed(2) + "%";
-        }
-    }
-
-    arrowOn = wasArrowOn;
-
-    let extra = 1;
-
-    let newframes = document.getElementById('fa').value;
-
-    if (newframes != null) {
-        if (newframes > 0) {
-            if (true) { // document.getElementById('fa-how').value == 'add'
-                extra = parseInt(newframes) + 1 // a frame of peace
-            }
-        }
-    }
-
-    for (let i = 0; i < extra; i++) {
-        const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const palette = quantize(data, 256);
-        const index = applyPalette(data, palette);
-
-        generateText(textc, curText, true)
-        encoder.writeFrame(index, width, height, { palette: palette, delay: 33.333333, repeat: 0 });
-        frame++;
-
-        document.title = "Exporting: " + (frame / maxframes * 100).toFixed(2) + "%";
-    }
-
-    encoder.finish();
-
-    let output = encoder.bytes();
-    let b64 = Buffer.from(output).toString('base64');
-
-    var link = document.createElement('a');
-    link.download = 'nikke-dialogue.gif';
-    link.href = "data:image/gif;base64," + b64;
-    link.click();
-
-    resetAnimatables()
-    alert("Exporting finished!")
-    exporting = false;
-}
 
 function downloadIndividualFrames() {
     if (exporting) return;
@@ -1319,6 +1256,10 @@ function downloadIndividualFrames() {
 
     let individual = subtextc.split('');
 
+    if (document.getElementById('actionbox').value.trim().length > 0) {
+        individual = document.getElementById('actionbox').value.split('')
+    }
+
     let wasArrowOn = arrowOn;
 
     arrowOn = false;
@@ -1337,7 +1278,7 @@ function downloadIndividualFrames() {
             i++;
         }
 
-        generateText(textc, curText)
+        generateText(textc, curText, true)
 
         imgs.push({
             name: "nikke-frame" + i + ".png",
@@ -1347,7 +1288,7 @@ function downloadIndividualFrames() {
 
     arrowOn = wasArrowOn;
 
-    generateText(textc, curText)
+    generateText(textc, curText, true)
     imgs.push({
         name: "nikke-frame" + (individual.length) + ".png",
         input: dataURLtoFile(canvas.toDataURL(), "nikke-frame" + (individual.length) + ".png")
@@ -1391,6 +1332,10 @@ function downloadVideo() {
 
         let individual = subtextc.split('');
 
+        if (document.getElementById('actionbox').value.trim().length > 0) {
+            individual =  document.getElementById('actionbox').value.split('')
+        }
+
         encoder.width = canvas.width % 2 == 0 ? canvas.width : canvas.width + 1;
         encoder.height = canvas.height % 2 == 0 ? canvas.height : canvas.height + 1;
         encoder.quantizationParameter = 15;
@@ -1419,7 +1364,7 @@ function downloadVideo() {
                 encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
                 frame++;
 
-                document.title = "Exporting: " + (frame / maxframes * 100).toFixed(2) + "%";
+                document.title = "Exporting...";
             }
         }
 
@@ -1442,7 +1387,7 @@ function downloadVideo() {
             encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
             frame++;
 
-            document.title = "Exporting: " + (frame / maxframes * 100).toFixed(2) + "%";
+            document.title = "Exporting...";
         }
 
         encoder.finalize();

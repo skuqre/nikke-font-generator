@@ -359,10 +359,11 @@ function generateBlabla() {
                 }
             }
 
-            ctx.font = "20px " + (curSpeaker.toLowerCase() == 'commander' ? 'PB' : 'PEB');
-            ctx.fillStyle = "#333333";
+            ctx.font = "20px PB";
+            ctx.fillStyle = "#222222";
             ctx.textBaseline = "top";
             ctx.textAlign = "left";
+            ctx.lineWidth = 0.25;
 
             let width = ctx.measureText(item.message).width;
             let innerBubbleWidth = width + 22 * 2 > 420 ? 420 : width + 22 * 2; // the bubble w/o shadow
@@ -545,6 +546,7 @@ function generateBlabla() {
 
                         for (let j = 0; j < lines.length; j++) {
                             ctx.fillText(lines[j].trim(), curx + 16 - xOffset, cury + 20 + ((31) * j), textWidth);
+                            ctx.strokeText(lines[j].trim(), curx + 16 - xOffset, cury + 20 + ((31) * j), textWidth);
 
                             // ctx.fillStyle = "#ff0000";
                             // ctx.fillRect(curx + 16, cury + 20 + ((31) * j), textWidth, 10);
