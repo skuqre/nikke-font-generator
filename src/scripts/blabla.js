@@ -1,4 +1,4 @@
-import { draw9slice } from "./util.js";
+import { draw9slice, eyeOff, eyeOn } from "./util.js";
 import fuzzysort from "fuzzysort";
 import { wifiOffI, wifiOnI } from "./util.js";
 import * as HME from "h264-mp4-encoder";
@@ -28,25 +28,25 @@ var chats = [
         'name': 'Commander',
         'image': '',
         'message': 'Anis?',
-        'color': '#fea50a'
+        'color': '#ffac00'
     },
     {
         'name': 'Commander',
         'image': '',
         'message': 'Rapi?',
-        'color': '#fea50a'
+        'color': '#ffac00'
     },
     {
         'name': 'Commander',
         'image': '',
         'message': 'Neon??',
-        'color': '#fea50a'
+        'color': '#ffac00'
     },
     {
         'name': 'Commander',
         'image': '',
         'message': 'Seems like no one\'s around.',
-        'color': '#fea50a'
+        'color': '#ffac00'
     }
 ];
 
@@ -262,6 +262,21 @@ pfpMask.src = `/nikke-font-generator/images/blabla/mask.png`;
 let amask = new Image();
 amask.crossOrigin = "anonymous"
 amask.src = `/nikke-font-generator/images/blabla/attachmentmask.png`;
+
+let thoughtbubble = new Image();
+thoughtbubble.crossOrigin = "anonymous";
+thoughtbubble.src = `/nikke-font-generator/images/blabla/thoughtbubble.png`;
+
+let thoughttail = new Image();
+thoughttail.crossOrigin = "anonymous";
+thoughttail.src = `/nikke-font-generator/images/blabla/thoughttails.png`;
+
+let tailCanvas = document.createElement('canvas');
+let tailCtx = tailCanvas.getContext('2d');
+
+let darkener = new Image();
+darkener.crossOrigin = "anonymous";
+darkener.src = `/nikke-font-generator/images/blabla/darkener.png`;
 
 // start xy 107, 174
 
@@ -670,7 +685,7 @@ function generateBlabla() {
                 ctx.globalAlpha = 0.5 * alphaMult;
                 draw9slice(ctx, s_sybub, [26, 28, 2, 2], ibx - 6, iby - 2, fuck.boxwidth + 12, fuck.boxheight + 12);
                 ctx.globalAlpha = 1 * alphaMult;
-                draw9slice(ctx, sybub, [20, 22, 2, 2], ibx, iby + 4, fuck.boxwidth, fuck.boxheight, ' #ffffff');
+                draw9slice(ctx, sybub, [20, 22, 2, 2], ibx, iby + 4, fuck.boxwidth, fuck.boxheight, '#ffffff');
 
                 for (let j = 0; j < fuck.lines.length; j++) {
                     ctx.fillText(fuck.lines[j].trim(), ibx + (fuck.boxwidth - ctx.measureText(fuck.lines[j].trim()).width) / 2, iby + 24 + (j * 31), fuck.boxwidth - 41 * 2);
@@ -698,6 +713,10 @@ function generateBlabla() {
             ctx.drawImage(arr, 29, 69);
         }
 
+        if (wifiOn) {
+            ctx.drawImage(wifi, 17, 14);
+        }
+
         ctx.font = "28px PB";
         ctx.textBaseline = "top";
         ctx.textAlign = "left";
@@ -710,7 +729,47 @@ function generateBlabla() {
         ctx.fillStyle = "#ffffff";
         ctx.globalAlpha = 1.0;
         ctx.fillText(chatname, 60, 70);
-    
+
+        // draw thought
+        if (thoughtOn && document.getElementById("thought").value.trim().length > 0) {
+            draw9slice(ctx, darkener, [16, 16, 32, 32], 0, 0, canvas.width, canvas.height);
+
+            let tailx = 456;
+            let taily = 735;
+
+            tailCanvas.width = thoughttail.width;
+            tailCanvas.height = thoughttail.height;
+
+            if (document.getElementById("com-color").value != '#ffffff') {
+                tailCtx.fillStyle = document.getElementById("com-color").value;
+                tailCtx.fillRect(0, 0, tailCanvas.width, tailCanvas.height);
+                tailCtx.globalCompositeOperation = "destination-in";
+            }
+
+            tailCtx.drawImage(thoughttail, 0, 0);
+            tailCtx.globalCompositeOperation = "source-over";
+
+            ctx.drawImage(tailCanvas, tailx, taily);
+            tailCtx.clearRect(0, 0, tailCanvas.width, tailCanvas.height);
+
+            ctx.font = "20px PB";
+            ctx.textBaseline = "top";
+            ctx.textAlign = "left";
+            ctx.fillStyle = '#ffffff';
+            ctx.letterSpacing = '0px';
+
+            let w = ctx.measureText(document.getElementById("thought").value.trim()).width + 17 * 2;
+            let tw = w > 435 ? 435 : w;
+            tw += 1;
+            let lines = getLinesForParagraphs(ctx, document.getElementById("thought").value.trim(), tw - 17 * 2);
+            let th = lines.length * 31 + 17 * 2 + 1;
+
+            draw9slice(ctx, thoughtbubble, [16, 16, 32, 32], tailx + 32 - tw, taily + 9 - th, tw, th, document.getElementById("com-color").value);
+
+            for (let j = 0; j < lines.length; j++) {
+                ctx.fillText(lines[j].trim(), tailx + 32 - tw + 17, taily + 15 - th + 17 + 31 * j, tw - 17 * 2);
+            }
+        }
     } else {
         let curx = 18;
         let cury = 233 + ypos;
@@ -779,6 +838,10 @@ function generateBlabla() {
 
         ctx.drawImage(top2, 0, 0);
 
+        if (wifiOn) {
+            ctx.drawImage(wifi, 17, 14);
+        }
+
         ctx.font = "16px PEB";
         ctx.textBaseline = "top";
         ctx.textAlign = "left";
@@ -816,10 +879,6 @@ function generateBlabla() {
 
         ctx.globalAlpha = 1;
         ctx.drawImage(indicator, divided * nikkepage + (divided - indicator.width) / 2, top2.height - indicator.height);
-    }
-
-    if (wifiOn) {
-        ctx.drawImage(wifi, 17, 14);
     }
 
     ctx.font = "15px SB";
@@ -967,10 +1026,21 @@ document.getElementById("choices").oninput = (e) => {
     generateBlabla();
 }
 
+document.getElementById("thought").oninput = (e) => {
+    generateBlabla();
+}
+
 let wifiOn = true;
 document.getElementById("wifi-toggle").onclick = (e) => {
     wifiOn = !wifiOn;
     document.getElementById("wifi-toggle").innerHTML = wifiOn ? wifiOnI : wifiOffI;
+    generateBlabla();
+}
+
+let thoughtOn = true;
+document.getElementById("thought-toggle").onclick = (e) => {
+    thoughtOn = !thoughtOn;
+    document.getElementById("thought-toggle").innerHTML = thoughtOn ? eyeOn : eyeOff;
     generateBlabla();
 }
 
@@ -1271,6 +1341,9 @@ function downloadVideo() {
     if (exporting) return;
     exporting = true;
 
+    let defaultThought = thoughtOn;
+    thoughtOn = false;
+
     HME.createH264MP4Encoder().then((encoder) => {
 
         encoder.width = canvas.width % 2 == 0 ? canvas.width : canvas.width + 1;
@@ -1320,6 +1393,23 @@ function downloadVideo() {
                 curMessageFrames++;
 
                 document.title = "Exporting choices..." + " (" + (curMessageFrames / messageMaxFrames * 100).toFixed(2) + "%)";
+            }
+        }
+
+        if (defaultThought && document.getElementById("thought").value.trim().length > 0) {
+            thoughtOn = defaultThought;
+            
+            messageBeingAnimated = chats.length + 1;
+
+            resetAnimatables();
+            messageMaxFrames = Math.round(10 + (0.05 * document.getElementById("thought").value.trim().length) * 30);
+
+            while (curMessageFrames < messageMaxFrames) {
+                generateBlabla();
+                encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
+                curMessageFrames++;
+
+                document.title = "Exporting thoughts..." + " (" + (curMessageFrames / messageMaxFrames * 100).toFixed(2) + "%)";
             }
         }
 

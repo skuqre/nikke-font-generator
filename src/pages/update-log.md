@@ -9,6 +9,24 @@ embeddesc: the update log
 ---
 <br>
 
+## guides, and thoughts `Dec 30, 2023`
+
+**blabla gen**
+- added the ability to add in thoughts (or the thinking chat bubble if you feel so inclined)
+- tweaked the default color by just a tiny bit
+
+**dialogue gen**
+- made the dialogue type toggle button (the eye) to be consistent with the other ui
+
+**general**
+- usage page has been tweaked
+- GUIDES HAVE BEEN ADDED! The guides have been added that describes specific input fields and all that stuff.
+
+<br>
+
+---
+<br>
+
 ## Accurate-r than ever `Dec 27, 2023`
 
 **blabla gen**
