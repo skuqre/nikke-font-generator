@@ -7,142 +7,259 @@
 
 <div class="input-fields">
     <table>
-        <th>
-            Append
-        </th>
-        <tr>
-            <td>
-                <input
-                    type="text"
-                    id="charname"
-                    autocomplete="off"
-                    placeholder='Character name...'
-                />
-            </td>
-            <td>
-                <button id="add">Add Chat</button>
-            </td>
-            <td rowspan="2" style="vertical-align: top;">
-                <input
-                    type="color"
-                    id="color"
-                    autocomplete="off"
-                    value="#ffffff"
-                    style="top: 2px; position: relative;"
-                />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <textarea
-                    id="chatter"
-                    autocomplete="off"
-                    placeholder='What the character will be saying...'
-                    style="top: -4px; position: relative;"
-                />
-            </td>
-            <td style="vertical-align: top;">
-                <button id="set-oth" style="width: calc(50% - 7px); display: inline-block;"><i class='bx bx-message-square-minus'></i></button>
-                <button id="set-com" style="width: calc(50% - 7px); display: inline-block; left: 2px; position: relative;"><i class='bx bxs-message-square-minus bx-flip-horizontal' ></i></button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="1" class="wholerow">
-                <label class="overflowingrow whole-row" for="char-img-up">
-                    Upload Character image...
-                    <input type="file" id="char-img-up" accept="image/*">
-                </label>
-                <input
-                    type="text"
-                    id="char-pres-up"
-                    autocomplete="off"
-                    placeholder="🔍 Search for a character's image"
-                    class="overflowingrow"
-                />
-            </td>
-            <td class="imgpre" colspan="2">
-                <img id="pfp-preview" src="/nikke-font-generator/images/blabla/pfp/nochat.png" class="image-preview" alt="Image preview (if empty, upload one!)" />
-            </td>
-            <!-- <td style="vertical-align: top;">
-                <button class="history-but" style=""><i class='bx bx-history'></i></button>
-            </td> -->
-        </tr>
-        <tr>
-            <td colspan="3">
-                <label class="whole-row" for="attachment-up">
-                    Upload attachment as character...
-                    <input type="file" id="attachment-up" accept="image/*">
-                </label>
-            </td>
-        </tr>
+        <tbody id="main-section">
+            <th id="top-title">
+                Append
+            </th>
+            <tr>
+                <td>
+                    <input
+                        type="text"
+                        id="charname"
+                        autocomplete="off"
+                        placeholder='Character name...'
+                    />
+                </td>
+                <td>
+                    <button id="add">Add Chat</button>
+                </td>
+                <td rowspan="2" style="vertical-align: top;">
+                    <input
+                        type="color"
+                        id="color"
+                        autocomplete="off"
+                        value="#ffffff"
+                        style="top: 2px; position: relative;"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea
+                        id="chatter"
+                        autocomplete="off"
+                        placeholder='What the character will be saying...'
+                        style="top: -4px; position: relative;"
+                    />
+                </td>
+                <td style="vertical-align: top;">
+                    <button id="set-oth" style="width: calc(50% - 7px); display: inline-block;"><i class='bx bx-message-square-minus'></i></button>
+                    <button id="set-com" style="width: calc(50% - 7px); display: inline-block; left: 2px; position: relative;"><i class='bx bxs-message-square-minus bx-flip-horizontal' ></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1" class="wholerow">
+                    <label class="overflowingrow whole-row" for="char-img-up">
+                        Upload Character image...
+                        <input type="file" id="char-img-up" accept="image/*">
+                    </label>
+                    <input
+                        type="text"
+                        id="char-pres-up"
+                        autocomplete="off"
+                        placeholder="🔍 Search for a character's image"
+                        class="overflowingrow"
+                    />
+                </td>
+                <td class="imgpre" colspan="2">
+                    <img id="pfp-preview" class="image-preview" src="/nikke-font-generator/images/transparent.png" />
+                </td>
+                <!-- <td style="vertical-align: top;">
+                    <button class="history-but" style=""><i class='bx bx-history'></i></button>
+                </td> -->
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <label class="whole-row" for="attachment-up">
+                        Upload attachment as character...
+                        <input type="file" id="attachment-up" accept="image/*">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="whole-row" for="frame-up">
+                        Add profile frame...
+                        <input type="file" id="frame-up" accept="image/*">
+                    </label>
+                </td>
+                <td>
+                    <button id="frame-remove" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove profile frame (if available)"><i class='bx bx-trash'></i></button>
+                </td>
+            </tr>
+            
+            <th>
+                Edit
+            </th>
+            <tr>
+                <td>
+                    <input
+                        type="text"
+                        id="charname-edit"
+                        autocomplete="off"
+                        placeholder='Character name...'
+                    />
+                </td>
+                <td>
+                    <button id="edit">Refresh</button>
+                </td>
+                <td rowspan="2" style="vertical-align: top;">
+                    <input
+                        type="color"
+                        id="color-edit"
+                        autocomplete="off"
+                        value="#ffac00"
+                        style="top: 2px; position: relative;"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea
+                        id="chatter-edit"
+                        autocomplete="off"
+                        placeholder='What the character will be saying...'
+                        style="top: -4px; position: relative;"
+                    />
+                </td>
+                <td style="vertical-align: top;">
+                    <input type="number" id="message-index-edit" style="width: 78px; margin: 0; margin-bottom: 4px;" min="0" placeholder="Index..." />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1" class="wholerow">
+                    <label class="overflowingrow whole-row" for="char-img-edit">
+                        Change Character image...
+                        <input type="file" id="char-img-edit" accept="image/*">
+                    </label>
+                    <input
+                        type="text"
+                        id="char-pres-edit"
+                        autocomplete="off"
+                        placeholder="🔍 Search for a character's image"
+                        class="overflowingrow"
+                    />
+                </td>
+                <td class="imgpre" colspan="2">
+                    <img id="pfp-preview-edit" class="image-preview" src="/nikke-font-generator/images/transparent.png" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="whole-row" for="attachment-edit">
+                        Change attachment...
+                        <input type="file" id="attachment-edit" accept="image/*">
+                    </label>
+                </td>
+                <td>
+                    <button id="attachment-remove" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove attachment (if available)"><i class='bx bx-trash'></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="whole-row" for="frame-edit">
+                        Change profile frame...
+                        <input type="file" id="frame-edit" accept="image/*">
+                    </label>
+                </td>
+                <td>
+                    <button id="frame-edit-remove" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove frame (if available)"><i class='bx bx-trash'></i></button>
+                </td>
+            </tr>
+        </tbody>
 
-        <th>
-            Edit
-        </th>
-        <tr>
-            <td>
-                <input
-                    type="text"
-                    id="charname-edit"
-                    autocomplete="off"
-                    placeholder='Character name...'
-                />
-            </td>
-            <td>
-                <button id="edit">Refresh</button>
-            </td>
-            <td rowspan="2" style="vertical-align: top;">
-                <input
-                    type="color"
-                    id="color-edit"
-                    autocomplete="off"
-                    value="#ffac00"
-                    style="top: 2px; position: relative;"
-                />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <textarea
-                    id="chatter-edit"
-                    autocomplete="off"
-                    placeholder='What the character will be saying...'
-                    style="top: -4px; position: relative;"
-                />
-            </td>
-            <td style="vertical-align: top;">
-                <input type="number" id="message-index-edit" style="width: 78px; margin: 0; margin-bottom: 4px;" min="0" placeholder="Index..." />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="1" class="wholerow">
-                <label class="overflowingrow whole-row" for="char-img-edit">
-                    Change Character image...
-                    <input type="file" id="char-img-edit" accept="image/*">
-                </label>
-                <input
-                    type="text"
-                    id="char-pres-edit"
-                    autocomplete="off"
-                    placeholder="🔍 Search for a character's image"
-                    class="overflowingrow"
-                />
-            </td>
-            <td class="imgpre" colspan="2">
-                <img id="pfp-preview-edit" src="/nikke-font-generator/images/blabla/pfp/nochat.png" class="image-preview" alt="Image preview (if empty, upload one!)" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <label class="whole-row" for="attachment-edit">
-                    Change attachment...
-                    <input type="file" id="attachment-edit" accept="image/*">
-                </label>
-            </td>
-            <td>
-                <button id="attachment-remove" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove attachment (if available)"><i class='bx bx-trash'></i></button>
-            </td>
-        </tr>
+        <tbody id="profile-section" style="display: none;">
+            <th>
+                Profile
+            </th>
+            <tr>
+                <td colspan="3">
+                    <input
+                        type="text"
+                        id="charname-edit-p"
+                        autocomplete="off"
+                        placeholder='Character name...'
+                        style="width: calc(100% - 20px);"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <textarea
+                        id="chatter-edit-p"
+                        autocomplete="off"
+                        placeholder='What the Blabla description may be...'
+                        style="top: -4px; position: relative; width: calc(100% - 20px); max-width: calc(100% - 20px);"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1" class="wholerow">
+                    <label class="overflowingrow whole-row" for="char-img-edit-p">
+                        Change Character image...
+                        <input type="file" id="char-img-edit-p" accept="image/*">
+                    </label>
+                    <input
+                        type="text"
+                        id="char-pres-edit-p"
+                        autocomplete="off"
+                        placeholder="🔍 Search for a character's image"
+                        class="overflowingrow"
+                    />
+                </td>
+                <td class="imgpre" colspan="2">
+                    <img id="pfp-preview-edit-p" class="image-preview" src="/nikke-font-generator/images/transparent.png" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="whole-row" for="background-edit-p">
+                        Change background image...
+                        <input type="file" id="background-edit-p" accept="image/*">
+                    </label>
+                </td>
+                <td>
+                    <button id="background-remove-p" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove background (if available)"><i class='bx bx-trash'></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="whole-row" for="frame-edit-p">
+                        Change profile frame...
+                        <input type="file" id="frame-edit-p" accept="image/*">
+                    </label>
+                </td>
+                <td>
+                    <button id="frame-remove-p" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove frame (if available)"><i class='bx bx-trash'></i></button>
+                </td>
+            </tr>
+
+            <th colspan="3">Background Sizing and Position (X, Y, and Scale)</th>
+            <tr>
+                <td colspan="3">
+                    <input
+                        type="number"
+                        id="xposbg"
+                        autocomplete="off"
+                        value="0"
+                        step="10"
+                    />
+                    <input
+                        type="number"
+                        id="yposbg"
+                        autocomplete="off"
+                        value="0"
+                        step="10"
+                    />
+                    <input
+                        type="number"
+                        id="scalebg"
+                        autocomplete="off"
+                        value="100"
+                    />
+                </td>
+            </tr>
+        </tbody>
 
         <th>
             Chat
@@ -200,9 +317,21 @@
         </tr>
         <tr>
             <td style="vertical-align: top;" colspan="3">
+                <button id="set-chats" class="button-bs" style="width: calc(33.33% - 8px); margin-left: 4px; margin-right: 3px; font-weight: normal;">
+                    Chat list
+                </button>
+                <button id="set-convo" class="button-bs" style="width: calc(33.33% - 8px); font-weight: bold;">
+                    Conversation
+                </button>
+                <button id="set-profile" class="button-bs" style="width: calc(33.33% - 8px); font-weight: normal; position: relative;">
+                    Profile
+                </button>
+            </td>
+
+            <!-- <td style="vertical-align: top;" colspan="3">
                 <button id="set-chats" style="width: calc(50% - 8px); display: inline-block; margin-left: 4px; margin-right: 3px; font-weight: normal;">Chats screen</button>
                 <button id="set-convo" style="width: calc(50% - 8px); display: inline-block; font-weight: bold;">Conversation screen</button>
-            </td>
+            </td> -->
         </tr>
         <tr>
             <td colspan="3" class="wholerow">
@@ -486,11 +615,17 @@
     .image-preview {
         width: 90px;
         height: 90px;
-        border-radius: 4px;
-        background-color: var(--darker);
+        background-color: rgba(0, 0, 0, 0);
 
         float: right;
         margin-right: 5px;
+
+        background-image: url('/nikke-font-generator/images/blabla/pfp/nochat.png');
+        background-size: 80%;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        scale: 120%;
     }
 
     .wholerow {
@@ -520,5 +655,17 @@
     input.overflowingrow {
         width: calc(100% - 8px + 36px);
         margin-top: 5px;
+    }
+
+    input[type="number"] {
+        width: 90px;
+        margin: 0;
+        margin-left: 4px;
+    }
+
+    p.tool-label {
+        margin: 0px 0px 4px 6px;
+        text-align: left;
+        width: max-content;
     }
 </style>

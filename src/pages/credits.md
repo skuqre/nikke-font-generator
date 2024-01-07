@@ -39,7 +39,7 @@ I hope to god that this site does not get used for misinformation *(hence the wa
 The main inspiration of this site is the [GD Font Generator](https://gdcolon.com/gdfont) by GD Colon. <br>
 I had the fonts on standby, so why not make some use out of them? It had to be done at some point.
 
-I do other NIKKE-related projects too, but it's [Anisé](https://github.com/skuqre/anise) for now.<br>
+I'll do more NIKKE-related projects in the future.<br>
 These projects are created by me for both you and me.
 
 If you're wondering about usage guidelines, please head [here](/nikke-font-generator/usage).<br>

@@ -7,6 +7,26 @@ embeddesc: the update log
 # Update Log
 
 ---
+
+<br>
+
+## profile pages `Jan 7, 2024`
+
+**blabla gen**
+- added the ability to create profile pages
+    - this also includes non-nikke features like profile backgrounds and profile picture frames
+- added the ability to add profile picture frames to normal blabla chats
+
+**general**
+- removed any mentions of Anisé
+    - nothing too crazy -- Anisé is not getting any more viable updates from now on.
+
+first update of the new year! thank you for using the tool and keeping me motivated to update the site!<br>
+also, I've been interested in adding translations to the site, [go visit if you're interested](/nikke-font-generator/translation)!
+
+<br>
+
+---
 <br>
 
 ## guides, and thoughts `Dec 30, 2023`

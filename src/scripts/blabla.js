@@ -28,30 +28,44 @@ var chats = [
         'name': 'Commander',
         'image': '',
         'message': 'Anis?',
-        'color': '#ffac00'
+        'color': '#ffac00',
+        'frame': ''
     },
     {
         'name': 'Commander',
         'image': '',
         'message': 'Rapi?',
-        'color': '#ffac00'
+        'color': '#ffac00',
+        'frame': ''
     },
     {
         'name': 'Commander',
         'image': '',
         'message': 'Neon??',
-        'color': '#ffac00'
+        'color': '#ffac00',
+        'frame': ''
     },
     {
         'name': 'Commander',
         'image': '',
         'message': 'Seems like no one\'s around.',
-        'color': '#ffac00'
+        'color': '#ffac00',
+        'frame': ''
     }
 ];
 
-var chatmode = false;
-var userHistory = {};
+var profile =  {
+    'name': 'Commander',
+    'image': 'https://nikke-db-legacy.pages.dev/images/sprite/si_c942_00_s.png',
+    'message': "I don't look like this, but I feel good when I think I do. Commander of Counters Squad.",
+    'color': '#ffac00',
+    'frame': '',
+
+    // profile exclusive
+    'bg': '',
+}
+
+var mode = 'conversation';
 
 let nikkepfps = {}
 const response = await fetch('https://api.dotgg.gg/nikke/characters/');
@@ -242,6 +256,11 @@ let pfpCtx2 = pfpCanvas2.getContext('2d');
 pfpCtx2.width = 74;
 pfpCtx2.height = 74;
 
+let pfpCanvas3 = document.createElement('canvas');
+let pfpCtx3 = pfpCanvas3.getContext('2d');
+pfpCtx3.width = 134;
+pfpCtx3.height = 134;
+
 let chatterCanvas = document.createElement('canvas');
 let chatterCtx = chatterCanvas.getContext('2d');
 chatterCtx.width = 111;
@@ -277,6 +296,30 @@ let tailCtx = tailCanvas.getContext('2d');
 let darkener = new Image();
 darkener.crossOrigin = "anonymous";
 darkener.src = `/nikke-font-generator/images/blabla/darkener.png`;
+
+let top3 = new Image();
+top3.crossOrigin = "anonymous";
+top3.src = `/nikke-font-generator/images/blabla/top3.png`;
+
+let bot3 = new Image();
+bot3.crossOrigin = "anonymous";
+bot3.src = `/nikke-font-generator/images/blabla/bot3.png`;
+
+let topGradient = new Image();
+topGradient.crossOrigin = "anonymous";
+topGradient.src = `/nikke-font-generator/images/blabla/profiletopgradient.png`;
+
+let profilemask = new Image();
+profilemask.crossOrigin = "anonymous";
+profilemask.src = `/nikke-font-generator/images/blabla/profilemask.png`;
+
+let profilebgmask = new Image();
+profilebgmask.crossOrigin = "anonymous";
+profilebgmask.src = `/nikke-font-generator/images/blabla/profilebgmask.png`;
+
+let profilebgmaskshad = new Image();
+profilebgmaskshad.crossOrigin = "anonymous";
+profilebgmaskshad.src = `/nikke-font-generator/images/blabla/profilebgmaskshad.png`;
 
 // start xy 107, 174
 
@@ -328,7 +371,133 @@ function generateBlabla() {
 
     ctx.drawImage(gridOn ? bot2 : bot, 0, top.height);
 
-    if (!chatmode) {
+    if (mode == 'profile') {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        // Draw Profile Screen
+        ctx.drawImage(top3, 0, 0);
+
+        if (loaded[profile.bg] != null) {
+            let bgImg = loaded[profile.bg];
+
+            let bgCanvas = document.createElement('canvas');
+            let bgCtx = bgCanvas.getContext('2d');
+
+            const BGWIDTH = canvas.width - 128;
+            const BGHEIGHT = 624 * 508 / BGWIDTH;
+            const SHADWIDTH = canvas.width - (128 - 18*2);
+            const SHADHEIGHT = 646 * 553 / SHADWIDTH;
+
+            bgCanvas.width = BGWIDTH;
+            bgCanvas.height = BGHEIGHT;
+
+            bgCtx.drawImage(profilebgmask, 0, 0, BGWIDTH, BGHEIGHT);
+            bgCtx.globalCompositeOperation = 'source-in';
+
+            let scale = parseFloat(document.getElementById('scalebg').value) / 100;
+            let xoff = parseFloat(document.getElementById('xposbg').value)
+            let yoff = parseFloat(document.getElementById('yposbg').value)
+            if (bgImg.width > bgImg.height) {
+                const widthS = bgImg.width * BGHEIGHT / bgImg.height  * scale;
+                const heightS = BGHEIGHT  * scale;
+                bgCtx.drawImage(bgImg, (BGWIDTH - widthS) / 2 + xoff, 0 + yoff, widthS, heightS);
+            } else {
+                const widthS = BGWIDTH * scale;
+                const heightS = bgImg.height * BGWIDTH / bgImg.width * scale;
+                bgCtx.drawImage(bgImg, (BGWIDTH - widthS) / 2 + xoff, 0 + yoff, widthS, heightS);
+            }
+
+            if (!bgImg.src.endsWith('transparent.png')) {
+                ctx.drawImage(profilebgmaskshad, (canvas.width - SHADWIDTH) / 2, (canvas.width - SHADWIDTH) / 2 - 9, SHADWIDTH, SHADHEIGHT);
+                ctx.drawImage(bgCanvas, (canvas.width - BGWIDTH) / 2, (canvas.width - BGWIDTH) / 2);
+            }
+        } else {
+            let bgImg = new Image();
+            bgImg.crossOrigin = "anonymous";
+            bgImg.src = profile.bg;
+            bgImg.onload = function() {
+                if (loaded[profile.bg] == null) {
+                    loaded[profile.bg] = bgImg;
+                    generateBlabla();
+                }
+            }
+            bgImg.onerror = function() {
+                bgImg.src = '/nikke-font-generator/images/transparent.png';
+            }
+        }
+
+
+        ctx.globalAlpha = 0.5;
+        ctx.drawImage(topGradient, 0, 0);
+
+        ctx.globalAlpha = 1;
+        ctx.drawImage(bot3, 0, canvas.height - bot3.height);
+
+        ctx.font = "38px PEB";
+        ctx.fillStyle = "#000000";
+        ctx.textBaseline = "top";
+        ctx.textAlign = "center";
+
+        ctx.fillText(profile.name, canvas.width / 2, 735);
+
+        ctx.font = "18px PB";
+        ctx.fillStyle = "#525252";
+        // ctx.fillText(profile.message, canvas.width / 2, 794);
+
+        const lines = getLinesForParagraphs(ctx, profile.message, canvas.width * 0.7);
+
+        for (let j = 0; j < lines.length; j++) {
+            ctx.fillText(lines[j].trim(), canvas.width / 2, 794 + j * 26);
+        }
+
+        if (loaded[profile.image] != null) {
+            let pfpImg = loaded[profile.image];
+
+            pfpCtx3.drawImage(profilemask, 0, 0, 134, 134);
+            pfpCtx3.globalCompositeOperation = 'source-in';
+
+            pfpCtx3.drawImage(pfpImg, 0, 0, 134, 134);
+            pfpCtx3.globalCompositeOperation = 'source-over';
+
+            ctx.drawImage(pfpCanvas3, (canvas.width - 134) / 2, 564);
+            pfpCtx3.clearRect(0, 0, 134, 134);
+        } else {
+            const ass = profile.image;
+            let pfpImg = new Image();
+            pfpImg.crossOrigin = "anonymous";
+            pfpImg.src = ass;
+            pfpImg.onload = function() {
+                if (loaded[ass] == null) {
+                    loaded[ass] = pfpImg;
+                    generateBlabla();
+                }
+            }
+            pfpImg.onerror = function() {
+                pfpImg.src = '/nikke-font-generator/images/blabla/blabla_icon_chat.png';
+            }
+        }
+
+        if (loaded[profile.frame] != null) {
+            let pfpImg = loaded[profile.frame];
+            let width = pfpImg.width * 0.7882352941;
+            let height = pfpImg.height * 0.7882352941;
+
+            ctx.drawImage(pfpImg, (canvas.width - width) / 2, 564 + (134 - height) / 2, width, height);
+        } else {
+            let pfpImg = new Image();
+            pfpImg.crossOrigin = "anonymous";
+            pfpImg.src = profile.frame;
+            pfpImg.onload = function() {
+                if (loaded[profile.frame] == null) {
+                    loaded[profile.frame] = pfpImg;
+                    generateBlabla();
+                }
+            }
+            pfpImg.onerror = function() {
+                pfpImg.src = '/nikke-font-generator/images/transparent.png';
+            }
+        }
+    } else if (mode == 'conversation') {
         let curx = 107;
         let cury = 174 + ypos;
 
@@ -606,6 +775,28 @@ function generateBlabla() {
                                 pfpImg.src = '/nikke-font-generator/images/blabla/blabla_icon_chat.png';
                             }
                         }
+
+                        if (loaded[item.frame] != null) {
+                            let pfpImg = loaded[item.frame];
+                            let fwidth = pfpImg.width * 74 / 170;
+                            let fheight = pfpImg.height * 74 / 170;
+                            let pfpy = cury + height - 7 - 74;
+                            
+                            ctx.drawImage(pfpImg, 107 - 74 - 19 - xOffset + (74 - fwidth) / 2 , pfpy - 19 + (74 - fheight) / 2, fwidth, fheight);
+                        } else {
+                            let pfpImg = new Image();
+                            pfpImg.crossOrigin = "anonymous";
+                            pfpImg.src = item.frame;
+                            pfpImg.onload = function() {
+                                if (loaded[item.frame] == null) {
+                                    loaded[item.frame] = pfpImg;
+                                    generateBlabla();
+                                }
+                            }
+                            pfpImg.onerror = function() {
+                                pfpImg.src = '/nikke-font-generator/images/transparent.png';
+                            }
+                        }
                     }
 
                     break;
@@ -770,7 +961,7 @@ function generateBlabla() {
                 ctx.fillText(lines[j].trim(), tailx + 32 - tw + 17, taily + 15 - th + 17 + 31 * j, tw - 17 * 2);
             }
         }
-    } else {
+    } else if (mode == 'chatlist') {
         let curx = 18;
         let cury = 233 + ypos;
 
@@ -897,7 +1088,21 @@ document.getElementById("char-img-up").onchange = (e) => {
     const filer = new FileReader();
     filer.onload = (e) => {
         currentImage = e.target.result.toString();
-        document.getElementById("pfp-preview").src = currentImage;
+        document.getElementById("pfp-preview").style['backgroundImage'] = `url('${currentImage}')`;
+    };
+    if (fileList.length > 0) {
+        filer.readAsDataURL(fileList[0]);
+    }
+}
+
+let currentFrame = '';
+
+document.getElementById("frame-up").onchange = (e) => {
+    const fileList = document.querySelectorAll('#frame-up')[0].files;
+    const filer = new FileReader();
+    filer.onload = (e) => {
+        currentFrame = e.target.result.toString();
+        document.getElementById("pfp-preview").src = currentFrame;
     };
     if (fileList.length > 0) {
         filer.readAsDataURL(fileList[0]);
@@ -912,6 +1117,7 @@ function addChat(e) {
         'image': noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentImage,
         'message': document.getElementById("chatter").value,
         'color': document.getElementById("color").value,
+        'frame': noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentFrame
     });
 
     generateBlabla();
@@ -921,13 +1127,17 @@ document.getElementById("attachment-up").onchange = (e) => {
     const fileList = document.querySelectorAll('#attachment-up')[0].files;
     const filer = new FileReader();
     filer.onload = (e) => {
-        chats.push({
-            name: document.getElementById("charname").value,
-            image: noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentImage,
-            attachment: e.target.result.toString(),
-            color: document.getElementById("color").value,
-            message: ''
-        })
+        if (mode == 'conversation') {
+            chats.push({
+                name: document.getElementById("charname").value,
+                image: noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentImage,
+                attachment: e.target.result.toString(),
+                color: document.getElementById("color").value,
+                message: ''
+            })
+        } else if (mode == 'profile') {
+            profile.bg = e.target.result.toString();
+        }
 
         document.getElementById('attachment-up').value = "";
         generateBlabla();
@@ -949,8 +1159,69 @@ document.getElementById("attachment-edit").onchange = (e) => {
     }
 }
 
+document.getElementById("frame-edit").onchange = (e) => {
+    const fileList = document.querySelectorAll('#frame-edit')[0].files;
+    const filer = new FileReader();
+    filer.onload = (e) => {
+        chats[parseInt(document.getElementById("message-index-edit").value)].frame = e.target.result.toString();
+        document.getElementById("pfp-preview-edit").src = e.target.result.toString();
+        generateBlabla();
+    };
+    if (fileList.length > 0) {
+        filer.readAsDataURL(fileList[0]);
+    }
+}
+
+document.getElementById("frame-edit-p").onchange = (e) => {
+    const fileList = document.querySelectorAll('#frame-edit-p')[0].files;
+    const filer = new FileReader();
+    filer.onload = (e) => {
+        profile.frame = e.target.result.toString();
+        document.getElementById("pfp-preview-edit-p").src = e.target.result.toString();
+        generateBlabla();
+    };
+    if (fileList.length > 0) {
+        filer.readAsDataURL(fileList[0]);
+    }
+}
+
+document.getElementById("background-edit-p").onchange = (e) => {
+    const fileList = document.querySelectorAll('#background-edit-p')[0].files;
+    const filer = new FileReader();
+    filer.onload = (e) => {
+        profile.bg = e.target.result.toString();
+        generateBlabla();
+    };
+    if (fileList.length > 0) {
+        filer.readAsDataURL(fileList[0]);
+    }
+}
+
 document.getElementById("attachment-remove").onclick = (e) => {
     chats[parseInt(document.getElementById("message-index-edit").value)].attachment = null;
+    generateBlabla();
+}
+
+document.getElementById("frame-remove").onclick = (e) => {
+    currentFrame = '';
+    document.getElementById("pfp-preview").src = '/nikke-font-generator/images/transparent.png';
+    generateBlabla();
+}
+
+document.getElementById("frame-edit-remove").onclick = (e) => {
+    chats[parseInt(document.getElementById("message-index-edit").value)].frame = null;
+    document.getElementById("pfp-preview-edit").src = '/nikke-font-generator/images/transparent.png';
+    generateBlabla();
+}
+
+document.getElementById("frame-remove-p").onclick = (e) => {
+    profile.frame = null;
+    document.getElementById("pfp-preview-edit-p").src = '/nikke-font-generator/images/transparent.png';
+    generateBlabla();
+}
+
+document.getElementById("background-remove-p").onclick = (e) => {
+    profile.bg = null;
     generateBlabla();
 }
 
@@ -999,7 +1270,8 @@ document.getElementById("message-index-edit").onclick = (e) => {
     document.getElementById("chatter-edit").value = item.message;
     document.getElementById("color-edit").value = item.color;
 
-    document.getElementById("pfp-preview-edit").src = item.image.length > 0 ? item.image : '/nikke-font-generator/images/blabla/pfp/nochat.png';
+    document.getElementById("pfp-preview-edit").style['backgroundImage'] = `url('${item.image.length > 0 ? item.image : '/nikke-font-generator/images/blabla/pfp/nochat.png'}')`;
+    document.getElementById("pfp-preview-edit").src = item.frame != null ? (item.frame.length > 0 ? item.frame : "/nikke-font-generator/images/transparent.png") : "/nikke-font-generator/images/transparent.png";
 }
 
 document.getElementById("charname-edit").oninput = (e) => {
@@ -1009,6 +1281,16 @@ document.getElementById("charname-edit").oninput = (e) => {
 
 document.getElementById("chatter-edit").oninput = (e) => {
     chats[parseInt(document.getElementById("message-index-edit").value)].message = document.getElementById("chatter-edit").value;
+    generateBlabla();
+}
+
+document.getElementById("charname-edit-p").oninput = (e) => {
+    profile.name = document.getElementById("charname-edit-p").value;
+    generateBlabla();
+}
+
+document.getElementById("chatter-edit-p").oninput = (e) => {
+    profile.message = document.getElementById("chatter-edit-p").value;
     generateBlabla();
 }
 
@@ -1027,6 +1309,18 @@ document.getElementById("choices").oninput = (e) => {
 }
 
 document.getElementById("thought").oninput = (e) => {
+    generateBlabla();
+}
+
+document.getElementById("scalebg").oninput = (e) => {
+    generateBlabla();
+}
+
+document.getElementById("xposbg").oninput = (e) => {
+    generateBlabla();
+}
+
+document.getElementById("yposbg").oninput = (e) => {
     generateBlabla();
 }
 
@@ -1055,12 +1349,12 @@ document.getElementById("char-pres-up").oninput = (e) => {
             const results = fuzzysort.go(document.getElementById("char-pres-up").value, Object.keys(nikkepfps));
             if (results.length > 0) {
                 currentImage = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
-                document.getElementById("pfp-preview").src = currentImage;
+                document.getElementById("pfp-preview").style['backgroundImage'] = `url('${currentImage}')`;
             } else {
-                document.getElementById("pfp-preview").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
+                document.getElementById("pfp-preview").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
             }
         } else {
-            document.getElementById("pfp-preview").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
+            document.getElementById("pfp-preview").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
         }
     }
 }
@@ -1071,12 +1365,32 @@ document.getElementById("char-pres-edit").oninput = (e) => {
             const results = fuzzysort.go(document.getElementById("char-pres-edit").value, Object.keys(nikkepfps));
             if (results.length > 0) {
                 chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
-                document.getElementById("pfp-preview-edit").src = chats[parseInt(document.getElementById("message-index-edit").value)].image;
+                let fuck = chats[parseInt(document.getElementById("message-index-edit").value)].image;
+                document.getElementById("pfp-preview-edit").style['backgroundImage'] = `url('${fuck}')`;
             } else {
-                document.getElementById("pfp-preview-edit").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
+                document.getElementById("pfp-preview-edit").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
             }
         } else {
-            document.getElementById("pfp-preview-edit").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
+            document.getElementById("pfp-preview-edit").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
+        }
+
+        generateBlabla();
+    }
+}
+
+document.getElementById("char-pres-edit-p").oninput = (e) => {
+    if (Object.keys(nikkepfps).length > 0) {
+        if (document.getElementById("char-pres-edit-p").value.trim().length > 0) {
+            const results = fuzzysort.go(document.getElementById("char-pres-edit-p").value, Object.keys(nikkepfps));
+            if (results.length > 0) {
+                profile.image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                let fuck = profile.image;
+                document.getElementById("pfp-preview-edit-p").style['backgroundImage'] = `url('${fuck}')`;
+            } else {
+                document.getElementById("pfp-preview-edit-p").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
+            }
+        } else {
+            document.getElementById("pfp-preview-edit-p").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
         }
 
         generateBlabla();
@@ -1145,7 +1459,20 @@ document.getElementById("char-img-edit").onchange = (e) => {
     const filer = new FileReader();
     filer.onload = (e) => {
         chats[parseInt(document.getElementById("message-index-edit").value)].image = e.target.result.toString();
-        document.getElementById('pfp-preview-edit').src = e.target.result.toString();
+        document.getElementById('pfp-preview-edit').style['backgroundImage'] = `url('${e.target.result.toString()}')`;
+        generateBlabla();
+    };
+    if (fileList.length > 0) {
+        filer.readAsDataURL(fileList[0]);
+    }
+}
+
+document.getElementById("char-img-edit-p").onchange = (e) => {
+    const fileList = document.querySelectorAll('#char-img-edit-p')[0].files;
+    const filer = new FileReader();
+    filer.onload = (e) => {
+        profile.image = e.target.result.toString();
+        document.getElementById('pfp-preview-edit-p').style['backgroundImage'] = `url('${e.target.result.toString()}')`;
         generateBlabla();
     };
     if (fileList.length > 0) {
@@ -1168,9 +1495,12 @@ function downloadPng() {
 }
 
 document.getElementById("set-chats").onclick = () => {
-    chatmode = true;
+    mode = 'chatlist';
+    document.getElementById('top-title').innerHTML = 'Append';
+    
     document.getElementById("set-chats").style.fontWeight = 'bold';
     document.getElementById("set-convo").style.fontWeight = 'normal';
+    document.getElementById("set-profile").style.fontWeight = 'normal';
 
     document.getElementById('charname').setAttribute('placeholder', 'Conversation name...');
     document.getElementById('chatter').setAttribute('placeholder', 'What the conversation stopped on...');
@@ -1180,13 +1510,19 @@ document.getElementById("set-chats").onclick = () => {
     document.getElementById('chats-page-tabs').style.display = 'table-row';
     document.getElementById('convo-page-shit').style.display = 'none';
 
+    document.getElementById('main-section').style.display = 'table-row-group';
+    document.getElementById('profile-section').style.display = 'none';
+
     generateBlabla();
 }
 
 document.getElementById("set-convo").onclick = () => {
-    chatmode = false;
+    mode = 'conversation'
+    document.getElementById('top-title').innerHTML = 'Append';
+
     document.getElementById("set-chats").style.fontWeight = 'normal';
     document.getElementById("set-convo").style.fontWeight = 'bold';
+    document.getElementById("set-profile").style.fontWeight = 'normal';
 
     document.getElementById('charname').setAttribute('placeholder', 'Character name...');
     document.getElementById('chatter').setAttribute('placeholder', 'What the character will be saying...');
@@ -1195,6 +1531,25 @@ document.getElementById("set-convo").onclick = () => {
 
     document.getElementById('chats-page-tabs').style.display = 'none';
     document.getElementById('convo-page-shit').style.display = 'table-row';
+
+    document.getElementById('main-section').style.display = 'table-row-group';
+    document.getElementById('profile-section').style.display = 'none';
+
+    generateBlabla();
+}
+
+document.getElementById("set-profile").onclick = () => {
+    mode = 'profile'
+
+    document.getElementById("set-chats").style.fontWeight = 'normal';
+    document.getElementById("set-convo").style.fontWeight = 'normal';
+    document.getElementById("set-profile").style.fontWeight = 'bold';
+    
+    document.getElementById('chats-page-tabs').style.display = 'none';
+    document.getElementById('convo-page-shit').style.display = 'none';
+
+    document.getElementById('main-section').style.display = 'none';
+    document.getElementById('profile-section').style.display = 'table-row-group';
 
     generateBlabla();
 }
