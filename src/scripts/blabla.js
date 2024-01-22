@@ -73,89 +73,13 @@ response.json().then((e) => {
     for (let i = 0; i < e.length; i++) {
         nikkepfps[e[i].name.toLowerCase()] = e[i].img;
     }
+});
 
-    nikkepfps['marian'] = 'si_c013_00_s';
-
-    nikkepfps['male generic'] = 'si_c911_00_s';
-    nikkepfps['female generic'] = 'si_c912_00_s';
-
-    nikkepfps['male commander'] = 'si_c916_00_s';
-    nikkepfps['female commander'] = 'si_c917_00_s';
-
-    nikkepfps['andersen'] = 'si_c903_00_s';
-    nikkepfps['andersen: soaky shower'] = 'si_c903_01_00_s';
-    nikkepfps['shifty'] = 'si_c907_00_s';
-    nikkepfps['shifty: old'] = 'si_c907_01_00_s';
-    nikkepfps['ingrid'] = 'si_c900_00_s';
-    nikkepfps['syuen'] = 'si_c901_00_s';
-    nikkepfps['mustang'] = 'si_c902_00_s';
-
-    nikkepfps['einkk'] = 'si_c928_00_s';
-    nikkepfps['enikk'] = 'si_c904_00_s';
-
-    nikkepfps['burningum'] = 'si_c914_00_s';
-    nikkepfps['cecil'] = 'si_c929_00_s';
-    nikkepfps['doban'] = 'si_c939_00_s';
-    nikkepfps['e.h.'] = 'si_c940_00_s';
-    nikkepfps['johan'] = 'si_c925_00_s';
-    nikkepfps['legendary commander'] = 'si_c942_00_s';
-
-    nikkepfps['ade'] = 'si_c310_00_s';
-    nikkepfps['anachiro'] = 'si_c944_00_s';
-    nikkepfps['cinderella'] = 'si_c944_00_s';
-    nikkepfps['ein'] = 'si_c391_00_s';
-    nikkepfps['indivilia'] = 'si_c263_00_s';
-    nikkepfps['k'] = 'si_c041_00_s';
-    nikkepfps['leona'] = 'si_c382_00_s';
-    nikkepfps['liberalio'] = 'si_c262_00_s';
-    nikkepfps['liliweiss'] = 'si_c943_00_s';
-    nikkepfps['mana'] = 'si_c290_00_s';
-    nikkepfps['moran'] = 'si_c281_00_s';
-    nikkepfps['papillion'] = 'si_c908_00_s';
-    nikkepfps['pinne'] = 'si_c941_00_s';
-    nikkepfps['rian'] = 'si_c905_00_s';
-    nikkepfps['rouge'] = 'si_c272_00_s';
-    nikkepfps['rumani'] = 'si_c240_00_s';
-    nikkepfps['zwei'] = 'si_c390_00_s';
-
-    nikkepfps['boss: blacksmith'] = 'si_bbg003_00_s';
-    nikkepfps['boss: gravedigger'] = 'si_mbg002_00_s';
-    nikkepfps['boss: alteisen'] = 'si_mbg001_00_s';
-    nikkepfps['boss: chatterbox'] = 'si_bbg002_00_s';
-    nikkepfps['boss: land eater'] = 'si_ebg001_00_s';
-    nikkepfps['boss: modernia'] = 'si_mbg004_00_s';
-    nikkepfps['boss: mother whale'] = 'si_bba001_00_s';
-    nikkepfps['boss: harvester'] = 'si_bbg001_00_s';
-    nikkepfps['boss: material h'] = 'si_ebg002_00_s';
-    nikkepfps['boss: storm bringer'] = 'si_eba001_00_s';
-    nikkepfps['boss: nihilister'] = 'si_mba002_00_s';
-    nikkepfps['boss: gatekeeper red'] = 'si_eba003_hsta_00_s';
-    nikkepfps['boss: gatekeeper green'] = 'si_eba003_green_00_s';
-    nikkepfps['boss: gatekeeper blue'] = 'si_eba003_00_s';
-
-    nikkepfps['angelina'] = 'si_c934_00_s';
-    nikkepfps['joseph'] = 'si_c935_00_s';
-    nikkepfps['beatrice'] = 'si_c930_00_s';
-    nikkepfps['booboo'] = 'si_c937_00_s';
-    nikkepfps['max'] = 'si_c936_00_s';
-
-    nikkepfps['9s'] = 'si_c813_00_s';
-
-    nikkepfps['aki hayakawa'] = 'si_c804_00_s';
-    nikkepfps['denji'] = 'si_c803_00_s';
-    nikkepfps['denji chainsaw man'] = 'si_c803_01_00_s';
-    
-    nikkepfps['oswald'] = 'si_c961_00_s';
-    nikkepfps['ruru'] = 'si_c946_00_s';
-    nikkepfps['bolt'] = 'si_c933_00_s';
-    nikkepfps['bolt junior'] = 'si_c932_00_s'
-
-    nikkepfps['mass produced red'] = 'si_c250_00_s';
-    nikkepfps['mass produced blue'] = 'si_c251_00_s';
-    nikkepfps['mass produced orange'] = 'si_c252_00_s';
-    nikkepfps['mass produced green'] = 'si_c253_00_s';
-    nikkepfps['mass produced purple'] = 'si_c254_00_s';
-    nikkepfps['mass produced white'] = 'si_c255_00_s';
+const response2 = await fetch('/nikke-font-generator/blabla-npcs.json');
+response2.json().then((e) => {
+    for (let i = 0; i < e.length; i++) {
+        nikkepfps[e[i][0]] = e[i][1];
+    }
 });
 
 let top = new Image();

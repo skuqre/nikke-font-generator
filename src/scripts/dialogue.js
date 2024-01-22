@@ -1216,7 +1216,7 @@ function generateText(text, subtext, exporting=false) {
             ctx.drawImage(controls, copos[0], copos[1], controls.width * scaledc / 100, controls.height * scaledc / 100);
         }
 
-        ctx.globalAlpha = 0.1;
+        ctx.globalAlpha = 0.05;
         ctx.drawImage(wmrk, 16, -16, 128, 128);
     } else {
         drawGradients(true);

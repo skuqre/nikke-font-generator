@@ -1,0 +1,31 @@
+---
+
+---
+
+<div class='warning-display'>
+    <canvas id="warning-canvas" width="1920" height="1080"></canvas>
+</div>
+
+<script>
+    document.querySelectorAll('canvas#warning-canvas')[0].addEventListener('click', () => {
+        var link = document.createElement('a');
+        var canvas: HTMLCanvasElement = document.getElementById('warning-canvas') as HTMLCanvasElement
+        link.download = 'nikke-warning.png';
+        link.href = canvas.toDataURL()
+        link.click();
+    });
+</script>
+
+<style>
+    div.warning-display {
+        display: flex;
+        width: 100%;
+        margin: 0;
+    }
+
+    canvas#warning-canvas {
+        max-width: 90%;
+        max-height: 540px;
+        margin: auto;
+    }
+</style>

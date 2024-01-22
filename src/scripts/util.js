@@ -10,7 +10,7 @@ export function draw9slice(ctx, img2, squareslice, x, y, w, h, color = "#ffffff"
         ctxTemp.fillRect(0, 0, canvasTemp.width, canvasTemp.height);
         ctxTemp.globalCompositeOperation = "destination-in";
     }
-    
+
     ctxTemp.drawImage(img2, 0, 0);
     ctxTemp.globalCompositeOperation = "source-over";
 
@@ -51,11 +51,15 @@ export const wifiOffI = `<i class='bx bx-wifi-off'></i>`;
 export function dataURLtoFile(dataurl, filename) {
     var arr = dataurl.split(','),
         mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[arr.length - 1]), 
-        n = bstr.length, 
+        bstr = atob(arr[arr.length - 1]),
+        n = bstr.length,
         u8arr = new Uint8Array(n);
-    while(n--){
+    while (n--) {
         u8arr[n] = bstr.charCodeAt(n);
     }
-    return new File([u8arr], filename, {type:mime});
+    return new File([u8arr], filename, { type: mime });
+}
+
+export function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
 }

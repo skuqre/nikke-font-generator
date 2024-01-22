@@ -1,0 +1,109 @@
+---
+import '../components/GlobalStyle.astro';
+import Credits from '../components/Credits.astro';
+
+import npcs from '../../public/blabla-npcs.json'
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/nikke-font-generator/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Blabla NPCS</title>
+
+		<meta name="description" content="All of the available Blabla NPCs.">
+  		<meta name="keywords" content="nikke">
+		<meta name="theme-color" content="#f4d259">
+
+		<meta name="twitter:title" content="Barely Accurate NIKKE Font Generator">
+		<meta name="twitter:description" content="Create a spoof of the NIKKE: Goddess of Victory logo easily!">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="twitter:image:src" content="/nikke-font-generator/logo-example1.png" />
+
+        <style>
+            div.npc-table {
+                display: flex;
+                flex-wrap: wrap;
+                max-width: 80%;
+                justify-content: center;
+
+                margin: auto;
+
+                gap: 16px
+            }
+
+            img.npc {
+                width: 128px;
+                height: 128px;
+
+                border-radius: 4px;
+                background-color: var(--darker);
+                box-shadow: 0px 0px 4px black;
+
+                scale: 1;
+                transition: scale 0.2s ease-in-out;
+            }
+
+            img.npc:hover {
+                scale: 1.1;
+                transition: scale 0.2s ease-in-out;
+            }
+
+            .alert {
+                display: block;
+                padding: 12px 16px;
+                background-color: var(--darkerer);
+                color: white;
+                position: fixed;
+                top: -300px;
+                margin: 0;
+                border-radius: 4px;
+                left: 50%;
+                transform: translate(-50%, 0%);
+                
+                transition: top 0.5s ease-in-out;
+                box-shadow: 0px 0px 4px black;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Blabla NPCs</h1>
+        <p>All of the available Blabla NPCs are displayed here. Click their image to copy their search term.<br>Looking for (playable) NIKKEs? Please head to <a href="https://nikke.gg/characters/">nikke.gg's character list</a> for that!</p>
+        <div class="npc-table">
+            {
+                npcs.map((e) => <img src={"https://nikke-db-legacy.pages.dev/images/sprite/" + e[1] + ".png"} alt={e[0]} title={e[0]} class="npc" />) 
+            }
+        </div>
+
+        <p class="alert">Copied!</p>
+
+        <script>
+            const npcs = document.getElementsByClassName("npc");
+            const alert = document.getElementsByClassName("alert")[0];
+            var prevTimeout = null;
+
+            for (let i = 0; i < npcs.length; i++) {
+                npcs[i].onclick = async (e) => {
+                    try {
+                        await navigator.clipboard.writeText(npcs[i].alt);
+                        alert.innerHTML = 'Copied "' + npcs[i].alt + '" to clipboard.'
+                        alert.style.top = '16px';
+
+                        if (prevTimeout != null) {
+                            clearTimeout(prevTimeout)
+                        }
+                        prevTimeout = setTimeout(() => {
+                            alert.style.top = '-300px';
+                        }, 2000);
+                    } catch (err) {
+                        
+                    }
+                }
+            }
+        </script>
+
+        <p><a href="/nikke-font-generator/blabla">go back</a></p>
+	</body>
+</html>

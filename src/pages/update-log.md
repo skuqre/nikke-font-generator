@@ -10,6 +10,35 @@ embeddesc: the update log
 
 <br>
 
+## boss warning `Jan 22, 2024`
+
+**introducing the next tool to the roster: the boss warning generator!**
+
+this creates an image with the boss introduction ui overlayed onto it. barely accurate, of course.
+
+proper credits have been added to their specific pages!
+
+\- suggested by mimir from the Nikke Discord
+
+**general**
+- transparent watermarks now have their opacity lowered even further (from 10% -> 5%)
+- tool links are now icons
+    - prevents clutter on the bottom, plus it's easy to identify... i think.
+
+**blabla gen**
+- added npcs
+    - rose
+    - mass produced melee old
+    - mass produced melee
+- added the npc list!
+    - [go check it out](/nikke-font-generator/blabla-npcs/)!
+
+<br>
+
+---
+
+<br>
+
 ## profile pages `Jan 7, 2024`
 
 **blabla gen**

@@ -7,10 +7,16 @@
         <b><a href="https://forms.gle/1vjafHbnhteQURTY7">Caught a bug? Report it here!</a></b>
     </p>
     <p>
-        <b>more tools: </b>  <a href="/nikke-font-generator/">logo generator</a> | <a href="/nikke-font-generator/dialogue">dialogue generator</a> | <a href="/nikke-font-generator/blabla">blabla generator</a>
+        <div class="toolbox">
+            <p style="opacity: 1;"><b>more tools:</b></p>
+            <a href="/nikke-font-generator/"><img class="pnglink" src="/nikke-font-generator/images/icon_logo.png" alt="Logo Generator" title="Logo Generator" /></a>
+            <a href="/nikke-font-generator/dialogue"><img class="pnglink" src="/nikke-font-generator/images/icon_dialogue.png" alt="Dialogue Generator" title="Dialogue Generator" /></a>
+            <a href="/nikke-font-generator/blabla"><img class="pnglink" src="/nikke-font-generator/images/icon_blabla.png" alt="Blabla Generator" title="Blabla Generator" /></a>
+            <a href="/nikke-font-generator/warning"><img class="pnglink" src="/nikke-font-generator/images/icon_boss.png" alt="Boss Warning Generator" title="Boss Warning Generator" /></a>
+        </div>
     </p>
     <p>
-        made by skuqre. more at <a href="https://skuqre.github.io">skuqre.github.io</a> | <a href="/nikke-font-generator/credits">credits</a> | <a href="/nikke-font-generator/usage">usage</a> | <a href="https://github.com/skuqre/nikke-font-generator">source code</a> | <a href="/nikke-font-generator/update-log">update log</a> | <a href="/nikke-font-generator/translation">translation notice</a>
+        made by skuqre. more at <a href="https://skuqre.github.io">skuqre.github.io</a> | <a href="/nikke-font-generator/credits">credits</a> | <a href="/nikke-font-generator/usage">usage</a> | <a href="https://github.com/skuqre/nikke-font-generator">source code</a> | <a href="/nikke-font-generator/update-log">update log</a>
     </p>
 </div>
 
@@ -24,5 +30,32 @@
     div > p:hover {
         opacity: 1;
         transition: opacity 0.2s ease-in-out;
+    }
+
+    div.toolbox {
+        display: flex;
+        margin: auto;
+        margin-top: 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+
+    img.pnglink {
+        filter: hue-rotate(355deg);
+        opacity: 0.5;
+        scale: 1;
+
+        transition-property: filter, opacity, scale;
+        transition: 0.2s ease-in-out;
+    }
+    
+    img.pnglink:hover {
+        filter: brightness(0) saturate(100%) grayscale(0) invert(82%) sepia(19%) saturate(1288%) hue-rotate(355deg) brightness(105%) contrast(91%);
+        opacity: 1;
+        scale: 1.1;
+
+        transition-property: filter, opacity, scale;
+        transition: 0.2s ease-in-out;
     }
 </style>

@@ -38,6 +38,8 @@ Fonts used in this site are **not** made by me. Rightful credits are in the [cre
 | [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Available under **personal use**. [See DAFONT page](https://www.dafont.com/docteur-atomic.font). |
 | [**Butch and Sundance**](https://www.dafont.com/butch-sundance.font) | Available under **donationware**. [See DAFONT page](https://www.dafont.com/butch-sundance.font).  |
 | [**SUIT**](https://sun.fo/suit/) | Available under **SIL Open Font License 1.1**. See [LICENSE](https://scripts.sil.org/OFL).  |
+| [**Abolition**](https://fortfoundry.com/fonts/abolition) | Available under **personal use**. [See FortFoundry page](https://fortfoundry.com/fonts/abolition). |
+| [**Voltec (demo)**](https://typefactory.co/product/voltec-futuristic-typeface/) | Available under **personal use**. [See TypeFactory page](https://typefactory.co/product/voltec-futuristic-typeface/). |
 
 <br>
 
@@ -46,6 +48,8 @@ Fonts used in this site are **not** made by me. Rightful credits are in the [cre
 
 **This site is <u>not</u> endorsed by, created by, or affiliated with SHIFT UP CORP. and Proxima Beta Ltd.**<br>
 **All characters and assets belong to SHIFT UP CORP. and Proxima Beta Ltd.**
+
+**No revenue is being generated from this site. Moreover, there is no way to 
 
 If you have other concerns about the site, you can contact me through:
 - Reddit ([`u/ANISNO1`](https://reddit.com/u/ANISNO1))
