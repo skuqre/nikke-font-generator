@@ -30,8 +30,8 @@ proper credits have been added to their specific pages!
     - rose
     - mass produced melee old
     - mass produced melee
-- added the npc list!
-    - [go check it out](/nikke-font-generator/blabla-npcs/)!
+- added the pfps list!
+    - [go check it out](/nikke-font-generator/blabla-pfps/)!
 
 <br>
 

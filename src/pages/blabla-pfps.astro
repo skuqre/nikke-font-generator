@@ -3,6 +3,9 @@ import '../components/GlobalStyle.astro';
 import Credits from '../components/Credits.astro';
 
 import npcs from '../../public/blabla-npcs.json'
+
+const response = await fetch('https://api.dotgg.gg/nikke/characters/');
+const jsonresponse = await response.json();
 ---
 
 <html lang="en">
@@ -11,14 +14,14 @@ import npcs from '../../public/blabla-npcs.json'
 		<link rel="icon" type="image/png" href="/nikke-font-generator/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Blabla NPCS</title>
+		<title>Blabla PFPs</title>
 
-		<meta name="description" content="All of the available Blabla NPCs.">
+		<meta name="description" content="All of the available Blabla PFPs.">
   		<meta name="keywords" content="nikke">
 		<meta name="theme-color" content="#f4d259">
 
-		<meta name="twitter:title" content="Barely Accurate NIKKE Font Generator">
-		<meta name="twitter:description" content="Create a spoof of the NIKKE: Goddess of Victory logo easily!">
+		<meta name="twitter:title" content="Barely Accurate NIKKE Blabla Generator">
+		<meta name="twitter:description" content="Create a spoof of a Blabla chat from NIKKE easily!">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta property="twitter:image:src" content="/nikke-font-generator/logo-example1.png" />
 
@@ -66,15 +69,79 @@ import npcs from '../../public/blabla-npcs.json'
                 transition: top 0.5s ease-in-out;
                 box-shadow: 0px 0px 4px black;
             }
+
+            h2 {
+                text-align: center;
+            }
         </style>
 	</head>
 	<body>
-        <h1>Blabla NPCs</h1>
-        <p>All of the available Blabla NPCs are displayed here. Click their image to copy their search term.<br>Looking for (playable) NIKKEs? Please head to <a href="https://nikke.gg/characters/">nikke.gg's character list</a> for that!</p>
+        <h1>Blabla PFPs</h1>
+        <p>All of the available Blabla PFPs are displayed here. Click their image to copy their search term.</p>
+
+        <h2>Elysion</h2>
         <div class="npc-table">
             {
-                npcs.map((e) => <img src={"https://nikke-db-legacy.pages.dev/images/sprite/" + e[1] + ".png"} alt={e[0]} title={e[0]} class="npc" />) 
+                jsonresponse.map((e) => {
+                    if (e.manufacturer == 'Elysion') {
+                        return <img src={"https://nikke-db-legacy.pages.dev/images/sprite/" + e.img + ".png"} alt={e.name.toLowerCase()} title={e.name.toLowerCase()} class="npc" />
+                    }
+                })
             }
+        </div>
+
+        <br>
+        <h2>Missilis</h2>
+        <div class="npc-table">
+            {
+                jsonresponse.map((e) => {
+                    if (e.manufacturer == 'Missilis') {
+                        return <img src={"https://nikke-db-legacy.pages.dev/images/sprite/" + e.img + ".png"} alt={e.name.toLowerCase()} title={e.name.toLowerCase()} class="npc" />
+                    }
+                })
+            }
+        </div>
+
+        <br>
+        <h2>Tetra Line</h2>
+        <div class="npc-table">
+            {
+                jsonresponse.map((e) => {
+                    if (e.manufacturer == 'Tetra') {
+                        return <img src={"https://nikke-db-legacy.pages.dev/images/sprite/" + e.img + ".png"} alt={e.name.toLowerCase()} title={e.name.toLowerCase()} class="npc" />
+                    }
+                })
+            }
+        </div>
+
+        <br>
+        <h2>Pilgrims</h2>
+        <div class="npc-table">
+            {
+                jsonresponse.map((e) => {
+                    if (e.manufacturer == 'Pilgrim') {
+                        return <img src={"https://nikke-db-legacy.pages.dev/images/sprite/" + e.img + ".png"} alt={e.name.toLowerCase()} title={e.name.toLowerCase()} class="npc" />
+                    }
+                })
+            }
+        </div>
+
+        <br>
+        <h2>Abnormal</h2>
+        <div class="npc-table">
+            {
+                jsonresponse.map((e) => {
+                    if (e.manufacturer == 'Abnormal') {
+                        return <img src={"https://nikke-db-legacy.pages.dev/images/sprite/" + e.img + ".png"} alt={e.name.toLowerCase()} title={e.name.toLowerCase()} class="npc" />
+                    }
+                })
+            }
+        </div>
+
+        <br>
+        <h2>NPCs</h2>
+        <div class="npc-table">
+            { npcs.map((e) => <img src={"https://nikke-db-legacy.pages.dev/images/sprite/" + e[1] + ".png"} alt={e[0]} title={e[0]} class="npc" />) }
         </div>
 
         <p class="alert">Copied!</p>
