@@ -32,7 +32,12 @@ embeddesc: The site's credits!
 | [**Butch and Sundance**](https://www.dafont.com/butch-sundance.font) | Made by [Dan Zadorozny (Iconian Fonts)](https://www.iconian.com). Used on Logo Generator. Found through research. |
 | [**SUIT**](https://sun.fo/suit/) | Made by the folks at [sun.fo](https://sun.fo/). Used on the Blabla Generator. |
 | [**Abolition**](https://fortfoundry.com/fonts/abolition) | Made by [Mattox Shuler (Fort Foundry)](https://fortfoundry.com). Used on Boss Warning Generator. Found through research. |
-| [**Voltec (demo)**](https://typefactory.co/product/voltec-futuristic-typeface/) | Made by the folks at [TypeFactory](https://typefactory.co). Used on Boss Warning Generator. Found through research. |
+| [**Voltec (demo, specifically)**](https://typefactory.co/product/voltec-futuristic-typeface/) | Made by the folks at [TypeFactory](https://typefactory.co). Used on Boss Warning Generator. Found through research. |
+
+## Unimplemented fonts
+These fonts are here for future implementation.
+- **Gothic MB101**: Made by [Morisawa Inc.](https://en.morisawa.co.jp). Used on Japanese language in-game.
+
 
 <br>
 

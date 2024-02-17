@@ -10,6 +10,40 @@ embeddesc: the update log
 
 <br>
 
+## hi `Feb 17, 2024`
+
+**blabla generator**
+- added npcs
+    - freesia (RED ASH, from RE:DASH specifically)
+    - b-0006 (OuteR: AUTOMATA)
+    - c-1002 (OuteR: AUTOMATA)
+    - 6000-d (OuteR: AUTOMATA)
+    - hedonia member (rosalina's henchmen)
+    - seimeikai member (sakura's henchmen)
+    - peony association member (moran's henchmen, or just one of the best boys, Jin)
+    - lumi (NEVERLAND)
+    - ghost: lena (NEVERLAND)
+    - ghost: lua (NEVERLAND)
+    - ghost: lumi (NEVERLAND)
+    - outer rim generic a
+    - outer rim generic b
+    - mast: old
+    - rapi: old
+- updated the [blabla pfps list](/nikke-font-generator/blabla-pfps) to fetch the data on site visit rather than on compile time (sorry [nikke.gg](https://nikke.gg))
+
+**general**
+- added the Japanese font in the repository.
+    - it's not implemented on any of the generators yet, however, [credits are already added](/nikke-font-generator/credits).
+
+I mainly am working on [Anisa](https://skuqre.github.io/anisa/) right now. no ideas for this site currently so /shrug<br>
+I am stupid and put it as "beta" but like none of the functions are like existing so it's more of in an indev stage lolé
+
+<br>
+
+---
+
+<br>
+
 ## boss warning `Jan 22, 2024`
 
 **introducing the next tool to the roster: the boss warning generator!**

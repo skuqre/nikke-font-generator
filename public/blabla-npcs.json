@@ -69,6 +69,7 @@
     ["denji chainsaw man", "si_c803_01_00_s"],
     
     ["oswald", "si_c961_00_s"],
+    ["freesia", "si_c960_00_s"],
     ["ruru", "si_c946_00_s"],
     ["bolt", "si_c933_00_s"],
     ["bolt junior", "si_c932_00_s"],
@@ -80,9 +81,28 @@
     ["mass produced purple", "si_c254_00_s"],
     ["mass produced white", "si_c255_00_s"],
 
+    ["b-0006", "si_c962_00_s"],
+    ["c-1002", "si_c963_00_s"],
+    ["6000-d", "si_c964_00_s"],
+
     ["rose", "si_c971_00_s"],
     ["mass produced melee old", "si_c974_00_s"],
     ["mass produced melee", "si_c974_01_00_s"],
 
-    ["timi", "si_c975_00_s"]
+    ["timi", "si_c975_00_s"],
+
+    ["hedonia member", "si_c920_00_s"],
+    ["seimeikai member", "si_c921_00_s"],
+    ["peony association member", "si_c922_00_s"],
+
+    ["lumi", "si_c970_00_s"],
+    ["ghost: lena", "si_c969_00_s"],
+    ["ghost: lua", "si_c968_00_s"],
+    ["ghost: lumi", "si_c967_00_s"],
+
+    ["outer rim generic a", "si_c918_00_s"],
+    ["outer rim generic b", "si_c919_00_s"],
+
+    ["mast: old", "si_c350_old_00_s"],
+    ["rapi: old", "si_c010_01_00_s"]
 ]

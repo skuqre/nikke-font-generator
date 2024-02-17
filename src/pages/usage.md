@@ -55,7 +55,9 @@ If you have other concerns about the site, you can contact me through:
 - Reddit ([`u/ANISNO1`](https://reddit.com/u/ANISNO1))
 - Discord (send a message request to `@skuqre`)
 
-I'll attempt to address your concerns to the best of my ability.<br>
-**I will only entertain concerns about this site alone.**
+I'll attempt to address your concerns to the best of my ability.
+
+**I will only entertain concerns about this site and [Anisa](https://skqure.github.io/anisa).**<br>
+This applies to other NIKKE-related sites I've created as well.
 
 <br>

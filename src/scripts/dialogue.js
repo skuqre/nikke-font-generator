@@ -14,6 +14,18 @@ const myFont2 = new FontFace('PB', "url('/nikke-font-generator/fonts/Pretendard-
 await myFont2.load();
 document.fonts.add(myFont2);
 
+// 1, -3
+const jpEBold = new FontFace('JPEB', "url('/nikke-font-generator/fonts/JP-GothicMB101-ExtraBold.ttf')");
+await jpEBold.load();
+document.fonts.add(jpEBold);
+
+// -1, -7
+const jpBold = new FontFace('JPB', "url('/nikke-font-generator/fonts/JP-GothicMB101-Bold.ttf')");
+await jpBold.load();
+document.fonts.add(jpBold);
+
+// adding JP fonts soon. Maybe.
+
 let text2 = '';
 let subtext2 = '';
 let size = 100;
