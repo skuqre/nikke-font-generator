@@ -69,7 +69,7 @@ bg.src = `/nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
 
 let char = new Image();
 char.crossOrigin = "anonymous"
-char.src = `https://media.discordapp.net/attachments/1154460728179314710/1172492683420368917/NIKKE-DB_c012_fb_234.png`;
+char.src = `/nikke-font-generator/images/dialogue/anis.png`;
 
 let rng = [
     "Heya Commander! How's it going?",
