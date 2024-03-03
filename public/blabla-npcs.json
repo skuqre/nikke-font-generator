@@ -104,5 +104,12 @@
     ["outer rim generic b", "si_c919_00_s"],
 
     ["mast: old", "si_c350_old_00_s"],
-    ["rapi: old", "si_c010_01_00_s"]
+    ["rapi: old", "si_c010_01_00_s"],
+
+    ["flora", "si_c411_00_s"],
+    ["hammering", "si_c490_00_s"],
+    ["liveryn", "si_c480_00_s"],
+    ["unknown", "si_c510_00_s"],
+    ["t.rony", "si_c976_00_s"],
+    ["trony", "si_c501_00_s"]
 ]

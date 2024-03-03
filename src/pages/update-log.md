@@ -10,6 +10,81 @@ embeddesc: the update log
 
 <br>
 
+## hello `Mar 3, 2024`
+
+**blabla gen**
+
+- added npcs
+    - flora
+    - hammering
+    - liveryn
+    - unknown
+    - t.rony (the screen)
+    - trony (the nikke)
+- added nikke SKINS baby
+    - liter: guardfish
+    - frima: sea of sloth
+    - yan: sunrise market
+    - pepper: ocean vitamin
+    - rapi: classic vacation
+    - mast: a pirate's heart
+    - rapi: white promise
+    - neon: bling bullet
+    - poli: sweet holic
+    - brid: model worker
+    - maxwell: mechanic white
+    - diesel: strawberry flower
+    - diesel: black sunday
+    - maiden: covert nurse
+    - yuni: pretty in pink
+    - privaty: government grunt
+    - novel: penguin holmes
+    - milk: extreme fighter
+    - centi: supreme holiday
+    - noise: cherry blossom stage
+    - alice: sweet home
+    - emma: office therapy
+    - sakura: midnight stealth
+    - modernia: first affection
+    - brid: black moon
+    - noir: black rabbit
+    - blanc: white rabbit
+    - sugar: wild backyard
+    - exia: gamer
+    - emma: color me red
+    - exia: joy to the nerds
+    - julia: mild nocturne
+    - sugar: hard-boiled
+    - helm: chandelier
+    - dolla: dark rose
+    - privaty: banquet princess
+    - harran: banquet witch
+    - dorothy: nostalgia
+    - liter: cute sunflower
+    - guillotine: dark tracer
+    - noise: classic diva
+    - signal: dramatic chocolate
+    - drake: maid for villain
+    - viper: toxic rabbit
+    - rupee: rabbit deluxe
+    - drake: villain racer
+    - 2b: metamorphic damage (no inherent visual change compared to 2b)
+    - 2b: yorha uniform 1
+    - a2: metamorphic damage
+    - a2: yorha uniform prototype
+    - novel: detective nurse
+    - makima: coat off (no inherent visual change compared to makima)
+- fixed bug of mp4 exporting (forgot to change a variable... for 2 MONTHS mind you)
+
+i have not done my dailies the past 4 days<br>
+the keyboard update is coming soon i promise
+
+<br>
+
+---
+
+<br>
+
 ## hi `Feb 17, 2024`
 
 **blabla generator**

@@ -82,6 +82,13 @@ response2.json().then((e) => {
     }
 });
 
+const response3 = await fetch('/nikke-font-generator/blabla-skins.json');
+response3.json().then((e) => {
+    for (let i = 0; i < e.length; i++) {
+        nikkepfps[e[i][0]] = e[i][1];
+    }
+});
+
 let top = new Image();
 top.crossOrigin = "anonymous"
 top.src = `/nikke-font-generator/images/blabla/top.png`;
@@ -1644,7 +1651,7 @@ function downloadVideo() {
             chats[i] = item;
             messageMaxFrames = Math.round(10 + (0.05 * item.message.length) * 30);
 
-            if (!chatmode) {
+            if (mode == "conversation") {
                 if (item.attachment != null) {
                     messageMaxFrames = 20;
                 }

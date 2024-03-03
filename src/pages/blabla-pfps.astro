@@ -1,8 +1,8 @@
 ---
 import '../components/GlobalStyle.astro';
-import Credits from '../components/Credits.astro';
 
 import npcs from '../../public/blabla-npcs.json'
+import skins from '../../public/blabla-skins.json'
 ---
 
 <html lang="en">
@@ -97,6 +97,12 @@ import npcs from '../../public/blabla-npcs.json'
         <br>
         <h2>Abnormal</h2>
         <div class="npc-table" id="abnormal">
+        </div>
+
+        <br>
+        <h2>Skins</h2>
+        <div class="npc-table" id="skins">
+            { skins.map((e) => <img src={"https://nikke-db-legacy.pages.dev/images/sprite/" + e[1] + ".png"} alt={e[0]} title={e[0]} class="npc" />) }
         </div>
 
         <br>
