@@ -38,7 +38,7 @@ This is the main part. The meaning of append is "to add" so I apologize for the 
 - **Upload Character image...**: Allows you to upload a custom profile picture for the chatter you currently have.
 - **Search for a character's image**: Saves you the hassle of looking up the character and cropping it properly if it's a character from NIKKE. Type in a NIKKE Character in here to look them up.<br>
     <img src="https://haxeflixel.is-terrible.com/6nX9u_RHR.gif" />
-- **Upload attachment as character**: Allows you to "upload an image" and sends a message with the image only in it. You can make your NIKKEs send cat images to each other.
+- **Send Image as character**: Allows you to "upload an image" and sends a message with the image only in it. You can make your NIKKEs send cat images to each other.
 
 <br>
 
@@ -52,8 +52,8 @@ To edit an image, **you must change the "Index..." field first to select the ima
 
 So if you put 0 in the index field, the corresponding fields will change to the image. When you change the corresponding fields, the message gets changed immediately.
 
-- **Change Attachment**: Change/Add an attachment to the message. **Adding an attachment will make the message an attachment-only message, no text part included**.
-- **The trash bin**: Remove attachment (if available).
+- **Change Attachment**: Change/Add an image to the message. **Adding an attachment will make the message an attachment-only message, no text part included**.
+- **The trash bin**: Remove image (if available).
 
 <br>
 
