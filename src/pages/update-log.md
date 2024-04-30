@@ -10,6 +10,36 @@ embeddesc: the update log
 
 <br>
 
+## hello `Apr 30, 2024`
+
+**blabla gen**
+- renamed: `unknown` -> `grave`
+- added npcs
+    - clay
+    - fragile
+    - drilley
+    - t.a.l.o.s.
+    - kilo
+- added skins
+    - rosanna: ms. dangerous
+    - poli: cheer up police
+    - snow white: white knight
+    - modernia: second affection
+    - diesel: midnight strawberry
+    - emilia: clumsy maid
+    - emilia: spring breeze
+    - rem: handy maid
+    - rem: pure blossom
+
+**logo gen**
+- finally added some kerning!
+    - this makes text look more normal
+
+**general**
+- updated examples on site embeds (e.g. Discord links)
+
+<br>
+
 ## hello `Mar 3, 2024`
 
 **blabla gen**
