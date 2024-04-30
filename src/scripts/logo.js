@@ -13,6 +13,123 @@ let replacements = {
     "\"" : "dquote",
 }
 
+const kerning = {
+    "y": {
+        "l": -32
+    },
+    "j": {
+        "y": -32,
+        "t": -16,
+        "w": -32,
+        "v": -32
+    },
+    "w": {
+        "a": -32,
+        "l": -32,
+        "o": -8
+    },
+    "g": {
+        a: -8
+    },
+    "a": {
+        "v": -32,
+        "t": -32,
+        "y": -40,
+        "w": -32,
+        "f": -16,
+        "p": -16,
+        "u": -8,
+        "o": -8,
+        "c": -8,
+        "p": -16,
+        "r": -8,
+        "b": -8,
+        "d": -8,
+        "s": -8,
+        "q": -8
+    },
+    "t": {
+        "a": -32
+    },
+    "v": {
+        "a": -40,
+        "l": -32,
+        "o": -8,
+        "p": -16,
+        "g": -8,
+        "b": -8,
+        "q": -8
+    },
+    "y": {
+        "a": -40,
+        "l": -32,
+        "p": -16,
+        "g": -16,
+        "o": -16,
+        "b": -16,
+        "c": -16,
+        "d": -16
+    },
+    "o": {
+        "y": -16,
+        "w": -8,
+        "v": -8,
+        "a": -8,
+        "x": -16,
+        "y": -12,
+        "k": -16
+    },
+    "q": {
+        "a": -8,
+        "v": -8,
+        "x": -16,
+        "k": -16
+    },
+    "c": {
+        "a": -8,
+        "v": -8,
+        "x": -16,
+        "k": -16
+    },
+    "g": {
+        "a": -8,
+        "v": -8,
+        "y": -16,
+        "x": -16,
+        "k": -16
+    },
+    "u": {
+        "a": -8
+    },
+    "x": {
+        "q": -8,
+        "o": -8,
+        "c": -8,
+        "b": -8,
+        "d": -8,
+        "s": -8,
+        "a": -8,
+        "q": -8
+    },
+    "s": {
+        "x": -12
+    },
+    ".": {
+        "v": -32,
+        "t": -32,
+        "y": -48,
+        "w": -32,
+        "f": -32,
+    },
+    ",": {
+        "v": -32,
+        "t": -32,
+        "y": -48,
+        "w": -32,
+        "f": -32,
+    }
+}
+
 let logoglyphs = 'abcdefghijklmnopqrstuvwxyz,.!$&0123456789\'\\/:?"-='
 
 for (let i = 0; i < logoglyphs.length; i++) {
@@ -104,6 +221,9 @@ const ctxTemp = canvasTemp.getContext("2d");
 let curx = 0;
 let cury = 0;
 function generateLogoText(text, subtext) {
+    text = text.trim();
+    subtext = subtext.trim();
+    
     let lower = text.toLowerCase();
     let shit = lower.split('')
     curx = 0;
@@ -119,12 +239,22 @@ function generateLogoText(text, subtext) {
             continue
         }
 
+        if (logoglyphs.indexOf(shit[i].toLowerCase()) == -1) continue;
+
         if (shit[i] in replacements) {
             shit[i] = replacements[shit[i]]
         }
 
         if (loaded[shit[i]].height > tallest) {
             tallest = loaded[shit[i]].height;
+        }
+
+        if (i > 0) {
+            if (shit[i].toLowerCase() in kerning) {
+                if (shit[i - 1].toLowerCase() in kerning[shit[i].toLowerCase()]) {
+                    curx += kerning[shit[i].toLowerCase()][shit[i - 1].toLowerCase()];
+                }
+            }
         }
 
         curx += loaded[shit[i]].width + (i + 1 == lower.length ? 0 : 32);
@@ -150,6 +280,8 @@ function generateLogoText(text, subtext) {
             continue;
         }
 
+        if (logoglyphs.indexOf(shit[i].toLowerCase()) == -1 && !(Object.values(replacements).includes(shit[i]))) continue;
+
         let image = loaded[shit[i]];
 
         canvasTemp.width = image.width;
@@ -159,6 +291,14 @@ function generateLogoText(text, subtext) {
         ctxTemp.globalCompositeOperation = "destination-in";
         ctxTemp.drawImage(image, 0, 0);
         ctxTemp.globalCompositeOperation = "source-over";
+
+        if (i > 0) {
+            if (shit[i].toLowerCase() in kerning) {
+                if (shit[i - 1].toLowerCase() in kerning[shit[i].toLowerCase()]) {
+                    curx += kerning[shit[i].toLowerCase()][shit[i - 1].toLowerCase()];
+                }
+            }
+        }
 
         ctx.drawImage(canvasTemp, curx > 0 ? curx : 0, (tallest - image.height) / 2);
         curx += image.width + 32;
