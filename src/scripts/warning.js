@@ -84,6 +84,8 @@ var bgpos = [0, 0];
 var bg = new Image();
 var scalebg = 100;
 
+let offsets = [0, 0];
+
 setTimeout(() => {
     drawBossText();
 }, 1000)
@@ -97,7 +99,7 @@ function drawBossText() {
     var curHexWidth = defHexWidth;
     ctx.globalAlpha = 0.5;
     while (curHexWidth < canvas.width) {
-        ctx.drawImage(hexbg, curHexWidth, 822 * ch - hexbg.height / 2);
+        ctx.drawImage(hexbg, curHexWidth, (822 * ch - hexbg.height / 2) + offsets[1]);
         curHexWidth += hexbg.width;
     }
     ctx.globalAlpha = 1.0;
@@ -105,15 +107,15 @@ function drawBossText() {
     var curRowWidth = defRowVal;
     var curRow2Width = defRow2Val;
     while (curRowWidth < canvas.width) {
-        ctx.drawImage(row, curRowWidth, 822 * ch + 29);
+        ctx.drawImage(row, curRowWidth, (822 * ch + 29) + offsets[1]);
         curRowWidth += row.width;
     }
     while (curRow2Width < canvas.width) {
-        ctx.drawImage(row2, curRow2Width, 822 * ch - 29 - row2.height);
+        ctx.drawImage(row2, curRow2Width, (822 * ch - 29 - row2.height) + offsets[1]);
         curRow2Width += row2.width;
     }
 
-    var curWarnWidth = defWarnWidth;
+    var curWarnWidth = defWarnWidth + offsets[0];
     while (curWarnWidth < canvas.width) {
 
         ctx.font = "45px ABOL";
@@ -122,20 +124,20 @@ function drawBossText() {
 
         ctx.globalAlpha = 0.5;
         ctx.fillStyle = "#000000";
-        ctx.fillText(subtext, curWarnWidth + 2, 821 * ch);
+        ctx.fillText(subtext, curWarnWidth + 2, (821 * ch) + offsets[1]);
         ctx.globalAlpha = 1;
         ctx.fillStyle = "#ff0000";
-        ctx.fillText(subtext, curWarnWidth, 819 * ch);
+        ctx.fillText(subtext, curWarnWidth, (819 * ch) + offsets[1]);
 
         curWarnWidth += ctx.measureText(subtext).width + 115;
     }
 
 
-    ctx.drawImage(square, (canvas.width - square.width) / 2, (822 * ch - square.height / 2));
-    ctx.drawImage(bossicon, (canvas.width - 150) / 2, (822 * ch - 160 / 2), 150, 160);
+    ctx.drawImage(square, (canvas.width - square.width) / 2, (822 * ch - square.height / 2) + offsets[1]);
+    ctx.drawImage(bossicon, (canvas.width - 150) / 2, (822 * ch - 160 / 2) + offsets[1], 150, 160);
 
     ctx.save();
-    ctx.translate(canvas.width / 2 + bnshit[0], canvas.height / 2 + bnshit[1] * ch);
+    ctx.translate(canvas.width / 2 + bnshit[0], (canvas.height / 2 + bnshit[1] * ch) + offsets[1]);
     ctx.rotate(-0.139626);
     ctx.font = bnshit[2] + "px VOLT";
     ctx.textAlign = "center";
@@ -234,6 +236,15 @@ document.getElementById("scalebg").oninput = (_) => {
     scalebg = parseInt(document.getElementById("scalebg").value);
     drawBossText();
 };
+
+document.getElementById("xoff").oninput = (_) => {
+    offsets[0] = parseInt(document.getElementById("xoff").value);
+    drawBossText();
+}; 
+document.getElementById("yoff").oninput = (_) => {
+    offsets[1] = parseInt(document.getElementById("yoff").value);
+    drawBossText();
+}; 
 
 
 
