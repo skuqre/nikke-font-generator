@@ -18,6 +18,7 @@ embeddesc: the NIKKE FONT GENERATOR usage guidelines
 - When creations from this tool are posted in official channels (e.g. Official Discord, Reddit, Facebook), **I am not liable for anything that happens to you**.
     - On the [Official Discord](https://discord.gg/nikke-en), creations that use images from NIKKE-DB are prohibited from being posted. *Use fanart for your creations if you'd like to post something with this to there instead*.
     - On the [Official Reddit](https://reddit.com/r/NikkeMobile), the tool is widely used! Feel free to post your creations there, but don't do it too excessively!
+        - Moreover, when posting creations from this site, please flair your post with **Fanedit** or **Meme**. **Fanedit** is preferred when questions about your creation being in game start being more prevalent.
     - On various Facebook groups, it seems to be fine posting images created from this tool (however, I was told most posts were reposts). Feel free!
 - When sharing your creations, **I recommend you keep the "NFG" watermark on to prevent people from being misinformed**. *Cropping it out is fine, I know the watermark's annoying, but I don't want the site to get taken down as well*.
     - When you post it, <u>credit is not mandatory, but very much appreciated</u>. **However, when someone asks you of how the image was made/"is this real?", inform them of this site**. *This goes for both watermarked/watermarkless posts.*
@@ -57,7 +58,7 @@ If you have other concerns about the site, you can contact me through:
 
 I'll attempt to address your concerns to the best of my ability.
 
-**I will only entertain concerns about this site and [Anisa](https://skqure.github.io/anisa).**<br>
+**I will only entertain concerns about this site and [Anisa](https://skuqre.github.io/anisa).**<br>
 This applies to other NIKKE-related sites I've created as well.
 
 <br>
