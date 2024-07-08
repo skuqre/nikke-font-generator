@@ -179,6 +179,9 @@ special thanks to Lorax from the Nikke Community discord for providing me raptur
 just a note, the rapture list excludes the renames that occurred from the NIER event, 
 as they dont have much visual change (except for White Smith `9810811510911663`)
 
+also, when looking for raptures, you're gonna need to put `rapture` in your query to make the
+search look for raptures specifically.
+
 ---
 
 <br>

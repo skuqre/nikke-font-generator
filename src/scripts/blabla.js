@@ -89,6 +89,13 @@ response3.json().then((e) => {
     }
 });
 
+const response4 = await fetch('/nikke-font-generator/blabla-raptures.json');
+response4.json().then((e) => {
+    for (let i = 0; i < e.length; i++) {
+        nikkepfps["rapture " + e[i][0]] = e[i][1];
+    }
+});
+
 let top = new Image();
 top.crossOrigin = "anonymous"
 top.src = `/nikke-font-generator/images/blabla/top.png`;
@@ -1279,7 +1286,11 @@ document.getElementById("char-pres-up").oninput = (e) => {
         if (document.getElementById("char-pres-up").value.trim().length > 0) {
             const results = fuzzysort.go(document.getElementById("char-pres-up").value, Object.keys(nikkepfps));
             if (results.length > 0) {
-                currentImage = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                if (document.getElementById("char-pres-up").value.startsWith("rapture")) {
+                    currentImage = `/nikke-font-generator/images/blabla/pfp/raptures/${nikkepfps[results[0].target]}.png`;
+                } else {
+                    currentImage = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                }
                 document.getElementById("pfp-preview").style['backgroundImage'] = `url('${currentImage}')`;
             } else {
                 document.getElementById("pfp-preview").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
@@ -1295,7 +1306,12 @@ document.getElementById("char-pres-edit").oninput = (e) => {
         if (document.getElementById("char-pres-edit").value.trim().length > 0) {
             const results = fuzzysort.go(document.getElementById("char-pres-edit").value, Object.keys(nikkepfps));
             if (results.length > 0) {
-                chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                if (document.getElementById("char-pres-edit").value.startsWith("rapture")) {
+                    chats[parseInt(document.getElementById("message-index-edit").value)].image = `/nikke-font-generator/images/blabla/pfp/raptures/${nikkepfps[results[0].target]}.png`;
+                } else {
+                    chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                }
+
                 let fuck = chats[parseInt(document.getElementById("message-index-edit").value)].image;
                 document.getElementById("pfp-preview-edit").style['backgroundImage'] = `url('${fuck}')`;
             } else {
@@ -1314,7 +1330,12 @@ document.getElementById("char-pres-edit-p").oninput = (e) => {
         if (document.getElementById("char-pres-edit-p").value.trim().length > 0) {
             const results = fuzzysort.go(document.getElementById("char-pres-edit-p").value, Object.keys(nikkepfps));
             if (results.length > 0) {
-                profile.image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                if (document.getElementById("char-pres-edit-p").value.startsWith("rapture")) {
+                    profile.image = `/nikke-font-generator/images/blabla/pfp/raptures/${nikkepfps[results[0].target]}.png`;
+                }
+                else {
+                    profile.image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                }
                 let fuck = profile.image;
                 document.getElementById("pfp-preview-edit-p").style['backgroundImage'] = `url('${fuck}')`;
             } else {
