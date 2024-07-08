@@ -10,6 +10,179 @@ embeddesc: the update log
 
 <br>
 
+## hello `Jul 8, 2024`
+
+**blabla gen**
+- added most (if not all) raptures
+    - ???: unknown rapture
+    - boss: 9810811510911663
+    - boss: alteisen mk.vi
+    - boss: alteisen mk.vi psid
+    - boss: black smith
+    - boss: chatterbox
+    - boss: crystal chamber hsta
+    - boss: crystal chamber psid
+    - boss: gatekeeper
+    - boss: gatekeeper dmtr
+    - boss: gatekeeper hsta
+    - boss: gatekeeper psid
+    - boss: gatekeeper zeus
+    - boss: golden kraken
+    - boss: grave digger
+    - boss: grave digger (exposed core)
+    - boss: harvester
+    - boss: indivilia
+    - boss: kraken anmi
+    - boss: kraken dmtr
+    - boss: kraken hsta
+    - boss: kraken psid
+    - boss: kraken zeus
+    - boss: land eater
+    - boss: material h
+    - boss: material h dmtr
+    - boss: modernia
+    - boss: mother whale
+    - boss: nihilister
+    - boss: storm bringer
+    - boss: storm bringer anmi
+    - boss: ultra
+    - centurion: armstrong
+    - centurion: bow tie
+    - centurion: cocytus
+    - centurion: cucumber
+    - centurion: doctor
+    - centurion: dual ring
+    - centurion: fingers
+    - centurion: halo
+    - centurion: heavy metal
+    - centurion: laitance
+    - centurion: loud mouth
+    - centurion: mace
+    - centurion: obelisk
+    - centurion: plate
+    - centurion: porter
+    - centurion: rebuild armstrong
+    - centurion: rebuild cucumber
+    - centurion: rebuild porter
+    - centurion: rebuild spooky
+    - centurion: rebuild stout
+    - centurion: rebuild vulcan r
+    - centurion: runway
+    - centurion: scarf
+    - centurion: sinister
+    - centurion: spook
+    - centurion: spread
+    - centurion: stout
+    - centurion: sunbather
+    - centurion: thermite
+    - centurion: thermite β
+    - centurion: tombstone
+    - centurion: unknown crystal
+    - centurion: vulcan r
+    - elite: arkanoid
+    - elite: bronchus
+    - elite: bulwark
+    - elite: bulwark (exposed core)
+    - elite: capra
+    - elite: cutter
+    - elite: cutter (exposed core)
+    - elite: driver
+    - elite: elite barbell
+    - elite: elite tiara
+    - elite: glasses
+    - elite: goblet
+    - elite: hammer
+    - elite: hexagon
+    - elite: jellyfish
+    - elite: joint
+    - elite: knight
+    - elite: launcher
+    - elite: mantis
+    - elite: needle
+    - elite: orchestrion
+    - elite: peacock
+    - elite: penetrator
+    - elite: penetrator (exposed core)
+    - elite: perennial
+    - elite: petal
+    - elite: ponytail
+    - elite: riddler
+    - elite: riddler (exposed core)
+    - elite: satellite
+    - elite: screamer
+    - elite: sentry
+    - elite: shield
+    - elite: tail bone
+    - elite: tail bone (exposed core)
+    - elite: tears
+    - elite: tripod
+    - elite: twin tail
+    - elite: veil
+    - elite: watcher
+    - minion: ant
+    - minion: battery
+    - minion: beetle
+    - minion: bird
+    - minion: blocker
+    - minion: bullwhip
+    - minion: capsule
+    - minion: clam
+    - minion: crawler
+    - minion: crawler (exposed core)
+    - minion: cricket
+    - minion: cube
+    - minion: dagger
+    - minion: disc
+    - minion: drifter
+    - minion: fez
+    - minion: fez (exposed core)
+    - minion: fez w
+    - minion: frisbee
+    - minion: frisbee (exposed core)
+    - minion: glitter
+    - minion: leech
+    - minion: lentigo
+    - minion: lure
+    - minion: mono eye
+    - minion: oculus
+    - minion: oculus (exposed core)
+    - minion: pelican
+    - minion: pelican (exposed core)
+    - minion: razer fin
+    - minion: remnant
+    - minion: runner
+    - minion: scimitar
+    - minion: sparrow
+    - minion: sparrow (exposed core)
+    - minion: sphere
+    - minion: squid
+    - minion: star fish
+    - minion: thief
+    - minion: vulcan
+    - minion: vulcan (exposed core)
+    - minion: waller
+    - thrash: abettor
+    - thrash: daikon
+    - thrash: salver
+    - thrash: shank
+    - thrash: skimmer
+    - thrash: striker
+- added skins
+    - maiden: under the sun
+    - guilty: wave of disbelief
+    - mast: mast the diver
+    - anchor: anchor the diver
+- removed boss raptures from the npc list
+
+special thanks to Lorax from the Nikke Community discord for providing me rapture `si`s!
+
+just a note, the rapture list excludes the renames that occurred from the NIER event, 
+as they dont have much visual change (except for White Smith `9810811510911663`)
+
+---
+
+<br>
+
 ## hello `Apr 30, 2024`
 
 **blabla gen**

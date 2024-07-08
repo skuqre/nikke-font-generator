@@ -1,0 +1,614 @@
+[
+    [
+        "???: unknown rapture",
+        "si_ukn000"
+    ],
+    [
+        "boss: 9810811510911663",
+        "si_bbg003_ce002"
+    ],
+    [
+        "boss: alteisen mk.vi",
+        "si_mbg001"
+    ],
+    [
+        "boss: alteisen mk.vi psid",
+        "si_mbg001_psid"
+    ],
+    [
+        "boss: black smith",
+        "si_bbg003"
+    ],
+    [
+        "boss: chatterbox",
+        "si_bbg002"
+    ],
+    [
+        "boss: crystal chamber hsta",
+        "si_xbg001_hsta"
+    ],
+    [
+        "boss: crystal chamber psid",
+        "si_xbg001_psid"
+    ],
+    [
+        "boss: gatekeeper",
+        "si_eba003"
+    ],
+    [
+        "boss: gatekeeper dmtr",
+        "si_eba003_dmtr"
+    ],
+    [
+        "boss: gatekeeper hsta",
+        "si_eba003_hsta"
+    ],
+    [
+        "boss: gatekeeper psid",
+        "si_eba003_psid"
+    ],
+    [
+        "boss: gatekeeper zeus",
+        "si_eba003_zeus"
+    ],
+    [
+        "boss: golden kraken",
+        "si_bbg004_golden"
+    ],
+    [
+        "boss: grave digger",
+        "si_mbg002"
+    ],
+    [
+        "boss: grave digger (exposed core)",
+        "si_mbg002_raid"
+    ],
+    [
+        "boss: harvester",
+        "si_bbg001"
+    ],
+    [
+        "boss: indivilia",
+        "si_ebg003"
+    ],
+    [
+        "boss: kraken anmi",
+        "si_bbg004_anmi"
+    ],
+    [
+        "boss: kraken dmtr",
+        "si_bbg004_dmtr"
+    ],
+    [
+        "boss: kraken hsta",
+        "si_bbg004_hsta"
+    ],
+    [
+        "boss: kraken psid",
+        "si_bbg004_psid"
+    ],
+    [
+        "boss: kraken zeus",
+        "si_bbg004_zeus"
+    ],
+    [
+        "boss: land eater",
+        "si_ebg001"
+    ],
+    [
+        "boss: material h",
+        "si_ebg002"
+    ],
+    [
+        "boss: material h dmtr",
+        "si_ebg002_dmtr"
+    ],
+    [
+        "boss: modernia",
+        "si_mbg004"
+    ],
+    [
+        "boss: mother whale",
+        "si_bba001"
+    ],
+    [
+        "boss: nihilister",
+        "si_mba002"
+    ],
+    [
+        "boss: storm bringer",
+        "si_eba001"
+    ],
+    [
+        "boss: storm bringer anmi",
+        "si_eba001_anmi"
+    ],
+    [
+        "boss: ultra",
+        "si_bbg006"
+    ],
+    [
+        "centurion: armstrong",
+        "si_ecg004"
+    ],
+    [
+        "centurion: bow tie",
+        "si_mca002"
+    ],
+    [
+        "centurion: cocytus",
+        "si_bca001"
+    ],
+    [
+        "centurion: cucumber",
+        "si_bcg001"
+    ],
+    [
+        "centurion: doctor",
+        "si_mcg005"
+    ],
+    [
+        "centurion: dual ring",
+        "si_ecg002"
+    ],
+    [
+        "centurion: fingers",
+        "si_mca003"
+    ],
+    [
+        "centurion: halo",
+        "si_ecg003"
+    ],
+    [
+        "centurion: heavy metal",
+        "si_mcg006"
+    ],
+    [
+        "centurion: laitance",
+        "si_bcg002"
+    ],
+    [
+        "centurion: loud mouth",
+        "si_ecg001"
+    ],
+    [
+        "centurion: mace",
+        "si_bca002"
+    ],
+    [
+        "centurion: obelisk",
+        "si_eca001"
+    ],
+    [
+        "centurion: plate",
+        "si_eca003"
+    ],
+    [
+        "centurion: porter",
+        "si_bcg003"
+    ],
+    [
+        "centurion: rebuild armstrong",
+        "si_ecg004_re"
+    ],
+    [
+        "centurion: rebuild cucumber",
+        "si_bcg001_re"
+    ],
+    [
+        "centurion: rebuild porter",
+        "si_bcg003_re"
+    ],
+    [
+        "centurion: rebuild spooky",
+        "si_mcg001_re"
+    ],
+    [
+        "centurion: rebuild stout",
+        "si_ecg005_re"
+    ],
+    [
+        "centurion: rebuild vulcan r",
+        "si_mcg004_re"
+    ],
+    [
+        "centurion: runway",
+        "si_ecg007"
+    ],
+    [
+        "centurion: scarf",
+        "si_bcg004"
+    ],
+    [
+        "centurion: sinister",
+        "si_mca001"
+    ],
+    [
+        "centurion: spook",
+        "si_mcg001"
+    ],
+    [
+        "centurion: spread",
+        "si_ecg006"
+    ],
+    [
+        "centurion: stout",
+        "si_ecg005"
+    ],
+    [
+        "centurion: sunbather",
+        "si_bcg005"
+    ],
+    [
+        "centurion: thermite",
+        "si_mcg002"
+    ],
+    [
+        "centurion: thermite \u03b2",
+        "si_mcg003"
+    ],
+    [
+        "centurion: tombstone",
+        "si_eca002"
+    ],
+    [
+        "centurion: unknown crystal",
+        "si_xcg001"
+    ],
+    [
+        "centurion: vulcan r",
+        "si_mcg004"
+    ],
+    [
+        "elite: arkanoid",
+        "si_mea002"
+    ],
+    [
+        "elite: bronchus",
+        "si_beg006"
+    ],
+    [
+        "elite: bulwark",
+        "si_eeg002"
+    ],
+    [
+        "elite: bulwark (exposed core)",
+        "si_eeg502"
+    ],
+    [
+        "elite: capra",
+        "si_beg003"
+    ],
+    [
+        "elite: cutter",
+        "si_bea002"
+    ],
+    [
+        "elite: cutter (exposed core)",
+        "si_bea502"
+    ],
+    [
+        "elite: driver",
+        "si_meg002"
+    ],
+    [
+        "elite: elite barbell",
+        "si_eeg006"
+    ],
+    [
+        "elite: elite tiara",
+        "si_eeg004"
+    ],
+    [
+        "elite: glasses",
+        "si_eea005"
+    ],
+    [
+        "elite: goblet",
+        "si_eea001"
+    ],
+    [
+        "elite: hammer",
+        "si_meg005"
+    ],
+    [
+        "elite: hexagon",
+        "si_meg001"
+    ],
+    [
+        "elite: jellyfish",
+        "si_eea004"
+    ],
+    [
+        "elite: joint",
+        "si_mea005"
+    ],
+    [
+        "elite: knight",
+        "si_meg003"
+    ],
+    [
+        "elite: launcher",
+        "si_meg008"
+    ],
+    [
+        "elite: mantis",
+        "si_beg004"
+    ],
+    [
+        "elite: needle",
+        "si_eeg007"
+    ],
+    [
+        "elite: orchestrion",
+        "si_meg007"
+    ],
+    [
+        "elite: peacock",
+        "si_eeg001"
+    ],
+    [
+        "elite: penetrator",
+        "si_mea001"
+    ],
+    [
+        "elite: penetrator (exposed core)",
+        "si_mea501"
+    ],
+    [
+        "elite: perennial",
+        "si_bea003"
+    ],
+    [
+        "elite: petal",
+        "si_bea004"
+    ],
+    [
+        "elite: ponytail",
+        "si_meg004"
+    ],
+    [
+        "elite: riddler",
+        "si_beg002"
+    ],
+    [
+        "elite: riddler (exposed core)",
+        "si_beg502"
+    ],
+    [
+        "elite: satellite",
+        "si_mea004"
+    ],
+    [
+        "elite: screamer",
+        "si_eeg005"
+    ],
+    [
+        "elite: sentry",
+        "si_eeg003"
+    ],
+    [
+        "elite: shield",
+        "si_eea006"
+    ],
+    [
+        "elite: tail bone",
+        "si_bea001"
+    ],
+    [
+        "elite: tail bone (exposed core)",
+        "si_bea501"
+    ],
+    [
+        "elite: tears",
+        "si_eea003"
+    ],
+    [
+        "elite: tripod",
+        "si_eea002"
+    ],
+    [
+        "elite: twin tail",
+        "si_meg006"
+    ],
+    [
+        "elite: veil",
+        "si_beg001"
+    ],
+    [
+        "elite: watcher",
+        "si_mea003"
+    ],
+    [
+        "minion: ant",
+        "si_emg007"
+    ],
+    [
+        "minion: battery",
+        "si_emg006"
+    ],
+    [
+        "minion: beetle",
+        "si_mmg003"
+    ],
+    [
+        "minion: bird",
+        "si_ema005"
+    ],
+    [
+        "minion: blocker",
+        "si_emg002"
+    ],
+    [
+        "minion: bullwhip",
+        "si_bma003"
+    ],
+    [
+        "minion: capsule",
+        "si_mma005"
+    ],
+    [
+        "minion: clam",
+        "si_ema001"
+    ],
+    [
+        "minion: crawler",
+        "si_mmg005"
+    ],
+    [
+        "minion: crawler (exposed core)",
+        "si_mmg705"
+    ],
+    [
+        "minion: cricket",
+        "si_mmg007"
+    ],
+    [
+        "minion: cube",
+        "si_emg003"
+    ],
+    [
+        "minion: dagger",
+        "si_ema004"
+    ],
+    [
+        "minion: disc",
+        "si_mma003"
+    ],
+    [
+        "minion: drifter",
+        "si_mmg008"
+    ],
+    [
+        "minion: fez",
+        "si_mma001"
+    ],
+    [
+        "minion: fez (exposed core)",
+        "si_mma701"
+    ],
+    [
+        "minion: fez w",
+        "si_mmg004"
+    ],
+    [
+        "minion: frisbee",
+        "si_mma002"
+    ],
+    [
+        "minion: frisbee (exposed core)",
+        "si_mma702"
+    ],
+    [
+        "minion: glitter",
+        "si_mma004"
+    ],
+    [
+        "minion: leech",
+        "si_bmg002"
+    ],
+    [
+        "minion: lentigo",
+        "si_bma004"
+    ],
+    [
+        "minion: lure",
+        "si_bma002"
+    ],
+    [
+        "minion: mono eye",
+        "si_emg001"
+    ],
+    [
+        "minion: oculus",
+        "si_bma001"
+    ],
+    [
+        "minion: oculus (exposed core)",
+        "si_bma701"
+    ],
+    [
+        "minion: pelican",
+        "si_bmg001"
+    ],
+    [
+        "minion: pelican (exposed core)",
+        "si_bmg701"
+    ],
+    [
+        "minion: razer fin",
+        "si_bmg003"
+    ],
+    [
+        "minion: remnant",
+        "si_beg005"
+    ],
+    [
+        "minion: runner",
+        "si_mmg001"
+    ],
+    [
+        "minion: scimitar",
+        "si_emg004"
+    ],
+    [
+        "minion: sparrow",
+        "si_mmg002"
+    ],
+    [
+        "minion: sparrow (exposed core)",
+        "si_mmg702"
+    ],
+    [
+        "minion: sphere",
+        "si_ema003"
+    ],
+    [
+        "minion: squid",
+        "si_ema002"
+    ],
+    [
+        "minion: star fish",
+        "si_bmg004"
+    ],
+    [
+        "minion: thief",
+        "si_bmg006"
+    ],
+    [
+        "minion: vulcan",
+        "si_mmg006"
+    ],
+    [
+        "minion: vulcan (exposed core)",
+        "si_mmg706"
+    ],
+    [
+        "minion: waller",
+        "si_emg005"
+    ],
+    [
+        "thrash: abettor",
+        "si_mtg001"
+    ],
+    [
+        "thrash: daikon",
+        "si_eta001"
+    ],
+    [
+        "thrash: salver",
+        "si_mta001"
+    ],
+    [
+        "thrash: shank",
+        "si_btg001"
+    ],
+    [
+        "thrash: skimmer",
+        "si_bta001"
+    ],
+    [
+        "thrash: striker",
+        "si_etg001"
+    ]
+]

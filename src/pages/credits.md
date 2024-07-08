@@ -20,6 +20,7 @@ embeddesc: The site's credits!
 | <h2>Special Thanks</h2> | |
 | --- | --- |
 | **Koshirei** | Being an overall good fella on me using NIKKE-DB stuff. I didn't ask in the first place, but many thanks to you! |
+| **Lorax** | Providing me Rapture `si`s |
 | [**Boss Warning Overlay Reference**](https://www.facebook.com/groups/1103225033747263/permalink/1632637744139320/?mibextid=Nif5oz) | I won't be putting your name, just in case -- but I will be linking the Facebook post! Access to the NIKKE Global community group is required to view the page. |
 | **Folks on the Official Discord, Official Reddit, and other places** | Thank you for using the tool! Your continued usage is what keeps me doing what I do. When you have something to say about the tool, let me know! |
 
