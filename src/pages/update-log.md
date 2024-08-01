@@ -4,7 +4,36 @@ title: Update Log
 embeddesc: the update log
 ---
 
+
+
 # Update Log
+
+---
+
+<br>
+
+## a taste of ultimate! `August 1, 2024`
+
+here i give you a taste of ultimate!
+
+**dialogue gen**
+- gradients are now much more accurate!
+- added the ability to of the dialogue going up if the lines are more than 2
+- updated the font weights!
+    - dialogue text: bold -> semibold
+    - choice text: bold -> semibold
+- choices have now been fixed to be more accurate to the choices from the summer event
+    - this is because this is just the superior one compared to the unnecessarily thick one we have right now
+- default control displayed is now Hide-Auto-Log-Skip
+- narration box now has more line support
+- because of how html canvases work, a black void background has been added
+    - this is due to an issue with blend modes. the new gradients contain a white background, so "multiply" is used to hide it, but when a white color and a transparent color is multiplied, it shows white instead of being transparent. can't really fix this, sorry!
+    - this void is unaffected by filters
+- watermark is now more visible (0.05 -> 0.075)
+- new default texts and anis for this update!
+- updated default color (`#f4d259` -> `f5ba36`)
+
+<br>
 
 ---
 
@@ -299,7 +328,7 @@ the keyboard update is coming soon i promise
     - b-0006 (OuteR: AUTOMATA)
     - c-1002 (OuteR: AUTOMATA)
     - 6000-d (OuteR: AUTOMATA)
-    - hedonia member (rosalina's henchmen)
+    - hedonia member (~~rosalina's~~ ROSANNA's henchmen)
     - seimeikai member (sakura's henchmen)
     - peony association member (moran's henchmen, or just one of the best boys, Jin)
     - lumi (NEVERLAND)
