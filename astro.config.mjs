@@ -4,4 +4,5 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
     site: 'https://skuqre.github.io',
     base: '/nikke-font-generator',
+    trailingSlash: 'never'
 });
