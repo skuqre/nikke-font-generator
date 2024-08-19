@@ -1727,12 +1727,14 @@ if (document.getElementById("tutorial") !== null) {
     }
 }
 
-if (location.href.includes("nikke-font-generator/dialogue#start-tutorial") ||
-    location.href.includes("nikke-font-generator/dialogue/#start-tutorial")) {
-    startDialogueTutorial();
-} else if (location.href.includes("nikke-font-generator/blabla#start-tutorial") ||
-    location.href.includes("nikke-font-generator/blabla/#start-tutorial")) {
-    startBlablaTutorial();
+var hash = window.location.hash;
+
+if (hash === "#start-tutorial") {
+    if (location.href.includes("/nikke-font-generator/dialogue")) {
+        startDialogueTutorial();
+    } else if (location.href.includes("/nikke-font-generator/blabla")) {
+        startBlablaTutorial();
+    }
 }
 
 if (document.getElementById("error404")) {
