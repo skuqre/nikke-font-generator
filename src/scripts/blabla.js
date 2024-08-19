@@ -28,41 +28,36 @@ var chats = [
         'name': 'Commander',
         'image': '',
         'message': 'Anis?',
-        'color': '#ffac00',
-        'frame': ''
+        'color': '#ffac00'
     },
     {
         'name': 'Commander',
         'image': '',
         'message': 'Rapi?',
-        'color': '#ffac00',
-        'frame': ''
+        'color': '#ffac00'
     },
     {
         'name': 'Commander',
         'image': '',
         'message': 'Neon??',
-        'color': '#ffac00',
-        'frame': ''
+        'color': '#ffac00'
     },
     {
         'name': 'Commander',
         'image': '',
         'message': 'Seems like no one\'s around.',
-        'color': '#ffac00',
-        'frame': ''
+        'color': '#ffac00'
     }
 ];
 
-var profile =  {
+var profile = {
     'name': 'Commander',
-    'image': 'https://nikke-db-legacy.pages.dev/images/sprite/si_c942_00_s.png',
+    'image': 'https://nkas.pages.dev/characters/si_c942_00_s.png',
     'message': "I don't look like this, but I feel good when I think I do. Commander of Counters Squad.",
     'color': '#ffac00',
-    'frame': '',
 
     // profile exclusive
-    'bg': '',
+    'bg': null
 }
 
 var mode = 'conversation';
@@ -82,12 +77,22 @@ response2.json().then((e) => {
     }
 });
 
-const response3 = await fetch('/nikke-font-generator/blabla-skins.json');
-response3.json().then((e) => {
-    for (let i = 0; i < e.length; i++) {
-        nikkepfps[e[i][0]] = e[i][1];
-    }
-});
+// populate skins
+const skinFetch = await fetch("https://nkas.pages.dev/nk_data/skins.json");
+const skinData = await skinFetch.json();
+
+const nikkeggFetch = await fetch("https://api.dotgg.gg/nikke/characters/1");
+const nikkeggData = await nikkeggFetch.json();
+
+for (let i = 0; i < skinData.length; i++) {
+    const skin = skinData[i];
+    const cid = skin[0].replace(/^0+/, "");
+
+    const pngName = (nikkeggData[cid] + ": " + skin[2]).toLowerCase();
+    const pngSrc = "si_c" + skin[0] + "_" + skin[1] + "_s";
+
+    nikkepfps[pngName] = pngSrc;
+}
 
 const response4 = await fetch('/nikke-font-generator/blabla-raptures.json');
 response4.json().then((e) => {
@@ -323,7 +328,7 @@ function generateBlabla() {
 
             const BGWIDTH = canvas.width - 128;
             const BGHEIGHT = 624 * 508 / BGWIDTH;
-            const SHADWIDTH = canvas.width - (128 - 18*2);
+            const SHADWIDTH = canvas.width - (128 - 18 * 2);
             const SHADHEIGHT = 646 * 553 / SHADWIDTH;
 
             bgCanvas.width = BGWIDTH;
@@ -336,8 +341,8 @@ function generateBlabla() {
             let xoff = parseFloat(document.getElementById('xposbg').value)
             let yoff = parseFloat(document.getElementById('yposbg').value)
             if (bgImg.width > bgImg.height) {
-                const widthS = bgImg.width * BGHEIGHT / bgImg.height  * scale;
-                const heightS = BGHEIGHT  * scale;
+                const widthS = bgImg.width * BGHEIGHT / bgImg.height * scale;
+                const heightS = BGHEIGHT * scale;
                 bgCtx.drawImage(bgImg, (BGWIDTH - widthS) / 2 + xoff, 0 + yoff, widthS, heightS);
             } else {
                 const widthS = BGWIDTH * scale;
@@ -350,20 +355,22 @@ function generateBlabla() {
                 ctx.drawImage(bgCanvas, (canvas.width - BGWIDTH) / 2, (canvas.width - BGWIDTH) / 2);
             }
         } else {
-            let bgImg = new Image();
-            bgImg.crossOrigin = "anonymous";
-            bgImg.src = profile.bg;
-            bgImg.onload = function() {
-                if (loaded[profile.bg] == null) {
-                    loaded[profile.bg] = bgImg;
-                    generateBlabla();
+            const ass = profile.bg;
+            if (ass !== null) {
+                let bgImg = new Image();
+                bgImg.crossOrigin = "anonymous";
+                bgImg.src = ass;
+                bgImg.onload = function () {
+                    if (loaded[ass] == null) {
+                        loaded[ass] = bgImg;
+                        generateBlabla();
+                    }
+                }
+                bgImg.onerror = function () {
+                    bgImg.src = '/nikke-font-generator/images/transparent.png';
                 }
             }
-            bgImg.onerror = function() {
-                bgImg.src = '/nikke-font-generator/images/transparent.png';
-            }
         }
-
 
         ctx.globalAlpha = 0.5;
         ctx.drawImage(topGradient, 0, 0);
@@ -404,35 +411,15 @@ function generateBlabla() {
             let pfpImg = new Image();
             pfpImg.crossOrigin = "anonymous";
             pfpImg.src = ass;
-            pfpImg.onload = function() {
+            pfpImg.onload = function () {
                 if (loaded[ass] == null) {
                     loaded[ass] = pfpImg;
                     generateBlabla();
                 }
             }
-            pfpImg.onerror = function() {
+            pfpImg.onerror = function () {
                 pfpImg.src = '/nikke-font-generator/images/blabla/blabla_icon_chat.png';
-            }
-        }
-
-        if (loaded[profile.frame] != null) {
-            let pfpImg = loaded[profile.frame];
-            let width = pfpImg.width * 0.7882352941;
-            let height = pfpImg.height * 0.7882352941;
-
-            ctx.drawImage(pfpImg, (canvas.width - width) / 2, 564 + (134 - height) / 2, width, height);
-        } else {
-            let pfpImg = new Image();
-            pfpImg.crossOrigin = "anonymous";
-            pfpImg.src = profile.frame;
-            pfpImg.onload = function() {
-                if (loaded[profile.frame] == null) {
-                    loaded[profile.frame] = pfpImg;
-                    generateBlabla();
-                }
-            }
-            pfpImg.onerror = function() {
-                pfpImg.src = '/nikke-font-generator/images/transparent.png';
+                generateBlabla();
             }
         }
     } else if (mode == 'conversation') {
@@ -541,13 +528,13 @@ function generateBlabla() {
                             let attachmentImg = new Image();
                             attachmentImg.crossOrigin = "anonymous";
                             attachmentImg.src = item.attachment;
-                            attachmentImg.onload = function() {
+                            attachmentImg.onload = function () {
                                 if (loadedAttachments[item.attachment] == null) {
                                     loadedAttachments[item.attachment] = attachmentImg;
                                     generateBlabla();
                                 }
                             }
-                            attachmentImg.onerror = function() {
+                            attachmentImg.onerror = function () {
                                 attachmentImg.src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
                             }
                         }
@@ -650,13 +637,13 @@ function generateBlabla() {
                             let attachmentImg = new Image();
                             attachmentImg.crossOrigin = "anonymous";
                             attachmentImg.src = item.attachment;
-                            attachmentImg.onload = function() {
+                            attachmentImg.onload = function () {
                                 if (loadedAttachments[item.attachment] == null) {
                                     loadedAttachments[item.attachment] = attachmentImg;
                                     generateBlabla();
                                 }
                             }
-                            attachmentImg.onerror = function() {
+                            attachmentImg.onerror = function () {
                                 attachmentImg.src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
                             }
                         }
@@ -688,10 +675,18 @@ function generateBlabla() {
                             let pfpy = cury + height - 7 - 74;
                             pfpCtx.drawImage(pfpMask, 0, 0);
                             pfpCtx.globalCompositeOperation = 'source-in';
-                            
+
                             pfpCtx2.fillStyle = '#ffffff';
                             pfpCtx2.fillRect(0, 0, 74, 74);
-                            pfpCtx2.drawImage(pfpImg, 0, 0, 74, 74);
+
+                            const imgWidthFinal = (74 / pfpImg.height) * pfpImg.width;
+                            const imgHeightFinal = (74 / pfpImg.width) * pfpImg.height;
+
+                            if (pfpImg.height >= pfpImg.width) {
+                                pfpCtx2.drawImage(pfpImg, (74 - imgWidthFinal) / 2, 0, imgWidthFinal, 74);
+                            } else if (pfpImg.height < pfpImg.width) {
+                                pfpCtx2.drawImage(pfpImg, 0, (74 - imgHeightFinal) / 2, 74, imgHeightFinal);
+                            }
 
                             pfpCtx.drawImage(pfpCanvas2, 0, 0);
 
@@ -700,39 +695,19 @@ function generateBlabla() {
 
                             ctx.drawImage(pfpCanvas, 0, diff > 0 ? diff : 0, 74, 74 - cond, 107 - 74 - 19 - xOffset, pfpy - 19 + cond, 74, 74 - cond)
                         } else {
+                            const ass = item.image;
                             let pfpImg = new Image();
                             pfpImg.crossOrigin = "anonymous";
-                            pfpImg.src = item.image;
-                            pfpImg.onload = function() {
-                                if (loaded[item.image] == null) {
-                                    loaded[item.image] = pfpImg;
+                            pfpImg.src = ass;
+                            pfpImg.onload = function () {
+                                if (loaded[ass] == null) {
+                                    loaded[ass] = pfpImg;
                                     generateBlabla();
                                 }
                             }
-                            pfpImg.onerror = function() {
+                            pfpImg.onerror = function () {
                                 pfpImg.src = '/nikke-font-generator/images/blabla/blabla_icon_chat.png';
-                            }
-                        }
-
-                        if (loaded[item.frame] != null) {
-                            let pfpImg = loaded[item.frame];
-                            let fwidth = pfpImg.width * 74 / 170;
-                            let fheight = pfpImg.height * 74 / 170;
-                            let pfpy = cury + height - 7 - 74;
-                            
-                            ctx.drawImage(pfpImg, 107 - 74 - 19 - xOffset + (74 - fwidth) / 2 , pfpy - 19 + (74 - fheight) / 2, fwidth, fheight);
-                        } else {
-                            let pfpImg = new Image();
-                            pfpImg.crossOrigin = "anonymous";
-                            pfpImg.src = item.frame;
-                            pfpImg.onload = function() {
-                                if (loaded[item.frame] == null) {
-                                    loaded[item.frame] = pfpImg;
-                                    generateBlabla();
-                                }
-                            }
-                            pfpImg.onerror = function() {
-                                pfpImg.src = '/nikke-font-generator/images/transparent.png';
+                                generateBlabla();
                             }
                         }
                     }
@@ -946,16 +921,17 @@ function generateBlabla() {
 
                 ctx.drawImage(chatterCanvas, 0, cond, chatterCanvas.width, chatterCanvas.height - cond, 18, pfpy + cond, chatterCanvas.width, chatterCanvas.height - cond);
             } else {
+                const ass = item.image;
                 let pfpImg = new Image();
                 pfpImg.crossOrigin = "anonymous";
-                pfpImg.src = item.image;
-                pfpImg.onload = function() {
-                    if (loaded[item.image] == null) {
-                        loaded[item.image] = pfpImg;
+                pfpImg.src = ass;
+                pfpImg.onload = function () {
+                    if (loaded[ass] == null) {
+                        loaded[ass] = pfpImg;
                         generateBlabla();
                     }
                 }
-                pfpImg.onerror = function() {
+                pfpImg.onerror = function () {
                     pfpImg.src = '/nikke-font-generator/images/blabla/blabla_icon.png';
                 }
             }
@@ -981,9 +957,9 @@ function generateBlabla() {
 
         ctx.fillStyle = "#333333";
         ctx.fillText(`Chats: (${chats.length})`, 18, 195);
-        
+
         ctx.globalAlpha = 0.4;
-        
+
         ctx.drawImage(shadow, 0, top2.height);
         ctx.globalAlpha = 1;
 
@@ -1026,21 +1002,7 @@ document.getElementById("char-img-up").onchange = (e) => {
     const filer = new FileReader();
     filer.onload = (e) => {
         currentImage = e.target.result.toString();
-        document.getElementById("pfp-preview").style['backgroundImage'] = `url('${currentImage}')`;
-    };
-    if (fileList.length > 0) {
-        filer.readAsDataURL(fileList[0]);
-    }
-}
-
-let currentFrame = '';
-
-document.getElementById("frame-up").onchange = (e) => {
-    const fileList = document.querySelectorAll('#frame-up')[0].files;
-    const filer = new FileReader();
-    filer.onload = (e) => {
-        currentFrame = e.target.result.toString();
-        document.getElementById("pfp-preview").src = currentFrame;
+        document.getElementById("pfp-preview").src = currentImage;
     };
     if (fileList.length > 0) {
         filer.readAsDataURL(fileList[0]);
@@ -1054,8 +1016,7 @@ function addChat(e) {
         'name': document.getElementById("charname").value,
         'image': noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentImage,
         'message': document.getElementById("chatter").value,
-        'color': document.getElementById("color").value,
-        'frame': noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentFrame
+        'color': document.getElementById("color").value
     });
 
     generateBlabla();
@@ -1073,8 +1034,6 @@ document.getElementById("attachment-up").onchange = (e) => {
                 color: document.getElementById("color").value,
                 message: ''
             })
-        } else if (mode == 'profile') {
-            profile.bg = e.target.result.toString();
         }
 
         document.getElementById('attachment-up').value = "";
@@ -1097,32 +1056,6 @@ document.getElementById("attachment-edit").onchange = (e) => {
     }
 }
 
-document.getElementById("frame-edit").onchange = (e) => {
-    const fileList = document.querySelectorAll('#frame-edit')[0].files;
-    const filer = new FileReader();
-    filer.onload = (e) => {
-        chats[parseInt(document.getElementById("message-index-edit").value)].frame = e.target.result.toString();
-        document.getElementById("pfp-preview-edit").src = e.target.result.toString();
-        generateBlabla();
-    };
-    if (fileList.length > 0) {
-        filer.readAsDataURL(fileList[0]);
-    }
-}
-
-document.getElementById("frame-edit-p").onchange = (e) => {
-    const fileList = document.querySelectorAll('#frame-edit-p')[0].files;
-    const filer = new FileReader();
-    filer.onload = (e) => {
-        profile.frame = e.target.result.toString();
-        document.getElementById("pfp-preview-edit-p").src = e.target.result.toString();
-        generateBlabla();
-    };
-    if (fileList.length > 0) {
-        filer.readAsDataURL(fileList[0]);
-    }
-}
-
 document.getElementById("background-edit-p").onchange = (e) => {
     const fileList = document.querySelectorAll('#background-edit-p')[0].files;
     const filer = new FileReader();
@@ -1137,24 +1070,6 @@ document.getElementById("background-edit-p").onchange = (e) => {
 
 document.getElementById("attachment-remove").onclick = (e) => {
     chats[parseInt(document.getElementById("message-index-edit").value)].attachment = null;
-    generateBlabla();
-}
-
-document.getElementById("frame-remove").onclick = (e) => {
-    currentFrame = '';
-    document.getElementById("pfp-preview").src = '/nikke-font-generator/images/transparent.png';
-    generateBlabla();
-}
-
-document.getElementById("frame-edit-remove").onclick = (e) => {
-    chats[parseInt(document.getElementById("message-index-edit").value)].frame = null;
-    document.getElementById("pfp-preview-edit").src = '/nikke-font-generator/images/transparent.png';
-    generateBlabla();
-}
-
-document.getElementById("frame-remove-p").onclick = (e) => {
-    profile.frame = null;
-    document.getElementById("pfp-preview-edit-p").src = '/nikke-font-generator/images/transparent.png';
     generateBlabla();
 }
 
@@ -1181,7 +1096,7 @@ document.getElementById("res-color").onclick = (e) => {
 let arrowOn = true;
 document.getElementById("arrow-toggle").onclick = (e) => {
     arrowOn = !arrowOn;
-    document.getElementById("arrow-toggle").innerHTML = "Arrow: " + (arrowOn ? "ON" : "OFF");
+    document.getElementById("arrow-toggle").innerHTML = "Exit Arrow: " + (arrowOn ? "Shown" : "Hidden");
     generateBlabla();
 }
 
@@ -1208,8 +1123,7 @@ document.getElementById("message-index-edit").onclick = (e) => {
     document.getElementById("chatter-edit").value = item.message;
     document.getElementById("color-edit").value = item.color;
 
-    document.getElementById("pfp-preview-edit").style['backgroundImage'] = `url('${item.image.length > 0 ? item.image : '/nikke-font-generator/images/blabla/pfp/nochat.png'}')`;
-    document.getElementById("pfp-preview-edit").src = item.frame != null ? (item.frame.length > 0 ? item.frame : "/nikke-font-generator/images/transparent.png") : "/nikke-font-generator/images/transparent.png";
+    document.getElementById("pfp-preview-edit").src = item.image.length > 0 ? item.image : '/nikke-font-generator/images/blabla/pfp/nochat.png';
 }
 
 document.getElementById("charname-edit").oninput = (e) => {
@@ -1265,7 +1179,7 @@ document.getElementById("yposbg").oninput = (e) => {
 let wifiOn = true;
 document.getElementById("wifi-toggle").onclick = (e) => {
     wifiOn = !wifiOn;
-    document.getElementById("wifi-toggle").innerHTML = wifiOn ? wifiOnI : wifiOffI;
+    document.getElementById("wifi-toggle").innerHTML = "WIFI Icon: " + (wifiOn ? "Shown" : "Hidden");
     generateBlabla();
 }
 
@@ -1287,16 +1201,20 @@ document.getElementById("char-pres-up").oninput = (e) => {
             const results = fuzzysort.go(document.getElementById("char-pres-up").value, Object.keys(nikkepfps));
             if (results.length > 0) {
                 if (document.getElementById("char-pres-up").value.startsWith("rapture")) {
-                    currentImage = `/nikke-font-generator/images/blabla/pfp/raptures/${nikkepfps[results[0].target]}.png`;
+                    currentImage = `https://nkas.pages.dev/monsters/${nikkepfps[results[0].target]}.png`;
                 } else {
-                    currentImage = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                    if (!nikkepfps[results[0].target].endsWith("_00_s")) {
+                        currentImage = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
+                    } else {
+                        currentImage = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                    }
                 }
-                document.getElementById("pfp-preview").style['backgroundImage'] = `url('${currentImage}')`;
+                document.getElementById("pfp-preview").src = currentImage;
             } else {
-                document.getElementById("pfp-preview").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
+                document.getElementById("pfp-preview").src = `/nikke-font-generator/images/blabla/pfp/nochat.png`;
             }
         } else {
-            document.getElementById("pfp-preview").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
+            document.getElementById("pfp-preview").src = `/nikke-font-generator/images/blabla/pfp/nochat.png`;
         }
     }
 }
@@ -1307,18 +1225,22 @@ document.getElementById("char-pres-edit").oninput = (e) => {
             const results = fuzzysort.go(document.getElementById("char-pres-edit").value, Object.keys(nikkepfps));
             if (results.length > 0) {
                 if (document.getElementById("char-pres-edit").value.startsWith("rapture")) {
-                    chats[parseInt(document.getElementById("message-index-edit").value)].image = `/nikke-font-generator/images/blabla/pfp/raptures/${nikkepfps[results[0].target]}.png`;
+                    chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nkas.pages.dev/monsters/${nikkepfps[results[0].target]}.png`;
                 } else {
-                    chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                    if (!nikkepfps[results[0].target].endsWith("_00_s")) {
+                        chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
+                    } else {
+                        chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                    }
                 }
 
                 let fuck = chats[parseInt(document.getElementById("message-index-edit").value)].image;
-                document.getElementById("pfp-preview-edit").style['backgroundImage'] = `url('${fuck}')`;
+                document.getElementById("pfp-preview-edit").src = fuck;
             } else {
-                document.getElementById("pfp-preview-edit").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
+                document.getElementById("pfp-preview-edit").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
             }
         } else {
-            document.getElementById("pfp-preview-edit").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
+            document.getElementById("pfp-preview-edit").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
         }
 
         generateBlabla();
@@ -1331,18 +1253,22 @@ document.getElementById("char-pres-edit-p").oninput = (e) => {
             const results = fuzzysort.go(document.getElementById("char-pres-edit-p").value, Object.keys(nikkepfps));
             if (results.length > 0) {
                 if (document.getElementById("char-pres-edit-p").value.startsWith("rapture")) {
-                    profile.image = `/nikke-font-generator/images/blabla/pfp/raptures/${nikkepfps[results[0].target]}.png`;
+                    profile.image = `https://nkas.pages.dev/monsters/${nikkepfps[results[0].target]}.png`;
                 }
                 else {
-                    profile.image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                    if (!nikkepfps[results[0].target].endsWith("_00_s")) {
+                        profile.image = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
+                    } else {
+                        profile.image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                    }
                 }
                 let fuck = profile.image;
-                document.getElementById("pfp-preview-edit-p").style['backgroundImage'] = `url('${fuck}')`;
+                document.getElementById("pfp-preview-edit-p").src = fuck;
             } else {
-                document.getElementById("pfp-preview-edit-p").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
+                document.getElementById("pfp-preview-edit-p").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
             }
         } else {
-            document.getElementById("pfp-preview-edit-p").style['backgroundImage'] = `url('/nikke-font-generator/images/blabla/pfp/nochat.png')`;
+            document.getElementById("pfp-preview-edit-p").src = '/nikke-font-generator/images/blabla/pfp/nochat.png';
         }
 
         generateBlabla();
@@ -1363,7 +1289,7 @@ document.getElementById("color-edit").onchange = (e) => {
 let dragOn = false;
 document.getElementById("drag-toggle").onclick = (e) => {
     dragOn = !dragOn;
-    document.getElementById("drag-toggle").innerHTML = "Drag: " + (dragOn ? "ON" : "OFF");
+    document.getElementById("drag-toggle").innerHTML = "Scroll: " + (dragOn ? "ON" : "OFF");
     generateBlabla();
 }
 
@@ -1411,7 +1337,7 @@ document.getElementById("char-img-edit").onchange = (e) => {
     const filer = new FileReader();
     filer.onload = (e) => {
         chats[parseInt(document.getElementById("message-index-edit").value)].image = e.target.result.toString();
-        document.getElementById('pfp-preview-edit').style['backgroundImage'] = `url('${e.target.result.toString()}')`;
+        document.getElementById('pfp-preview-edit').src = e.target.result.toString();
         generateBlabla();
     };
     if (fileList.length > 0) {
@@ -1424,7 +1350,7 @@ document.getElementById("char-img-edit-p").onchange = (e) => {
     const filer = new FileReader();
     filer.onload = (e) => {
         profile.image = e.target.result.toString();
-        document.getElementById('pfp-preview-edit-p').style['backgroundImage'] = `url('${e.target.result.toString()}')`;
+        document.getElementById('pfp-preview-edit-p').src = e.target.result.toString();
         generateBlabla();
     };
     if (fileList.length > 0) {
@@ -1448,60 +1374,42 @@ function downloadPng() {
 
 document.getElementById("set-chats").onclick = () => {
     mode = 'chatlist';
-    document.getElementById('top-title').innerHTML = 'Append';
-    
-    document.getElementById("set-chats").style.fontWeight = 'bold';
-    document.getElementById("set-convo").style.fontWeight = 'normal';
-    document.getElementById("set-profile").style.fontWeight = 'normal';
 
-    document.getElementById('charname').setAttribute('placeholder', 'Conversation name...');
-    document.getElementById('chatter').setAttribute('placeholder', 'What the conversation stopped on...');
-    document.getElementById('charname-edit').setAttribute('placeholder', 'Conversation name...');
-    document.getElementById('chatter-edit').setAttribute('placeholder', 'What the conversation stopped on...');
+    document.getElementById("blabla-tool-conversation").style.display = "none";
+    document.getElementById("blabla-tool-chatlist").style.display = "flex";
+    document.getElementById("blabla-tool-profile").style.display = "none";
 
-    document.getElementById('chats-page-tabs').style.display = 'table-row';
-    document.getElementById('convo-page-shit').style.display = 'none';
-
-    document.getElementById('main-section').style.display = 'table-row-group';
-    document.getElementById('profile-section').style.display = 'none';
+    document.getElementById("set-convo").style.fontWeight = "normal";
+    document.getElementById("set-chats").style.fontWeight = "bold";
+    document.getElementById("set-profile").style.fontWeight = "normal";
 
     generateBlabla();
 }
 
 document.getElementById("set-convo").onclick = () => {
     mode = 'conversation'
-    document.getElementById('top-title').innerHTML = 'Append';
 
-    document.getElementById("set-chats").style.fontWeight = 'normal';
-    document.getElementById("set-convo").style.fontWeight = 'bold';
-    document.getElementById("set-profile").style.fontWeight = 'normal';
+    document.getElementById("blabla-tool-conversation").style.display = "flex";
+    document.getElementById("blabla-tool-chatlist").style.display = "none";
+    document.getElementById("blabla-tool-profile").style.display = "none";
 
-    document.getElementById('charname').setAttribute('placeholder', 'Character name...');
-    document.getElementById('chatter').setAttribute('placeholder', 'What the character will be saying...');
-    document.getElementById('charname-edit').setAttribute('placeholder', 'Character name...');
-    document.getElementById('chatter-edit').setAttribute('placeholder', 'What the character will be saying...');
-
-    document.getElementById('chats-page-tabs').style.display = 'none';
-    document.getElementById('convo-page-shit').style.display = 'table-row';
-
-    document.getElementById('main-section').style.display = 'table-row-group';
-    document.getElementById('profile-section').style.display = 'none';
+    document.getElementById("set-convo").style.fontWeight = "bold";
+    document.getElementById("set-chats").style.fontWeight = "normal";
+    document.getElementById("set-profile").style.fontWeight = "normal";
 
     generateBlabla();
 }
 
 document.getElementById("set-profile").onclick = () => {
-    mode = 'profile'
+    mode = 'profile';
 
-    document.getElementById("set-chats").style.fontWeight = 'normal';
-    document.getElementById("set-convo").style.fontWeight = 'normal';
-    document.getElementById("set-profile").style.fontWeight = 'bold';
-    
-    document.getElementById('chats-page-tabs').style.display = 'none';
-    document.getElementById('convo-page-shit').style.display = 'none';
+    document.getElementById("blabla-tool-conversation").style.display = "none";
+    document.getElementById("blabla-tool-chatlist").style.display = "none";
+    document.getElementById("blabla-tool-profile").style.display = "flex";
 
-    document.getElementById('main-section').style.display = 'none';
-    document.getElementById('profile-section').style.display = 'table-row-group';
+    document.getElementById("set-convo").style.fontWeight = "normal";
+    document.getElementById("set-chats").style.fontWeight = "normal";
+    document.getElementById("set-profile").style.fontWeight = "bold";
 
     generateBlabla();
 }
@@ -1545,7 +1453,7 @@ let gridOn = false;
 document.getElementById("grid-toggle").onclick = () => {
     gridOn = !gridOn;
 
-    document.getElementById("grid-toggle").innerHTML = "Grid Background: " + (gridOn ? "ON" : "OFF");
+    document.getElementById("grid-toggle").innerHTML = "Grid Background: " + (gridOn ? "Shown" : "Hidden");
 
     generateBlabla();
 }
@@ -1605,7 +1513,7 @@ function disableScroll() {
     window.onscroll = function (e) {
         window.scrollTo(scrollLeft, scrollTop, "instant");
     };
-    
+
     window.onwheel = (e) => {
         ypos += (e.deltaY / -10) * 5;
         document.getElementById("ypos").value = ypos;
@@ -1705,7 +1613,7 @@ function downloadVideo() {
 
         if (defaultThought && document.getElementById("thought").value.trim().length > 0) {
             thoughtOn = defaultThought;
-            
+
             messageBeingAnimated = chats.length + 1;
 
             resetAnimatables();

@@ -8,11 +8,23 @@
     </p>
     <p>
         <div class="toolbox">
-            <p style="opacity: 1;"><b>more tools:</b></p>
-            <a href="/nikke-font-generator/"><img class="pnglink" src="/nikke-font-generator/images/icon_logo.png" alt="Logo Generator" title="Logo Generator" /></a>
-            <a href="/nikke-font-generator/dialogue"><img class="pnglink" src="/nikke-font-generator/images/icon_dialogue.png" alt="Dialogue Generator" title="Dialogue Generator" /></a>
-            <a href="/nikke-font-generator/blabla"><img class="pnglink" src="/nikke-font-generator/images/icon_blabla.png" alt="Blabla Generator" title="Blabla Generator" /></a>
-            <a href="/nikke-font-generator/warning"><img class="pnglink" src="/nikke-font-generator/images/icon_boss.png" alt="Boss Warning Generator" title="Boss Warning Generator" /></a>
+            <h3>More tools!</h3>
+            <a href="/nikke-font-generator/">
+                <img class="pnglink" src="/nikke-font-generator/images/icon_logo.png" alt="Logo Generator" title="Logo Generator" />
+                Logo Generator
+            </a>
+            <a href="/nikke-font-generator/dialogue">
+                <img class="pnglink" src="/nikke-font-generator/images/icon_dialogue.png" alt="Dialogue Generator" title="Dialogue Generator" />
+                Dialogue Generator
+            </a>
+            <a href="/nikke-font-generator/blabla">
+                <img class="pnglink" src="/nikke-font-generator/images/icon_blabla.png" alt="Blabla Generator" title="Blabla Generator" />
+                Blabla Generator
+            </a>
+            <a href="/nikke-font-generator/warning">
+                <img class="pnglink" src="/nikke-font-generator/images/icon_boss.png" alt="Boss Warning Generator" title="Boss Warning Generator" />
+                Boss Warning Generator
+            </a>
         </div>
     </p>
     <p>
@@ -35,13 +47,24 @@
     div.toolbox {
         display: flex;
         margin: auto;
-        margin-top: 8px;
+        margin-top: 16px;
+        margin-bottom: 32px;
         justify-content: center;
         align-items: center;
-        gap: 16px;
+        flex-direction: column;
+        gap: 8px;
     }
 
-    img.pnglink {
+    div.toolbox > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: bold;
+        color: white;
+    }
+
+    div.toolbox > a {
         filter: hue-rotate(355deg);
         opacity: 0.5;
         scale: 1;
@@ -50,12 +73,13 @@
         transition: 0.2s ease-in-out;
     }
     
-    img.pnglink:hover {
+    div.toolbox > a:hover {
         filter: brightness(0) saturate(100%) grayscale(0) invert(82%) sepia(19%) saturate(1288%) hue-rotate(355deg) brightness(105%) contrast(91%);
         opacity: 1;
         scale: 1.1;
 
         transition-property: filter, opacity, scale;
         transition: 0.2s ease-in-out;
+        text-decoration: none;
     }
 </style>

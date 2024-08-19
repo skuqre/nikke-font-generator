@@ -474,7 +474,7 @@ let sizetools = false;
 document.getElementById('sizing-tool').style['display'] = "none";
 document.querySelectorAll('#enable-sizing')[0].addEventListener('click', () => {
     sizetools = !sizetools
-    document.getElementById('sizing-tool').style['display'] = sizetools ? "block" : "none";
+    document.getElementById('sizing-tool').style['display'] = sizetools ? "flex" : "none";
 });
 
 document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('click', downloadImage);
@@ -628,57 +628,57 @@ document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointer
     enableScroll();
 });
 
-document.querySelectorAll('button#dch')[0].addEventListener('click', () => {
+document.querySelectorAll('#dch')[0].addEventListener('click', () => {
     let cap = !dragch;
     disableAllDrag();
     dragch = cap;
     updateDragButtons();
 });
-document.querySelectorAll('button#dbg')[0].addEventListener('click', () => {
+document.querySelectorAll('#dbg')[0].addEventListener('click', () => {
     let cap = !dragbg;
     disableAllDrag();
     dragbg = cap;
     updateDragButtons();
 });
 
-document.querySelectorAll('button#dcn')[0].addEventListener('click', () => {
+document.querySelectorAll('#dcn')[0].addEventListener('click', () => {
     let cap = !dragcn;
     disableAllDrag();
     dragcn = cap;
     updateDragButtons();
 });
-document.querySelectorAll('button#ddt')[0].addEventListener('click', () => {
+document.querySelectorAll('#ddt')[0].addEventListener('click', () => {
     let cap = !dragdt;
     disableAllDrag();
     dragdt = cap;
     updateDragButtons();
 });
-document.querySelectorAll('button#ddc')[0].addEventListener('click', () => {
+document.querySelectorAll('#ddc')[0].addEventListener('click', () => {
     let cap = !dragdc;
     disableAllDrag();
     dragdc = cap;
     updateDragButtons();
 });
-document.querySelectorAll('button#dcb')[0].addEventListener('click', () => {
+document.querySelectorAll('#dcb')[0].addEventListener('click', () => {
     let cap = !dragcb;
     disableAllDrag();
     dragcb = cap;
     updateDragButtons();
 });
-document.querySelectorAll('button#dar')[0].addEventListener('click', () => {
+document.querySelectorAll('#dar')[0].addEventListener('click', () => {
     let cap = !dragar;
     disableAllDrag();
     dragar = cap;
     updateDragButtons();
 });
-document.querySelectorAll('button#dna')[0].addEventListener('click', () => {
+document.querySelectorAll('#dna')[0].addEventListener('click', () => {
     let cap = !dragna;
     disableAllDrag();
     dragna = cap;
     updateDragButtons();
 });
 
-document.querySelectorAll('button#bgtocan')[0].addEventListener('click', () => {
+document.querySelectorAll('#bgtocan')[0].addEventListener('click', () => {
     let bgs = scalebg / 100;
     document.getElementById('wca').value = bg.width * bgs;
     document.getElementById('hca').value = bg.height * bgs;
@@ -690,28 +690,24 @@ document.querySelectorAll('button#bgtocan')[0].addEventListener('click', () => {
     generateText(text2, subtext2)
 });
 
-document.querySelectorAll('button#bgautofit')[0].addEventListener('click', () => {
+document.querySelectorAll('#bgautofit')[0].addEventListener('click', () => {
     bgautofit = !bgautofit;
 
-    document.querySelectorAll('button#bgautofit')[0].innerHTML = "Auto Fit: " + (bgautofit ? "ON" : "OFF");
+    document.querySelectorAll('#bgautofit')[0].innerHTML = "Auto Fit: " + (bgautofit ? "ON" : "OFF");
 });
 
-document.querySelectorAll('button#export-png')[0].addEventListener('click', downloadImage);
-document.querySelectorAll('button#export-mp4')[0].addEventListener('click', downloadVideo);
-
-
-document.querySelectorAll('button#export-frames')[0].addEventListener('click', downloadIndividualFrames);
+document.querySelectorAll('#export-png')[0].addEventListener('click', downloadImage);
 
 function updateDragButtons() {
-    document.querySelectorAll('button#dch')[0].innerHTML = dragch ? "ON" : "OFF";
-    document.querySelectorAll('button#dbg')[0].innerHTML = dragbg ? "ON" : "OFF";
+    document.querySelectorAll('#dch')[0].innerHTML = dragch ? "ON" : "OFF";
+    document.querySelectorAll('#dbg')[0].innerHTML = dragbg ? "ON" : "OFF";
 
-    document.querySelectorAll('button#dcn')[0].innerHTML = dragcn ? "ON" : "OFF";
-    document.querySelectorAll('button#ddt')[0].innerHTML = dragdt ? "ON" : "OFF";
-    document.querySelectorAll('button#ddc')[0].innerHTML = dragdc ? "ON" : "OFF";
-    document.querySelectorAll('button#dcb')[0].innerHTML = dragcb ? "ON" : "OFF";
-    document.querySelectorAll('button#dar')[0].innerHTML = dragar ? "ON" : "OFF";
-    document.querySelectorAll('button#dna')[0].innerHTML = dragna ? "ON" : "OFF";
+    document.querySelectorAll('#dcn')[0].innerHTML = dragcn ? "ON" : "OFF";
+    document.querySelectorAll('#ddt')[0].innerHTML = dragdt ? "ON" : "OFF";
+    document.querySelectorAll('#ddc')[0].innerHTML = dragdc ? "ON" : "OFF";
+    document.querySelectorAll('#dcb')[0].innerHTML = dragcb ? "ON" : "OFF";
+    document.querySelectorAll('#dar')[0].innerHTML = dragar ? "ON" : "OFF";
+    document.querySelectorAll('#dna')[0].innerHTML = dragna ? "ON" : "OFF";
 }
 
 function disableAllDrag() {
@@ -727,10 +723,10 @@ function disableAllDrag() {
 }
 
 let drawfil = true;
-document.querySelectorAll('button#df')[0].addEventListener('click', () => {
+document.querySelectorAll('#df')[0].addEventListener('click', () => {
     drawfil = !drawfil;
 
-    document.querySelectorAll('button#df')[0].innerHTML = drawfil ? "ON" : "OFF";
+    document.querySelectorAll('#df')[0].innerHTML = drawfil ? "ON" : "OFF";
     generateText(text2, subtext2)
 });
 
@@ -738,7 +734,7 @@ let arrowOn = true;
 document.querySelectorAll('#arrow-toggle')[0].addEventListener('click', () => {
     arrowOn = !arrowOn;
 
-    document.querySelectorAll('#arrow-toggle')[0].innerHTML = "Bottom right arrow: " + (arrowOn ? "ON" : "OFF");
+    document.querySelectorAll('#arrow-toggle')[0].innerHTML = "<span>" + "Bottom right pointer: " + (arrowOn ? "Shown" : "Hidden") + "</span>";
     generateText(text2, subtext2)
 });
 
@@ -755,7 +751,7 @@ let uiOn = true;
 document.querySelectorAll('#ui-toggle')[0].addEventListener('click', () => {
     uiOn = !uiOn;
 
-    document.querySelectorAll('#ui-toggle')[0].innerHTML = "UI: " + (uiOn ? "ON" : "OFF");
+    document.querySelectorAll('#ui-toggle')[0].innerHTML = "<span>" + "UI: " + (uiOn ? "Shown" : "Hidden") + "</span>";
     generateText(text2, subtext2)
 });
 
@@ -855,83 +851,69 @@ function enableScroll() {
 
 let capture = {}
 
-let frame = 0;
-let maxframes = 0;
-
-function captureAnimatables() {
-    frame = 0
-    capture = {
-        oldDialogueLines: subtext2,
-        oldActionLines: document.getElementById('actionbox').value.trim(),
-        oldChoices: document.getElementById('choices').value.trim(),
-        brightness: brnum,
-        bgvals: [bgpos[0], bgpos[1], scalebg], // x, y, scale
-        chvals: [chpos[0], chpos[1], scalech]
-    }
-
-    chposoff = [0, 0];
-
-    let curFrame = 0;
-
-    let individual = subtext2.split('');
-    individual.splice(0, 0, '');
-    for (let i = 0; i < individual.length; i++) {
-
-        if (individual[i+1] == ' ') {
-            i++;
-        }
-        if (individual[i+1] == '\\n') {
-            i++;
-        }
-
-        for (let i = 0; i <= 1; i++) {
-            curFrame++;
-        }
-    }
-
-    let extra = 1;
-
-    let newframes = document.getElementById('fa').value;
-
-    if (newframes != null) {
-        if (newframes > 0) {
-            if (true) { // document.getElementById('fa-how').value == 'add'
-                extra = parseInt(newframes) + 1 // a frame of peace
-            }
-        }
-    }
-
-    curFrame += extra;
-
-    maxframes = curFrame;
-}
-
-function resetAnimatables() {
-    bgpos[0] = capture.bgvals[0];
-    bgpos[1] = capture.bgvals[1];
-    scalebg = capture.bgvals[2];
-
-    chpos[0] = capture.chvals[0]
-    chpos[1] = capture.chvals[1]
-    scalech = capture.chvals[2];
-
-    chposoff = [0, 0];
-
-    brnum = capture.brightness;
-
-    subtext2 = capture.oldDialogueLines;
-    document.getElementById('actionbox').value = capture.oldActionLines;
-    document.getElementById('choices').value = capture.oldChoices;
-
+document.getElementById("align-bg-top").onclick = (e) => {
+    bgpos[1] = 0;
     generateText(text2, subtext2);
-
-    document.title = "Barely Accurate NIKKE Dialogue Generator"
 }
 
-// just use sine for everything...
-const easeInOutSine = t => (1 + Math.sin(Math.PI * t - Math.PI / 2)) / 2;
+document.getElementById("align-bg-ymid").onclick = (e) => {
+    bgpos[1] = (canvassize[1] - ((scalebg / 100) * bg.height)) / 2;
+    generateText(text2, subtext2);
+}
 
-function generateText(text, subtext, exporting=false) {
+document.getElementById("align-bg-bot").onclick = (e) => {
+    bgpos[1] = canvassize[1] - ((scalebg / 100) * bg.height);
+    generateText(text2, subtext2);
+}
+
+document.getElementById("align-bg-left").onclick = (e) => {
+    bgpos[0] = 0;
+    generateText(text2, subtext2);
+}
+
+document.getElementById("align-bg-xmid").onclick = (e) => {
+    bgpos[0] = (canvassize[0] - ((scalebg / 100) * bg.width)) / 2;
+    generateText(text2, subtext2);
+}
+
+document.getElementById("align-bg-right").onclick = (e) => {
+    bgpos[0] = canvassize[0] - ((scalebg / 100) * bg.width);
+    generateText(text2, subtext2);
+}
+
+///
+
+document.getElementById("align-ch-top").onclick = (e) => {
+    chpos[1] = 0;
+    generateText(text2, subtext2);
+}
+
+document.getElementById("align-ch-ymid").onclick = (e) => {
+    chpos[1] = (canvassize[1] - ((scalech / 100) * char.height)) / 2;
+    generateText(text2, subtext2);
+}
+
+document.getElementById("align-ch-bot").onclick = (e) => {
+    chpos[1] = canvassize[1] - ((scalech / 100) * char.height);
+    generateText(text2, subtext2);
+}
+
+document.getElementById("align-ch-left").onclick = (e) => {
+    chpos[0] = 0;
+    generateText(text2, subtext2);
+}
+
+document.getElementById("align-ch-xmid").onclick = (e) => {
+    chpos[0] = (canvassize[0] - ((scalech / 100) * char.width)) / 2;
+    generateText(text2, subtext2);
+}
+
+document.getElementById("align-ch-right").onclick = (e) => {
+    chpos[0] = canvassize[0] - ((scalech / 100) * char.width);
+    generateText(text2, subtext2);
+}
+
+function generateText(text, subtext) {
     ctx.globalAlpha = 1;
     text2 = text;
     subtext2 = subtext;
@@ -947,184 +929,6 @@ function generateText(text, subtext, exporting=false) {
 
     let bgs = scalebg / 100;
     let chs = scalech / 100;
-
-    if (exporting) {
-        if (document.getElementById('motion').value.trim().length > 0) {
-            let shit = document.getElementById('motion').value;
-            shit = shit.replaceAll('\\n', String.fromCharCode(13, 10));
-    
-            let split = shit.trim().split('\n');
-
-            let fadeInFrames = 0;
-            let fadeOutFrames = 0;
-            let posbgFrames = [[0, 0], [0, 0]] // frames, goal value
-            let scalebgFrames = [0, 'center', 0] // frames, anchor, goal value
-            let scalechFrames = [0, 'center', 0]
-            let chjumpFrames = 0;
-
-            let poschFrames = [[0, 0], [0, 0]]
-
-            for (let i = 0; i < split.length; i++) {
-                let data = split[i].trim().split("::");
-
-                switch (data[0]) {
-                    case 'fadein':
-                        fadeInFrames = Math.round(parseFloat(data[1]) * 30);
-                        break;
-
-                    case 'fadeout':
-                        fadeOutFrames = Math.round(parseFloat(data[1]) * 30);
-                        break;
-
-                    case 'posxbg':
-                        posbgFrames[0] = [Math.round(parseFloat(data[2]) * 30), parseFloat(data[1])];
-                        break;
-
-                    case 'posybg':
-                        posbgFrames[1] = [Math.round(parseFloat(data[2]) * 30), parseFloat(data[1])];
-                        break;
-
-                    case 'scalebg':
-                        scalebgFrames = [Math.round(parseFloat(data[3]) * 30), data[2], parseFloat(data[1])] 
-                        break;
-
-                    case 'posxch':
-                        poschFrames[0] = [Math.round(parseFloat(data[2]) * 30), parseFloat(data[1])];
-                        break;
-
-                    case 'posych':
-                        poschFrames[1] = [Math.round(parseFloat(data[2]) * 30), parseFloat(data[1])];
-                        break;
-                    
-                    case 'scalech':
-                        scalechFrames = [Math.round(parseFloat(data[3]) * 30), data[2], parseFloat(data[1])] 
-                        break;
-                    
-                    case 'jump':
-                        chjumpFrames = Math.round(parseFloat(data[1]) * 30);
-                        break;
-                
-                    default:
-                        break;
-                }
-            }
-
-            if (fadeInFrames > 0) {
-                brnum = ((frame < fadeInFrames ? frame : fadeInFrames) / fadeInFrames) * capture.brightness;
-            }
-
-            if (fadeOutFrames > 0) {
-                if (frame >= maxframes - fadeOutFrames) {
-                    brnum = ((maxframes - frame < fadeOutFrames ? maxframes - frame : fadeOutFrames) / fadeOutFrames) * capture.brightness;
-                }
-            }
-
-            if (posbgFrames[0][0] > 0) {
-                let daFrame = (frame < posbgFrames[0][0] ? frame : posbgFrames[0][0])
-                bgpos[0] = capture.bgvals[0] + easeInOutSine(daFrame / posbgFrames[0][0]) * (posbgFrames[0][1] - capture.bgvals[0]);
-            }
-
-            if (posbgFrames[1][0] > 0) {
-                let daFrame = (frame < posbgFrames[1][0] ? frame : posbgFrames[1][0])
-                bgpos[1] = capture.bgvals[1] + easeInOutSine(daFrame / posbgFrames[1][0]) * (posbgFrames[1][1] - capture.bgvals[1]);
-            }
-
-            if (poschFrames[0][0] > 0) {
-                let daFrame = (frame < poschFrames[0][0] ? frame : poschFrames[0][0])
-                chpos[0] = capture.chvals[0] + easeInOutSine(daFrame / poschFrames[0][0]) * (poschFrames[0][1] - capture.chvals[0]);
-            }
-
-            if (poschFrames[1][0] > 0) {
-                let daFrame = (frame < poschFrames[1][0] ? frame : poschFrames[1][0])
-                chpos[1] = capture.chvals[1] + easeInOutSine(daFrame / poschFrames[1][0]) * (poschFrames[1][1] - capture.chvals[1]);
-            }
-
-            if (scalebgFrames[0] > 0) {
-                let daFrame = (frame < scalebgFrames[0] ? frame : scalebgFrames[0])
-                scalebg = capture.bgvals[2] + easeInOutSine(daFrame / scalebgFrames[0]) * (scalebgFrames[2] - capture.bgvals[2]);
-                let anchors = scalebgFrames[1].split('-')
-                let scalen = scalebg / capture.bgvals[2];
-                bgs = scalebg / 100;
-
-                let xoff = capture.bgvals[0] * scalen;
-                let yoff = capture.bgvals[1] * scalen;
-
-                let midxoff = Math.abs(capture.bgvals[0] - canvas.width / 2);
-                let midyoff = Math.abs(capture.bgvals[1] - canvas.height / 2);
-
-                if (anchors.length > 1) {
-                    switch (anchors[0]) {
-                        case 'top':
-                            bgpos[1] = yoff;
-                            break;
-                        case 'mid':
-                            bgpos[1] = (canvas.height / 2) - midyoff * scalen;
-                            break;
-                        case 'bot':
-                            bgpos[1] = (canvas.height - (bg.height * bgs)) + (yoff);
-                            break;
-                    }
-    
-                    switch (anchors[1]) {
-                        case 'left':
-                            bgpos[0] = xoff;
-                            break;
-                        case 'center':
-                            bgpos[0] = (canvas.width / 2) - midxoff * scalen;
-                            break;
-                        case 'right':
-                            bgpos[0] = (canvas.width - (bg.width * bgs)) + (xoff);
-                            break;
-                    }
-                }
-            }
-
-            if (scalechFrames[0] > 0) {
-                let daFrame = (frame < scalechFrames[0] ? frame : scalechFrames[0])
-                scalech = capture.chvals[2] + easeInOutSine(daFrame / scalechFrames[0]) * (scalechFrames[2] - capture.chvals[2]);
-                let anchors = scalechFrames[1].split('-')
-                let scalen = scalech / capture.chvals[2];
-                chs = scalech / 100;
-
-                let xoff = capture.chvals[0] * scalen;
-                let yoff = capture.chvals[1] * scalen;
-
-                let midxoff = Math.abs(capture.chvals[0] - canvas.width / 2);
-                let midyoff = Math.abs(capture.chvals[1] - canvas.height / 2);
-
-                if (anchors.length > 1) {
-                    switch (anchors[0]) {
-                        case 'top':
-                            chpos[1] = yoff;
-                            break;
-                        case 'mid':
-                            chpos[1] = (canvas.height / 2) - midyoff * scalen;
-                            break;
-                        case 'bot':
-                            chpos[1] = (canvas.height - (ch.width * chs)) + (yoff);
-                            break;
-                    }
-    
-                    switch (anchors[1]) {
-                        case 'left':
-                            chpos[0] = xoff;
-                            break;
-                        case 'center':
-                            chpos[0] = (canvas.width / 2) - midxoff * scalen;
-                            break;
-                        case 'right':
-                            chpos[0] = (canvas.width - (ch.width * chs)) + (xoff);
-                            break;
-                    }
-                }
-            }
-
-            if (chjumpFrames > 0) {
-                let daFrame = (frame < chjumpFrames ? frame : chjumpFrames)
-                chposoff[1] = parseFloat(Math.abs(Math.sin(3.14159 * easeInOutSine(daFrame / chjumpFrames))).toFixed(2)) * -15 * (canvas.height / 1080);
-            }
-        }
-    }
 
     if (drawfil) {
         let custom = document.getElementById('customfil').value + '';
@@ -1173,19 +977,13 @@ function generateText(text, subtext, exporting=false) {
 
             drawGradients(true);
 
-            let mult = easeInOutSine(Math.min(8, frame) / 8);
-
-            if (!exporting) {
-                mult = 1;
-            }
-
             let startY = (canvassize[1] * (844 / 1080));
 
             let curY = startY;
             for (let i = 0; i < split.length; i++) {
                 let item = split[i];
 
-                ctx.globalAlpha = mult;
+                ctx.globalAlpha = 1;
 
                 ctx.font = "21px PSB";
                 ctx.fillStyle = "#ffffff";
@@ -1213,7 +1011,6 @@ function generateText(text, subtext, exporting=false) {
                 
                 let textHeight = (lines.length * 32) - 5;
 
-                console.log(item)
                 for (let j = 0; j < lines.length; j++) {
                     ctx.fillText(lines[j], canvassize[0] / 2, (curY - height) +  ((height - textHeight) / 2) + 32 * j + 12);
                 }
@@ -1242,7 +1039,6 @@ function generateText(text, subtext, exporting=false) {
             let cw = ((result * scalena / 100) - 54 - (action.width - (54 + 566)));
             let ch = (248 * scalena / 100 - 54 - (action.height - (54 + 140)))
             let lines = getLinesForParagraphs(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
-            let linesAlt = null;
 
             const bn = 39 * dsc; // bumfuck number
 
@@ -1250,16 +1046,10 @@ function generateText(text, subtext, exporting=false) {
             let actionBoxHeight = (248 + actionBoxMoreYOffset) * (scalena / 100)
             let textHeight = (lines.length * (bn)) - 5;
 
-            if (exporting) {
-                lines = getLinesForParagraphs(ctx, subtext, cw - 32 * 2);
-                linesAlt = getLinesForParagraphs(ctx, document.getElementById('actionbox').value.trim(), cw - 32 * 2);
-            }
-
             draw9slice(ctx, action, [54, 54, 566, 140], (canvassize[0] - result * (scalena / 100)) / 2 + xoff, ay - actionBoxHeight + 53 + yoff, result * (scalena / 100), actionBoxHeight);
 
             for (let i = 0; i < lines.length; i++) {
-                // ctx.fillText(lines[i], (canvassize[0] - ctx.measureText(linesAlt == null ? lines[i] : linesAlt[i]).width) / 2 + xoff, (ay + 248 * (scalena / 100) / 2 - ath / 2) + (7 * dsc) + 4 + ((39 * dsc) * i) + yoff - actionBoxMoreYOffset, cw - 32 * 2);
-                ctx.fillText(lines[i], (canvassize[0] - ctx.measureText(linesAlt == null ? lines[i] : linesAlt[i]).width) / 2 + xoff, ay - actionBoxHeight + 53 + 8 + ((actionBoxHeight - textHeight) / 2) + (bn * i) + yoff, cw - 32 * 2);
+                ctx.fillText(lines[i], (canvassize[0] - ctx.measureText(lines[i]).width) / 2 + xoff, ay - actionBoxHeight + 53 + 8 + ((actionBoxHeight - textHeight) / 2) + (bn * i) + yoff, cw - 32 * 2);
             }
 
             ctx.globalAlpha = 1;
@@ -1339,69 +1129,6 @@ function getLines(ctx, text, maxWidth) {
     return lines;
 }
 
-let exporting = false;
-
-function downloadIndividualFrames() {
-    if (exporting) return;
-    exporting = true;
-    let imgs = []
-
-    let textc = text2;
-    let subtextc = subtext2;
-
-    let individual = subtextc.split('');
-
-    if (document.getElementById('actionbox').value.trim().length > 0) {
-        individual = document.getElementById('actionbox').value.split('')
-    }
-
-    let wasArrowOn = arrowOn;
-
-    arrowOn = false;
-    let curText = "";
-    individual.splice(0, 0, '');
-
-    for (let i = 0; i < individual.length; i++) {
-        curText += individual[i];
-
-        if (individual[i+1] == ' ') {
-            curText += individual[i+1];
-            i++;
-        }
-        if (individual[i+1] == '\\n') {
-            curText += individual[i+1];
-            i++;
-        }
-
-        generateText(textc, curText, true)
-
-        imgs.push({
-            name: "nikke-frame" + i + ".png",
-            input: dataURLtoFile(canvas.toDataURL(), "nikke-frame" + i + ".png")
-        })
-    }
-
-    arrowOn = wasArrowOn;
-
-    generateText(textc, curText, true)
-    imgs.push({
-        name: "nikke-frame" + (individual.length) + ".png",
-        input: dataURLtoFile(canvas.toDataURL(), "nikke-frame" + (individual.length) + ".png")
-    })
-    
-
-    downloadZip(imgs).blob().then((blob) => {
-        const link = document.createElement("a")
-        link.href = window.URL.createObjectURL(blob)
-        link.download = "nikke-dialogue.zip"
-        link.click()
-        link.remove()
-
-        alert("Exporting finished!")
-        exporting = false;
-    })
-}
-
 function downloadImage() {
     if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar || dragna) return;
     var link = document.createElement('a');
@@ -1411,98 +1138,6 @@ function downloadImage() {
     link.click();
     link.remove();
 }
-
-// 30 fps
-
-function downloadVideo() {
-    if (exporting) return;
-    exporting = true;
-
-    captureAnimatables()
-
-    HME.createH264MP4Encoder().then((encoder) => {
-
-        let textc = text2;
-        let subtextc = subtext2;
-
-        let individual = subtextc.split('');
-
-        if (document.getElementById('actionbox').value.trim().length > 0) {
-            individual =  document.getElementById('actionbox').value.split('')
-        }
-
-        encoder.width = canvas.width % 2 == 0 ? canvas.width : canvas.width + 1;
-        encoder.height = canvas.height % 2 == 0 ? canvas.height : canvas.height + 1;
-        encoder.quantizationParameter = 15;
-        encoder.frameRate = 30;
-        encoder.initialize();
-
-        let wasArrowOn = arrowOn;
-
-        arrowOn = false;
-        let curText = "";
-        individual.splice(0, 0, '');
-        for (let i = 0; i < individual.length; i++) {
-            curText += individual[i];
-
-            if (individual[i+1] == ' ') {
-                curText += individual[i+1];
-                i++;
-            }
-            if (individual[i+1] == '\\n') {
-                curText += individual[i+1];
-                i++;
-            }
-
-            for (let i = 0; i <= 1; i++) {
-                generateText(textc, curText, true)
-                encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
-                frame++;
-
-                document.title = "Exporting...";
-            }
-        }
-
-        arrowOn = wasArrowOn;
-
-        let extra = 1;
-
-        let newframes = document.getElementById('fa').value;
-
-        if (newframes != null) {
-            if (newframes > 0) {
-                if (true) {
-                    extra = parseInt(newframes) + 1 // a frame of peace
-                }
-            }
-        }
-
-        for (let i = 0; i < extra; i++) {
-            generateText(textc, curText, true)
-            encoder.addFrameRgba(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
-            frame++;
-
-            document.title = "Exporting...";
-        }
-
-        encoder.finalize();
-
-        let output = encoder.FS.readFile(encoder.outputFilename);
-        let b64 = Buffer.from(output).toString('base64');
-
-        var link = document.createElement('a');
-        link.download = 'nikke-dialogue.mp4';
-        link.href = "data:video/mp4;base64," + b64;
-        link.click();
-
-        encoder.delete();
-
-        resetAnimatables()
-        alert("Exporting finished!")
-        exporting = false;
-    })
-}
-
 
 function getLinesForParagraphs(ctx, text, maxWidth) {
     let ass = text.split("\n").map(para => getLines(ctx, para, maxWidth))

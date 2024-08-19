@@ -3,6 +3,7 @@ import '../components/GlobalStyle.astro';
 import FontDisplay from '../components/FontDisplay.astro';
 import InputFields from '../components/InputFields.astro';
 import Credits from '../components/Credits.astro';
+import UpdatePopup from '../components/UpdatePopup.astro';
 ---
 
 <html lang="en">
@@ -21,14 +22,17 @@ import Credits from '../components/Credits.astro';
 		<meta name="twitter:description" content="Create a spoof of the NIKKE: Goddess of Victory logo easily!">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta property="twitter:image:src" content="/nikke-font-generator/logo-example1.png" />
+
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	</head>
 	<body>
 		<h1>Barely Accurate NIKKE Font Generator</h1>
 		<FontDisplay />
-		<p><i>Generated output you see may be barely accurate to inaccurate to official media.<br>Click the image for a fast download!</i></p>
-		<p style="margin: 0; margin-bottom: 4px;"><b><a href="/nikke-font-generator/how/logo">Tool Guide / What is this thing?</a></b></p>
+		<p><i>Generated output you see may be barely accurate to inaccurate compared to official media.</i></p>
 		<InputFields />
 		<Credits />
+
+		<UpdatePopup />
 
 		<script src="../scripts/logo.js"></script>
 	</body>

@@ -212,6 +212,14 @@ document.querySelectorAll('#size')[0].addEventListener('change', () => {
     generateLogoText(text, subtext)
 });
 
+document.querySelectorAll('#download')[0].addEventListener('click', () => {
+    var link = document.createElement('a');
+    var canvas = document.getElementById('font-canvas');
+    link.download = 'nikke-logo.png';
+    link.href = canvas.toDataURL();
+    link.click();
+});
+
 function autogent() {
     if (autogen) {
         var text = document.getElementById('text').value;

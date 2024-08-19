@@ -27,6 +27,9 @@ export function draw9slice(ctx, img2, squareslice, x, y, w, h, color = "#ffffff"
     cw = cw < 0 ? 0 : cw;
     ch = ch < 0 ? 0 : ch;
 
+    x = Math.round(x);
+    y = Math.ceil(y);
+
     // corners
     ctx.drawImage(img, 0, 0, sx, sy, x, y, sx, sy); // top left
     ctx.drawImage(img, 0, sy + sh, sx, img.height - (sy + sh), x, y + sy + ch, sx, img.height - (sy + sh)); // bot left
@@ -34,13 +37,12 @@ export function draw9slice(ctx, img2, squareslice, x, y, w, h, color = "#ffffff"
     ctx.drawImage(img, sx + sw, sy + sh, img.width - (sx + sw), img.height - (sy + sh), x + sx + cw, y + sy + ch, img.width - (sx + sw), img.height - (sy + sh)); // bot right
 
     // sides
-
     ctx.drawImage(img, 0, sy, sx, sh, x, y + sy, sx, ch); // left
     ctx.drawImage(img, sx + sw, sy, img.width - (sx + sw), sh, x + sx + cw, y + sy, img.width - (sx + sw), ch); // right
-    ctx.drawImage(img, sx, 0, sw, sy, x + sx, y, cw, sy) // up
-    ctx.drawImage(img, sx, sy + sh, sw, img.height - (sy + sh), x + sx, y + sy + ch, cw, img.height - (sy + sh)) // down
+    ctx.drawImage(img, sx, 0, sw, sy, x + sx, y, Math.ceil(cw), sy) // up
+    ctx.drawImage(img, sx, sy + sh, sw, img.height - (sy + sh), x + sx, y + sy + ch, Math.ceil(cw), img.height - (sy + sh)) // down
 
-    ctx.drawImage(img, sx, sy, sw, sh, x + sx, y + sy, cw, ch); // center
+    ctx.drawImage(img, sx, sy, sw, sh, x + sx, y + sy, Math.ceil(cw), ch); // center
 }
 
 export const eyeOn = `<i class='bx bx-show-alt'></i>`

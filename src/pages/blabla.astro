@@ -3,6 +3,7 @@ import '../components/GlobalStyle.astro';
 import BlablaDisplay from '../components/BlablaDisplay.astro';
 import BlablaInput from '../components/BlablaInput.astro';
 import Credits from '../components/Credits.astro';
+import UpdatePopup from '../components/UpdatePopup.astro';
 ---
 
 <html lang="en">
@@ -21,12 +22,26 @@ import Credits from '../components/Credits.astro';
 		<meta name="twitter:description" content="Create a spoof of a Blabla chat from NIKKE easily!">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta property="twitter:image:src" content="/nikke-font-generator/blabla-example1.png" />
+
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	</head>
 	<body>
 		<h1>Barely Accurate NIKKE Blabla Generator</h1>
 		<BlablaDisplay />
-		<p><i>Generated output you see may be barely accurate to inaccurate to official media.<br>Click the image for a fast download!</i></p>
-		<p style="margin: 0; margin-bottom: 4px;"><b><a href="/nikke-font-generator/how/blabla">Tool Guide / What is this thing?</a></b></p>
+		<br><br>
+
+		<div class="input-wrapper">
+			<div class="input-main">
+				<div class="row">
+					<div class="input-button fullwidth" id="tutorial">
+						<img src="/nikke-font-generator/images/happiEinkk.png" class="einkk-bg" draggable="false">
+						<span style="z-index: 999; text-shadow: #000 0 0 4px"><b>Tutorial</b></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<p><i>Generated output you see may be barely accurate to inaccurate compared to official media.</i></p>
 		<BlablaInput />
 		<p>
 			<i>
@@ -54,7 +69,24 @@ import Credits from '../components/Credits.astro';
 			</div>
 		</div>
 
+		<div class="tutorial-layer" id="tutorial-layer" style="display: none;">
+			<div id="dialogue-backdrop"></div>
+			<div id="dialogue-spotlight-border"></div>
+			<div class="dialogue-part">
+				<div class="character-avatar">
+					<img src="/nikke-font-generator/images/squareEinkk.png">
+				</div>
+				<div class="character-dialogue">
+					<b>Einkk</b>
+					<span id="tutorial-dialogue">Welcome to the False Memory System Demo!</span>
+					<span id="tutorial-next"><i class='bx bx-fast-forward' style="font-size: 16px; transform: translate(3px, 3px)"></i> TAP TO CONTINUE</span>
+				</div>
+			</div>
+		</div>
+
+		<UpdatePopup />
 
 		<script src="../scripts/blabla.js"></script>
+		<script src="../scripts/tutorial.js"></script>
 	</body>
 </html>

@@ -1,0 +1,135 @@
+---
+import marked from 'marked';
+
+const updateName = "a long, long time ago...";
+const updateDate = "Aug 19, 2024";
+const updateContent = `
+**logo gen**
+- updated UI
+
+**dialogue gen**
+- **BREAKING** ADDED STICKY BEHAVIOR!
+    - as you scroll down, the image will follow along your screen. should be easier instead of purely guessing what's on the image!
+- updated official channel warning 
+- removed motion
+    - motion proved to be tough to maintain AT ALL. it isn't worth it anymore, and since Ultimate is indev, it wont be readded back in.
+- removed mp4 export, gif export, frame export
+    - also just overall tough to maintain. might be readded at some point, but who knows?
+
+**blabla gen**
+- **BREAKING** ADDED STICKY BEHAVIOR!
+    - as you scroll down, the image will follow along your screen. should be easier instead of purely guessing what's on the image!
+- made profile pictures now respect aspect ratio
+- [blabla pfp page](/nikke-font-generator/blabla-pfps/) should now be consistent with how it is displayed in the generator
+- fixed the pfp preview beside the search bar to respect aspect ratio
+    - affected images like Makima: Coat Off have now been fixed
+- (hopefully) fixed some 9slice issues where you can see the lines where slices occurred in chat bubbles
+- (hopefully) made the ui more intuitive!
+    - most people barely utilize the features, so i'm trying to keep it more intuitive!!!
+- frame system has been removed
+    - yeah uh no one uses this and it's just about as unmaintainable as a github repo from like 12 years ago
+    - also no one can like get a profile frame so it's w/e
+    - i *might* add it back again, if suggested
+- (hopefully) improved stability with profile picture lookup
+
+**boss warning gen**
+- updated UI
+
+**general**
+- **BREAKING** FULL UI REWRITE!
+    - every UI between each generator should now be consistent!
+    - UI should rely less on inline styling...
+- **BREAKING** ADDED MUCH, MUCH BETTER TUTORIALS!
+    - currently, the only available tutorials are for [Dialogue Generator](/nikke-font-generator/dialogue#start-tutorial) and [Blabla Generator](/nikke-font-generator/dialogue#start-tutorial). you can start the tutorial through the button that says "Tutorial" on the bottom of the preview, or click the links in this line!
+    - if you have any suggestions, please don't hesitate to tell me! i'd be happy to change it, since it's not really my thing to teach...
+- **BREAKING** ADDED UPDATE POPUP!
+    - woooo
+- changed the usage page a bit
+- removed tl notice
+- removed old tutorials
+- removed old "what is" pages
+- added 404 page!
+`;
+---
+
+<div class="update-popup-wrapper" id="update-wrapper">
+    <div class="update-popup-main">
+        <h3 style="margin: 0;">New Update: {updateName}</h3>
+        <span style="font-size: 12px">{updateDate}</span>
+        <div class="update-popup-content" set:html={ await marked.parse(updateContent) }></div>
+    </div>
+</div>
+
+<style is:inline>
+    div.update-popup-wrapper {
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: 100vh;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        background-color: rgba(0, 0, 0, 0.3);
+
+        padding: 32px;
+        box-sizing: border-box;
+        z-index: 9999;
+
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    div.update-popup-main {
+        display: flex;
+        flex-direction: column;
+
+        gap: 8px;
+
+        width: 420px;
+        max-width: 420px;
+        height: 540px;
+        max-height: 540px;
+
+        background-color: var(--darkerer);
+        padding: 16px;
+        border-radius: 4px;
+    }
+
+    div.update-popup-content {
+        overflow-y: auto;
+
+        background-color: #000;
+        border-radius: 4px;
+        text-align: left;
+
+        width: 100%;
+        height: 100%;
+
+        line-height: 24px !important;
+    }
+
+    div.update-popup-content p {
+        text-align: left !important;
+        margin: 16px !important;
+    }
+</style>
+
+<script define:vars={{ updateDate }}>
+    const wrapper = document.getElementById("update-wrapper");
+
+    if (localStorage.getItem("latestUpdate") !== updateDate) {
+        wrapper.style.display = "flex";
+        setTimeout(() => {
+            wrapper.style.opacity = 1;
+            wrapper.onclick = () => {
+                wrapper.style.opacity = 0;
+                wrapper.style.pointerEvents = "none";
+            }
+        }, 3000);
+        localStorage.setItem("latestUpdate", updateDate);
+    }
+</script>

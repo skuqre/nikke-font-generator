@@ -2,670 +2,294 @@
 
 ---
 
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<div class="input-wrapper">
+    <div class="input-main" id="blabla-tool-tablist">
+        <div class="row">
+            <div class="input-button fullwidth" id="set-convo" style="font-weight: bold;">
+                <span>Conversation</span>
+            </div>
+            <div class="input-button fullwidth" id="set-chats">
+                <span>Chat List</span>
+            </div>
+            <div class="input-button fullwidth" id="set-profile">
+                <span>Profile</span>
+            </div>
+        </div>
+    </div>
 
+    <div class="input-main" id="blabla-tool-conversation" style="display: flex;">
+        <div class="row takeheight">
+            <h4 style="margin: 0;">Add Message</h4>
+        </div>
+        <div class="row">
+            <input type="text" id="charname" class="fullwidth" placeholder="Sender's name here..." />
+            <div class="input-button" id="add"><span>Add</span></div>
+            <input type="color" id="color" value="#ffffff" style="height: 88px;" />
+        </div>
+        <div class="row takeheight">
+            <textarea id="chatter" class="fullwidth" placeholder="What the sender will be saying..."></textarea>
+            <div class="filler-square"></div>
+        </div>
+        <div class="row">
+            <div class="fullwidth row-even" id="quick-switch">
+                <div class="input-button fullwidth" id="set-oth">
+                    <span><i class='bx bx-message-square-dots'></i> Sender</span>
+                </div>
+                <div class="input-button fullwidth" id="set-com">
+                    <span><i class='bx bxs-message-square-dots bx-flip-horizontal'></i> Receiver</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label for="attachment-up" class="input-button fullwidth">
+                <span>
+                    <i class='bx bxs-image-add'></i>
+                    Send an image...
+                </span>
+                <input type="file" id="attachment-up" accept="image/*" />
+            </label>
+        </div>
+        <div class="row">
+            <input type="text" id="char-pres-up" class="fullwidth" placeholder="🔎 Look for NIKKE character's avatar..."/>
+            <div class="pfp-preview">
+                <img id="pfp-preview" src="/nikke-font-generator/images/blabla/pfp/nochat.png"/>
+            </div>
+        </div>
+        <div class="row">
+            <label for="char-img-up" class="input-button fullwidth">
+                <span>Upload avatar...</span>
+                <input type="file" id="char-img-up" accept="image/*" />
+            </label>
+            <div class="filler-square"></div>
+            <div class="filler-square"></div>
+        </div>
 
-<div class="input-fields">
-    <table>
-        <tbody id="main-section">
-            <th id="top-title">
-                Append
-            </th>
-            <tr>
-                <td>
-                    <input
-                        type="text"
-                        id="charname"
-                        autocomplete="off"
-                        placeholder='Character name...'
-                    />
-                </td>
-                <td>
-                    <button id="add">Add Chat</button>
-                </td>
-                <td rowspan="2" style="vertical-align: top;">
-                    <input
-                        type="color"
-                        id="color"
-                        autocomplete="off"
-                        value="#ffffff"
-                        style="top: 2px; position: relative;"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <textarea
-                        id="chatter"
-                        autocomplete="off"
-                        placeholder='What the character will be saying...'
-                        style="top: -4px; position: relative;"
-                    />
-                </td>
-                <td style="vertical-align: top;">
-                    <button id="set-oth" style="width: calc(50% - 7px); display: inline-block;"><i class='bx bx-message-square-minus'></i></button>
-                    <button id="set-com" style="width: calc(50% - 7px); display: inline-block; left: 2px; position: relative;"><i class='bx bxs-message-square-minus bx-flip-horizontal' ></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1" class="wholerow">
-                    <label class="overflowingrow whole-row" for="char-img-up">
-                        Upload Character image...
-                        <input type="file" id="char-img-up" accept="image/*">
-                    </label>
-                    <input
-                        type="text"
-                        id="char-pres-up"
-                        autocomplete="off"
-                        placeholder="🔍 Search for a character's image"
-                        class="overflowingrow"
-                    />
-                </td>
-                <td class="imgpre" colspan="2">
-                    <img id="pfp-preview" class="image-preview" src="/nikke-font-generator/images/transparent.png" />
-                </td>
-                <!-- <td style="vertical-align: top;">
-                    <button class="history-but" style=""><i class='bx bx-history'></i></button>
-                </td> -->
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <label class="whole-row" for="attachment-up">
-                        <i class='bx bxs-image' style="margin-right: 8px"></i> Send Image as character...
-                        <input type="file" id="attachment-up" accept="image/*">
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label class="whole-row" for="frame-up">
-                        Add profile frame...
-                        <input type="file" id="frame-up" accept="image/*">
-                    </label>
-                </td>
-                <td>
-                    <button id="frame-remove" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove profile frame (if available)"><i class='bx bx-trash'></i></button>
-                </td>
-            </tr>
-            
-            <th>
-                Edit
-            </th>
-            <tr>
-                <td>
-                    <input
-                        type="text"
-                        id="charname-edit"
-                        autocomplete="off"
-                        placeholder='Character name...'
-                    />
-                </td>
-                <td>
-                    <button id="edit">Refresh</button>
-                </td>
-                <td rowspan="2" style="vertical-align: top;">
-                    <input
-                        type="color"
-                        id="color-edit"
-                        autocomplete="off"
-                        value="#ffac00"
-                        style="top: 2px; position: relative;"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <textarea
-                        id="chatter-edit"
-                        autocomplete="off"
-                        placeholder='What the character will be saying...'
-                        style="top: -4px; position: relative;"
-                    />
-                </td>
-                <td style="vertical-align: top;">
-                    <input type="number" id="message-index-edit" style="width: 78px; margin: 0; margin-bottom: 4px;" min="0" placeholder="Index..." />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1" class="wholerow">
-                    <label class="overflowingrow whole-row" for="char-img-edit">
-                        Change Character image...
-                        <input type="file" id="char-img-edit" accept="image/*">
-                    </label>
-                    <input
-                        type="text"
-                        id="char-pres-edit"
-                        autocomplete="off"
-                        placeholder="🔍 Search for a character's image"
-                        class="overflowingrow"
-                    />
-                </td>
-                <td class="imgpre" colspan="2">
-                    <img id="pfp-preview-edit" class="image-preview" src="/nikke-font-generator/images/transparent.png" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label class="whole-row" for="attachment-edit">
-                        <i class='bx bxs-image' style="margin-right: 8px"></i> Change sent image...
-                        <input type="file" id="attachment-edit" accept="image/*">
-                    </label>
-                </td>
-                <td>
-                    <button id="attachment-remove" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove image (if available)"><i class='bx bx-trash'></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label class="whole-row" for="frame-edit">
-                        Change profile frame...
-                        <input type="file" id="frame-edit" accept="image/*">
-                    </label>
-                </td>
-                <td>
-                    <button id="frame-edit-remove" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove frame (if available)"><i class='bx bx-trash'></i></button>
-                </td>
-            </tr>
-        </tbody>
+        <div class="row takeheight">
+            <h4>Choices</h4>
+        </div>
+        <div class="row takeheight">
+            <textarea 
+                id="choices"
+                class="fullwidth"
+                style="text-align: center; min-height: 60px;"
+                placeholder="Put your choices here.&#13;&#10;You can separate choices by pressing enter."></textarea>
+        </div>
 
-        <tbody id="profile-section" style="display: none;">
-            <th>
-                Profile
-            </th>
-            <tr>
-                <td colspan="3">
-                    <input
-                        type="text"
-                        id="charname-edit-p"
-                        autocomplete="off"
-                        placeholder='Character name...'
-                        style="width: calc(100% - 20px);"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <textarea
-                        id="chatter-edit-p"
-                        autocomplete="off"
-                        placeholder='What the Blabla description may be...'
-                        style="top: -4px; position: relative; width: calc(100% - 20px); max-width: calc(100% - 20px);"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1" class="wholerow">
-                    <label class="overflowingrow whole-row" for="char-img-edit-p">
-                        Change Character image...
-                        <input type="file" id="char-img-edit-p" accept="image/*">
-                    </label>
-                    <input
-                        type="text"
-                        id="char-pres-edit-p"
-                        autocomplete="off"
-                        placeholder="🔍 Search for a character's image"
-                        class="overflowingrow"
-                    />
-                </td>
-                <td class="imgpre" colspan="2">
-                    <img id="pfp-preview-edit-p" class="image-preview" src="/nikke-font-generator/images/transparent.png" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label class="whole-row" for="background-edit-p">
-                        Change background image...
-                        <input type="file" id="background-edit-p" accept="image/*">
-                    </label>
-                </td>
-                <td>
-                    <button id="background-remove-p" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove background (if available)"><i class='bx bx-trash'></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label class="whole-row" for="frame-edit-p">
-                        Change profile frame...
-                        <input type="file" id="frame-edit-p" accept="image/*">
-                    </label>
-                </td>
-                <td>
-                    <button id="frame-remove-p" class="button-bs" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px" title="Remove frame (if available)"><i class='bx bx-trash'></i></button>
-                </td>
-            </tr>
+        <div class="row takeheight">
+            <h4>Thought</h4>
+        </div>
+        <div class="row takeheight">
+            <textarea 
+                id="thought"
+                class="fullwidth"
+                placeholder="What's on your mind?"></textarea>
+            <div class="input-button square" id="thought-toggle">
+                <i class='bx bx-show-alt'></i>
+            </div>
+        </div>
 
-            <th colspan="3">Background Sizing and Position (X, Y, and Scale)</th>
-            <tr>
-                <td colspan="3">
-                    <input
-                        type="number"
-                        id="xposbg"
-                        autocomplete="off"
-                        value="0"
-                        step="10"
-                    />
-                    <input
-                        type="number"
-                        id="yposbg"
-                        autocomplete="off"
-                        value="0"
-                        step="10"
-                    />
-                    <input
-                        type="number"
-                        id="scalebg"
-                        autocomplete="off"
-                        value="100"
-                    />
-                </td>
-            </tr>
-        </tbody>
+        <div class="row takeheight">
+            <h4>Edit Message</h4>
+        </div>
+        <div class="row">
+            <input type="text" id="charname-edit" class="fullwidth" placeholder="Sender's name here..." />
+            <div class="input-button" id="edit"><span>Refresh</span></div>
+            <input type="color" id="color-edit" value="#ffffff" style="height: 88px;" />
+        </div>
+        <div class="row takeheight">
+            <textarea id="chatter-edit" class="fullwidth" placeholder="What the sender will be saying..."></textarea>
+            <input type="number" id="message-index-edit" placeholder="Index" />
+            <div class="filler-square"></div>
+        </div>
+        <div class="row">
+            <label for="attachment-edit" class="input-button fullwidth">
+                <span>
+                    <i class='bx bxs-image-add'></i>
+                    Change image...
+                </span>
+                <input type="file" id="attachment-edit" accept="image/*" />
+            </label>
+            <div class="input-button square" id="attachment-remove">
+                <i class='bx bx-trash'></i>
+            </div>
+        </div>
+        <div class="row">
+            <input type="text" id="char-pres-edit" class="fullwidth" placeholder="🔎 Look for NIKKE character's avatar..."/>
+            <div class="pfp-preview">
+                <img id="pfp-preview-edit" src="/nikke-font-generator/images/blabla/pfp/nochat.png"/>
+            </div>
+        </div>
+        <div class="row">
+            <label for="char-img-edit" class="input-button fullwidth">
+                <span>Change avatar...</span>
+                <input type="file" id="char-img-edit" accept="image/*" />
+            </label>
+            <div class="filler-square"></div>
+            <div class="filler-square"></div>
+        </div>
 
-        <th>
-            Chat
-        </th>
-        <tr style="display: table-row;" id="convo-page-shit">
-            <td>
-                <input
-                    type="text"
-                    id="chatname"
-                    autocomplete="off"
-                    placeholder='Chat Name'
-                />
-            </td>
-            <td colspan="2">
-                <button id="arrow-toggle" style="width: 137px;">Arrow: ON</button>
-            </td>
-        </tr>
-        <tr style="display: none;" id="chats-page-tabs">
-            <td style="vertical-align: top; padding-top: 5px; padding-bottom: 5px;" colspan="3">
-                <button id="mission-page" class="button-bs" style="width: calc(33.33% - 8px); margin-left: 4px; margin-right: 3px; font-weight: normal;">
-                    <img src="/nikke-font-generator/images/blabla/logo_mission.png" class="logo-img" alt=""> Mission
-                </button>
-                <button id="nikke-page" class="button-bs" style="width: calc(33.33% - 8px); font-weight: bold;">
-                    <img src="/nikke-font-generator/images/blabla/logo_nikke.png" class="logo-img" alt=""> Nikke
-                </button>
-                <button id="group-page" class="button-bs" style="width: calc(33.33% - 8px); font-weight: normal; position: relative;">
-                    <img src="/nikke-font-generator/images/blabla/logo_group.png" class="logo-img" alt=""> Group
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="1">
-                <input type="number" id="ypos" step="10" style="width: 157px; margin: 0; margin-left: 4px; margin-right: 4px; margin-bottom: 4px;" placeholder="Scroll Offset" />
-                <button id="drag-toggle" class="button-bs" style="width: 90px; display: inline-block;">Drag: OFF</button>
-            </td>
-            <td colspan="1">
-                <!-- <input
-                    type="color"
-                    id="chat-theme"
-                    autocomplete="off"
-                    value="#ffac00"
-                    style="top: -2px; position: relative; width: 138px; height: 40px;"
-                /> -->
-                <input
-                    type="text"
-                    id="chattime"
-                    autocomplete="off"
-                    placeholder='Time'
-                    style="width: 82px; height: 32px; margin: 0; top: -2px; position: relative; text-align: center; padding: 4px"
-                />
-            </td>
-            <td>
-                <button id="wifi-toggle" style="width: 40px; height: 40px; top: -2px; position: relative; text-align: center; font-size: 24px"><i class='bx bx-wifi'></i></button>
-            </td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;" colspan="3">
-                <button id="set-chats" class="button-bs" style="width: calc(33.33% - 8px); margin-left: 4px; margin-right: 3px; font-weight: normal;">
-                    Chat list
-                </button>
-                <button id="set-convo" class="button-bs" style="width: calc(33.33% - 8px); font-weight: bold;">
-                    Conversation
-                </button>
-                <button id="set-profile" class="button-bs" style="width: calc(33.33% - 8px); font-weight: normal; position: relative;">
-                    Profile
-                </button>
-            </td>
+        <div class="row takeheight">
+            <h4>Chat</h4>
+        </div>
+        <div class="row">
+            <input type="text" id="chatname" class="fullwidth" placeholder="Chat Name" />
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="arrow-toggle">
+                <span>Exit Arrow: Shown</span>
+            </div>
+        </div>
 
-            <!-- <td style="vertical-align: top;" colspan="3">
-                <button id="set-chats" style="width: calc(50% - 8px); display: inline-block; margin-left: 4px; margin-right: 3px; font-weight: normal;">Chats screen</button>
-                <button id="set-convo" style="width: calc(50% - 8px); display: inline-block; font-weight: bold;">Conversation screen</button>
-            </td> -->
-        </tr>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <label class="whole-row" id="grid-toggle" style="margin-top: 4px; user-select: none;">
-                    Grid Background: OFF
-                </label>
-            </td>
-        </tr>
+        <div class="row takeheight">
+            <h4>Delete / Reset</h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="del-late">
+                <span>
+                    <i class='bx bx-trash'></i>
+                    Delete latest message...
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="del-spec">
+                <span>
+                    <i class='bx bx-trash'></i>
+                    Delete message at index...
+                </span>
+            </div>
+            <input type="number" id="message-index" placeholder="Index" />
+        </div>
+        <div class="row" id="color-transforms">
+            <div class="input-button fullwidth" id="res-color">
+                <span>Reset color to Commander's color</span>
+            </div>
+            <input type="color" id="com-color" value="#ffac00" />
+        </div>
+    </div>
 
-        <th>
-            Choices
-        </th>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <textarea
-                    id="choices"
-                    autocomplete="off"
-                    placeholder='1 line = 1 choice...'
-                    style="min-width: calc(100% - 20px); text-align:center;"
-                    class="whole-row"
-                />
-            </td>
-        </tr>
+    <div class="input-main" id="blabla-tool-chatlist" style="display: none;">
+        <div class="row" id="chat-menu-transforms">
+            <div class="input-button fullwidth" id="mission-page" style="font-weight: bold;">
+                <span>Mission</span>
+            </div>
+            <div class="input-button fullwidth" id="nikke-page">
+                <span>Nikke</span>
+            </div>
+            <div class="input-button fullwidth" id="group-page">
+                <span>Group</span>
+            </div>
+        </div>
 
-        <th>
-            Thought
-        </th>
-        <tr>
-            <td colspan="2" class="wholerow">
-                <textarea
-                    id="thought"
-                    autocomplete="off"
-                    placeholder='What are we thinking?'
-                    style="min-width: calc(100% - 20px); text-align:center;"
-                    class="whole-row"
-                />
-            </td>
-            <td style="vertical-align: top;">
-                <button id="thought-toggle" class="button-bs" style="width: 40px; height: 40px; top: 4px; position: relative; text-align: center; font-size: 24px;"><i class='bx bx-show-alt'></i></button>
-            </td>
-        </tr>
+        <p id="laziness-paragraph">
+            UI here coming soon! You can basically just do this through
+            the <b>Conversation</b> tab, as it is just a slight convert.
+        </p>
+    </div>
 
-        <th>Other</th>
-        <tr>
-            <td style="vertical-align: top;" colspan="3">
-                <label id="import" class="button-bs" style="width: calc(50% - 8px); line-height: 40px; display: inline-block; margin-left: 4px; margin-right: 3px;">
-                    Import JSON
-                    <input type="file" id="chat-json-up" accept=".json">
-                </label>
-                <label id="export" class="button-bs" style="width: calc(50% - 8px); line-height: 40px; display: inline-block;">
-                    Export JSON
-                </label>
-            </td>
-        </tr>
+    <div class="input-main" id="blabla-tool-profile" style="display: none;">
+        <div class="row takeheight">
+            <h4 style="margin: 0;">Profile</h4>
+        </div>
+        <div class="row">
+            <input type="text" id="charname-edit-p" class="fullwidth" placeholder="Name" />
+        </div>
+        <div class="row takeheight">
+            <textarea id="chatter-edit-p" class="fullwidth" placeholder="Description"></textarea>
+        </div>
 
-        <th>
-            Export
-        </th>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <label class="whole-row" id="export-png">
-                    Export as PNG...
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <label class="whole-row" id="export-mp4">
-                    Export as MP4...
-                </label>
-            </td>
-        </tr>
+        <div class="row">
+            <input type="text" id="char-pres-edit-p" class="fullwidth" placeholder="🔎 Look for NIKKE character's avatar..."/>
+            <div class="pfp-preview">
+                <img id="pfp-preview-edit-p" src="/nikke-font-generator/images/blabla/pfp/nochat.png"/>
+            </div>
+        </div>
+        <div class="row">
+            <label for="char-img-edit-p" class="input-button fullwidth">
+                <span>Upload avatar...</span>
+                <input type="file" id="char-img-edit-p" accept="image/*" />
+            </label>
+            <div class="filler-square"></div>
+            <div class="filler-square"></div>
+        </div>
 
+        <div class="row takeheight">
+            <h4>Background</h4>
+        </div>
+        <div class="row takeheight" id="bg-transforms">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposbg" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposbg" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalebg" class="fullwidth" value="120" />
+            </div>
+        </div>
+        <div class="row">
+            <label for="background-edit-p" class="input-button fullwidth">
+                <span>Change background image...</span>
+                <input type="file" id="background-edit-p" accept="image/*" />
+            </label>
+            <div class="input-button square" id="background-remove-p">
+                <i class='bx bx-trash'></i>
+            </div>
+        </div>
+    </div>
 
-        <th>
-            Delete / Reset
-        </th>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <label class="whole-row" id="del-late">
-                    Delete last message...
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label class="whole-row" id="del-spec" >
-                    Delete specific message...
-                </label>
-            </td>
-            <td colspan="2">
-                <input type="number" id="message-index" style="width: 126px; margin: 0; margin-bottom: 4px;" min="0" placeholder="Index..." />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="1" class="wholerow">
-                <label class="whole-row" id="res-color">
-                    Set Color to Commander's Color...
-                </label>
-            </td>
-            <td colspan="2">
-                <input
-                    type="color"
-                    id="com-color"
-                    autocomplete="off"
-                    value="#ffac00"
-                    style="top: -2px; position: relative; width: 138px; height: 40px;"
-                />
-            </td>
-        </tr>
-    </table>
+    <div class="input-main" id="blabla-tool-misc">
+        <div class="row">
+            <input type="text" id="chattime" class="fullwidth" placeholder="Time" />
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="grid-toggle">
+                <span>Grid Background: Hidden</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="wifi-toggle">
+                <span>WIFI Icon: Shown</span>
+            </div>
+        </div>
+        <div class="row takeheight">
+            <h4></h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="drag-toggle">
+                <span>Scroll: OFF</span>
+            </div>
+            <input type="number" id="ypos" class="input-button fullwidth" placeholder="Scroll Offset"/>
+        </div>
+        <div class="row">
+            <label for="chat-json-up" class="input-button fullwidth" id="import">
+                <span>Import JSON</span>
+                <input type="file" id="chat-json-up" accept="image/*" />
+            </label>
+            <div class="input-button fullwidth" id="export">
+                <span>Export JSON</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="export-png">
+                <span><i class='bx bxs-download'></i> Download Image</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="export-mp4">
+                <span><i class='bx bxs-download'></i> Download Video</span>
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
-    div.input-fields {
-        width: fit-content;
-        margin: auto;
-        background-color: var(--darkerer);
-        border-radius: 4px;
-        box-shadow: 0 0 16px black;
-    }
-
-    div > table {
-        margin: auto;
-    }
-
-    input, textarea {
-        width: 256px;
-        height: 32px;
-        font-family: "pretendard";
-        padding: 4px;
-        padding-left: 8px;
-        margin: 4px;
-        outline: none;
-        border: 0;
-        background-color: var(--dark);
-        border-radius: 4px;
-        caret-color: white;
-        color: lightgray;
-        font-size: 16px;
-    }
-
-    textarea {
-        margin-bottom: -2px;
-        min-width: 256px;
-        max-width: 256px;
-        min-height: 32px;
-        resize: vertical;
-    }
-
-    input#subtext {
-        margin-top: 0;
-    }
-
-    select#size {
-        width: 90px;
-        height: 40px;
-        padding-left: 8px;
-        font-size: 16px;
-        background-color: var(--darker);
-        color: lightgray;
-        border: none;
-        border-radius: 4px;
-        font-family: 'pretendard', sans-serif;
-    }
-
-    button {
-        all: unset;
-    }
-
-    button:focus {
-        outline: revert;
-    }
-
-    input#color, input#color-edit, input#com-color, input#chat-theme {
-        width: 40px;
-        height: 90px;
-
-        margin: 0;
-        margin-right: 4px;
-        padding: 0px 2px;
-    }
-
-    button#add, button#edit, button#arrow-toggle, button#set-com, button#set-oth,
-    button#set-chats, button#set-convo, button#wifi-toggle, .button-bs {
-        width: 90px;
-        height: 40px;
-        background-color: var(--darker);
-        border-radius: 4px;
-        color: lightgray;
-        font-family: "pretendard";
-        text-align: center;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-
-        margin-left: 0px;
-        margin-right: 4px;
-    }
-
-    button#add:hover, button#edit:hover, button#arrow-toggle:hover, button#set-com:hover, button#set-oth:hover,
-    button#set-chats:hover, button#set-convo:hover, button#wifi-toggle:hover, .button-bs:hover {
-        background-color: #f4d2594b;
-        color: white;
-        text-decoration: none;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-    }
-
-    button#set-com, button#set-oth, .history-but {
-        font-size: 24px;
-    }
-
-    input[type="file"] {
-        display: none;
-    }
-
-    label > input {
-        width: 24px;
-        height: 24px;
-        margin: 8px;
-        border-radius: 4px;
-    }
-
-    label {
-        height: 40px;
-        display: flex;
-        align-content: center;
-        justify-content: left;
-    }
-
-    label.whole-row {
-        width: calc(100% - 8px);
-        height: 40px;
-        background-color: var(--darker);
-        border-radius: 4px;
-        color: lightgray;
-        font-family: "pretendard";
-        text-align: center;
-
-        margin-left: 4px;
-        margin-bottom: 4px;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-        justify-content: center;
+    div.input-wrapper {
+        flex-direction: column;
         align-items: center;
-    }
-
-    label.whole-row:hover {
-        background-color: #f4d2594b;
-        color: white;
-        text-decoration: none;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-
-        height: 40px;
-    }
-
-    #del-late {
-        user-select: none;
-    }
-
-    #del-spec, #res-color, #char-pre-img, #char-pre-edit {
-        height: 40px;
-        user-select: none;
-    }
-
-    th {
-        text-align: left;
-        padding-left: 8px;
-        padding-top: 8px;
-    }
-
-    .image-preview {
-        width: 90px;
-        height: 90px;
-        background-color: rgba(0, 0, 0, 0);
-
-        float: right;
-        margin-right: 5px;
-
-        background-image: url('/nikke-font-generator/images/blabla/pfp/nochat.png');
-        background-size: 80%;
-        background-repeat: no-repeat;
-        background-position: center;
-
-        scale: 120%;
-    }
-
-    .wholerow {
-        vertical-align: top;
-    }
-
-    td.imgpre {
-        vertical-align: top;
-    }
-
-    .history-but {
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        background-color: var(--darker);
-        border-radius: 4px;
-    }
-
-    .logo-img {
-        width: 16px;
-    }
-
-    label.overflowingrow {
-        width: calc(100% - 8px + 48px);
-    }
-
-    input.overflowingrow {
-        width: calc(100% - 8px + 36px);
-        margin-top: 5px;
-    }
-
-    input[type="number"] {
-        width: 90px;
-        margin: 0;
-        margin-left: 4px;
-    }
-
-    p.tool-label {
-        margin: 0px 0px 4px 6px;
-        text-align: left;
-        width: max-content;
+        gap: 16px;
     }
 </style>

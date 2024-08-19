@@ -15,6 +15,7 @@
     "buffer": "^6.0.3",
     "fuzzysort": "^2.0.4",
     "gifencoder": "^2.0.1",
-    "h264-mp4-encoder": "^1.0.12"
+    "h264-mp4-encoder": "^1.0.12",
+    "marked": "^14.0.0"
   }
 }

@@ -2,545 +2,295 @@
 
 ---
 
-<div class="input-fields" id="sizing-tool" style="display: none;">
-    <table>
-        <th style="text-align: center;" colspan="4">
-            <button class="but" style="width: calc(50% - 6px); margin-right: 4px;" id="go-main">Images</button>
-            <button class="but" style="width: calc(50% - 6px);" id="go-ui">UI Elements / Canvas</button>
-        </th>
-        <tbody id="smain" style="display: table-row-group;">
-            <th colspan="3">Background</th>
-            <tr>
-                <td>
-                    <p class="tool-label">X Position</p>
-                    <input
-                        type="number"
-                        id="xposbg"
-                        autocomplete="off"
-                        value="0"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Y Position</p>
-                    <input
-                        type="number"
-                        id="yposbg"
-                        autocomplete="off"
-                        value="0"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Scale (%)</p>
-                    <input
-                        type="number"
-                        id="scalebg"
-                        autocomplete="off"
-                        value="120"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Drag</p>
-                    <button class="but" id="dbg">OFF</button>
-                </td>
-            </tr>
-            <tr class="wholerow">
-                <td colspan="4">
-                    <button class="but" id="bgautofit" style="width: calc(100% - 4px); margin: 5px 0; font-size: 16px; height: 30px" title="Make background images automatically fill empty space upon uploading.">Auto Fit: ON</button>
-                </td>
-            </tr>
+<br><br>
 
-            <th colspan="3">Character</th>
-            <tr>
-                <td>
-                    <p class="tool-label">X Position</p>
-                    <input
-                        type="number"
-                        id="xposch"
-                        autocomplete="off"
-                        value="-320"
-                        step="10"
-                        style="margin-bottom: 4px;"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Y Position</p>
-                    <input
-                        type="number"
-                        id="yposch"
-                        autocomplete="off"
-                        value="90"
-                        step="10"
-                        style="margin-bottom: 4px;"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Scale (%)</p>
-                    <input
-                        type="number"
-                        id="scalech"
-                        autocomplete="off"
-                        value="100"
-                        style="margin-bottom: 4px;"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Drag</p>
-                    <button class="but" id="dch" style="margin-bottom: 4px;">OFF</button>
-                </td>
-            </tr>
+<div class="input-wrapper" id="sizing-tool" style="display: flex;">
+    <div class="input-main" id="sizing-tool-main" style="display: flex;">
+        <div class="row">
+            <div class="input-button fullwidth tab-main">
+                <span><b>Main</b></span>
+            </div>
+            <div class="input-button fullwidth tab-ui" id="st-ui-button">
+                <span>UI</span>
+            </div>
+        </div>
 
-            <th colspan="3">Post-processing</th>
-            <tr class="wholerow">
-                <td>
-                    <p class="tool-label">Grayscale (%)</p>
-                    <input
-                        type="number"
-                        id="gsnum"
-                        autocomplete="off"
-                        value="0"
-                        step="1"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Blur (pixels)</p>
-                    <input
-                        type="number"
-                        id="blnum"
-                        autocomplete="off"
-                        value="0"
-                        step="1"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Bright (%)</p>
-                    <input
-                        type="number"
-                        id="brnum"
-                        autocomplete="off"
-                        value="100"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Draw</p>
-                    <button class="but" id="df" style="margin-bottom: 4px;">ON</button>
-                </td>
-            </tr>
+        <div class="row takeheight">
+            <h4>Background</h4>
+        </div>
+        <div class="row takeheight" id="bg-transforms">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposbg" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposbg" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalebg" class="fullwidth" value="120" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dbg">OFF</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="bgautofit">Auto Fit: ON</div>
+        </div>
 
-            <tr class="wholerow">
-                <td colspan="4">
-                    <textarea
-                        id="customfil"
-                        autocomplete="off"
-                        placeholder='Custom CSS filter code...'
-                    />
-                </td>
-            </tr>
-        </tbody>
-        <tbody id="sui" style="display: none;">
-            <th colspan="3">Character Name</th>
-            <tr>
-                <td>
-                    <p class="tool-label">X Position</p>
-                    <input
-                        type="number"
-                        id="xposcn"
-                        autocomplete="off"
-                        value="125"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Y Position</p>
-                    <input
-                        type="number"
-                        id="yposcn"
-                        autocomplete="off"
-                        value="877"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Font Size (px)</p>
-                    <input
-                        type="number"
-                        id="scalecn"
-                        autocomplete="off"
-                        value="25"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Drag</p>
-                    <button class="but" id="dcn">OFF</button>
-                </td>
-            </tr>
+        <div class="row takeheight">
+            <h4>Align Background</h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth icon-button" id="align-bg-top"><i class='bx bx-vertical-top'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-bg-ymid"><i class='bx bx-vertical-center'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-bg-bot"><i class='bx bx-vertical-bottom'></i></div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth icon-button" id="align-bg-left"><i class='bx bx-horizontal-left'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-bg-xmid"><i class='bx bx-horizontal-center'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-bg-right"><i class='bx bx-horizontal-right'></i></div>
+        </div>
 
-            <th colspan="3">Dialogue Text</th>
-            <tr>
-                <td>
-                    <p class="tool-label">X Position</p>
-                    <input
-                        type="number"
-                        id="xposdt"
-                        autocomplete="off"
-                        value="125"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Y Position</p>
-                    <input
-                        type="number"
-                        id="yposdt"
-                        autocomplete="off"
-                        value="929"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Font Size (px)</p>
-                    <input
-                        type="number"
-                        id="scaledt"
-                        autocomplete="off"
-                        value="23"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Drag</p>
-                    <button class="but" id="ddt">OFF</button>
-                </td>
-            </tr>
+        <div class="row takeheight" id="ch-transforms">
+            <h4>Character</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposch" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposch" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalech" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dch">OFF</div>
+            </div>
+        </div>
 
-            <th colspan="3">Dialogue Controls</th>
-            <tr>
-                <td>
-                    <p class="tool-label">X Position</p>
-                    <input
-                        type="number"
-                        id="xposdc"
-                        autocomplete="off"
-                        value="0"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Y Position</p>
-                    <input
-                        type="number"
-                        id="yposdc"
-                        autocomplete="off"
-                        value="0"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Scale (%)</p>
-                    <input
-                        type="number"
-                        id="scaledc"
-                        autocomplete="off"
-                        value="100"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Drag</p>
-                    <button class="but" id="ddc">OFF</button>
-                </td>
-            </tr>
+        <div class="row takeheight">
+            <h4>Align Character</h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth icon-button" id="align-ch-top"><i class='bx bx-vertical-top'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-ch-ymid"><i class='bx bx-vertical-center'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-ch-bot"><i class='bx bx-vertical-bottom'></i></div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth icon-button" id="align-ch-left"><i class='bx bx-horizontal-left'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-ch-xmid"><i class='bx bx-horizontal-center'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-ch-right"><i class='bx bx-horizontal-right'></i></div>
+        </div>
 
-            <th colspan="3">Color Bar</th>
-            <tr>
-                <td>
-                    <p class="tool-label">X Position</p>
-                    <input
-                        type="number"
-                        id="xposcb"
-                        autocomplete="off"
-                        value="110"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Y Position</p>
-                    <input
-                        type="number"
-                        id="yposcb"
-                        autocomplete="off"
-                        value="883"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Scale (%)</p>
-                    <input
-                        type="number"
-                        id="scalecb"
-                        autocomplete="off"
-                        value="100"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Drag</p>
-                    <button class="but" id="dcb">OFF</button>
-                </td>
-            </tr>
+        <div class="row takeheight">
+            <h4>Filters</h4>
+        </div>
+        <div class="row takeheight" id="filter-transforms">
+            <div class="column">
+                <span>Grayscale (%)</span>
+                <input type="number" id="gsnum" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Blur (px)</span>
+                <input type="number" id="blnum" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Brightness (%)</span>
+                <input type="number" id="brnum" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Draw</span>
+                <div class="input-button square text-button" id="df">ON</div>
+            </div>
+        </div>
+        <div class="row takeheight">
+            <textarea id="customfil" placeholder="Place your custom CSS Filter code here..."></textarea>
+        </div>
+    </div>
+    <div class="input-main" id="sizing-tool-ui" style="display: none;">
+        <div class="row">
+            <div class="input-button fullwidth tab-main">
+                <span>Main</span>
+            </div>
+            <div class="input-button fullwidth tab-ui">
+                <span><b>UI</b></span>
+            </div>
+        </div>
 
-            <th colspan="3">Arrow on the bottom right</th>
-            <tr>
-                <td>
-                    <p class="tool-label">X Position</p>
-                    <input
-                        type="number"
-                        id="xposar"
-                        autocomplete="off"
-                        value="0"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Y Position</p>
-                    <input
-                        type="number"
-                        id="yposar"
-                        autocomplete="off"
-                        value="0"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Scale (%)</p>
-                    <input
-                        type="number"
-                        id="scalear"
-                        autocomplete="off"
-                        value="100"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Drag</p>
-                    <button class="but" id="dar">OFF</button>
-                </td>
-            </tr>
+        <div class="row takeheight">
+            <h4>Character Name</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposcn" step="10" class="fullwidth" value="126" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposcn" step="10" class="fullwidth" value="878" />
+            </div>
+            <div class="column">
+                <span>Font Size (px)</span>
+                <input type="number" id="scalecn" class="fullwidth" value="23" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dcn">OFF</div>
+            </div>
+        </div>
 
-            <th colspan="3">Narration Box</th>
-            <tr>
-                <td>
-                    <p class="tool-label">X Offset</p>
-                    <input
-                        type="number"
-                        id="xposna"
-                        autocomplete="off"
-                        value="0"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Y Offset</p>
-                    <input
-                        type="number"
-                        id="yposna"
-                        autocomplete="off"
-                        value="0"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Scale (%)</p>
-                    <input
-                        type="number"
-                        id="scalena"
-                        autocomplete="off"
-                        value="100"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Drag</p>
-                    <button class="but" id="dna">OFF</button>
-                </td>
-            </tr>
+        <div class="row takeheight">
+            <h4>Dialogue Text</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposdt" step="10" class="fullwidth" value="125" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposdt" step="10" class="fullwidth" value="929" />
+            </div>
+            <div class="column">
+                <span>Font Size (px)</span>
+                <input type="number" id="scaledt" class="fullwidth" value="23" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="ddt">OFF</div>
+            </div>
+        </div>
 
-            <th colspan="3">Canvas</th>
-            <tr>
-                <td>
-                    <p class="tool-label">Width</p>
-                    <input
-                        type="number"
-                        id="wca"
-                        autocomplete="off"
-                        value="1080"
-                        step="10"
-                    />
-                </td>
-                <td>
-                    <p class="tool-label">Height</p>
-                    <input
-                        type="number"
-                        id="hca"
-                        autocomplete="off"
-                        value="1080"
-                        step="10"
-                    />
-                </td>
-                <!-- <td>
-                    <p class="tool-label" title="
-                    I know, too short for a title; having this on will change the positions of other UI elements related 
-                    to its' position in the original 1080p size when changing the canvas size.
-                    ">Keep UI Pos</p>
-                    <button class="but" id="chp">ON</button>
-                </td> -->
-            </tr>
+        <div class="row takeheight">
+            <h4>Dialogue Controls</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposdc" step="10" class="fullwidth" value="677" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposdc" step="10" class="fullwidth" value="13" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scaledc" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="ddc">OFF</div>
+            </div>
+        </div>
 
-            <tr class="wholerow">
-                <td colspan="4">
-                    <button class="but" id="bgtocan" style="width: calc(100% - 4px); margin: 5px 0; font-size: 16px; height: 30px">Make canvas size BG image size</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="row takeheight">
+            <h4>Color Bar</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposcb" step="10" class="fullwidth" value="110" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposcb" step="10" class="fullwidth" value="883" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalecb" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dcb">OFF</div>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Bottom Right Pointer</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposar" step="10" class="fullwidth" value="953" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposar" step="10" class="fullwidth" value="1027" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalear" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dar">OFF</div>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Narration Box</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Offset</span>
+                <input type="number" id="xposna" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Y Offset</span>
+                <input type="number" id="yposna" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalena" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dna">OFF</div>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Canvas</h4>
+        </div>
+        <div class="row takeheight" id="canvas-transforms">
+            <div class="column">
+                <span>Width</span>
+                <input type="number" id="wca" step="10" class="fullwidth" value="1080" />
+            </div>
+            <div class="column">
+                <span>Height</span>
+                <input type="number" id="hca" step="10" class="fullwidth" value="1080" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="bgtocan">Make canvas size background image size</div>
+        </div>
+    </div>
 </div>
 
-
 <script>
-    let main = document.getElementById('smain');
-    let ui = document.getElementById('sui');
+    const tabUI = document.getElementsByClassName("tab-ui");
+    const tabMain = document.getElementsByClassName("tab-main");
 
-    document.getElementById('go-main').style['fontWeight'] = 'bold';
-    document.getElementById('go-ui').style['fontWeight'] = 'normal';
-
-    document.getElementById('go-main').addEventListener('click', (e) => {
-        main.style.setProperty('display', 'table-row-group');
-        ui.style.setProperty('display', 'none');
-
-        document.getElementById('go-main').style['fontWeight'] = 'bold';
-        document.getElementById('go-ui').style['fontWeight'] = 'normal';
+    [...tabUI].forEach((e: HTMLElement) => {
+        e.onclick = (_) => {
+            document.getElementById("sizing-tool-main").style.display = "none";
+            document.getElementById("sizing-tool-ui").style.display = "flex";
+        }
     });
-    document.getElementById('go-ui').addEventListener('click', (e) => {
-        ui.style.setProperty('display', 'table-row-group');
-        main.style.setProperty('display', 'none');
 
-        document.getElementById('go-ui').style['fontWeight'] = 'bold';
-        document.getElementById('go-main').style['fontWeight'] = 'normal';
+    [...tabMain].forEach((e: HTMLElement) => {
+        e.onclick = (_) => {
+            document.getElementById("sizing-tool-main").style.display = "flex";
+            document.getElementById("sizing-tool-ui").style.display = "none";
+        }
     });
 </script>
-
-<style>
-    div.input-fields {
-        width: fit-content;
-        margin: auto;
-        margin-top: 16px;
-        background-color: var(--darkerer);
-        border-radius: 4px;
-        box-shadow: 0 0 16px black;
-    }
-
-    p.tool-label {
-        /* width: min-content; */
-        margin: 0px 0px 4px 0px;
-        text-align: left;
-    }
-
-    input#xscalebg::after {
-        content: '%';
-    }
-
-    div > table {
-        margin: auto;
-    }
-
-    th {
-        text-align: left;
-        padding-left: 4px;
-        padding-top: 8px;
-    }
-
-    td {
-        padding-left: 5px;
-    }
-
-    input, textarea {
-        width: 256px;
-        height: 32px;
-        font-family: "pretendard";
-        padding: 4px;
-        padding-left: 8px;
-        /* margin: 4px; */
-        outline: none;
-        border: 0;
-        background-color: var(--dark);
-        border-radius: 4px;
-        caret-color: white;
-        color: lightgray;
-        font-size: 16px;
-    }
-
-    input[type="number"] {
-        width: 90px;
-    }
-
-    label > input {
-        width: 24px;
-        height: 24px;
-        margin: 8px;
-        border-radius: 4px;
-    }
-
-    label.whole-row, button.whole-row {
-        width: 100%;
-        height: 30px;
-        background-color: var(--darker);
-        border-radius: 4px;
-        color: lightgray;
-        font-family: "pretendard";
-        text-align: center;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-        justify-content: center;
-        align-items: center;
-    }
-
-    input[type="file"] {
-        display: none;
-    }
-
-    .wholerow {
-        padding: 0 5px;
-    }
-
-    button.but {
-        border: 0;
-        width: 40px;
-        height: 40px;
-        background-color: var(--darker);
-        border-radius: 4px;
-        color: lightgray;
-        font-family: "pretendard";
-        text-align: center;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-
-        margin: 0px;
-        margin-right: 4px;
-    }
-
-    button.but:hover {
-        background-color: #f4d2594b;
-        color: white;
-        text-decoration: none;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-    }
-
-    textarea {
-        resize: vertical;
-        width: 360px;
-        min-height: 32px;
-    }
-</style>

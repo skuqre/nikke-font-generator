@@ -2,444 +2,115 @@
 
 ---
 
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-<div class="input-fields">
-    <table>
-        <tr>
-            <td>
-                <input
-                    type="text"
-                    id="character"
-                    autocomplete="off"
-                    placeholder='Character name here...'
-                />
-            </td>
-            <td>
-                <button id="generate">Refresh</button>
-            </td>
-            <td rowspan="2" style="vertical-align: top;">
-                <input
-                    type="color"
-                    id="color"
-                    autocomplete="off"
-                    value="#ffffff"
-                    style="top: 4px; position:relative;"
-                />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <textarea
-                    id="dialog"
-                    autocomplete="off"
-                    placeholder='What the character will be saying...'
-                    style="top: -4px; position: relative;"
-                />
-            </td>
-            <td style="vertical-align: top;">
-                <select id="size" name="Size" style="position: inherit;">
-                    <option value="100">100%</option>
-                    <option value="75">75%</option>
-                    <option value="50">50%</option>
-                    <option value="25">25%</option>
-                    <option value="10">10%</option>
-                </select>
-            </td>
-        </tr>
-
-        <th colspan="3">
-            Character
-        </th>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <label class="whole-row" for="char-img-up">
-                    Upload Character image...
-                    <input type="file" id="char-img-up" accept="image/*">
-                </label>
-            </td>
-        </tr>
-
-        <th colspan="3">
-            Background
-        </th>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <label class="whole-row" for="bg-img-up">
-                    Upload Background image...
-                    <input type="file" id="bg-img-up" accept="image/*">
-                </label>
-            </td>
-        </tr>
-        <!-- <tr>
-            <td colspan="3" class="wholerow">
-                <button class="whole-row">Choose from the BG pack...</button>
-            </td>
-        </tr> -->
-
-        <th>
-            Choices
-        </th>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <textarea
-                    id="choices"
-                    autocomplete="off"
-                    placeholder='1 line = 1 choice...'
-                    style="left: -4px; position: relative; min-width: calc(100% - 12px);"
-                    class="whole-row"
-                />
-            </td>
-        </tr>
-
-        <th>
-            Action / Narration
-        </th>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <textarea
-                    id="actionbox"
-                    autocomplete="off"
-                    placeholder='Some sort of narration...'
-                    style="left: -4px; position: relative; min-width: calc(100% - 12px);"
-                    class="whole-row"
-                />
-            </td>
-        </tr>
-
-        <th>
-            Dialogue Controls
-        </th>
-        <tr>
-            <td colspan="2" style="vertical-align: top;">
-                <p class="tool-label">Control Type</p>
-                <select id="cotype" name="Control Type" style="position: inherit; margin-left: 4px; width: calc(100% - 8px);">
-                    <option value="hideskip">Hide-Auto-Log-Skip (Default)</option>
-                    <option value="hidefast">Hide-Auto-Log-Fast</option>
-                    <option value="hidecancel">Hide-Auto-Log-Cancel</option>
-                    <option value="autoskip">Auto-Log-Skip</option>
-                    <option value="autofast">Auto-Log-Fast</option>
-                    <option value="autocancel">Auto-Log-Cancel</option>
-                </select>
-            </td>
-            <td>
-                <p class="tool-label">&nbsp;</p>
-                <button class="but" id="controls-toggle" style="margin-bottom: 4px; font-size: 24px;"><i class='bx bx-show-alt'></i></button>
-            </td>
-        </tr>
-
-        <th>
-            Export <span style="font-size: 13px"><a href="/nikke-font-generator/what-is/export-types">See explanation</a></span>
-        </th>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <button class="whole-row" id="export-png">Export as PNG...</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <button class="whole-row" id="export-mp4">Export as animated MP4...</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <button class="whole-row" id="export-frames">Export as individual frames (as ZIP)...</button>
-            </td>
-        </tr>
-
-        <th>
-            (ALPHA) Motion <span style="font-size: 13px"><a href="/nikke-font-generator/what-is/motion">See explanation</a></span>
-        </th>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <textarea
-                    id="motion"
-                    autocomplete="off"
-                    placeholder='Motion code.'
-                    style="left: -4px; position: relative; min-width: calc(100% - 12px);"
-                    class="whole-row"
-                />
-            </td>
-        </tr>
-
-        <th colspan="3">
-            Frame Allowance <!-- <span style="font-size: 13px"><a href="/nikke-font-generator/what-is/frame-allowance">See explanation</a> -->
-        </th>
-        <tr>
-            <td colspan="3">
-                <input
-                    type="number"
-                    id="fa"
-                    autocomplete="off"
-                    placeholder='Frames to add... (30 frames = 1 second)'
-                    min="0"
-                    style="width: calc(100% - 20px)"
-                />
-            </td>
-            <!-- This feature is soon! -->
-            <!-- <td colspan="2">
-                <select id="fa-how" name="How this number should interact with the frames" style="position: inherit; width: calc(100% - 4px)">
-                    <option value="add">Add</option>
-                    <option value="set">Set</option>
-                </select>
-            </td> -->
-        </tr>
+<div class="input-wrapper">
+    <div class="input-main">
+        <div class="row">
+            <input type="text" id="character" class="fullwidth" placeholder='Character name here...' />
+            <div class="input-button" id="generate"><span>Refresh</span></div>
+            <input type="color" id="color" value="#ffffff" style="height: 88px;" />
+        </div>
+        <div class="row takeheight">
+            <textarea id="dialog" class="fullwidth" placeholder="What the character will be saying..."></textarea>
+            <select id="size">
+                <option value="100">100%</option>
+                <option value="75">75%</option>
+                <option value="50">50%</option>
+                <option value="25">25%</option>
+                <option value="10">10%</option>
+            </select>
+            <div class="filler-square"></div>
+        </div>
+        <div class="row">
+            <label for="char-img-up" class="input-button fullwidth">
+                <span>Upload character image...</span>
+                <input type="file" id="char-img-up" accept="image/*" />
+            </label>
+        </div>
+        <div class="row">
+            <label for="bg-img-up" class="input-button fullwidth">
+                <span>Upload background image...</span>
+                <input type="file" id="bg-img-up" accept="image/*" />
+            </label>
+        </div>
         
+        <div class="row takeheight">
+            <h4>Narration</h4>
+        </div>
+        <div class="row takeheight">
+            <textarea 
+                id="actionbox"
+                class="fullwidth"
+                style="text-align: center;"
+                placeholder="Narrate your story."></textarea>
+        </div>
 
-        <th>
-            Other
-        </th>
-        <!-- <tr>
-            <td>
-                <label for="arr">
-                    <input
-                        type="checkbox"
-                        id="arr"
-                        autocomplete="off"
-                        value="arrow"
-                    />
-                    <p>Include Arrow</p>
-                </label>
-                <label for="diaops">
-                    <input
-                        type="checkbox"
-                        id="diaops"
-                        autocomplete="off"
-                        value="arrow"
-                    />
-                    <p>Include Dialogue Options</p>
-                </label>
-            </td>
-        </tr> -->
-        <tr>
-            <td colspan="3" class="wholerow" id="clear-char">
-                <button class="whole-row">Clear Character</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" class="wholerow" id="clear-bg">
-                <button class="whole-row">Clear Background</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <button class="whole-row" id="arrow-toggle">Bottom right arrow: ON</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" class="wholerow">
-                <button class="whole-row" id="ui-toggle">UI: ON</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" class="wholerow" id="enable-sizing">
-                <button class="whole-row">Enable Size, Position, and Post-process tools</button>
-            </td>
-        </tr>
+        <div class="row takeheight">
+            <h4>Choices</h4>
+        </div>
+        <div class="row takeheight">
+            <textarea 
+                id="choices"
+                class="fullwidth"
+                style="text-align: center; min-height: 60px;"
+                placeholder="Put your choices here.&#13;&#10;You can separate choices by pressing enter."></textarea>
+        </div>
 
-        <tr style="margin-bottom: 4px; display: block;"></tr>
-    </table>
+        <div class="row takeheight">
+            <h4>Dialogue Controls</h4>
+        </div>
+        <div class="row">
+            <select id="cotype" class="fullwidth">
+                <option value="hideskip">Hide-Auto-Log-Skip (Default)</option>
+                <option value="hidefast">Hide-Auto-Log-Fast</option>
+                <option value="hidecancel">Hide-Auto-Log-Cancel</option>
+                <option value="autoskip">Auto-Log-Skip</option>
+                <option value="autofast">Auto-Log-Fast</option>
+                <option value="autocancel">Auto-Log-Cancel</option>
+            </select>
+            <div class="input-button square" id="controls-toggle">
+                <i class='bx bx-show-alt'></i>
+            </div>
+        </div>
+        <div class="row takeheight">
+            <h4>Download</h4>
+        </div>
+        <div class="row takeheight column">
+            <div class="input-button fullwidth" id="export-png">
+                <span><i class='bx bxs-download'></i> Download Image</span>
+            </div>
+        </div>
+        <!-- <div class="row takeheight column">
+            <div class="input-button fullwidth" id="export-layers">
+                <span><i class='bx bxs-download'></i> Download as Editable Layers</span>
+            </div>
+        </div> -->
+        <div class="row takeheight">
+            <h4>Other</h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="clear-char">
+                <span>Clear Character</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="clear-bg">
+                <span>Clear Background</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="enable-sizing">
+                <span>Show sizing tools</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="arrow-toggle">
+                <span>Bottom right pointer: Shown</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="ui-toggle">
+                <span>UI: Shown</span>
+            </div>
+        </div>
+    </div>
 </div>
-
-<style>
-    div.input-fields {
-        width: fit-content;
-        margin: auto;
-        background-color: var(--darkerer);
-        border-radius: 4px;
-        box-shadow: 0 0 16px black;
-    }
-
-    div > table {
-        margin: auto;
-    }
-
-    th {
-        text-align: left;
-        padding-left: 8px;
-        padding-top: 8px;
-    }
-
-    input, textarea {
-        width: 256px;
-        height: 32px;
-        font-family: "pretendard";
-        padding: 4px;
-        padding-left: 8px;
-        margin: 4px;
-        outline: none;
-        border: 0;
-        background-color: var(--dark);
-        border-radius: 4px;
-        caret-color: white;
-        color: lightgray;
-        font-size: 16px;
-    }
-
-    textarea {
-        padding-top: 8px;
-        padding-bottom: 0;
-    }
-
-    label > input {
-        width: 24px;
-        height: 24px;
-        margin: 8px;
-        border-radius: 4px;
-    }
-
-    label {
-        height: 40px;
-        display: flex;
-        align-content: center;
-        justify-content: left;
-    }
-
-    label > p {
-        margin: auto 0;
-        display: inline-flex;
-    }
-
-    textarea {
-        min-width: 256px;
-        max-width: 256px;
-        min-height: 32px;
-        resize: vertical;
-    }
-
-    input#subtext {
-        margin-top: 0;
-    }
-
-    select {
-        width: 90px;
-        height: 40px;
-        padding-left: 8px;
-        font-size: 16px;
-        top: -2px; /* perfectionism */
-        background-color: var(--darker);
-        color: lightgray;
-        border: none;
-        border-radius: 4px;
-        font-family: 'pretendard', sans-serif;
-        position: relative;
-    }
-
-    button {
-        all: unset;
-    }
-
-    button:focus {
-        outline: revert;
-    }
-
-    input#color {
-        width: 40px;
-        height: 90px;
-
-        margin: 0;
-        padding: 0px 2px;
-    }
-
-    button#generate {
-        width: 90px;
-        height: 40px;
-        background-color: var(--darker);
-        border-radius: 4px;
-        color: lightgray;
-        font-family: "pretendard";
-        text-align: center;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-
-        margin-left: 0px;
-        margin-right: 4px;
-    }
-
-    label.whole-row, button.whole-row, textarea.whole-row {
-        width: 100%;
-        height: 30px;
-        background-color: var(--darker);
-        border-radius: 4px;
-        color: lightgray;
-        font-family: "pretendard";
-        text-align: center;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-        justify-content: center;
-        align-items: center;
-    }
-
-    button#rlc, button#rlbg {
-        width: 138px;
-        height: 40px;
-        background-color: var(--darker);
-        border-radius: 4px;
-        color: lightgray;
-        font-family: "pretendard";
-        text-align: center;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-
-        margin-left: 0px;
-        margin-right: 4px;
-    }
-
-    button#generate:hover, button#rlc:hover, button#rlbg:hover, label.whole-row:hover, button.whole-row:hover {
-        background-color: #f4d2594b;
-        color: white;
-        text-decoration: none;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-    }
-
-    input[type="file"] {
-        display: none;
-    }
-
-    .wholerow {
-        padding: 0 5px;
-    }
-
-    p.tool-label {
-        /* width: min-content; */
-        margin: 0px 0px 4px 6px;
-        text-align: left;
-    }
-
-    button.but {
-        border: 0;
-        width: 40px;
-        height: 40px;
-        background-color: var(--darker);
-        border-radius: 4px;
-        color: lightgray;
-        font-family: "pretendard";
-        text-align: center;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-
-        margin: 0px;
-        margin-right: 4px;
-    }
-
-    button.but:hover {
-        background-color: #f4d2594b;
-        color: white;
-        text-decoration: none;
-
-        transition-property: color, background-color, box-shadow;
-        transition-duration: 0.1s;
-        transition-timing-function: ease-in-out;
-    }
-</style>

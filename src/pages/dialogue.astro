@@ -4,6 +4,7 @@ import DialogDisplay from '../components/DialogDisplay.astro';
 import DialogueInput from '../components/DialogueInput.astro'
 import Credits from '../components/Credits.astro';
 import SizingTool from '../components/SizingTool.astro';
+import UpdatePopup from '../components/UpdatePopup.astro';
 ---
 
 <html lang="en">
@@ -22,16 +23,42 @@ import SizingTool from '../components/SizingTool.astro';
 		<meta name="twitter:description" content="Create a spoof of a dialogue interaction from NIKKE easily!">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta property="twitter:image:src" content="/nikke-font-generator/dialogue-example2.png" />
+
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	</head>
 	<body>
 		<h1>Barely Accurate NIKKE Dialogue Generator</h1>
 		<DialogDisplay />
+		<br><br>
+
+		<div class="input-wrapper">
+			<div class="input-main">
+				<div class="row">
+					<div class="input-button fullwidth" id="tutorial">
+						<img src="/nikke-font-generator/images/happiEinkk.png" class="einkk-bg" draggable="false">
+						<span style="z-index: 999; text-shadow: #000 0 0 4px"><b>Tutorial</b></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<SizingTool />
-		<p><i>Generated output you see may be barely accurate to inaccurate to official media.<br>Click the image for a fast download!</i></p>
-		<p style="margin: 0; margin-bottom: 4px;"><b><a href="/nikke-font-generator/how/dialogue">Tool Guide / What is this thing?</a></b></p>
+		<p><i>Generated output you see may be barely accurate to inaccurate compared to official media.</i></p>
 		<DialogueInput />
-		<p><i><b>****BE WARY OF POSTING IMAGES FROM THIS ON OFFICIAL CHANNELS!****</b><br>I (skuqre) do not recommend doing so the images may be rulebreaking.<br>I am not liable for anything that happens to you (in the Discord). I entrust you to keep yourself safe.<br>If you'd like to keep yourself safe in the official Discord, use fanart for your images!</i></p>
-		<p><i>NIKKE assets can be found on NikkeDB's <a href="https://nikke-db.pages.dev/gallery">gallery</a> and <a href="https://nikke-db.pages.dev/visualiser">Live2D visualizer</a> page for the NIKKEs.<br><b>I plead you keep the watermark on to refrain from spreading misinformation.</b></i></p>
+		<div style="text-align: center; font-style: italic; opacity: 0.75;">
+			<h3>BE WARY OF POSTING IMAGES TO OFFICIAL CHANNELS!</h3>
+			<p>
+				I (skuqre) am not liable for anything that happens to you.<br>
+				If you would like to post images to official channels,<br>
+				I highly recommend you to use <b>fanart</b> instead of using NIKKE's assets.<br>
+				For more information, please head to the <a href="/nikke-font-generator/usage/">Usage</a> page.
+			</p>
+			<p>
+				NIKKE assets can be found on NikkeDB's <a href="https://nikke-db.pages.dev/gallery">gallery</a> and
+				<a href="https://nikke-db.pages.dev/visualiser">Live2D visualizer</a> page for the NIKKEs.<br>
+				<b>Please keep the watermark on! I don't want you spreading lies!</b>
+			</p>
+		</div>
 		<Credits />
 
 		<div style="text-align: center; margin: 0; margin-top: 128px; display: flex; justify-content: center;">
@@ -48,6 +75,24 @@ import SizingTool from '../components/SizingTool.astro';
 			</div>
 		</div>
 
+		<div class="tutorial-layer" id="tutorial-layer" style="display: none;">
+			<div id="dialogue-backdrop" draggable="false"></div>
+			<div id="dialogue-spotlight-border" draggable="false"></div>
+			<div class="dialogue-part">
+				<div class="character-avatar">
+					<img src="/nikke-font-generator/images/squareEinkk.png">
+				</div>
+				<div class="character-dialogue">
+					<b>Einkk</b>
+					<span id="tutorial-dialogue">Welcome to the False Memory System Demo!</span>
+					<span id="tutorial-next"><i class='bx bx-fast-forward' style="font-size: 16px; transform: translate(3px, 3px)"></i> TAP TO CONTINUE</span>
+				</div>
+			</div>
+		</div>
+
+		<UpdatePopup />
+
 		<script src="../scripts/dialogue.js"></script>
+		<script src="../scripts/tutorial.js"></script>
 	</body>
 </html>
