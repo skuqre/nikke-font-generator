@@ -1,0 +1,39 @@
+---
+import '../components/GlobalStyle.astro';
+import CardDisplay from '../components/CardDisplay.astro';
+import CardInput from '../components/CardInput.astro';
+import Credits from '../components/Credits.astro';
+import UpdatePopup from '../components/UpdatePopup.astro';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/nikke-font-generator/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Barely Accurate NIKKE Card Generator</title>
+
+		<meta name="description" content="Create a spoof of a NIKKE unit easily!">
+  		<meta name="keywords" content="nikke">
+		<meta name="theme-color" content="#f4d259">
+
+		<meta name="twitter:title" content="Barely Accurate NIKKE Card Generator">
+		<meta name="twitter:description" content="Create a spoof of a NIKKE unit easily!">
+		<meta name="twitter:card" content="summary_large_image">
+		<!-- <meta property="twitter:image:src" content="/nikke-font-generator/logo-example1.png" /> -->
+
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	</head>
+	<body>
+		<h1>Barely Accurate NIKKE Card Generator</h1>
+		<CardDisplay />
+		<p><i>Generated output you see may be barely accurate to inaccurate compared to official media.</i></p>
+		<CardInput />
+		<Credits />
+
+		<UpdatePopup />
+
+		<script src="../scripts/card.js"></script>
+	</body>
+</html>

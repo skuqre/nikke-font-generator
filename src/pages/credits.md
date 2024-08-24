@@ -23,17 +23,20 @@ embeddesc: The site's credits!
 | **Lorax** | Providing me Rapture `si`s |
 | [**Boss Warning Overlay Reference**](https://www.facebook.com/groups/1103225033747263/permalink/1632637744139320/?mibextid=Nif5oz) | I won't be putting your name, just in case -- but I will be linking the Facebook post! Access to the NIKKE Global community group is required to view the page. |
 | **Folks on the Official Discord, Official Reddit, and other places** | Thank you for using the tool! Your continued usage is what keeps me doing what I do. When you have something to say about the tool, let me know! |
+| **entrygentrious** | Suggested the Boss Warning Generator |
+| **reedzylx** | Suggested the Card Generator |
 
 ---
 
 | <h2>Fonts</h2> | |
 | --- | --- |
-| [**Pretendard**](https://cactus.tistory.com/306) | Made by [Kil Hyung-jin (orioncactus)](https://github.com/orioncactus). Used throughout the site and Dialogue Generator. Found through research. |
-| [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Made by Jonathan Paquette. Used on Logo Generator. Found through a lousy "font-surfing" session one night. |
+| [**Pretendard**](https://cactus.tistory.com/306) | Made by [Kil Hyung-jin (orioncactus)](https://github.com/orioncactus). Used throughout the site. Found through research. |
+| [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Made by Jonathan Paquette. Used on Logo Generator. Found through research. |
 | [**Butch and Sundance**](https://www.dafont.com/butch-sundance.font) | Made by [Dan Zadorozny (Iconian Fonts)](https://www.iconian.com). Used on Logo Generator. Found through research. |
 | [**SUIT**](https://sun.fo/suit/) | Made by the folks at [sun.fo](https://sun.fo/). Used on the Blabla Generator. |
 | [**Abolition**](https://fortfoundry.com/fonts/abolition) | Made by [Mattox Shuler (Fort Foundry)](https://fortfoundry.com). Used on Boss Warning Generator. Found through research. |
-| [**Voltec (demo, specifically)**](https://typefactory.co/product/voltec-futuristic-typeface/) | Made by the folks at [TypeFactory](https://typefactory.co). Used on Boss Warning Generator. Found through research. |
+| [**Voltec (demo)**](https://typefactory.co/product/voltec-futuristic-typeface/) | Made by the folks at [TypeFactory](https://typefactory.co). Used on Boss Warning Generator. Found through research. |
+| [**Aire Exterior**](https://www.dafont.com/aire-exterior.font) | Made by [Jayvee Enaguas (HarvettFox96)](http://tilde.club/~harvettfox96/). Used on the Card Generator (specifically the core levels). Found through research. |
 
 ## Unimplemented fonts
 These fonts are here for future implementation.

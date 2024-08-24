@@ -1,0 +1,108 @@
+---
+
+---
+
+<div class="input-wrapper">
+    <div class="input-main">
+        <div class="row">
+            <input type="text" class="fullwidth" id="text" placeholder='Name' />
+            <div class="input-button" id="generate"><span>Refresh</span></div>
+            <input type="color" id="color" value="#ffce00" />
+        </div>
+        <div class="row">
+            <input type="text" id="char-card-search" class="fullwidth" placeholder="🔎 Look for NIKKE character's portrait..."/>
+            <div class="pfp-preview" style="border-radius: 4px;">
+                <img id="card-preview" src="/nikke-font-generator/images/blabla/pfp/nochat.png"/>
+            </div>
+        </div>
+        <div class="row">
+            <label for="char-card-upload" class="input-button fullwidth">
+                <span>Upload portrait...</span>
+                <input type="file" id="char-card-upload" accept="image/*" />
+            </label>
+            <div class="filler-square"></div>
+            <div class="filler-square"></div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Card Transforms</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposcd" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposcd" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalecd" class="fullwidth" value="100" />
+            </div>
+        </div>
+        
+        <div class="row takeheight">
+            <h4>Rarity</h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" style="font-weight: bold;" id="ssr">
+                SSR
+            </div>
+            <div class="input-button fullwidth" style="font-weight: normal;" id="sr">
+                SR
+            </div>
+            <div class="input-button fullwidth" style="font-weight: normal;" id="r">
+                R
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Attributes</h4>
+        </div>
+        <div class="row">
+            <select id="element" class="fullwidth">
+                <option value="" disabled selected>Element</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="wind">Wind</option>
+                <option value="iron">Iron</option>
+                <option value="electric">Electric</option>
+            </select>
+            <select id="weapon" class="fullwidth">
+                <option value="" disabled selected>Weapon</option>
+                <option value="ar">Assault Rifle</option>
+                <option value="sg">Shotgun</option>
+                <option value="mg">Minigun</option>
+                <option value="smg">Sub-machine Gun</option>
+                <option value="sr">Sniper Rifle</option>
+                <option value="rl">Rocket Launcher</option>
+            </select>
+            <select id="burst" class="fullwidth">
+                <option value="" disabled selected>Burst</option>
+                <option value="01">I</option>
+                <option value="02">II</option>
+                <option value="03">III</option>
+                <option value="all">All</option>
+            </select>
+        </div>
+        <div class="row">
+            <select id="nikke-type" class="fullwidth">
+                <option value="" disabled selected>Border Type</option>
+                <option value="none">None</option>
+                <option value="synchro">Synchro</option>
+                <option value="trial">Trial</option>
+            </select>
+            <select id="nikke-class" class="fullwidth">
+                <option value="" disabled selected>Class</option>
+                <option value="attacker">Attacker</option>
+                <option value="defender">Defender</option>
+                <option value="supporter">Supporter</option>
+            </select>
+        </div>
+        <div class="row">
+            <input type="number" id="level" class="input-button fullwidth" placeholder="Level" min="0">
+            <input type="number" id="copies" class="input-button fullwidth" placeholder="Copies" min="0">
+        </div>
+    </div>
+</div>

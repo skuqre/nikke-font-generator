@@ -1,6 +1,5 @@
 import { draw9slice, eyeOff, eyeOn } from "./util.js";
 import fuzzysort from "fuzzysort";
-import { wifiOffI, wifiOnI } from "./util.js";
 import * as HME from "h264-mp4-encoder";
 import { Buffer } from "buffer";
 

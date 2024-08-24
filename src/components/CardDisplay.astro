@@ -1,0 +1,54 @@
+---
+
+---
+
+<div class='card-display'>
+    <canvas id="card-canvas" width="311" height="600"></canvas>
+</div>
+
+<script>
+    document.querySelectorAll('canvas#card-canvas')[0].addEventListener('click', () => {
+        var link = document.createElement('a');
+        var canvas: HTMLCanvasElement = document.getElementById('card-canvas') as HTMLCanvasElement
+        link.download = 'nikke-card.png';
+        link.href = canvas.toDataURL()
+        link.click();
+    });
+</script>
+
+<style>
+    div.card-display {
+        display: flex;
+        width: 100%;
+        margin: 0;
+
+        touch-action: none;
+
+        position: sticky;
+        z-index: 1000;
+
+        background-color: rgba(0, 0, 0, 0);
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    canvas#card-canvas {
+        max-width: 90%;
+        max-height: 320px;
+        margin: auto;
+
+        transition: max-height 0.2s ease-in-out;
+    }
+</style>
+
+<script>
+    document.addEventListener("scroll", () => {
+        if (location.href.includes("#start-tutorial")) return;
+        if (window.scrollY > document.getElementById("card-canvas").parentElement.getBoundingClientRect().y) {
+            document.getElementById("card-canvas").style.maxHeight = "240px";
+            document.getElementById("card-canvas").parentElement.classList.add("blurred-bg");
+        } else {
+            document.getElementById("card-canvas").style.maxHeight = "320px";
+            document.getElementById("card-canvas").parentElement.classList.remove("blurred-bg");
+        }
+    });
+</script>

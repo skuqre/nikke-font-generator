@@ -10,6 +10,28 @@ embeddesc: the update log
 
 <br>
 
+## card generator `Aug 25, 2024`
+
+**introducing a new tool to the roster: the [Card Generator](/nikke-font-generator/card)!**
+
+make ANYTHING look like a Nikke Unit! hell, maybe even NPCs!
+
+add a [REDACTED] amount of cores on them as well, why not?!
+
+\- suggested by reedzylx from the Nikke Community Discord
+
+**blabla gen**
+- added Behemoth and Black Ark Ranger (5 months late...)
+
+**general**
+- updated [Credits](/nikke-font-generator/credits) & [Usage](/nikke-font-generator/usage) page
+
+<br>
+
+---
+
+<br>
+
 ## a long, long, time ago... `Aug 19, 2024`
 
 **logo gen**

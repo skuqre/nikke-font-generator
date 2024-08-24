@@ -95,11 +95,15 @@
     ["hammering", "si_c490_00_s"],
     ["liveryn", "si_c480_00_s"],
     ["grave", "si_c510_00_s"],
+    
     ["t.rony", "si_c976_00_s"],
+    ["black ark ranger", "si_c570_00_s"],
 
     ["clay", "si_c551_00_s"],
     ["fragile", "si_c481_00_s"],
     ["drilley", "si_c491_00_s"],
     ["t.a.l.o.s.", "si_c361_00_s"],
-    ["kilo", "si_c977_00_s"]
+    ["kilo", "si_c977_00_s"],
+
+    ["behemoth", "si_c560_00_s"]
 ]
