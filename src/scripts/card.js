@@ -526,3 +526,7 @@ document.getElementById("color").addEventListener("input", () => {
     curColor = document.getElementById("color").value;
     generateCard();
 });
+
+document.getElementById("download").addEventListener("click", () => {
+    document.querySelectorAll('canvas#card-canvas')[0].dispatchEvent(new Event("click"));
+});
