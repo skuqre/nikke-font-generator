@@ -246,6 +246,9 @@ document.getElementById("yoff").oninput = (_) => {
     drawBossText();
 }; 
 
+document.getElementById("download").addEventListener("click", () => {
+    document.querySelectorAll('canvas#warning-canvas')[0].dispatchEvent(new Event("click"));
+});
 
 
 // window.addEventListener('keydown', (e) => {
