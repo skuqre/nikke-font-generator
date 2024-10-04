@@ -10,7 +10,7 @@ embeddesc: the update log
 
 <br>
 
-## BANNER GENERATORRR!!! `Oct 2, 2024`
+## BANNER GENERATORRR!!! `Oct 4, 2024`
 
 **introducing a new tool to the roster: the [Banner Generator](/nikke-font-generator/banner)!**
 
