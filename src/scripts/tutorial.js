@@ -1662,6 +1662,12 @@ const bannerTutorialScript = [
         where: "top"
     },
     {
+        text: "You can download the full composited banner image here.",
+        selector: "#download",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
         text: "I think that about settles it with the Banner generator.",
         selector: null,
         yieldUntil: null,
