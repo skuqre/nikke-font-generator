@@ -10,6 +10,26 @@ embeddesc: the update log
 
 <br>
 
+## BANNER GENERATORRR!!! `Oct 2, 2024`
+
+**introducing a new tool to the roster: the [Banner Generator](/nikke-font-generator/banner)!**
+
+create any banner youd like, with duplicates too!
+
+this generator is made out of pure spite. please expect bugs
+
+also, to the guy that asked for Liberalio in the card generator: she was unfortunately deleted by the game, for some reason... I don't know if i'll find her.
+
+**general**
+- removed the animation for sticky behavior
+- corrected some tutorial sentences
+
+<br>
+
+---
+
+<br>
+
 ## card generator `Aug 25, 2024`
 
 **introducing a new tool to the roster: the [Card Generator](/nikke-font-generator/card)!**

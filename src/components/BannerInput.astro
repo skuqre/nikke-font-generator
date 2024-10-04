@@ -1,0 +1,92 @@
+---
+
+---
+
+<div class="input-wrapper">
+    <div class="input-main">
+        <div class="row takeheight">
+            <h4 style="margin: 0;">Nikke</h4>
+        </div>
+        <div class="row">
+            <input type="text" id="char-full-search" class="fullwidth" placeholder="🔎 Look for NIKKE..."/>
+            <div class="input-button square" id="nikke-toggle">
+                <i class="bx bx-show-alt"></i>
+            </div>
+            <div class="pfp-preview" style="border-radius: 4px;">
+                <img id="full-preview" src="/nikke-font-generator/images/blabla/pfp/nochat.png"/>
+            </div>
+        </div>
+        <div class="row">
+            <label for="char-full-upload" class="input-button fullwidth">
+                <span>Upload NIKKE...</span>
+                <input type="file" id="char-full-upload" accept="image/*" />
+            </label>
+            <div class="filler-square"></div>
+            <div class="filler-square"></div>
+        </div>
+        <div class="row takeheight" id="nikke-group">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposch" step="10" class="fullwidth" value="730" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposch" step="10" class="fullwidth" value="1060" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalech" class="fullwidth" value="120" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="generate"><span>Refresh Banner</span></div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Mask</h4>
+        </div>
+        <div class="row">
+            <select id="masktype" class="fullwidth">
+                <option value="nomask">No Mask</option>
+                <option value="maskbounds">Show Mask Bounds</option>
+                <option selected value="fullymask">Fully Mask</option>
+            </select>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Layers</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="input-selector fullwidth" id="layer-selector" style="flex-direction: column-reverse;"></div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Background</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="input-selector fullwidth" id="background-selector"></div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Stickers</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="input-selector fullwidth" style="flex-direction: row; flex-wrap: wrap;" id="sticker-selector"></div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Title Stickers</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="input-selector fullwidth" style="flex-direction: row; flex-wrap: wrap;" id="title-selector"></div>
+        </div>
+
+        <div class="row takeheight">
+            <h4></h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="download"><span><i class='bx bxs-download'></i> Download Banner</span></div>
+        </div>
+
+    </div>
+</div>

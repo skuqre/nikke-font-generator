@@ -1,0 +1,31 @@
+---
+
+---
+
+<div class='font-display'>
+    <canvas id="font-canvas" width="1200" height="500"></canvas>
+</div>
+
+<script>
+    document.querySelectorAll('canvas#font-canvas')[0].addEventListener('click', () => {
+        var link = document.createElement('a');
+        var canvas: HTMLCanvasElement = document.getElementById('font-canvas') as HTMLCanvasElement
+        link.download = 'nikke-logo.png';
+        link.href = canvas.toDataURL()
+        link.click();
+    });
+</script>
+
+<style>
+    div.font-display {
+        display: flex;
+        width: 100%;
+        margin: 0;
+    }
+
+    canvas#font-canvas {
+        max-width: 90%;
+        max-height: 224px;
+        margin: auto;
+    }
+</style>

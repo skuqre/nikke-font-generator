@@ -1,0 +1,93 @@
+---
+
+---
+
+<div class='banner-display'>
+    <canvas id="banner-canvas" width="900" height="316"></canvas>
+    <canvas id="banner-canvas2" width="900" height="900"></canvas>
+    <canvas id="banner-canvas3" width="900" height="316"></canvas>
+    <canvas id="banner-canvas-final" width="900" height="900"></canvas>
+</div>
+
+<script>
+    /*
+    document.querySelectorAll('canvas#banner-canvas')[0].addEventListener('click', () => {
+        var link = document.createElement('a');
+        var canvas: HTMLCanvasElement = document.getElementById('banner-canvas') as HTMLCanvasElement
+        link.download = 'nikke-banner.png';
+        link.href = canvas.toDataURL()
+        link.click();
+    });
+    */
+</script>
+
+<style>
+    div.banner-display {
+        display: flex;
+        width: 100%;
+        margin: 0;
+        touch-action: none;
+
+        position: sticky;
+        z-index: 1000;
+
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    canvas#banner-canvas {
+        max-width: 90%;
+        max-height: 316px;
+        margin: auto;
+    }
+
+    canvas#banner-canvas2 {
+        position: fixed;
+        aspect-ratio: 1;
+        pointer-events: none;
+    }
+
+    canvas#banner-canvas3 {
+        position: fixed;
+
+        pointer-events: none;
+    }
+
+    canvas#banner-canvas-final {
+        display: none;
+    }
+</style>
+
+<script>
+    document.addEventListener("scroll", () => {
+        if (location.href.includes("#start-tutorial")) return;
+        if (window.scrollY > document.getElementById("banner-canvas").parentElement.getBoundingClientRect().y) {
+            document.getElementById("banner-canvas").style.maxHeight = "214px";
+            document.getElementById("banner-canvas").parentElement.classList.add("blurred-bg");
+        } else {
+            document.getElementById("banner-canvas").style.maxHeight = "316px";
+            document.getElementById("banner-canvas").parentElement.classList.remove("blurred-bg");
+        }
+    });
+
+    const firstCanvas = document.getElementById("banner-canvas");
+    const secondCanvas = document.getElementById("banner-canvas2");
+    const thirdCanvas = document.getElementById("banner-canvas3");
+    function update() {
+        const firstCanvasRect = firstCanvas.getBoundingClientRect();
+        const secondCanvasRect = secondCanvas.getBoundingClientRect();
+        const thirdCanvasRect = thirdCanvas.getBoundingClientRect();
+
+        secondCanvas.style.width = firstCanvas.offsetWidth + "px";
+        secondCanvas.style.left = firstCanvas.offsetLeft + "px";
+        secondCanvas.style.top = (firstCanvasRect.top + firstCanvasRect.height - secondCanvasRect.height) + "px";
+
+        thirdCanvas.style.width = firstCanvasRect.width + "px";
+        thirdCanvas.style.height = firstCanvasRect.height + "px";
+        thirdCanvas.style.left = firstCanvasRect.left + "px";
+        thirdCanvas.style.top = firstCanvasRect.top + "px";
+
+        requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+</script>

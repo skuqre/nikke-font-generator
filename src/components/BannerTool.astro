@@ -1,0 +1,59 @@
+---
+---
+
+<div class="input-wrapper" style="display: none; margin-top: 36px;" id="banner-tool-main">
+    <div class="input-main" style="position: relative;" id="banner-tool-group">
+        <div class="row takeheight" style="align-items: flex-end;">
+            <div class="input-button square" id="rotate-toggle" title="Toggle tool rotating"><i class='bx bx-refresh'></i></div>
+            <div class="input-button square" id="scale-toggle" title="Toggle tool scaling"><i class='bx bx-area'></i></div>
+            <div class="column">
+                <span>X</span>
+                <input type="number" id="xposobj" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Y</span>
+                <input type="number" id="yposobj" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Scale</span>
+                <input type="number" id="scaleobj" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Rotation</span>
+                <input type="number" id="rotateobj" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="input-button square" id="del-sticker" title="Delete sticker"><i class='bx bx-trash'></i></div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth icon-button" id="align-obj-top"><i class='bx bx-vertical-top'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-obj-ymid"><i class='bx bx-vertical-center'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-obj-bot"><i class='bx bx-vertical-bottom'></i></div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth icon-button" id="align-obj-left"><i class='bx bx-horizontal-left'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-obj-xmid"><i class='bx bx-horizontal-center'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-obj-right"><i class='bx bx-horizontal-right'></i></div>
+        </div>
+
+        <div class="row takeheight">
+            <h4></h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="copy-sticker"><span><i class='bx bx-copy'></i> Copy</span></div>
+            <div class="input-button fullwidth" id="paste-sticker"><span><i class='bx bx-paste'></i> Paste</span></div>
+            <div class="input-button fullwidth" id="dupe-sticker"><span><i class='bx bx-duplicate'></i> Duplicate</span></div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="top-sticker"><span><i class='bx bx-chevron-up'></i> Move Front</span></div>
+            <div class="input-button fullwidth" id="bot-sticker"><span><i class='bx bx-chevron-down'></i> Move Back</span></div>
+            <div class="input-button fullwidth" id="front-sticker"><span><i class='bx bx-minus-front'></i> Go on Top</span></div>
+        </div>
+
+        <div class="row takeheight">
+            <h4></h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="deselect"><span>Deselect</span></div>
+        </div>
+    </div>
+</div>

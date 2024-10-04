@@ -96,23 +96,44 @@ export function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+// https://gist.github.com/Luftare/fd238b7aac27c4e82c13b4a9526c878f
+export function drawImageWithRot(ctx, img, x, y, angle = 0, scale = 1) {
+    ctx.save();
+    ctx.translate(x + img.width * scale / 2, y + img.height * scale / 2);
+    ctx.rotate(angle);
+    ctx.translate(- x - img.width * scale / 2, - y - img.height * scale / 2);
+    ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+    ctx.restore();
+}
+
+// https://www.reddit.com/r/learnjavascript/comments/11z9ll6/scaling_canvas_at_mouse_position_and_conversion/
+export function translateCoordinates(e, canvas) {
+    const clientRect = canvas.getBoundingClientRect();
+
+    const adjustedX = (e.clientX - clientRect.left) * (canvas.width / canvas.offsetWidth);
+    const adjustedY = (e.clientY - clientRect.top) * (canvas.height / canvas.offsetHeight);
+
+    return [adjustedX, adjustedY];
+}
+
 // https://gist.github.com/timdown/021d9c8f2aabc7092df564996f5afbbf
-export var trimCanvas = (function() {
-    function rowBlank(imageData, width, y) {
-        for (var x = 0; x < width; ++x) {
-            if (imageData.data[y * width * 4 + x * 4 + 3] !== 0) return false;
-        }
-        return true;
-    }
 
-    function columnBlank(imageData, width, x, top, bottom) {
-        for (var y = top; y < bottom; ++y) {
-            if (imageData.data[y * width * 4 + x * 4 + 3] !== 0) return false;
-        }
-        return true;
+export function rowBlank(imageData, width, y) {
+    for (var x = 0; x < width; ++x) {
+        if (imageData.data[y * width * 4 + x * 4 + 3] !== 0) return false;
     }
+    return true;
+}
 
-    return function(canvas) {
+export function columnBlank(imageData, width, x, top, bottom) {
+    for (var y = top; y < bottom; ++y) {
+        if (imageData.data[y * width * 4 + x * 4 + 3] !== 0) return false;
+    }
+    return true;
+}
+
+export var trimCanvas = (function () {
+    return function (canvas) {
         var ctx = canvas.getContext("2d");
         var width = canvas.width;
         var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -122,6 +143,10 @@ export var trimCanvas = (function() {
         while (bottom - 1 > top && rowBlank(imageData, width, bottom - 1)) --bottom;
         while (left < right && columnBlank(imageData, width, left, top, bottom)) ++left;
         while (right - 1 > left && columnBlank(imageData, width, right - 1, top, bottom)) --right;
+
+        if (right - left === 0 || bottom - top === 0) {
+            return canvas;
+        }
 
         var trimmed = ctx.getImageData(left, top, right - left, bottom - top);
         var copy = canvas.ownerDocument.createElement("canvas");
@@ -133,3 +158,23 @@ export var trimCanvas = (function() {
         return copy;
     };
 })();
+
+// https://www.algorithms-and-technologies.com/point_in_polygon/javascript
+export const pointInPolygon = function (polygon, point) {
+    //A point is in a polygon if a line from the point to infinity crosses the polygon an odd number of times
+    let odd = false;
+    //For each edge (In this case for each point of the polygon and the previous one)
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; i++) {
+        //If a line from the point into infinity crosses this edge
+        if (((polygon[i][1] > point[1]) !== (polygon[j][1] > point[1])) // One point needs to be above, one below our y coordinate
+            // ...and the edge doesn't cross our Y corrdinate before our x coordinate (but between our x coordinate and infinity)
+            && (point[0] < ((polygon[j][0] - polygon[i][0]) * (point[1] - polygon[i][1]) / (polygon[j][1] - polygon[i][1]) + polygon[i][0]))) {
+            // Invert odd
+            odd = !odd;
+        }
+        j = i;
+
+    }
+    //If the number of crossings was odd, the point is in the polygon
+    return odd;
+}

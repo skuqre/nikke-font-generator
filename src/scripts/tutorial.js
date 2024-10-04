@@ -773,7 +773,7 @@ const blablaTutorialScript = [
         where: "top"
     },
     {
-        text: "Change the number to a message you'd like to edit. The fields on the right will change to reflect the message being edited.",
+        text: "Change the number to a message you'd like to edit. The fields on the left will change to reflect the message being edited.",
         selector: "#message-index-edit",
         yieldUntil: "finishNumber",
         where: "top"
@@ -1231,6 +1231,474 @@ const blablaTutorialScript = [
     }
 ];
 
+const bannerTutorialScript = [
+    {
+        text: "Welcome to the False Memory System Demo!",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Allow me to help you with this. I'll try and automatically scroll to the thing I'm talking about to help you.",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+
+    },
+    {
+        text: "This is the Banner Generator, you can create banners with almost no limit.",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can even duplicate stickers too.",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Let's get started, shall we?",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This is the main banner area. This is what you're creating.",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "It consists of three separate layers.",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "The one I'm highlighting right now is the background layer.",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "This is the second layer, which includes the Nikke of your choice...",
+        selector: "#banner-canvas2",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "and this is the final layer. These are for stickers that are <b>on top</b> of the Nikke.",
+        selector: "#banner-canvas3",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "For this generator, I've disabled the ability to easily click it just to download it.",
+        selector: null,
+        yieldUntil: null,
+        where: "center"
+    },
+    {
+        text: "That's because we have gizmos that you can interact with!",
+        selector: null,
+        yieldUntil: null,
+        where: "center"
+    },
+    {
+        text: "But first, let's change the background.",
+        selector: null,
+        yieldUntil: null,
+        where: "center"
+    },
+    {
+        text: "Select a background through here.",
+        selector: "#background-selector",
+        yieldUntil: "selectOption",
+        where: "top"
+    },
+    {
+        text: "Let's see the background you've selected...",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "Looking nice.",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "Now, to the main attraction: Stickers!",
+        selector: "#sticker-selector",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Let's stick in one sticker for now. I'll let you go crazy with them later.",
+        selector: "#sticker-selector",
+        yieldUntil: "selectOption",
+        where: "top"
+    },
+    {
+        text: "Since we have the sticker selected, it has the gizmo available for it.",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "On the bottom right of the sticker, there is a button that you can click and drag to resize and rotate at the same time. If the sticker is too big, you can drag the sticker instead to move it easily.",
+        selector: "#banner-canvas",
+        yieldUntil: "finishDrag",
+        where: "bottom"
+    },
+    {
+        text: "\"But Einkk, what if I want to resize only or rotate only?\"",
+        selector: null,
+        yieldUntil: null,
+        where: "center"
+    },
+    {
+        text: "There's this menu over here! It only appears when you have a sticker selected.",
+        selector: "#banner-tool-group",
+        yieldUntil: null,
+        where: "top",
+        callback: () => {
+            const firstObject = document.getElementById("layer-selector").children[0];
+            const name = firstObject.id.replace("layer-option-", "");
+
+            if (document.getElementById("layer-highlight-" + name).style.display === "none") {
+                firstObject.onclick();
+            }
+        }
+    },
+    {
+        text: "This toggles the rotate ability of the gizmo. If it is <b>yellow</b>, that means it's enabled.",
+        selector: "#rotate-toggle",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This toggles the scale ability of the gizmo. If it is <b>yellow</b>, that means it's enabled.",
+        selector: "#scale-toggle",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Of course, you have your horizontal position values...",
+        selector: "#xposobj",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "...and your vertical position values.",
+        selector: "#yposobj",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Scale is where you can change the object's size by percentage.",
+        selector: "#scaleobj",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Rotate is where you can change the object's orientation by degrees.",
+        selector: "#rotateobj",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "And you can easily delete the sticker through this button.",
+        selector: "#del-sticker",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can align the sticker to the top of the banner through this button.",
+        selector: "#align-obj-top",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can align the sticker to the vertical center of the banner through this button.",
+        selector: "#align-obj-ymid",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can align the sticker to the bottom of the banner through this button.",
+        selector: "#align-obj-bot",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can align the sticker to the left of the banner through this button.",
+        selector: "#align-obj-left",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can align the sticker to the horizontal center of the banner through this button.",
+        selector: "#align-obj-xmid",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can align the sticker to the right of the banner through this button.",
+        selector: "#align-obj-right",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "The six previous buttons do their function with respect to the sticker's orientation.",
+        selector: null,
+        yieldUntil: null,
+        where: "center"
+    },
+    {
+        text: "You can copy the sticker currently selected through this button.",
+        selector: "#copy-sticker",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can paste the sticker currently selected through this button. It will paste as if it were back when you copied the sticker.",
+        selector: "#paste-sticker",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can duplicate the sticker currently selected through this button. It will paste in place.",
+        selector: "#dupe-sticker",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can move the sticker forward one layer through this button.",
+        selector: "#top-sticker",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can move the sticker backward one layer through this button.",
+        selector: "#bot-sticker",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can toggle the sticker being in front of the person or not through this button. If the text is <b>yellow</b>, the sticker will appear in front of the person.",
+        selector: "#front-sticker",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can deselect the sticker through this button.",
+        selector: "#deselect",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can also click outside the sticker to deselect it.",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "Moving on to getting a NIKKE in there...",
+        selector: "#char-full-search",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can always search for someone familiar through here. Go and type whoever you wish.",
+        selector: "#char-full-search",
+        yieldUntil: "finishTyping",
+        where: "top"
+    },
+    {
+        text: "Otherwise, you can just upload the person yourself.",
+        selector: "label[for='char-full-upload']",
+        yieldUntil: "onChange",
+        where: "top",
+        callback: () => {
+            if (document.getElementById("char-full-search").value.trim() !== "") {
+                curPhase += 1;
+                progressTutorial();
+            }
+        }
+    },
+    {
+        text: "Let's see who you've put.",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "You can toggle the person's visibility through this button.",
+        selector: "#nikke-toggle",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Like always, you can change the person's position through these.",
+        selector: "#nikke-group",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "If things aren't looking right, you can click this button to refresh the image.",
+        selector: "#generate",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Final stretch, we're coming up to masks and layers...",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can change the shape of the banner through this selector. Let's go through the individual types.",
+        selector: "#masktype",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "<b>No Mask</b> makes the image rectangular, allowing you to use the image for many different things.",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom",
+        callback: () => {
+            document.getElementById("masktype").value = "nomask";
+            document.getElementById("generate").onclick();
+        }
+    },
+    {
+        text: "<b>Show Mask Bounds</b> makes the bounds of the final shape from the <b>Fully Mask</b> option visible.",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom",
+        callback: () => {
+            document.getElementById("masktype").value = "maskbounds";
+            document.getElementById("generate").onclick();
+        }
+    },
+    {
+        text: "<b>Fully Mask</b> makes the shape of the banner match like the ones you see normally.",
+        selector: "#banner-canvas",
+        yieldUntil: null,
+        where: "bottom",
+        callback: () => {
+            document.getElementById("masktype").value = "fullymask";
+            document.getElementById("generate").onclick();
+        }
+    },
+    {
+        text: "Now, on to layers.",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This contains the stickers you've put in the banner.",
+        selector: "#layer-selector",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "When you add a sticker, it will be placed <b>above</b> the previously placed sticker.",
+        selector: "#layer-selector",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This is the sticker we added a while ago.",
+        selector: "#layer-selector > div.input-option:first-child",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "When a sticker is selected, a <b>yellow highlight</b> will be visible around it's layer.",
+        selector: "#layer-selector > div.input-option:first-child",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This is the small preview of the sticker.",
+        selector: "#layer-selector > div.input-option:first-child > img",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Here are some helpful buttons in arranging the stickers.",
+        selector: "#layer-selector > div.input-option:first-child > div.button-tray",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This toggles the sticker being in front of the person in the banner. If this is <b>yellow</b>, that means the sticker will appear in front of the person.",
+        selector: "#layer-selector > div.input-option:first-child > div.button-tray > div:first-child",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This lets you move the layer up...",
+        selector: "#layer-selector > div.input-option:first-child > div.button-tray > div:nth-child(2)",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "...and this lets you move the layer down.",
+        selector: "#layer-selector > div.input-option:first-child > div.button-tray > div:nth-child(3)",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can easily delete the sticker through this button as well.",
+        selector: "#layer-selector > div.input-option:first-child > div.button-tray > div:nth-child(4)",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "I think that about settles it with the Banner generator.",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Couple of sidenotes before I leave...",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "For people with computers, you can use CTRL + D to easily duplicate the sticker in place.",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Pressing DEL can also delete it.",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Finally, you can always retrigger this tutorial by pressing this button!",
+        selector: "#tutorial",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "See you again soon! Don't forget about me, alright?",
+        selector: null,
+        yieldUntil: null,
+        where: "center"
+    }
+];
+
 const ultimateScript = [
     {
         text: "There's nothing for you here.",
@@ -1538,7 +2006,7 @@ const ultimateScript = [
         yieldUntil: null,
         where: "center"
     }
-]
+];
 
 var curPhase = 0;
 var curTypeTime = 0;
@@ -1561,6 +2029,15 @@ function startDialogueTutorial() {
 
 function startBlablaTutorial() {
     curScript = blablaTutorialScript;
+
+    curPhase = 0;
+    progressTutorial();
+
+    document.getElementById("tutorial-layer").style.display = "flex";
+}
+
+function startBannerTutorial() {
+    curScript = bannerTutorialScript;
 
     curPhase = 0;
     progressTutorial();
@@ -1600,6 +2077,10 @@ function progressTutorial() {
         spotlighted.blur();
         spotlighted.removeEventListener("input", progressTyping);
         spotlighted.removeEventListener("click", progressClick);
+
+        for (const i of Array.from(spotlighted.children)) {
+            i.addEventListener("click", selfDestructClick.bind(null, i, i));
+        }
     }
 
     if (curScript[curPhase].selector !== null) {
@@ -1650,6 +2131,14 @@ function progressTutorial() {
             spotlighted.addEventListener("change", progressClick);
 
             document.getElementById("tutorial-next").innerHTML = arrows + " FOLLOW INSTRUCTIONS TO CONTINUE";
+            document.getElementById("tutorial-layer").style.pointerEvents = "none";
+            break;
+        case "selectOption":
+            for (const i of Array.from(spotlighted.children)) {
+                i.addEventListener("click", selfDestructClick.bind(null, i, i));
+            }
+
+            document.getElementById("tutorial-next").innerHTML = arrows + " SELECT AN OPTION TO CONTINUE";
             document.getElementById("tutorial-layer").style.pointerEvents = "none";
             break;
         default:
@@ -1720,6 +2209,14 @@ function progressClick(e) {
     progressTutorial();
 }
 
+function selfDestructClick(e, element) {
+    element.removeEventListener("click", selfDestructClick.bind(e, element, element));
+
+    curPhase += 1;
+    progressTutorial();
+    curPhase -= 1;
+}
+
 if (document.getElementById("tutorial") !== null) {
     document.getElementById("tutorial").onclick = () => {
         location.href = location.href + "#start-tutorial";
@@ -1734,6 +2231,8 @@ if (hash === "#start-tutorial") {
         startDialogueTutorial();
     } else if (location.href.includes("/nikke-font-generator/blabla")) {
         startBlablaTutorial();
+    } else if (location.href.includes("/nikke-font-generator/banner")) {
+        startBannerTutorial();
     }
 }
 

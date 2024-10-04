@@ -1,0 +1,109 @@
+---
+import '../components/GlobalStyle.astro';
+import BannerDisplay from '../components/BannerDisplay.astro';
+import BannerInput from '../components/BannerInput.astro';
+import BannerTool from '../components/BannerTool.astro';
+import Credits from '../components/Credits.astro';
+import UpdatePopup from '../components/UpdatePopup.astro';
+
+const assetBgs = Object.keys(import.meta.glob("../../public/images/banner/bgs/*.png"));
+const assetStickers = Object.keys(import.meta.glob("../../public/images/banner/stickers/*.png"));
+const assetTitles = Object.keys(import.meta.glob("../../public/images/banner/titles/*.png"));
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/nikke-font-generator/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Barely Accurate NIKKE Banner Generator</title>
+
+		<meta name="description" content="Create a banner with NIKKE stickers easily!">
+  		<meta name="keywords" content="nikke">
+		<meta name="theme-color" content="#f4d259">
+
+		<meta name="twitter:title" content="Barely Accurate NIKKE Banner Generator">
+		<meta name="twitter:description" content="Create a banner with NIKKE stickers easily!">
+		<meta name="twitter:card" content="summary_large_image">
+
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	</head>
+	<body>
+		<h1>Barely Accurate NIKKE Banner Generator</h1>
+		<BannerDisplay />
+		<BannerTool />
+
+		<br><br>
+		<div class="input-wrapper">
+			<div class="input-main">
+				<div class="row">
+					<div class="input-button fullwidth" id="tutorial">
+						<img src="/nikke-font-generator/images/happiEinkk.png" class="einkk-bg" draggable="false">
+						<span style="z-index: 999; text-shadow: #000 0 0 4px"><b>Tutorial</b></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<p><i>Generated output you see may be barely accurate to inaccurate compared to official media.</i></p>
+		<BannerInput />
+		<Credits />
+
+		<div class="tutorial-layer" id="tutorial-layer" style="display: none;">
+			<div id="dialogue-backdrop" draggable="false"></div>
+			<div id="dialogue-spotlight-border" draggable="false"></div>
+			<div class="dialogue-part">
+				<div class="character-avatar">
+					<img src="/nikke-font-generator/images/squareEinkk.png">
+				</div>
+				<div class="character-dialogue">
+					<b>Einkk</b>
+					<span id="tutorial-dialogue">Welcome to the False Memory System Demo!</span>
+					<span id="tutorial-next"><i class='bx bx-fast-forward' style="font-size: 16px; transform: translate(3px, 3px)"></i> TAP TO CONTINUE</span>
+				</div>
+			</div>
+		</div>
+
+		<UpdatePopup />
+
+		<!-- load options -->
+		<script define:vars={{ assetBgs, assetStickers, assetTitles }}>
+			const bgSelector = document.getElementById("background-selector");
+			const stickerSelector = document.getElementById("sticker-selector");
+			const titleSelector = document.getElementById("title-selector");
+
+			for (i of assetBgs) {
+				const n = i.split("/").pop();
+
+				bgSelector.innerHTML += `
+				<div class="input-option" id="bg-option-${n.replaceAll(".png", "").replaceAll("icn_profile_bg_", "")}">
+                    <div style="background-image: url(/nikke-font-generator/images/banner/bgs/${n});"></div>
+                </div>
+				`
+			}
+
+			for (i of assetStickers) {
+				const n = i.split("/").pop();
+
+				stickerSelector.innerHTML += `
+				<div class="input-option" style="aspect-ratio: 1; width: 64px; height: 64px; padding: 4px" id="sticker-option-${n.replaceAll(".png", "").replaceAll("icn_profile_sticker_", "")}">
+                    <div style="background-image: url(/nikke-font-generator/images/banner/si_stickers/${n.replace("icn", "si")}); background-size: contain; background-repeat: no-repeat;"></div>
+                </div>
+				`
+			}
+
+			for (i of assetTitles) {
+				const n = i.split("/").pop();
+				
+				titleSelector.innerHTML += `
+				<div class="input-option" style="aspect-ratio: 1; width: 64px; height: 64px; padding: 4px" id="title-option-${n.replaceAll(".png", "").replaceAll("icn_profile_title_", "")}">
+                    <div style="background-image: url(/nikke-font-generator/images/banner/si_titles/${n.replace("icn", "si")}); background-size: contain; background-repeat: no-repeat;"></div>
+                </div>
+				`
+			}
+		</script>
+		<script src="../scripts/banner.js"></script>
+		<script src="../scripts/tutorial.js"></script>
+	</body>
+</html>
