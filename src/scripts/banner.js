@@ -874,7 +874,7 @@ document.onkeydown = function (e) {
         switch (e.key.toLowerCase()) {
             case 'd':
                 e.preventDefault();
-                dupeSticker();
+                dupeSticker(!e.altKey);
                 break;
             case 'c':
                 e.preventDefault();
@@ -944,7 +944,7 @@ function pasteSticker() {
     generateBanner();
 }
 
-function dupeSticker() {
+function dupeSticker(onLayer = false) {
     if (curSelected === null) return;
     const curSelectedObject = curObjects.find(e => e.name === curSelected);
     let cleaned = curSelectedObject.id;
@@ -964,7 +964,12 @@ function dupeSticker() {
 
     const newObject = JSON.parse(JSON.stringify(curSelectedObject));
     newObject.name = cleaned + (copy > 0 ? ` (${newObject.type.toUpperCase()}, %${copy}%)` : "")
-    curObjects.push(newObject);
+
+    if (onLayer) {
+        curObjects.splice(curObjects.indexOf(curSelectedObject) + 1, 0, newObject);
+    } else {
+        curObjects.push(newObject);
+    }
 
     updateSelected(newObject.name);
     generateBanner();
