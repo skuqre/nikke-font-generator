@@ -722,7 +722,7 @@ document.addEventListener('pointermove', (e) => {
 });
 
 document.addEventListener('pointerup', (e) => {
-    if (curSelected !== null && dragging) {
+    if (dragging) {
         dragging = false;
         rotating = false;
         justClicked = false;
@@ -766,11 +766,17 @@ for (const e of stickerElements) {
 
         for (const i of curObjects) {
             if (cleaned === i.id) {
-                copy += 1;
+                const numGet = i.name.match(/(%\d+%)/gm);
+                const num = numGet.length > 0 ? parseInt(numGet[0].replaceAll("%","").trim()) : 0;
+    
+                if (num > copy) {
+                    copy = num;
+                }
             }
         }
+        copy += 1;
 
-        let name = cleaned + (copy > 0 ? ` (STICKER, ${copy})` : "");
+        let name = cleaned + (copy > 0 ? ` (STICKER, %${copy}%)` : "");
 
         curObjects.push({
             name: name,
@@ -802,11 +808,17 @@ for (const e of titleElements) {
 
         for (const i of curObjects) {
             if (cleaned === i.id) {
-                copy += 1;
+                const numGet = i.name.match(/(%\d+%)/gm);
+                const num = numGet.length > 0 ? parseInt(numGet[0].replaceAll("%","").trim()) : 0;
+    
+                if (num > copy) {
+                    copy = num;
+                }
             }
         }
+        copy += 1;
 
-        let name = cleaned + (copy > 0 ? ` (TITLE, ${copy})` : "");
+        let name = cleaned + (copy > 0 ? ` (TITLE, %${copy}%)` : "");
 
         curObjects.push({
             name: name,
@@ -914,12 +926,18 @@ function pasteSticker() {
 
     for (const i of curObjects) {
         if (cleaned === i.id) {
-            copy += 1;
+            const numGet = i.name.match(/(%\d+%)/gm);
+            const num = numGet.length > 0 ? parseInt(numGet[0].replaceAll("%","").trim()) : 0;
+
+            if (num > copy) {
+                copy = num;
+            }
         }
     }
+    copy += 1;
 
     const newObject = JSON.parse(currentClipboard);
-    newObject.name = cleaned + (copy > 0 ? ` (${newObject.type.toUpperCase()}, ${copy})` : "")
+    newObject.name = cleaned + (copy > 0 ? ` (${newObject.type.toUpperCase()}, %${copy}%)` : "")
     curObjects.push(newObject);
 
     updateSelected(newObject.name);
@@ -934,12 +952,18 @@ function dupeSticker() {
 
     for (const i of curObjects) {
         if (cleaned === i.id) {
-            copy += 1;
+            const numGet = i.name.match(/(%\d+%)/gm);
+            const num = numGet.length > 0 ? parseInt(numGet[0].replaceAll("%","").trim()) : 0;
+
+            if (num > copy) {
+                copy = num;
+            }
         }
     }
+    copy += 1;
 
     const newObject = JSON.parse(JSON.stringify(curSelectedObject));
-    newObject.name = cleaned + (copy > 0 ? ` (${newObject.type.toUpperCase()}, ${copy})` : "")
+    newObject.name = cleaned + (copy > 0 ? ` (${newObject.type.toUpperCase()}, %${copy}%)` : "")
     curObjects.push(newObject);
 
     updateSelected(newObject.name);
