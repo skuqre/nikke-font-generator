@@ -12,7 +12,7 @@ embeddesc: what does the site get from you? what does the site not get from you?
 
 ## I. What does the site get from me?
 
-**Nothing identifiable**. However, the [Dialogue Generator](/nikke-font-generator/dialogue/) and the [Blabla Generator](/nikke-font-generator/blabla/) have a "Website Hit Counter" at the bottom of their page. The number on the counter increases whenever the page gets a visit. Visits are non-unique, so a page refresh counts as a visit.
+**Nothing identifiable**. However, the [Dialogue Generator](/nikke-font-generator/dialogue/), [Blabla Generator](/nikke-font-generator/blabla/), and the [Banner Generator](/nikke-font-generator/banner/) have a "Website Hit Counter" at the bottom of their page. The number on the counter increases whenever the page gets a visit. Visits are non-unique, so a page refresh counts as a visit.
 
 <br>
 
