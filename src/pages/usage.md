@@ -21,6 +21,16 @@ embeddesc: the NIKKE FONT GENERATOR usage guidelines
     - On various Facebook groups, it seems to be fine posting images created from this tool (however, I was told most posts were reposts). Feel free!
 - When sharing your creations, **I recommend you keep the "NFG" watermark on to prevent people from being misinformed**. *Cropping it out is fine, I know the watermark's annoying, but I don't want the site to get taken down as well*.
     - When you post it, <u>credit is not mandatory, but very much appreciated</u>. **However, when someone asks you of how the image was made/"is this real?", inform them of this site**. *This goes for both watermarked/watermarkless posts.*
+- You are **not** allowed to sell <u>ANYTHING</u> created from this site.
+    - This encompasses every generator and future generators created after this statement has been added.
+        - **Logo Generator** - the font for the "NIKKE" word mark is under personal use.
+        - **Dialogue Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
+        - **Blabla Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
+        - **Boss Warning Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
+        - **Banner Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
+    - Various assets belong to SHIFT UP CORP. and Proxima Beta Ltd.
+    - Only the **code** and **a number of assets** made by skuqre is under MIT License, which allows for commercial use.
+    - You are however allowed to create physical objects (e.g. Acrylic keychains, Plastic cards, etc), but **NOT SELL THEM**!
 - Some common sense as well, **credit the artist if you're using fanart for your creations**! *Not mandatory, but it'd be AWESOME if you did!!!*
 
 <br>
@@ -48,7 +58,7 @@ Fonts used in this site are **not** made by me. Rightful credits are in the [cre
 <br>
 
 **This site is <u>not</u> endorsed by, created by, or affiliated with SHIFT UP CORP. and Proxima Beta Ltd.**<br>
-**All characters and assets belong to SHIFT UP CORP. and Proxima Beta Ltd.**
+**All characters and various assets belong to SHIFT UP CORP. and Proxima Beta Ltd.**
 
 **No revenue is being generated from this site. Moreover, there is no way to do so.
 
