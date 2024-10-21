@@ -72,7 +72,12 @@ response.json().then((e) => {
 const response2 = await fetch('/nikke-font-generator/blabla-npcs.json');
 response2.json().then((e) => {
     for (let i = 0; i < e.length; i++) {
-        nikkepfps[e[i][0]] = e[i][1];
+        var toadd = e[i][1];
+
+        if (e[i][2] !== undefined)
+            toadd += "_NIKKEDB";
+
+        nikkepfps[e[i][0]] = toadd;
     }
 });
 
@@ -400,7 +405,12 @@ function generateBlabla() {
             pfpCtx3.drawImage(profilemask, 0, 0, 134, 134);
             pfpCtx3.globalCompositeOperation = 'source-in';
 
-            pfpCtx3.drawImage(pfpImg, 0, 0, 134, 134);
+            if (pfpImg.width > pfpImg.height) {
+                pfpCtx3.drawImage(pfpImg, 0, 0, 134, pfpImg.height * 134 / pfpImg.width);
+            } else {
+                pfpCtx3.drawImage(pfpImg, (134 - (pfpImg.width * 134 / pfpImg.height)) / 2, 0, pfpImg.width * 134 / pfpImg.height, 134);
+            }
+
             pfpCtx3.globalCompositeOperation = 'source-over';
 
             ctx.drawImage(pfpCanvas3, (canvas.width - 134) / 2, 564);
@@ -1202,10 +1212,10 @@ document.getElementById("char-pres-up").oninput = (e) => {
                 if (document.getElementById("char-pres-up").value.startsWith("rapture")) {
                     currentImage = `https://nkas.pages.dev/monsters/${nikkepfps[results[0].target]}.png`;
                 } else {
-                    if (!nikkepfps[results[0].target].endsWith("_00_s")) {
-                        currentImage = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
+                    if (nikkepfps[results[0].target].endsWith("_NIKKEDB")) {
+                        currentImage = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target].replace("_NIKKEDB", "")}.png`;
                     } else {
-                        currentImage = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                        currentImage = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
                     }
                 }
                 document.getElementById("pfp-preview").src = currentImage;
@@ -1226,10 +1236,10 @@ document.getElementById("char-pres-edit").oninput = (e) => {
                 if (document.getElementById("char-pres-edit").value.startsWith("rapture")) {
                     chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nkas.pages.dev/monsters/${nikkepfps[results[0].target]}.png`;
                 } else {
-                    if (!nikkepfps[results[0].target].endsWith("_00_s")) {
-                        chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
+                    if (nikkepfps[results[0].target].endsWith("_NIKKEDB")) {
+                        chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target].replace("_NIKKEDB", "")}.png`;
                     } else {
-                        chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                        chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
                     }
                 }
 
@@ -1255,10 +1265,10 @@ document.getElementById("char-pres-edit-p").oninput = (e) => {
                     profile.image = `https://nkas.pages.dev/monsters/${nikkepfps[results[0].target]}.png`;
                 }
                 else {
-                    if (!nikkepfps[results[0].target].endsWith("_00_s")) {
-                        profile.image = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
+                    if (nikkepfps[results[0].target].endsWith("_NIKKEDB")) {
+                        profile.image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target].replace("_NIKKEDB", "")}.png`;
                     } else {
-                        profile.image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target]}.png`;
+                        profile.image = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
                     }
                 }
                 let fuck = profile.image;

@@ -8,9 +8,9 @@
     ["female commander", "si_c917_00_s"],
 
     ["andersen", "si_c903_00_s"],
-    ["andersen: soaky shower", "si_c903_01_00_s"],
+    ["andersen: soaky shower", "si_c903_01_00_s", ""],
     ["shifty", "si_c907_00_s"],
-    ["shifty: old", "si_c907_01_00_s"],
+    ["shifty: old", "si_c907_01_00_s", ""],
     ["ingrid", "si_c900_00_s"],
     ["syuen", "si_c901_00_s"],
     ["mustang", "si_c902_00_s"],
@@ -30,15 +30,13 @@
     ["cinderella", "si_c944_00_s"],
     ["indivilia", "si_c263_00_s"],
     ["k", "si_c041_00_s"],
-    ["liberalio", "si_c262_00_s"],
+    ["liberalio", "si_c262_00_s", ""],
     ["liliweiss", "si_c943_00_s"],
     ["rapunzel: innocent days", "si_c966_00_s"],
     ["mana", "si_c290_00_s"],
-    ["papillion", "si_c908_00_s"],
+    ["papillion", "si_c908_00_s", ""],
     ["pinne", "si_c941_00_s"],
     ["rian", "si_c905_00_s"],
-    ["rumani", "si_c240_00_s"],
-    ["zwei", "si_c390_00_s"],
 
     ["angelina", "si_c934_00_s"],
     ["joseph", "si_c935_00_s"],
@@ -46,11 +44,11 @@
     ["booboo", "si_c937_00_s"],
     ["max", "si_c936_00_s"],
 
-    ["9s", "si_c813_00_s"],
+    ["9s", "si_c813_00_s", ""],
 
     ["aki hayakawa", "si_c804_00_s"],
     ["denji", "si_c803_00_s"],
-    ["denji chainsaw man", "si_c803_01_00_s"],
+    ["denji chainsaw man", "si_c803_01_00_s", ""],
     
     ["oswald", "si_c961_00_s"],
     ["freesia", "si_c960_00_s"],
@@ -71,9 +69,9 @@
 
     ["rose", "si_c971_00_s"],
     ["mass produced melee old", "si_c974_00_s"],
-    ["mass produced melee", "si_c974_01_00_s"],
+    ["mass produced melee", "si_c974_01_00_s", ""],
 
-    ["timi", "si_c975_00_s"],
+    ["timi", "si_c975_00"],
 
     ["hedonia member", "si_c920_00_s"],
     ["seimeikai member", "si_c921_00_s"],
@@ -87,8 +85,8 @@
     ["outer rim generic a", "si_c918_00_s"],
     ["outer rim generic b", "si_c919_00_s"],
 
-    ["mast: old", "si_c350_old_00_s"],
-    ["rapi: old", "si_c010_01_00_s"],
+    ["mast: old", "si_c350_old_00_s", ""],
+    ["rapi: old", "si_c010_01_00_s", ""],
 
     ["flora", "si_c411_00_s"],
     ["hammering", "si_c490_00_s"],
@@ -98,11 +96,13 @@
     ["t.rony", "si_c976_00_s"],
     ["black ark ranger", "si_c570_00_s"],
 
-    ["clay", "si_c551_00_s"],
     ["fragile", "si_c481_00_s"],
     ["drilley", "si_c491_00_s"],
     ["t.a.l.o.s.", "si_c361_00_s"],
     ["kilo", "si_c977_00_s"],
 
-    ["behemoth", "si_c560_00_s"]
+    ["behemoth", "si_c560_00_s"],
+
+    ["mihara: wordless", "si_c162_00_s"],
+    ["yuni: wordless", "si_c985_00_s"]
 ]

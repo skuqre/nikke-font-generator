@@ -109,7 +109,7 @@ import raptures from '../../public/blabla-raptures.json'
         <br>
         <h2>NPCs</h2>
         <div class="npc-table">
-            { npcs.map((e) => <img src={"https://nikke-db-legacy.pages.dev/images/sprite/" + e[1] + ".png"} alt={e[0]} title={e[0]} class="npc" />) }
+            { npcs.map((e) => <img src={ (e[2] == undefined ? "https://nkas.pages.dev/characters/" : "https://nikke-db-legacy.pages.dev/images/sprite/") + e[1] + ".png"} alt={e[0]} title={e[0]} class="npc" />) }
         </div>
 
         <br>
@@ -152,7 +152,7 @@ import raptures from '../../public/blabla-raptures.json'
                         }
 
                         pfp[e.manufacturer.toLowerCase()].push({
-                            img: "https://nikke-db-legacy.pages.dev/images/sprite/" + e.img + ".png",
+                            img: "https://nkas.pages.dev/characters/" + e.img + ".png",
                             name: e.name.toLowerCase()
                         });
                     });
