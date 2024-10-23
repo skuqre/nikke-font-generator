@@ -10,6 +10,28 @@ embeddesc: the update log
 
 <br>
 
+## multiple characters `Oct 23, 2024`
+
+after a looong loong time comin, multiple characters have been added to the dialogue generator!
+
+you can now add multiple characters, position them individually, or move around with a camera.
+
+**dialogue gen**
+- **BREAKING** new character system!
+	- enables you to add more characters than just one!
+	- drag them individually, or reorder them!
+- **BREAKING** fixed Drag
+	- Drag wasn't really converting space between screen and canvas right, but it has been reworked in order to be consistent like the banner gen
+- anchored Characters and Backgrounds to their **center**
+	- this means that scaling happens from center, and position anchor is on the center of the character/background, should be easier for resizing!
+
+<br>
+
+
+---
+
+<br>
+
 ## BANNER GENERATORRR!!! `Oct 4, 2024`
 
 **introducing a new tool to the roster: the [Banner Generator](/nikke-font-generator/banner)!**

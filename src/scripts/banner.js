@@ -697,8 +697,8 @@ document.addEventListener('pointermove', (e) => {
         const curSelectedObject = curObjects.find(e => e.name === curSelected);
 
         if (!rotating) {
-            curSelectedObject.transform.x = curSelectedCapture[0] - (mouseCapture[0] - coords[0]);
-            curSelectedObject.transform.y = curSelectedCapture[1] - (mouseCapture[1] - coords[1]);
+            curSelectedObject.transform.x = curSelectedCapture[0] + (coords[0] - mouseCapture[0]);
+            curSelectedObject.transform.y = curSelectedCapture[1] + (coords[1] - mouseCapture[1]);
         } else {
             const image = loadedImages[curSelectedObject.id];
             const rotateX = curSelectedObject.transform.x + (image.width * curSelectedObject.transform.s / 2) * Math.cos(0) - (image.height * curSelectedObject.transform.s / 2) * Math.sin(0);

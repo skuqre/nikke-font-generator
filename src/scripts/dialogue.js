@@ -1,7 +1,4 @@
-import { draw9slice, dataURLtoFile, eyeOn, eyeOff } from "./util.js";
-import { downloadZip } from "https://cdn.jsdelivr.net/npm/client-zip/index.js"
-import { Buffer } from "buffer";
-import * as HME from "h264-mp4-encoder";
+import { draw9slice, eyeOn, eyeOff, translateCoordinates } from "./util.js";
 
 const canvas = document.getElementById("dialogue-canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
@@ -35,11 +32,7 @@ let subtext2 = '';
 let size = 100;
 let color = '#f5ba36';
 let scalebg = 120;
-let scalech = 100;
-let bgpos = [0, 0]
-let chpos = [0, 0]
-
-let chposoff = [0, 0];
+let bgpos = [540, 540];
 
 let canvassize = [1080, 1080];
 
@@ -67,13 +60,29 @@ let choicepng = new Image();
 choicepng.crossOrigin = "anonymous"
 choicepng.src = `/nikke-font-generator/images/dialogue/choice_9slice.png`;
 
+let chars = [
+    {
+        x: 1080 / 2,
+        y: 1080 / 2,
+        scale: 1.0,
+        visible: true,
+        id: "NFG_ANIS"
+    }
+]
+
+var anis = new Image();
+anis.src = `/nikke-font-generator/images/dialogue/anis.png`;
+anis.onload = (_) => {
+    generateText(text2, subtext2);
+}
+
+let loadedImages = {
+    "NFG_ANIS": anis
+}
+
 let bg = new Image();
 bg.crossOrigin = "anonymous"
 bg.src = `/nikke-font-generator/images/dialogue/bgs/CommanderRoom.png`;
-
-let char = new Image();
-char.crossOrigin = "anonymous"
-char.src = `/nikke-font-generator/images/dialogue/anis.png`;
 
 let lmesh = new Image();
 lmesh.crossOrigin = "anonymous"
@@ -97,17 +106,15 @@ const choiceCanvasCtx = choiceCanvas.getContext("2d");
 
 let rng = [
     "This feels... different.",
-    "It doesn't feel the same...",
-    "Something doesn't feel right and I can't tell what it is...",
-    "Something is off.\nMaybe is it just me?\nOr is it you?\nOr is it everyone and everything around us?",
-    "Commander, if you feel like something is actually different, please tell me right now. I am so confused.",
-    "Commander? You look different today...",
-    "I can't put my finger on it, but the atmosphere feels different."
+    "Something's wrong. I can feel it.",
+    "I don't feel right...",
+    "You look different today."
 ]
 
 setTimeout(() => {
     generateText("Anis", rng[Math.round(Math.random() * (rng.length - 1))]);
-}, 1000);
+    updateCharList();
+}, 2000);
 
 let tpos = [126, 878];
 let dpos = [125, 929];
@@ -116,6 +123,9 @@ let copos = [677, 13];
 let arpos = [953, 1027];
 
 let coposoffset = [-102, -11];
+
+let campos = [540, 540];
+let camzoom = 0.0;
 
 let tsize = 23;
 let dsize = 23;
@@ -220,13 +230,6 @@ function autogent() {
 document.getElementById('character').oninput = autogent;
 document.getElementById('dialog').oninput = autogent;
 
-document.querySelectorAll('#clear-char')[0].addEventListener('click', () => {
-    char.src = '/nikke-font-generator/images/transparent.png';
-    char.onload = function (e) {
-        generateText(text2, subtext2);
-    }
-});
-
 document.querySelectorAll('#clear-bg')[0].addEventListener('click', () => {
     bg.src = '/nikke-font-generator/images/transparent.png';
     bg.onload = function (e) {
@@ -282,7 +285,7 @@ document.querySelectorAll('#bg-img-up')[0].addEventListener('change', () => {
                     scalebg = (canvassize[0] / bg.width) * 100;
                     document.getElementById('scalebg').value = parseInt(scalebg);
                 }
-                bgpos = [0, 0];
+                bgpos = [540, 540];
             }
             generateText(text2, subtext2)
         }
@@ -292,15 +295,29 @@ document.querySelectorAll('#bg-img-up')[0].addEventListener('change', () => {
     }
 });
 
-document.querySelectorAll('#char-img-up')[0].addEventListener('change', () => {
-    const fileList = document.querySelectorAll('#char-img-up')[0].files;
+document.querySelectorAll('#ch-img-up')[0].addEventListener('change', () => {
+    const fileList = document.querySelectorAll('#ch-img-up')[0].files;
     const filer = new FileReader();
     filer.onload = (e) => {
-        char.src = e.target.result;
-        char.onload = (e) => {
-            chpos = [(canvassize[0] - char.width) / 2, char.height > canvassize[1] ? 0 : canvassize[1] - char.height];
+        let ch = new Image();
+        ch.src = e.target.result;
+        ch.onload = (e) => {
             generateText(text2, subtext2)
         }
+
+        loadedImages[fileList[0].name] = ch;
+
+        chars.push({
+            x: 1080 / 2,
+            y: 1080 / 2,
+            scale: 1.0,
+            visible: true,
+            id: fileList[0].name
+        });
+
+        curSelected = chars.length - 1;
+        updateCharList();
+        updateToolFields();
     };
     if (fileList.length > 0) {
         filer.readAsDataURL(fileList[0]);
@@ -317,25 +334,11 @@ document.querySelectorAll('#yposbg')[0].addEventListener('input', () => {
     generateText(text2, subtext2)
 });
 
-document.querySelectorAll('#xposch')[0].addEventListener('input', () => {
-    chpos[0] = parseInt(document.getElementById('xposch').value);
-    generateText(text2, subtext2)
-});
-
-document.querySelectorAll('#yposch')[0].addEventListener('input', () => {
-    chpos[1] = parseInt(document.getElementById('yposch').value);
-    generateText(text2, subtext2)
-});
-
 document.querySelectorAll('#scalebg')[0].addEventListener('input', () => {
     scalebg = parseInt(document.getElementById('scalebg').value);
     generateText(text2, subtext2)
 });
 
-document.querySelectorAll('#scalech')[0].addEventListener('input', () => {
-    scalech = parseInt(document.getElementById('scalech').value);
-    generateText(text2, subtext2)
-});
 
 document.querySelectorAll('#scaledc')[0].addEventListener('input', () => {
     let prev = scaledc / 100;
@@ -369,6 +372,21 @@ document.querySelectorAll('#scalena')[0].addEventListener('input', () => {
 
 document.getElementById('xposna').addEventListener('input', generateText.bind(text2, subtext2));
 document.getElementById('yposna').addEventListener('input', generateText.bind(text2, subtext2));
+
+document.querySelectorAll('#camx')[0].addEventListener('input', () => {
+    campos[0] = parseInt(document.getElementById('camx').value);
+    generateText(text2, subtext2)
+});
+
+document.querySelectorAll('#camy')[0].addEventListener('input', () => {
+    campos[1] = parseInt(document.getElementById('camy').value);
+    generateText(text2, subtext2)
+});
+
+document.getElementById("camzoom").addEventListener('input', (e) => {
+    camzoom = parseFloat(document.getElementById("camzoom").value) - 1.0;
+    generateText(text2, subtext2)
+});
 
 document.querySelectorAll('#wca')[0].addEventListener('input', () => {
     let prevwidth = canvassize[0];
@@ -461,12 +479,8 @@ bg.onload = (e) => {
     if (bg.width > bg.height) {
         bgpos = [(canvassize[0] - 1080 * (bg.width / bg.height)) / 2, 0];
     } else {
-        bgpos = [0, 0];
+        bgpos = [540, 540];
     }
-}
-
-char.onload = (e) => {
-    chpos = [(canvassize[0] - char.width) / 2, char.height > canvassize[1] ? 0 : canvassize[1] - char.height];
 }
 
 let sizetools = false;
@@ -480,7 +494,7 @@ document.querySelectorAll('#enable-sizing')[0].addEventListener('click', () => {
 document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('click', downloadImage);
 
 let dragbg = false;
-let dragch = false;
+let dragcam = false;
 
 let dragcn = false;
 let dragdt = false;
@@ -491,7 +505,7 @@ let dragna = false
 
 let mousecapture = [0, 0];
 let previousbg = [0, 0];
-let previousch = [0, 0];
+let previouscam = [0, 0];
 let dragging = false;
 
 let bgautofit = true;
@@ -507,13 +521,15 @@ document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointer
     if (dragging) return;
     dragging = true;
 
+    var coords = translateCoordinates(e, canvas);
+
     if (dragbg) {
         previousbg[0] = bgpos[0];
         previousbg[1] = bgpos[1];
     }
-    if (dragch) {
-        previousch[0] = chpos[0];
-        previousch[1] = chpos[1];
+    if (dragcam) {
+        previouscam[0] = campos[0];
+        previouscam[1] = campos[1];
     }
 
     // end me
@@ -542,10 +558,10 @@ document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointer
         previousna[1] = parseInt(document.getElementById('yposna').value);
     }
 
-    mousecapture[0] = e.clientX;
-    mousecapture[1] = e.clientY;
+    mousecapture[0] = coords[0];
+    mousecapture[1] = coords[1];
 
-    if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar || dragna) {
+    if (dragbg || dragcam || dragcn || dragdt || dragdc || dragcb || dragar || dragna) {
         disableScroll();
     }
 });
@@ -553,40 +569,41 @@ document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointer
 document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointermove', (e) => {
     if (!dragging) return;
 
+    var coords = translateCoordinates(e, canvas);
+
     if (dragbg) {
-        bgpos[0] = e.clientX + (previousbg[0] - mousecapture[0]);
-        bgpos[1] = e.clientY + (previousbg[1] - mousecapture[1]);
+        bgpos[0] = Math.round(previousbg[0] + (coords[0] - mousecapture[0]));
+        bgpos[1] = Math.round(previousbg[1] + (coords[1] - mousecapture[1]));
     }
-    if (dragch) {
-        chpos[0] = e.clientX + (previousch[0] - mousecapture[0]);
-        chpos[1] = e.clientY + (previousch[1] - mousecapture[1]);
+    if (dragcam) {
+        campos[0] = Math.round(previouscam[0] + (coords[0] - mousecapture[0]));
+        campos[1] = Math.round(previouscam[1] + (coords[1] - mousecapture[1]));
     }
 
     // end me pt 2
     if (dragcn) {
-        tpos[0] = e.clientX + (previouscn[0] - mousecapture[0]);
-        tpos[1] = e.clientY + (previouscn[1] - mousecapture[1]);
+        tpos[0] = Math.round(previouscn[0] + (coords[0] - mousecapture[0]));
+        tpos[1] = Math.round(previouscn[1] + (coords[1] - mousecapture[1]));
     }
     if (dragdt) {
-        dpos[0] = e.clientX + (previousdt[0] - mousecapture[0]);
-        dpos[1] = e.clientY + (previousdt[1] - mousecapture[1]);
+        dpos[0] = Math.round(previousdt[0] + (coords[0] - mousecapture[0]));
+        dpos[1] = Math.round(previousdt[1] + (coords[1] - mousecapture[1]));
     }
     if (dragdc) {
-        copos[0] = e.clientX + (previousdc[0] - mousecapture[0]);
-        copos[1] = e.clientY + (previousdc[1] - mousecapture[1]);
+        copos[0] = Math.round(previousdc[0] + (coords[0] - mousecapture[0]));
+        copos[1] = Math.round(previousdc[1] + (coords[1] - mousecapture[1]));
     }
     if (dragcb) {
-        cpos[0] = e.clientX + (previouscb[0] - mousecapture[0]);
-        cpos[1] = e.clientY + (previouscb[1] - mousecapture[1]);
+        cpos[0] = Math.round(previouscb[0] + (coords[0] - mousecapture[0]));
+        cpos[1] = Math.round(previouscb[1] + (coords[1] - mousecapture[1]));
     }
     if (dragar) {
-        arpos[0] = e.clientX + (previousar[0] - mousecapture[0]);
-        arpos[1] = e.clientY + (previousar[1] - mousecapture[1]);
+        arpos[0] = Math.round(previousar[0] + (coords[0] - mousecapture[0]));
+        arpos[1] = Math.round(previousar[1] + (coords[1] - mousecapture[1]));
     }
-
     if (dragna) {
-        document.getElementById('xposna').value = e.clientX + (previousna[0] - mousecapture[0]);
-        document.getElementById('yposna').value = e.clientY + (previousna[1] - mousecapture[1]);
+        document.getElementById('xposna').value = Math.round(previousna[0] + (coords[0] - mousecapture[0]));
+        document.getElementById('yposna').value = Math.round(previousna[1] + (coords[1] - mousecapture[1]));
     }
 
     generateText(text2, subtext2);
@@ -628,18 +645,20 @@ document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('pointer
     enableScroll();
 });
 
-document.querySelectorAll('#dch')[0].addEventListener('click', () => {
-    let cap = !dragch;
-    disableAllDrag();
-    dragch = cap;
-    updateDragButtons();
-});
 document.querySelectorAll('#dbg')[0].addEventListener('click', () => {
     let cap = !dragbg;
     disableAllDrag();
     dragbg = cap;
     updateDragButtons();
 });
+
+document.querySelectorAll('#dcam')[0].addEventListener('click', () => {
+    let cap = !dragcam;
+    disableAllDrag();
+    dragcam = cap;
+    updateDragButtons();
+});
+
 
 document.querySelectorAll('#dcn')[0].addEventListener('click', () => {
     let cap = !dragcn;
@@ -683,7 +702,7 @@ document.querySelectorAll('#bgtocan')[0].addEventListener('click', () => {
     document.getElementById('wca').value = bg.width * bgs;
     document.getElementById('hca').value = bg.height * bgs;
     // canvassize = [bg.width * bgs, bg.height * bgs];
-    bgpos = [0, 0];
+    bgpos = [540, 540];
 
     document.getElementById('wca').dispatchEvent(new Event('input'));
     document.getElementById('hca').dispatchEvent(new Event('input'));
@@ -699,8 +718,8 @@ document.querySelectorAll('#bgautofit')[0].addEventListener('click', () => {
 document.querySelectorAll('#export-png')[0].addEventListener('click', downloadImage);
 
 function updateDragButtons() {
-    document.querySelectorAll('#dch')[0].innerHTML = dragch ? "ON" : "OFF";
     document.querySelectorAll('#dbg')[0].innerHTML = dragbg ? "ON" : "OFF";
+    document.querySelectorAll('#dcam')[0].innerHTML = dragcam ? "ON" : "OFF";
 
     document.querySelectorAll('#dcn')[0].innerHTML = dragcn ? "ON" : "OFF";
     document.querySelectorAll('#ddt')[0].innerHTML = dragdt ? "ON" : "OFF";
@@ -711,8 +730,8 @@ function updateDragButtons() {
 }
 
 function disableAllDrag() {
-    dragch = false;
     dragbg = false;
+    dragcam = false;
 
     dragcn = false;
     dragdt = false;
@@ -720,6 +739,10 @@ function disableAllDrag() {
     dragcb = false;
     dragar = false;
     dragna = false;
+
+    curSelected = null;
+    updateCharList();
+    updateToolFields();
 }
 
 let drawfil = true;
@@ -808,8 +831,8 @@ function disableScroll() {
         if (dragbg) {
             scalebg += (e.deltaY / -100);
         }
-        if (dragch) {
-            scalech += (e.deltaY / -100);
+        if (dragcam) {
+            camzoom += (e.deltaY / -1000);
         }
 
         if (dragcn) {
@@ -832,7 +855,6 @@ function disableScroll() {
         }
 
         document.getElementById('scalebg').value = scalebg;
-        document.getElementById('scalech').value = scalech;
 
         document.getElementById('scalecn').value = tsize;
         document.getElementById('scaledt').value = dsize;
@@ -849,69 +871,37 @@ function enableScroll() {
     window.onwheel = (e) => { }
 }
 
-let capture = {}
-
 document.getElementById("align-bg-top").onclick = (e) => {
-    bgpos[1] = 0;
+    bgpos[1] = ((scalebg / 100) * bg.height) / 2;
     generateText(text2, subtext2);
 }
 
 document.getElementById("align-bg-ymid").onclick = (e) => {
-    bgpos[1] = (canvassize[1] - ((scalebg / 100) * bg.height)) / 2;
+    bgpos[1] = canvassize[1] / 2;
     generateText(text2, subtext2);
 }
 
 document.getElementById("align-bg-bot").onclick = (e) => {
-    bgpos[1] = canvassize[1] - ((scalebg / 100) * bg.height);
+    bgpos[1] = canvassize[1] - ((scalebg / 100) * bg.height) / 2;
     generateText(text2, subtext2);
 }
 
 document.getElementById("align-bg-left").onclick = (e) => {
-    bgpos[0] = 0;
+    bgpos[0] = ((scalebg / 100) * bg.width) / 2;
     generateText(text2, subtext2);
 }
 
 document.getElementById("align-bg-xmid").onclick = (e) => {
-    bgpos[0] = (canvassize[0] - ((scalebg / 100) * bg.width)) / 2;
+    bgpos[0] = canvassize[0] / 2;
     generateText(text2, subtext2);
 }
 
 document.getElementById("align-bg-right").onclick = (e) => {
-    bgpos[0] = canvassize[0] - ((scalebg / 100) * bg.width);
+    bgpos[0] = canvassize[0] - ((scalebg / 100) * bg.width) / 2;
     generateText(text2, subtext2);
 }
 
 ///
-
-document.getElementById("align-ch-top").onclick = (e) => {
-    chpos[1] = 0;
-    generateText(text2, subtext2);
-}
-
-document.getElementById("align-ch-ymid").onclick = (e) => {
-    chpos[1] = (canvassize[1] - ((scalech / 100) * char.height)) / 2;
-    generateText(text2, subtext2);
-}
-
-document.getElementById("align-ch-bot").onclick = (e) => {
-    chpos[1] = canvassize[1] - ((scalech / 100) * char.height);
-    generateText(text2, subtext2);
-}
-
-document.getElementById("align-ch-left").onclick = (e) => {
-    chpos[0] = 0;
-    generateText(text2, subtext2);
-}
-
-document.getElementById("align-ch-xmid").onclick = (e) => {
-    chpos[0] = (canvassize[0] - ((scalech / 100) * char.width)) / 2;
-    generateText(text2, subtext2);
-}
-
-document.getElementById("align-ch-right").onclick = (e) => {
-    chpos[0] = canvassize[0] - ((scalech / 100) * char.width);
-    generateText(text2, subtext2);
-}
 
 function generateText(text, subtext) {
     ctx.globalAlpha = 1;
@@ -928,20 +918,27 @@ function generateText(text, subtext) {
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     let bgs = scalebg / 100;
-    let chs = scalech / 100;
 
     if (drawfil) {
         let custom = document.getElementById('customfil').value + '';
         ctx.filter = `grayscale(${gsnum}%) blur(${blnum}px) brightness(${brnum}%) ` + custom;
     }
 
-    ctx.drawImage(bg, bgpos[0], bgpos[1], bg.width * bgs, bg.height * bgs);
+    let bgWidth = bg.width * bgs * (camzoom * 0.1 + 1);
+    let bgHeight = bg.height * bgs * (camzoom * 0.1 + 1);
+
+    var dx = bgpos[0] - campos[0];
+    var dy = bgpos[1] - campos[1];
+    var canvasX = bgpos[0] + (dx * camzoom) * (camzoom >= 0 ? 1 : -1) + ((canvassize[0] / 2) - campos[0]) * 0.1;
+    var canvasY = bgpos[1] + (dy * camzoom) * (camzoom >= 0 ? 1 : -1)  + ((canvassize[1] / 2) - campos[1]) * 0.1;
+
+    ctx.drawImage(bg, canvasX - bgWidth / 2, canvasY - bgHeight / 2, bgWidth, bgHeight);
 
     document.getElementById('xposbg').value = bgpos[0];
     document.getElementById('yposbg').value = bgpos[1];
 
-    document.getElementById('xposch').value = chpos[0];
-    document.getElementById('yposch').value = chpos[1];
+    document.getElementById('camx').value = campos[0];
+    document.getElementById('camy').value = campos[1];
 
     document.getElementById('xposcn').value = tpos[0];
     document.getElementById('yposcn').value = tpos[1];
@@ -958,7 +955,23 @@ function generateText(text, subtext) {
     document.getElementById('xposar').value = arpos[0];
     document.getElementById('yposar').value = arpos[1];
 
-    ctx.drawImage(char, chpos[0] + chposoff[0], chpos[1] + chposoff[1], char.width * chs, char.height * chs)
+    // char
+    for (let i of chars) {
+        if (!i.visible)
+            continue;
+
+        let img = loadedImages[i.id];
+
+        let imgWidth = img.width * i.scale * (camzoom + 1);
+        let imgHeight = img.height * i.scale * (camzoom + 1);
+
+        var dx = (i.x - campos[0]);
+        var dy = (i.y - campos[1]);
+        var canvasX = i.x + (dx * camzoom) + ((canvassize[0] / 2) - campos[0]);
+        var canvasY = i.y + (dy * camzoom) + ((canvassize[1] / 2) - campos[1]);
+
+        ctx.drawImage(img, canvasX - imgWidth / 2, canvasY - imgHeight / 2, imgWidth, imgHeight);
+    }
 
     ctx.filter = "none";
 
@@ -1008,11 +1021,11 @@ function generateText(text, subtext) {
                 choiceCanvasCtx.drawImage(rtri, choiceCanvas.width - rtri.width - 2, (choiceCanvas.height - rtri.height) / 2);
 
                 ctx.drawImage(choiceCanvas, 292, curY - height + 11)
-                
+
                 let textHeight = (lines.length * 32) - 5;
 
                 for (let j = 0; j < lines.length; j++) {
-                    ctx.fillText(lines[j], canvassize[0] / 2, (curY - height) +  ((height - textHeight) / 2) + 32 * j + 12);
+                    ctx.fillText(lines[j], canvassize[0] / 2, (curY - height) + ((height - textHeight) / 2) + 32 * j + 12);
                 }
 
                 curY -= height + 3;
@@ -1108,6 +1121,306 @@ function generateText(text, subtext) {
     }
 }
 
+var curSelected = null;
+
+var charDragCapture = [0, 0];
+var charCapture = [0, 0];
+var charDragging = false;
+
+document.getElementById("dialogue-canvas").addEventListener("pointerdown", (e) => {
+    const coords = translateCoordinates(e, canvas);
+    if (curSelected == null) return;
+    if (charDragging) return;
+
+    charDragging = true;
+    charDragCapture[0] = coords[0];
+    charDragCapture[1] = coords[1];
+
+    charCapture[0] = chars[curSelected].x;
+    charCapture[1] = chars[curSelected].y;
+});
+
+document.addEventListener("pointermove", (e) => {
+    const coords = translateCoordinates(e, canvas);
+    if (curSelected == null) return;
+    if (!charDragging) return;
+
+    // i took about 2 hours to figure out that final factor
+    // i cant believe it was that simple
+    // i hate math.
+    chars[curSelected].x = Math.round(charCapture[0] + (coords[0] - charDragCapture[0]) * (1 / (camzoom + 1)));
+    chars[curSelected].y = Math.round(charCapture[1] + (coords[1] - charDragCapture[1]) * (1 / (camzoom + 1)));
+
+    updateToolFields();
+});
+
+document.addEventListener("pointerup", (e) => {
+    const coords = translateCoordinates(e, canvas);
+    if (curSelected == null) return;
+    if (!charDragging) return;
+
+    charDragging = false;
+});
+
+// to do:
+
+function updateCharList() {
+
+    // document.getElementById("dialogue-tool-main").style.display = curSelected === null ? "none" : "flex";
+    for (let i of document.getElementsByClassName("charedit")) {
+        i.style.opacity = curSelected === null ? "0.5" : "1";
+        i.style.pointerEvents = curSelected === null ? "none" : null;
+    }
+    document.getElementById("deselect").innerHTML = curSelected === null ? "<span>No character selected.</span>" : "<span>Deselect</span>";
+    document.getElementById("character-selector").innerHTML = '';
+
+    for (let i of chars) {
+        const object = i;
+        const objectIndex = chars.indexOf(object);
+
+        const div2 = document.createElement("div");
+
+        const div = document.createElement("div");
+        div.classList.add("input-option");
+        div.classList.add("option-no-hover");
+        div.style.justifyContent = "spacing-between";
+        div.onclick = () => {
+            if (!div2.matches(":hover")) return;
+
+            disableAllDrag();
+
+            curSelected = objectIndex;
+            updateCharList();
+            updateToolFields();
+            updateDragButtons();
+        }
+
+        const divHighlight = document.createElement("div");
+        divHighlight.classList.add("layer-select-highlight")
+        divHighlight.style.display = objectIndex === curSelected ? "block" : "none";
+        div.append(divHighlight);
+
+        const image = document.createElement("img");
+        image.src = loadedImages[i.id].src;
+        image.style.maxWidth = "48px";
+        image.style.maxHeight = "48px";
+        div.append(image);
+        div2.classList.add("button-tray")
+
+        const visible = document.createElement("div");
+        visible.classList.add("input-button");
+        visible.classList.add("square");
+        visible.innerHTML = chars[objectIndex].visible ? eyeOn : eyeOff;
+        visible.id = "visible-" + object.id;
+        visible.onclick = () => {
+            chars[objectIndex].visible = !chars[objectIndex].visible;
+
+            updateToolFields();
+            updateCharList();
+            generateText(text2, subtext2);
+        }
+
+        const layerUp = document.createElement("div");
+        layerUp.classList.add("input-button");
+        layerUp.classList.add("square");
+        layerUp.innerHTML = "<span><i class='bx bx-chevron-up'></i></span>";
+        layerUp.id = "layer-up-" + object.id;
+        layerUp.onclick = () => {
+            let newIndex = objectIndex + 1;
+            if (newIndex > chars.length - 1) {
+                newIndex = chars.length - 1;
+            }
+            if (newIndex < 0) {
+                newIndex = 0;
+            }
+            chars.swap(objectIndex, newIndex);
+            disableAllDrag();
+            curSelected = newIndex;
+
+            updateToolFields();
+            updateCharList();
+            updateDragButtons();
+            generateText(text2, subtext2);
+        }
+
+        const layerDown = document.createElement("div");
+        layerDown.classList.add("input-button");
+        layerDown.classList.add("square");
+        layerDown.innerHTML = "<span><i class='bx bx-chevron-down'></i></span>";
+        layerDown.id = "layer-down-" + object.id;
+        layerDown.onclick = () => {
+            let newIndex = objectIndex - 1;
+            if (newIndex > chars.length - 1) {
+                newIndex = chars.length - 1;
+            }
+            if (newIndex < 0) {
+                newIndex = 0;
+            }
+            chars.swap(objectIndex, newIndex);
+
+            disableAllDrag();
+            curSelected = newIndex;
+
+            updateToolFields();
+            updateCharList();
+            updateDragButtons()
+            generateText(text2, subtext2);
+        }
+
+        const trash = document.createElement("div");
+        trash.classList.add("input-button");
+        trash.classList.add("square");
+        trash.innerHTML = "<span><i class='bx bx-trash'></i></span>";
+        trash.id = "trash-" + object.id;
+        trash.onclick = () => {
+            chars.splice(objectIndex, 1);
+            disableAllDrag();
+            curSelected = null;
+
+            updateToolFields();
+            updateCharList();
+            updateDragButtons()
+            generateText(text2, subtext2);
+        }
+
+        div2.append(visible);
+        div2.append(layerUp);
+        div2.append(layerDown);
+        div2.append(trash);
+
+        div.append(div2);
+
+        document.getElementById("character-selector").appendChild(div);
+    }
+}
+
+const xposch = document.getElementById("xposch");
+const yposch = document.getElementById("yposch");
+const scalech = document.getElementById("scalech");
+const visibilityCh = document.getElementById("visibility-ch")
+const delch = document.getElementById("del-ch")
+const deselect = document.getElementById("deselect");
+
+function updateToolFields() {
+    if (curSelected === null) return;
+
+    xposch.value = chars[curSelected].x;
+    yposch.value = chars[curSelected].y;
+    scalech.value = parseInt(chars[curSelected].scale * 100);
+    visibilityCh.innerHTML = chars[curSelected].visible ? eyeOn : eyeOff;
+
+    generateText(text2, subtext2);
+}
+
+xposch.addEventListener("input", (e) => {
+    if (curSelected === null) return;
+    chars[curSelected].x = parseInt(xposch.value);
+    updateToolFields();
+});
+
+yposch.addEventListener("input", (e) => {
+    if (curSelected === null) return;
+    chars[curSelected].y = parseInt(yposch.value);
+    updateToolFields();
+});
+
+scalech.addEventListener("input", (e) => {
+    if (curSelected === null) return;
+    chars[curSelected].scale = parseInt(scalech.value) / 100;
+    updateToolFields();
+});
+
+visibilityCh.addEventListener("click", (e) => {
+    if (curSelected === null) return;
+    chars[curSelected].visible = !chars[curSelected].visible;
+
+    updateToolFields();
+    updateCharList();
+    generateText(text2, subtext2);
+});
+
+delch.addEventListener("click", (e) => {
+    chars.splice(curSelected, 1);
+    disableAllDrag();
+    curSelected = null;
+    
+    updateToolFields();
+    updateCharList();
+    updateDragButtons();
+    generateText(text2, subtext2);
+});
+
+deselect.addEventListener("click", (e) => {
+    if (curSelected === null) return;
+    disableAllDrag();
+    curSelected = null;
+    updateCharList();
+
+    updateDragButtons();
+    updateToolFields();
+});
+
+document.getElementById("recenter-cam").addEventListener("click", (e) => {
+    campos[0] = canvassize[0] / 2;
+    campos[1] = canvassize[1] / 2;
+
+    generateText(text2, subtext2);
+});
+
+const chTop = document.getElementById("align-ch-top");
+const chYMid = document.getElementById("align-ch-ymid");
+const chBot = document.getElementById("align-ch-bot");
+
+const chLeft = document.getElementById("align-ch-left");
+const chXMid = document.getElementById("align-ch-xmid");
+const chRight = document.getElementById("align-ch-right");
+
+chTop.addEventListener("click", (_) => {
+    if (curSelected === null) return;
+    const image = loadedImages[chars[curSelected].id];
+    chars[curSelected].y = image.height * chars[curSelected].scale / 2;
+    updateToolFields();
+    generateText(text2, subtext2);
+});
+
+chYMid.addEventListener("click", (_) => {
+    if (curSelected === null) return;
+    chars[curSelected].y = canvassize[1] / 2;
+    updateToolFields();
+    generateText(text2, subtext2);
+});
+
+chBot.addEventListener("click", (_) => {
+    if (curSelected === null) return;
+    const image = loadedImages[chars[curSelected].id];
+    chars[curSelected].y = canvassize[1] -  (image.height * chars[curSelected].scale / 2);
+    updateToolFields();
+    generateText(text2, subtext2);
+});
+
+chLeft.addEventListener("click", (_) => {
+    if (curSelected === null) return;
+    const image = loadedImages[chars[curSelected].id];
+    chars[curSelected].x = image.width * chars[curSelected].scale / 2;
+    updateToolFields();
+    generateText(text2, subtext2);
+});
+
+chXMid.addEventListener("click", (_) => {
+    if (curSelected === null) return;
+    chars[curSelected].x = canvassize[0] / 2;
+    updateToolFields();
+    generateText(text2, subtext2);
+});
+
+chRight.addEventListener("click", (_) => {
+    if (curSelected === null) return;
+    const image = loadedImages[chars[curSelected].id];
+    chars[curSelected].x = canvassize[0] -  (image.width * chars[curSelected].scale / 2);
+    updateToolFields();
+    generateText(text2, subtext2);
+});
+
 // https://stackoverflow.com/questions/2936112/text-wrap-in-a-canvas-element
 // im fucking stupid -skuqre
 function getLines(ctx, text, maxWidth) {
@@ -1130,7 +1443,8 @@ function getLines(ctx, text, maxWidth) {
 }
 
 function downloadImage() {
-    if (dragbg || dragch || dragcn || dragdt || dragdc || dragcb || dragar || dragna) return;
+    if (dragbg || dragcam || dragcn || dragdt || dragdc || dragcb || dragar || dragna) return;
+    if (curSelected != null) return;
     var link = document.createElement('a');
     var canvas = document.getElementById('dialogue-canvas')
     link.download = 'nikke-dialogue.png';
@@ -1150,4 +1464,11 @@ function getLinesForParagraphs(ctx, text, maxWidth) {
     }
 
     return res;
+}
+
+Array.prototype.swap = function(x, y){
+    var b = this[x];
+    this[x] = this[y];
+    this[y] = b;
+    return this;
 }

@@ -21,16 +21,54 @@
             <div class="filler-square"></div>
         </div>
         <div class="row">
-            <label for="char-img-up" class="input-button fullwidth">
-                <span>Upload character image...</span>
-                <input type="file" id="char-img-up" accept="image/*" />
-            </label>
-        </div>
-        <div class="row">
             <label for="bg-img-up" class="input-button fullwidth">
                 <span>Upload background image...</span>
                 <input type="file" id="bg-img-up" accept="image/*" />
             </label>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Characters</h4>
+        </div>
+        <div class="row">
+            <label for="ch-img-up" class="input-button fullwidth">
+                <span>Upload character...</span>
+                <input type="file" id="ch-img-up" accept="image/*" />
+            </label>
+        </div>
+        <div class="row takeheight">
+            <div class="input-selector fullwidth" id="character-selector" style="flex-direction: column-reverse;"></div>
+        </div>
+        <div class="row takeheight charedit" style="align-items: flex-end;">
+            <div class="column">
+                <span>X</span>
+                <input type="number" id="xposch" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Y</span>
+                <input type="number" id="yposch" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Scale</span>
+                <input type="number" id="scalech" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="input-button square" id="visibility-ch">
+                <i class='bx bx-show-alt'></i>
+            </div>
+            <div class="input-button square" id="del-ch"><i class='bx bx-trash'></i></div>
+        </div>
+        <div class="row charedit">
+            <div class="input-button fullwidth icon-button" id="align-ch-top"><i class='bx bx-vertical-top'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-ch-ymid"><i class='bx bx-vertical-center'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-ch-bot"><i class='bx bx-vertical-bottom'></i></div>
+        </div>
+        <div class="row charedit">
+            <div class="input-button fullwidth icon-button" id="align-ch-left"><i class='bx bx-horizontal-left'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-ch-xmid"><i class='bx bx-horizontal-center'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-ch-right"><i class='bx bx-horizontal-right'></i></div>
+        </div>
+        <div class="row charedit">
+            <div class="input-button fullwidth" id="deselect"><span>Deselect</span></div>
         </div>
         
         <div class="row takeheight">
@@ -88,18 +126,13 @@
             <h4>Other</h4>
         </div>
         <div class="row">
-            <div class="input-button fullwidth" id="clear-char">
-                <span>Clear Character</span>
-            </div>
-        </div>
-        <div class="row">
             <div class="input-button fullwidth" id="clear-bg">
                 <span>Clear Background</span>
             </div>
         </div>
         <div class="row">
             <div class="input-button fullwidth" id="enable-sizing">
-                <span>Show sizing tools</span>
+                <span>Show sizing and camera tools</span>
             </div>
         </div>
         <div class="row">

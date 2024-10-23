@@ -21,11 +21,11 @@
         <div class="row takeheight" id="bg-transforms">
             <div class="column">
                 <span>X Position</span>
-                <input type="number" id="xposbg" step="10" class="fullwidth" value="0" />
+                <input type="number" id="xposbg" step="10" class="fullwidth" value="540" />
             </div>
             <div class="column">
                 <span>Y Position</span>
-                <input type="number" id="yposbg" step="10" class="fullwidth" value="0" />
+                <input type="number" id="yposbg" step="10" class="fullwidth" value="540" />
             </div>
             <div class="column">
                 <span>Scale (%)</span>
@@ -54,40 +54,29 @@
             <div class="input-button fullwidth icon-button" id="align-bg-right"><i class='bx bx-horizontal-right'></i></div>
         </div>
 
-        <div class="row takeheight" id="ch-transforms">
-            <h4>Character</h4>
+        <div class="row takeheight">
+            <h4>Camera</h4>
         </div>
         <div class="row takeheight">
             <div class="column">
                 <span>X Position</span>
-                <input type="number" id="xposch" step="10" class="fullwidth" value="0" />
+                <input type="number" id="camx" step="10" class="fullwidth" value="540" />
             </div>
             <div class="column">
                 <span>Y Position</span>
-                <input type="number" id="yposch" step="10" class="fullwidth" value="0" />
+                <input type="number" id="camy" step="10" class="fullwidth" value="540" />
             </div>
             <div class="column">
-                <span>Scale (%)</span>
-                <input type="number" id="scalech" class="fullwidth" value="100" />
+                <span>Zoom (x)</span>
+                <input type="number" id="camzoom" class="fullwidth" value="1" step="0.1" min="0" />
             </div>
             <div class="column">
                 <span>Drag</span>
-                <div class="input-button square text-button" id="dch">OFF</div>
+                <div class="input-button square text-button" id="dcam">OFF</div>
             </div>
         </div>
-
-        <div class="row takeheight">
-            <h4>Align Character</h4>
-        </div>
         <div class="row">
-            <div class="input-button fullwidth icon-button" id="align-ch-top"><i class='bx bx-vertical-top'></i></div>
-            <div class="input-button fullwidth icon-button" id="align-ch-ymid"><i class='bx bx-vertical-center'></i></div>
-            <div class="input-button fullwidth icon-button" id="align-ch-bot"><i class='bx bx-vertical-bottom'></i></div>
-        </div>
-        <div class="row">
-            <div class="input-button fullwidth icon-button" id="align-ch-left"><i class='bx bx-horizontal-left'></i></div>
-            <div class="input-button fullwidth icon-button" id="align-ch-xmid"><i class='bx bx-horizontal-center'></i></div>
-            <div class="input-button fullwidth icon-button" id="align-ch-right"><i class='bx bx-horizontal-right'></i></div>
+            <div class="input-button fullwidth" id="recenter-cam">Recenter Camera</div>
         </div>
 
         <div class="row takeheight">

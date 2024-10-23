@@ -69,24 +69,156 @@ const dialogueTutorialScript = [
     {
         text: "If the image seems too big for your liking, you can scale it down through this selector.",
         selector: "#size",
-        yieldUntil: "change",
+        yieldUntil: null,
         where: "top"
     },
     {
         text: "This here changes the color bar beside the name of the person.",
         selector: "#color",
-        yieldUntil: "change",
-        where: "top"
-    },
-    {
-        text: "This button allows you to upload an image of the person. We'll get to moving that image later.",
-        selector: "label[for='char-img-up']",
         yieldUntil: null,
         where: "top"
     },
     {
         text: "This button allows you to upload a background. You can also upload full images over here if you're uploading fanart. We'll also get to moving that image later.",
         selector: "label[for='bg-img-up']",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This button allows you to upload a character. Somehow this area is bugged when I let you upload a character so I'll just let you do that later.",
+        selector: "label[for='ch-img-up']",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This area allows you to arrange layers.",
+        selector: "#character-selector",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This is the worried Anis layer.",
+        selector: "#character-selector > div.input-option:first-child",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "When a layer is selected, there will be a <b>yellow highlight</b> around it.",
+        selector: "#character-selector > div.input-option:first-child",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This is the small preview of the layer.",
+        selector: "#character-selector > div.input-option:first-child > img",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This allows you to toggle the layer's visibility.",
+        selector: "#character-selector > div.input-option:first-child div[id^=visible]",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This allows you to move the layer up, putting the layer above below it.",
+        selector: "#character-selector > div.input-option:first-child div[id^=layer-up]",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This allows you to move the layer down, putting the layer below above it.",
+        selector: "#character-selector > div.input-option:first-child div[id^=layer-down]",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This allows you to delete the layer.",
+        selector: "#character-selector > div.input-option:first-child div[id^=trash]",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Click the empty space to select the worried Anis layer.",
+        selector: "#character-selector > div.input-option:first-child",
+        yieldUntil: "clickButton",
+        where: "top"
+    },
+    {
+        text: "This now doesn't say \"No character selected\", and now looks active. The fields above are now able to change as well.",
+        selector: "#deselect",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This changes the <b>horizontal</b> position of the character.",
+        selector: "#xposch",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This changes the <b>vertical</b> position of the character.",
+        selector: "#yposch",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "While selected, you can also easily drag the character around to your liking.",
+        selector: "#dialogue-canvas",
+        yieldUntil: "finishDrag",
+        where: "top"
+    },
+    {
+        text: "This changes the size of the character.",
+        selector: "#scalech",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Alternatively, you can toggle the layer's visibility through this button.",
+        selector: "#visibility-ch",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Alternatively, you can delete the currently selected character through this button.",
+        selector: "#del-ch",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This button allows you to align the character to the top.",
+        selector: "#align-ch-top",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This button allows you to align the character to the vertical center.",
+        selector: "#align-ch-ymid",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This button allows you to align the character to the bottom.",
+        selector: "#align-ch-bot",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This button allows you to align the character to the left.",
+        selector: "#align-ch-left",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This button allows you to align the character to the horizontal center.",
+        selector: "#align-ch-xmid",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This button allows you to align the character to the right.",
+        selector: "#align-ch-right",
         yieldUntil: null,
         where: "top"
     },
@@ -157,19 +289,13 @@ const dialogueTutorialScript = [
         where: "bottom"
     },
     {
-        text: "You can tap this button to remove the person.",
-        selector: "#clear-char",
-        yieldUntil: null,
-        where: "top"
-    },
-    {
         text: "You can tap this button to remove the background. Though, a black void will be shown instead.",
         selector: "#clear-bg",
         yieldUntil: null,
         where: "top"
     },
     {
-        text: "Let's get started on sizing.",
+        text: "Let's get started on sizing and the camera.",
         selector: null,
         yieldUntil: null,
         where: "top"
@@ -207,18 +333,6 @@ const dialogueTutorialScript = [
     {
         text: "This is the scale of the background, percentage-wise.",
         selector: "#scalebg",
-        yieldUntil: null,
-        where: "top"
-    },
-    {
-        text: "For demonstration on the next items, can you set this number to something else other than 120 for me? I'd recommend it to be something lower, though.",
-        selector: "#scalebg",
-        yieldUntil: "finishNumber",
-        where: "top"
-    },
-    {
-        text: "Thank you!",
-        selector: null,
         yieldUntil: null,
         where: "top"
     },
@@ -301,14 +415,50 @@ const dialogueTutorialScript = [
         where: "top"
     },
     {
-        text: "The same principles from the Background part of the tool apply to the Character part of the tool as well.",
+        text: "Let's move on to the camera.",
         selector: null,
         yieldUntil: null,
         where: "top"
     },
     {
-        text: "They're meant to look similar. They work similar, too... well the Character part changes the Character instead of the Background...",
-        selector: null,
+        text: "This is the <b>horizontal</b> position of the camera.",
+        selector: "#camx",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This is the <b>vertical</b> position of the camera.",
+        selector: "#camy",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This is the zoom of the camera. The higher the zoom, the closer the characters are to the camera.",
+        selector: "#camzoom",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "The camera's drag works differently among others. Toggle the camera's drag on.",
+        selector: "#dcam",
+        yieldUntil: "clickButton",
+        where: "top"
+    },
+    {
+        text: "Drag the camera around so that you can get a feel for it.",
+        selector: "#dialogue-canvas",
+        yieldUntil: "finishDrag",
+        where: "bottom"
+    },
+    {
+        text: "The elements move to the right whilst you move the camera to the left. Kinda like an actual camera.",
+        selector: "#dialogue-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "If you can't get it quite right, you can just recenter the camera through this button.",
+        selector: "#recenter-cam",
         yieldUntil: null,
         where: "top"
     },
@@ -1620,7 +1770,7 @@ const bannerTutorialScript = [
         where: "top"
     },
     {
-        text: "When a sticker is selected, a <b>yellow highlight</b> will be visible around it's layer.",
+        text: "When a sticker is selected, a <b>yellow highlight</b> will be visible around its layer.",
         selector: "#layer-selector > div.input-option:first-child",
         yieldUntil: null,
         where: "top"
@@ -2075,7 +2225,7 @@ function progressTutorial() {
         text = text.replaceAll(match, document.getElementById(match.replaceAll("%", "")).value);
     });
 
-    document.getElementById("tutorial-dialogue").innerHTML = text ;
+    document.getElementById("tutorial-dialogue").innerHTML = text;
 
     document.removeEventListener("click", progressClick);
     document.removeEventListener("pointermove", progressTyping);
@@ -2085,7 +2235,7 @@ function progressTutorial() {
         spotlighted.removeEventListener("click", progressClick);
 
         for (const i of Array.from(spotlighted.children)) {
-            i.addEventListener("click", selfDestructClick.bind(null, i, i));
+            i.removeEventListener("click", selfDestructClick.bind(null, i, i));
         }
     }
 
@@ -2101,6 +2251,7 @@ function progressTutorial() {
 
     switch (curScript[curPhase].yieldUntil) {
         case "finishTyping":
+            yieldingForType = false;
             spotlighted.addEventListener("input", progressTyping);
             spotlighted.focus();
 
@@ -2108,6 +2259,7 @@ function progressTutorial() {
             document.getElementById("tutorial-layer").style.pointerEvents = "none";
             break;
         case "finishChange":
+            yieldingForType = false;
             spotlighted.addEventListener("input", progressTyping);
             spotlighted.focus();
 
@@ -2115,6 +2267,7 @@ function progressTutorial() {
             document.getElementById("tutorial-layer").style.pointerEvents = "none";
             break;
         case "finishNumber":
+            yieldingForType = false;
             spotlighted.addEventListener("input", progressTyping);
             spotlighted.focus();
 
@@ -2122,6 +2275,7 @@ function progressTutorial() {
             document.getElementById("tutorial-layer").style.pointerEvents = "none";
             break;
         case "finishDrag":
+            yieldingForType = false;
             document.addEventListener("pointermove", progressTypingMouseDown);
 
             document.getElementById("tutorial-next").innerHTML = arrows + " FINISH DRAGGING TO CONTINUE";
@@ -2211,6 +2365,7 @@ function progressTypingMouseDown(e) {
 
 function progressClick(e) {
     e.stopPropagation();
+    e.stopImmediatePropagation();
     curPhase += 1;
     progressTutorial();
 }
