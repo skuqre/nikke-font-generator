@@ -26,13 +26,10 @@
     ["legendary commander", "si_c942_00_s"],
 
     ["ade", "si_c310_00_s"],
-    ["anachiro", "si_c944_00_s"],
-    ["cinderella", "si_c944_00_s"],
     ["indivilia", "si_c263_00_s"],
     ["k", "si_c041_00_s"],
     ["liberalio", "si_c262_00_s", ""],
     ["liliweiss", "si_c943_00_s"],
-    ["rapunzel: innocent days", "si_c966_00_s"],
     ["mana", "si_c290_00_s"],
     ["papillion", "si_c908_00_s", ""],
     ["pinne", "si_c941_00_s"],
@@ -91,7 +88,7 @@
     ["flora", "si_c411_00_s"],
     ["hammering", "si_c490_00_s"],
     ["liveryn", "si_c480_00_s"],
-    ["grave", "si_c510_00_s"],
+    ["grave: old", "si_c510_00_s"],
     
     ["t.rony", "si_c976_00_s"],
     ["black ark ranger", "si_c570_00_s"],
@@ -102,7 +99,22 @@
     ["kilo", "si_c977_00_s"],
 
     ["behemoth", "si_c560_00_s"],
+    ["leviathan", "si_c562_00_s"],
 
     ["mihara: wordless", "si_c162_00_s"],
-    ["yuni: wordless", "si_c985_00_s"]
+    ["yuni: wordless", "si_c985_00_s"],
+
+    ["phantom: mask off", "si_c580_00_maskoff_s"],
+
+    ["little mermaid", "si_c513_00_s"],
+    ["siren", "si_c513_00_s"],
+    ["abe", "si_c979_00_s"],
+    ["hansel", "si_c980_00_s"],
+    ["gretel", "si_c981_00_s"],
+    ["red shoes", "si_c982_00_s"],
+
+    ["rapi: tactical up", "si_c989_00_s"],
+    ["emma: tactical up", "si_c093_00_s"],
+    ["vesti: tactical up", "si_c094_00_s"],
+    ["eunhwa: tactical up", "si_c095_00_s"]
 ]

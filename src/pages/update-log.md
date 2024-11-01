@@ -10,6 +10,41 @@ embeddesc: the update log
 
 <br>
 
+## many new npcs `Nov 1, 2024`
+
+since a whole lot of npcs became units and added to nikke.gg, the npcs list has been updated to adapt to it
+
+grave got upgrades, so the playable grave takes precedent, but the old grave still lives
+
+rapunzel got playable, but it's just an id and name change (rapunzel: innocent days -> rapunzel: pure grace)
+
+**blabla gen**
+added npcs
+- leviathan
+- phantom: mask off
+- little mermaid / siren
+- abe
+- hansel
+- gretel
+- red shoes
+- rapi: tactical up
+- emma: tactical up
+- vesti: tactical up
+- eunhwa: tactical up
+- grave: old
+
+added raptures
+- centurion: red shoes
+- boss: land eater -> boss: land eater psid
+- boss: land eater hsta
+- boss: behemoth psid
+
+<br>
+
+---
+
+<br>
+
 ## multiple characters `Oct 23, 2024`
 
 after a looong loong time comin, multiple characters have been added to the dialogue generator!

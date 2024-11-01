@@ -1,4 +1,4 @@
-<p align="center"><img width="80%" src="public/logo-example1.png" /></p>
+<p align="center"><img width="80%" src="public/example-logo.png" /></p>
 
 <a href="https://skuqre.github.io/nikke-font-generator"><h2 align="center">Barely Accurate NIKKE Font Generator</h2></a>
 <p align="center">

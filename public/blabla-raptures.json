@@ -16,6 +16,10 @@
         "si_mbg001_psid"
     ],
     [
+        "boss: behemoth psid",
+        "si_mbg003_psid"
+    ],
+    [
         "boss: black smith",
         "si_bbg003"
     ],
@@ -92,7 +96,11 @@
         "si_bbg004_zeus"
     ],
     [
-        "boss: land eater",
+        "boss: land eater hsta",
+        "si_ebg001_hsta"
+    ],
+    [
+        "boss: land eater psid",
         "si_ebg001"
     ],
     [
@@ -214,6 +222,10 @@
     [
         "centurion: rebuild vulcan r",
         "si_mcg004_re"
+    ],
+    [
+        "centurion: red shoes",
+        "si_mcg007"
     ],
     [
         "centurion: runway",
