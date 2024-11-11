@@ -10,6 +10,39 @@ embeddesc: the update log
 
 <br>
 
+## happy 1 year! `Nov 11, 2024`
+
+it's been a year...?!
+
+thank you all for using this site for your shitposts, memes, fanfictions!
+
+it's been very fun making this site better for you all!
+
+\- skuqre (`u/ANISNO1`)
+
+**blabla gen**
+- renamed `rapture centurion: red shoes` -> `rapture centurion: replica red shoes`
+
+**dialogue gen**
+- added landscape padding
+    - makes landscape canvas sizes look more like the game, it can be toggled off
+    - might be buggy when toggling between
+    - changing canvas size is now a **destructive** transform, meaning some positions of UI elements (dialogue text, character name, etc...) may get messed up.
+- fixed some issues with canvas sizes
+    - camera should now follow lead when changing
+    - characters should now follow lead when changing
+- increased choice text margins (24px -> 32px)
+
+**card gen**
+- added Drag
+    - may cause the tool to chug because of how things are drawn, will fix soon
+
+<br>
+
+---
+
+<br>
+
 ## many new npcs `Nov 1, 2024`
 
 since a whole lot of npcs became units and added to nikke.gg, the npcs list has been updated to adapt to it
@@ -19,6 +52,7 @@ grave got upgrades, so the playable grave takes precedent, but the old grave sti
 rapunzel got playable, but it's just an id and name change (rapunzel: innocent days -> rapunzel: pure grace)
 
 **blabla gen**
+
 added npcs
 - leviathan
 - phantom: mask off

@@ -1,4 +1,4 @@
-import { draw9slice, recolorImage, trimCanvas } from './util.js';
+import { draw9slice, recolorImage, trimCanvas, translateCoordinates } from './util.js';
 import fuzzysort from "fuzzysort";
 
 const canvas = document.getElementById("card-canvas");
@@ -373,10 +373,12 @@ function generateCard() {
 
     // trim canvas
 
-    const newCanvas = trimCanvas(canvas);
-    canvas.width = newCanvas.width;
-    canvas.height = newCanvas.height;
-    ctx.drawImage(newCanvas, 0, 0);
+    if (!dragging) {
+        const newCanvas = trimCanvas(canvas);
+        canvas.width = newCanvas.width;
+        canvas.height = newCanvas.height;
+        ctx.drawImage(newCanvas, 0, 0);
+    }
 }
 
 setTimeout(() => {
@@ -529,4 +531,60 @@ document.getElementById("color").addEventListener("input", () => {
 
 document.getElementById("download").addEventListener("click", () => {
     document.querySelectorAll('canvas#card-canvas')[0].dispatchEvent(new Event("click"));
+});
+
+let dragOn = false;
+document.getElementById("dragcd").onclick = (e) => {
+    dragOn = !dragOn;
+    document.getElementById("dragcd").innerHTML = (dragOn ? "ON" : "OFF");
+    generateCard();
+}
+
+let mousecapture = [0, 0];
+let previous = [0, 0];
+let dragging = false;
+
+document.querySelectorAll('canvas#card-canvas')[0].addEventListener('pointerdown', (e) => {
+    if (dragging) return;
+
+    if (dragOn) {
+        const coords = translateCoordinates(e, canvas);
+
+        dragging = true;
+        mousecapture[0] = coords[0];
+        mousecapture[1] = coords[1];
+
+        previous[0] = curTransforms[0];
+        previous[1] = curTransforms[1];
+    }
+});
+
+document.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const coords = translateCoordinates(e, canvas);
+
+    if (dragOn) {
+        curTransforms[0] = parseInt(previous[0] + (coords[0] - mousecapture[0]));
+        curTransforms[1] = parseInt(previous[1] + (coords[1] - mousecapture[1]));
+        generateCard();
+    }
+
+    document.getElementById("xposcd").value = curTransforms[0];
+    document.getElementById("yposcd").value = curTransforms[1];
+});
+
+document.addEventListener('pointerup', (e) => {
+    if (!dragging) return;
+    dragging = false;
+
+    generateCard();
+});
+
+document.querySelectorAll('canvas#card-canvas')[0].addEventListener('click', () => {
+    if (dragOn) return;
+    var link = document.createElement('a');
+    var canvas = document.getElementById('card-canvas');
+    link.download = 'nikke-card.png';
+    link.href = canvas.toDataURL()
+    link.click();
 });

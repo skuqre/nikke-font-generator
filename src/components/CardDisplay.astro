@@ -6,16 +6,6 @@
     <canvas id="card-canvas" width="311" height="600"></canvas>
 </div>
 
-<script>
-    document.querySelectorAll('canvas#card-canvas')[0].addEventListener('click', () => {
-        var link = document.createElement('a');
-        var canvas: HTMLCanvasElement = document.getElementById('card-canvas') as HTMLCanvasElement
-        link.download = 'nikke-card.png';
-        link.href = canvas.toDataURL()
-        link.click();
-    });
-</script>
-
 <style>
     div.card-display {
         display: flex;

@@ -35,6 +35,7 @@ let scalebg = 120;
 let bgpos = [540, 540];
 
 let canvassize = [1080, 1080];
+let padding = true;
 
 let wmrk = new Image();
 wmrk.crossOrigin = "anonymous"
@@ -166,8 +167,18 @@ action.src = `/nikke-font-generator/images/dialogue/actionbox.png`;
 function drawGradients(haschoices) {
     ctx.globalCompositeOperation = "multiply";
     ctx.drawImage(uvig, 0, 0, canvassize[0], uvig.height);
-    ctx.drawImage(lvig, 0, 0, lvig.width, canvassize[1]);
-    ctx.drawImage(rvig, canvassize[0] - rvig.width, 0, rvig.width, canvassize[1]);
+
+    if (!padding) {
+        ctx.drawImage(lvig, 0, 0, lvig.width, canvassize[1]);
+        ctx.drawImage(rvig, canvassize[0] - rvig.width, 0, rvig.width, canvassize[1]);
+    } else {
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, (canvassize[0] - canvassize[1]) / 2, canvassize[1]);
+        ctx.fillRect(canvassize[0] - (canvassize[0] - canvassize[1]) / 2, 0, (canvassize[0] - canvassize[1]) / 2, canvassize[1]);
+
+        ctx.drawImage(lvig, (canvassize[0] - canvassize[1]) / 2, 0, lvig.width, canvassize[1]);
+        ctx.drawImage(rvig, canvassize[0] - (canvassize[0] - canvassize[1]) / 2 - rvig.width, 0, rvig.width, canvassize[1]);
+    }
 
     if (haschoices) {
         ctx.drawImage(bvig, 0, canvassize[1] - bvig.height, canvassize[0], bvig.height);
@@ -399,6 +410,27 @@ document.querySelectorAll('#wca')[0].addEventListener('input', () => {
     document.getElementById('xposdc').value = copos[0];
     document.getElementById('xposar').value = arpos[0];
 
+    bgpos[0] += diff / 2;
+    document.getElementById('xposbg').value = bgpos[0];
+    
+    campos[0] += diff / 2;
+
+    for (const i of chars) {
+        i.x += diff / 2;
+    }
+
+    if (canvassize[0] < canvassize [1]) {
+        tpos[0] += diff / -2;
+        dpos[0] += diff / -2;
+        cpos[0] += diff / -2;
+        arpos[0] += diff / 2;
+    }
+
+    document.getElementById('yposcn').value = tpos[0];
+    document.getElementById('yposdt').value = dpos[0];
+    document.getElementById('yposcb').value = cpos[0];
+    document.getElementById('yposar').value = arpos[0];
+
     generateText(text2, subtext2)
 });
 
@@ -416,6 +448,15 @@ document.querySelectorAll('#hca')[0].addEventListener('input', () => {
     document.getElementById('yposdt').value = dpos[1];
     document.getElementById('yposcb').value = cpos[1];
     document.getElementById('yposar').value = arpos[1];
+
+    bgpos[1] += diff / 2;
+    document.getElementById('yposbg').value = bgpos[1];
+
+    campos[1] += diff / 2;
+
+    for (const i of chars) {
+        i.y += diff / 2;
+    }
 
     generateText(text2, subtext2)
 });
@@ -778,6 +819,13 @@ document.querySelectorAll('#ui-toggle')[0].addEventListener('click', () => {
     generateText(text2, subtext2)
 });
 
+document.querySelectorAll('#padding-toggle')[0].addEventListener('click', () => {
+    padding = !padding;
+
+    document.querySelectorAll('#padding-toggle')[0].innerHTML = "<span>" + "Landscape Padding: " + (padding ? "ON" : "OFF") + "</span>";
+    generateText(text2, subtext2)
+});
+
 document.querySelectorAll('#customfil')[0].addEventListener('input', () => {
     generateText(text2, subtext2)
 });
@@ -1004,7 +1052,7 @@ function generateText(text, subtext) {
                 ctx.textBaseline = "top";
                 ctx.textAlign = "center";
 
-                let lines = getLinesForParagraphs(ctx, item.trim(), 508 - 48);
+                let lines = getLinesForParagraphs(ctx, item.trim(), 508 - 64);
                 let height = 70 + (lines.length - 1) * 34;
 
                 draw9slice(ctx, choicepng, [31, 29, 1, 2], 286, curY - height + 7, 508, height);
@@ -1085,14 +1133,14 @@ function generateText(text, subtext) {
             let yoffset = (39 * Math.max(lines.length - 2, 0));
 
             for (let i = 0; i < lines.length; i++) {
-                ctx.fillText(lines[i], dpos[0], dpos[1] + (7 * dsc) + ((39 * dsc) * i) - yoffset, canvassize[0] - 250);
+                ctx.fillText(lines[i], dpos[0] + (padding ? (canvassize[0] - canvassize[1]) / 2 : 0), dpos[1] + (7 * dsc) + ((39 * dsc) * i) - yoffset, canvassize[0] - 250);
             }
 
             ctx.shadowColor = color + "80";
             ctx.shadowBlur = 3;
 
             ctx.fillStyle = color;
-            ctx.fillRect(cpos[0], cpos[1] - yoffset, 5 * scalecb / 100, 24 * scalecb / 100);
+            ctx.fillRect(cpos[0] + (padding ? (canvassize[0] - canvassize[1]) / 2 : 0), cpos[1] - yoffset, 5 * scalecb / 100, 24 * scalecb / 100);
 
             ctx.shadowColor = "#ffffff00";
             ctx.shadowBlur = 0;
@@ -1101,12 +1149,12 @@ function generateText(text, subtext) {
             ctx.letterSpacing = "0.4px";
             ctx.fillStyle = "#ffffff";
             ctx.textBaseline = "top";
-            ctx.fillText(text, tpos[0], tpos[1] + 8 - yoffset, canvassize[0] - 250);
+            ctx.fillText(text, tpos[0] + (padding ? (canvassize[0] - canvassize[1]) / 2 : 0), tpos[1] + 8 - yoffset, canvassize[0] - 250);
 
             ctx.letterSpacing = "0px";
 
             if (arrowOn) {
-                ctx.drawImage(arrow, arpos[0], arpos[1], arrow.width * scalear / 100, arrow.height * scalear / 100);
+                ctx.drawImage(arrow, arpos[0] - (padding ? (canvassize[0] - canvassize[1]) / 2 : 0), arpos[1], arrow.width * scalear / 100, arrow.height * scalear / 100);
             }
         }
 
@@ -1115,7 +1163,7 @@ function generateText(text, subtext) {
         }
 
         ctx.globalAlpha = 0.1;
-        ctx.drawImage(wmrk, 16, -16, 128, 128);
+        ctx.drawImage(wmrk, 16 + (padding ? (canvassize[0] - canvassize[1]) / 2 : 0), -16, 128, 128);
     } else {
         drawGradients(true);
     }
