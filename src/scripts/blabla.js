@@ -521,6 +521,64 @@ function generateBlabla() {
 
                             ctx.drawImage(attachmentCanvas, canvas.width - 32 + xOffset - attachment.width * scale - 1, cury + 5);
 
+                            // specials
+                            if (item.attachment.trim().toLowerCase().startsWith("/nikke-font-generator")) {
+                                switch (item.attachment.split("/").pop().trim().toLowerCase()) {
+                                    case "gift_opened_template_cmd.png":
+                                        ctx.font = "15px PB";
+                                        ctx.fillStyle = "#323232";
+                                        ctx.textBaseline = "middle";
+                                        ctx.textAlign = "center";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText("Gift claimed.", (canvas.width - 32 + xOffset - attachment.width * scale - 1) + attachmentCanvas.width / 2, cury + 5 + attachmentCanvas.height / 2 + 77);
+                                        break;
+                                    case "gift_unopened_template_cmd.png":
+                                        ctx.font = "15px PB";
+                                        ctx.fillStyle = "#323232";
+                                        ctx.textBaseline = "middle";
+                                        ctx.textAlign = "center";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText("You sent a gift.", (canvas.width - 32 + xOffset - attachment.width * scale - 1) + attachmentCanvas.width / 2, cury + 5 + attachmentCanvas.height / 2 + 77);
+                                        break;
+                                    case "pcall_template_cmd.png":
+                                        ctx.font = "18px PEB";
+                                        ctx.fillStyle = "#fff";
+                                        ctx.textBaseline = "bottom";
+                                        ctx.textAlign = "left";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText("Voice Call", (canvas.width - 32 + xOffset - attachment.width * scale - 1) + attachmentCanvas.width * 84 / 240, cury + 5 + attachmentCanvas.height / 2 - 3);
+
+                                        ctx.font = "16px PB";
+                                        ctx.fillStyle = "#fdfdfd";
+                                        ctx.textBaseline = "top";
+                                        ctx.textAlign = "left";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText(item.message, (canvas.width - 32 + xOffset - attachment.width * scale - 1) + attachmentCanvas.width * 84 / 240, cury + 5 + attachmentCanvas.height / 2 + 7);
+                                        break;
+                                    case "vcall_template_cmd.png":
+                                        ctx.font = "18px PEB";
+                                        ctx.fillStyle = "#fff";
+                                        ctx.textBaseline = "bottom";
+                                        ctx.textAlign = "left";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText("Video Call", (canvas.width - 32 + xOffset - attachment.width * scale - 1) + attachmentCanvas.width * 84 / 240, cury + 5 + attachmentCanvas.height / 2 - 3);
+
+                                        ctx.font = "16px PB";
+                                        ctx.fillStyle = "#fdfdfd";
+                                        ctx.textBaseline = "top";
+                                        ctx.textAlign = "left";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText(item.message, (canvas.width - 32 + xOffset - attachment.width * scale - 1) + attachmentCanvas.width * 84 / 240, cury + 5 + attachmentCanvas.height / 2 + 7);
+                                        break;
+                                }
+                            }
+
                             height = attachment.height * scale + margins;
                         } else {
                             width = ctx.measureText('<Loading image...>').width;
@@ -630,6 +688,69 @@ function generateBlabla() {
 
                             ctx.drawImage(attachmentCanvas, curx - 1 - xOffset, cury + 5);
 
+                            // specials
+                            if (item.attachment.trim().toLowerCase().startsWith("/nikke-font-generator")) {
+                                switch (item.attachment.split("/").pop().trim().toLowerCase()) {
+                                    case "gift_opened_template.png":
+                                        ctx.font = "15px PB";
+                                        ctx.fillStyle = "#fff";
+                                        ctx.textBaseline = "middle";
+                                        ctx.textAlign = "center";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText("Gift claimed.", curx - 1 - xOffset + attachmentCanvas.width / 2, cury + 5 + attachmentCanvas.height / 2 + 77);
+                                        break;
+                                    case "gift_unopened_template.png":
+                                        ctx.font = "15px PB";
+                                        ctx.fillStyle = "#fff";
+                                        ctx.textBaseline = "middle";
+                                        ctx.textAlign = "center";
+                                        ctx.letterSpacing = '0px';
+
+                                        const textWidth = ctx.measureText(item.name + " sent a gift.").width;
+                                        if (textWidth > 157) {
+                                            ctx.font = ((157 - 32) / textWidth * 15) + "px PB";
+                                        }
+
+                                        ctx.fillText(item.name + " sent a gift.", curx - 1 - xOffset + attachmentCanvas.width / 2, cury + 5 + attachmentCanvas.height / 2 + 77);
+                                        break;
+                                    case "pcall_template.png":
+                                        ctx.font = "18px PEB";
+                                        ctx.fillStyle = "#404040";
+                                        ctx.textBaseline = "bottom";
+                                        ctx.textAlign = "left";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText("Voice Call", curx - 1 - xOffset + attachmentCanvas.width * 84 / 240, cury + 5 + attachmentCanvas.height / 2 - 3);
+
+                                        ctx.font = "16px PB";
+                                        ctx.fillStyle = "#777";
+                                        ctx.textBaseline = "top";
+                                        ctx.textAlign = "left";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText(item.message, curx - 1 - xOffset + attachmentCanvas.width * 84 / 240, cury + 5 + attachmentCanvas.height / 2 + 7);
+                                        break;
+                                    case "vcall_template.png":
+                                        ctx.font = "18px PEB";
+                                        ctx.fillStyle = "#404040";
+                                        ctx.textBaseline = "bottom";
+                                        ctx.textAlign = "left";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText("Video Call", curx - 1 - xOffset + attachmentCanvas.width * 84 / 240, cury + 5 + attachmentCanvas.height / 2 - 3);
+
+                                        ctx.font = "16px PB";
+                                        ctx.fillStyle = "#777";
+                                        ctx.textBaseline = "top";
+                                        ctx.textAlign = "left";
+                                        ctx.letterSpacing = '0px';
+
+                                        ctx.fillText(item.message, curx - 1 - xOffset + attachmentCanvas.width * 84 / 240, cury + 5 + attachmentCanvas.height / 2 + 7);
+                                        break;
+                                }
+                            }
+
                             height = attachment.height * scale + margins;
                         } else {
                             width = ctx.measureText('<Loading image...>').width;
@@ -664,7 +785,7 @@ function generateBlabla() {
 
                         for (let j = 0; j < lines.length; j++) {
                             ctx.fillText(lines[j].trim(), curx + 16 - xOffset, cury + 20 + ((31) * j), textWidth);
-                            ctx.strokeText(lines[j].trim(), curx + 16 - xOffset, cury + 20 + ((31) * j), textWidth);
+                            // ctx.strokeText(lines[j].trim(), curx + 16 - xOffset, cury + 20 + ((31) * j), textWidth);
 
                             // ctx.fillStyle = "#ff0000";
                             // ctx.fillRect(curx + 16, cury + 20 + ((31) * j), textWidth, 10);
@@ -995,12 +1116,14 @@ function generateBlabla() {
         ctx.drawImage(indicator, divided * nikkepage + (divided - indicator.width) / 2, top2.height - indicator.height);
     }
 
-    ctx.font = "15px SB";
-    ctx.textBaseline = "top";
-    ctx.textAlign = "left";
-    ctx.letterSpacing = '0px';
-    ctx.fillStyle = '#ffffff';
-    ctx.fillText(document.getElementById('chattime').value, 42, 14);
+    if (mode !== "profile") {
+        ctx.font = "15px SB";
+        ctx.textBaseline = "top";
+        ctx.textAlign = "left";
+        ctx.letterSpacing = '0px';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(document.getElementById('chattime').value, 42, 14);
+    }
 }
 
 
@@ -1027,6 +1150,62 @@ function addChat(e) {
         'message': document.getElementById("chatter").value,
         'color': document.getElementById("color").value
     });
+
+    generateBlabla();
+}
+
+document.getElementById("set-gifto").onclick = () => {
+    if (mode == 'conversation') {
+        chats.push({
+            name: document.getElementById("charname").value,
+            image: noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentImage,
+            attachment: "/nikke-font-generator/images/blabla/gift_opened_template" + (document.getElementById("charname").value.toLowerCase().trim() === "commander" ? "_cmd" : "") + ".png",
+            color: document.getElementById("color").value,
+            message: ''
+        })
+    }
+
+    generateBlabla();
+}
+
+document.getElementById("set-giftu").onclick = () => {
+    if (mode == 'conversation') {
+        chats.push({
+            name: document.getElementById("charname").value,
+            image: noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentImage,
+            attachment: "/nikke-font-generator/images/blabla/gift_unopened_template" + (document.getElementById("charname").value.toLowerCase().trim() === "commander" ? "_cmd" : "") + ".png",
+            color: document.getElementById("color").value,
+            message: ''
+        })
+    }
+
+    generateBlabla();
+}
+
+document.getElementById("set-voicecall").onclick = () => {
+    if (mode == 'conversation') {
+        chats.push({
+            name: document.getElementById("charname").value,
+            image: noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentImage,
+            attachment: "/nikke-font-generator/images/blabla/pcall_template" + (document.getElementById("charname").value.toLowerCase().trim() === "commander" ? "_cmd" : "") + ".png",
+            color: document.getElementById("color").value,
+            message: document.getElementById("voicecall-text").value
+        })
+    }
+
+    generateBlabla();
+}
+
+document.getElementById("set-videocall").onclick = () => {
+    if (mode == 'conversation') {
+        chats.push({
+            name: document.getElementById("charname").value,
+            image: noname.includes(document.getElementById("charname").value.toLowerCase()) ? '' : currentImage,
+            attachment: "/nikke-font-generator/images/blabla/vcall_template" + (document.getElementById("charname").value.toLowerCase().trim() === "commander" ? "_cmd" : "") + ".png",
+            color: document.getElementById("color").value,
+            message: document.getElementById("videocall-text").value
+        })
+    }
 
     generateBlabla();
 }
@@ -1122,6 +1301,24 @@ document.getElementById("set-com").onclick = (e) => {
 
     document.getElementById("charname").value = 'Commander';
     document.getElementById("color").value = document.getElementById("com-color").value;
+}
+
+document.getElementById("set-system").onclick = (e) => {
+    if (document.getElementById("charname").value.toLowerCase() != 'commander') {
+        prevChat = document.getElementById("charname").value;
+    }
+
+    document.getElementById("charname").value = 'System';
+    document.getElementById("color").value = '#ffffff';
+}
+
+document.getElementById("set-indicator").onclick = (e) => {
+    if (document.getElementById("charname").value.toLowerCase() != 'commander') {
+        prevChat = document.getElementById("charname").value;
+    }
+
+    document.getElementById("charname").value = 'Indicator';
+    document.getElementById("color").value = '#ffffff';
 }
 
 document.getElementById("message-index-edit").onclick = (e) => {
@@ -1507,6 +1704,11 @@ document.onkeydown = function (e) {
             case 'enter':
                 e.preventDefault();
                 addChat();
+                break;
+            case 'backspace':
+                e.preventDefault();
+                chats.pop();
+                generateBlabla();
                 break;
             default:
                 break;

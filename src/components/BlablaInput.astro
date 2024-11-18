@@ -41,6 +41,50 @@
             </div>
         </div>
         <div class="row">
+            <div class="fullwidth row-even" id="quick-switch">
+                <div class="input-button fullwidth" id="set-system">
+                    <span><i class='bx bx-info-circle'></i> System</span>
+                </div>
+                <div class="input-button fullwidth" id="set-indicator">
+                    <span><i class='bx bx-time-five'></i> Indicator</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Special Messages</h4>
+        </div>
+        <div class="row">
+            <div class="fullwidth row-even">
+                <div class="input-button fullwidth" id="set-gifto">
+                    <span><i class='bx bx-gift'></i> Gift Opened</span>
+                </div>
+                <div class="input-button fullwidth" id="set-giftu">
+                    <span><i class='bx bxs-gift'></i> Gift Unopened</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="fullwidth row-even">
+                <div class="input-button fullwidth" id="set-videocall">
+                    <span><i class='bx bxs-video'></i> Video Call</span>
+                </div>
+                <div class="fullwidth row-even">
+                    <input type="text" id="videocall-text" class="fullwidth" placeholder="Call length, etc..."/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="fullwidth row-even">
+                <div class="input-button fullwidth" id="set-voicecall">
+                    <span><i class='bx bxs-phone'></i> Voice Call</span>
+                </div>
+                <div class="fullwidth row-even">
+                    <input type="text" id="voicecall-text" class="fullwidth" placeholder="Call length, etc..."/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <label for="attachment-up" class="input-button fullwidth">
                 <span>
                     <i class='bx bxs-image-add'></i>
@@ -48,6 +92,10 @@
                 </span>
                 <input type="file" id="attachment-up" accept="image/*" />
             </label>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Avatar</h4>
         </div>
         <div class="row">
             <input type="text" id="char-pres-up" class="fullwidth" placeholder="🔎 Look for NIKKE character's avatar..."/>
@@ -262,7 +310,9 @@
             <div class="input-button fullwidth" id="drag-toggle">
                 <span>Scroll: OFF</span>
             </div>
-            <input type="number" id="ypos" class="input-button fullwidth" placeholder="Scroll Offset"/>
+            <div class="fullwidth row-even">
+                <input type="number" id="ypos" class="input-button fullwidth" placeholder="Scroll Offset"/>
+            </div>
         </div>
         <div class="row">
             <label for="chat-json-up" class="input-button fullwidth" id="import">

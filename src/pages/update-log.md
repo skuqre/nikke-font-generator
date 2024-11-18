@@ -10,6 +10,23 @@ embeddesc: the update log
 
 <br>
 
+## call messages????!?!?!!? `Nov 18, 2024`
+
+i've had that image under my radar and i've never really gotten to it.
+
+here we are now!
+
+**blabla gen**
+- added gift messages
+- added video call messages
+- added voice call messages
+
+<br>
+
+---
+
+<br>
+
 ## happy 1 year! `Nov 11, 2024`
 
 it's been a year...?!

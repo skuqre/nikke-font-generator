@@ -809,7 +809,107 @@ const blablaTutorialScript = [
         where: "bottom"
     },
     {
-        text: "Here's something the actual Blabla doesn't have -- visual components for images!",
+        text: "Next, we have special messages.",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "The following buttons act like the \"Add\" button, however no body text is required to be filled.",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This button sends an opened (gray) gift message from the current sender.",
+        selector: "#set-gifto",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This button sends an unopened (colored) gift message from the current sender.",
+        selector: "#set-giftu",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Let's send who you typed before a gift. They'd probably appreciate it.",
+        selector: "#set-giftu",
+        yieldUntil: "clickButton",
+        where: "top"
+    },
+    {
+        text: "Let's see...",
+        selector: "#blabla-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "Moving on...",
+        selector: "#blabla-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "This button sends a video call message from the current sender.",
+        selector: "#set-videocall",
+        yieldUntil: null,
+        where: "top",
+        callback: () => {
+            document.getElementById("ypos").value = -290;
+            document.getElementById("ypos").oninput();
+        }
+    },
+    {
+        text: "This changes the lower text in the messages added by the previous button.",
+        selector: "#videocall-text",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can type anything here. Something like a duration (e.g. \"1 hour 20 mins\") or \"No answer\" as if you missed the call would work.",
+        selector: "#videocall-text",
+        yieldUntil: "finishTyping",
+        where: "top"
+    },
+    {
+        text: "Now click to add it...",
+        selector: "#set-videocall",
+        yieldUntil: "clickButton",
+        where: "top"
+    },
+    {
+        text: "Let's see what you put...",
+        selector: "#blabla-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "Alright.",
+        selector: "#blabla-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "This button sends a voice call message from the current sender.",
+        selector: "#set-voicecall",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This changes the lower text in the messages added by the previous button.",
+        selector: "#voicecall-text",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "It's just about similar as the video call button. That's about it for special messages.",
+        selector: "#voicecall-text",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Now here's something the actual Blabla doesn't have -- visual components for images!",
         selector: null,
         yieldUntil: null,
         where: "top"
@@ -842,7 +942,11 @@ const blablaTutorialScript = [
         text: "We can now move on to the Choices.",
         selector: null,
         yieldUntil: null,
-        where: "top"
+        where: "top",
+        callback: () => {
+            document.getElementById("ypos").value = -290 * 2;
+            document.getElementById("ypos").oninput();
+        }
     },
     {
         text: "You can put your choices here. You can separate your choices by pressing enter.",
@@ -902,7 +1006,11 @@ const blablaTutorialScript = [
         text: "Messages are counted from top to bottom, starting from 0.",
         selector: "#blabla-canvas",
         yieldUntil: null,
-        where: "bottom"
+        where: "bottom",
+        callback: () => {
+            document.getElementById("ypos").value = 0;
+            document.getElementById("ypos").oninput();
+        }
     },
     {
         text: "So it goes like 0, 1, 2, 3, 4, 5, and so on...",
