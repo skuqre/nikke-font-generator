@@ -115,5 +115,7 @@
     ["rapi: tactical up", "si_c989_00_s"],
     ["emma: tactical up", "si_c093_00_s"],
     ["vesti: tactical up", "si_c094_00_s"],
-    ["eunhwa: tactical up", "si_c095_00_s"]
+    ["eunhwa: tactical up", "si_c095_00_s"],
+
+    ["chloe", "si_c988_00_s"]
 ]
