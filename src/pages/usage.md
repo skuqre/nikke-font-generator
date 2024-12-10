@@ -65,6 +65,7 @@ Fonts used in this site are **not** made by me. Rightful credits are in the [cre
 If you have other concerns about the site, you can contact me through:
 - Reddit ([`u/ANISNO1`](https://reddit.com/u/ANISNO1))
 - Discord (send a message request to `@skuqre`)
+- Twitter ([`@nikkefontgen`](https://x.com/nikkefontgen))
 
 I'll attempt to address your concerns to the best of my ability.
 

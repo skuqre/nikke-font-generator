@@ -27,5 +27,6 @@ The site uses cookies to store a date string (e.g. `Aug 27, 2024`) that changes 
 For further questions, you are free to contact me through:
 - Reddit ([`u/ANISNO1`](https://reddit.com/u/ANISNO1))
 - Discord (send a message request to `@skuqre`)
+- Twitter ([`@nikkefontgen`](https://x.com/nikkefontgen))
 
 <br>
