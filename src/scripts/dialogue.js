@@ -1,13 +1,18 @@
 import { draw9slice, eyeOn, eyeOff, translateCoordinates } from "./util.js";
+import { fontNames } from "./langinit.js"
+
+if (localStorage.getItem("fontLanguage") === null) {
+    localStorage.setItem("fontLanguage", fontNames["en"]);
+}
 
 const canvas = document.getElementById("dialogue-canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
-const myFont = new FontFace('PEB', "url('/nikke-font-generator/fonts/Pretendard-ExtraBold.ttf')");
+const myFont = new FontFace('PEB', "url('/nikke-font-generator/fonts/" + localStorage.getItem("fontLanguage").replace("*", "ExtraBold") + "')");
 await myFont.load();
 document.fonts.add(myFont);
 
-const myFont2 = new FontFace('PB', "url('/nikke-font-generator/fonts/Pretendard-Bold.ttf')");
+const myFont2 = new FontFace('PB', "url('/nikke-font-generator/fonts/" + localStorage.getItem("fontLanguage").replace("*", "Bold") + "')");
 await myFont2.load();
 document.fonts.add(myFont2);
 
@@ -16,14 +21,14 @@ await myFont3.load();
 document.fonts.add(myFont3);
 
 // 1, -3
-const jpEBold = new FontFace('JPEB', "url('/nikke-font-generator/fonts/JP-GothicMB101-ExtraBold.ttf')");
-await jpEBold.load();
-document.fonts.add(jpEBold);
+// const jpEBold = new FontFace('JPEB', "url('/nikke-font-generator/fonts/JP-GothicMB101-ExtraBold.ttf')");
+// await jpEBold.load();
+// document.fonts.add(jpEBold);
 
 // -1, -7
-const jpBold = new FontFace('JPB', "url('/nikke-font-generator/fonts/JP-GothicMB101-Bold.ttf')");
-await jpBold.load();
-document.fonts.add(jpBold);
+// const jpBold = new FontFace('JPB', "url('/nikke-font-generator/fonts/JP-GothicMB101-Bold.ttf')");
+// await jpBold.load();
+// document.fonts.add(jpBold);
 
 // adding JP fonts soon. Maybe.
 
@@ -117,7 +122,7 @@ setTimeout(() => {
     updateCharList();
 }, 2000);
 
-let tpos = [126, 878];
+let tpos = [126, 883 + 12];
 let dpos = [125, 929];
 let cpos = [110, 883];
 let copos = [677, 13];
@@ -129,7 +134,7 @@ let campos = [540, 540];
 let camzoom = 0.0;
 
 let tsize = 23;
-let dsize = 23;
+let dsize = 22;
 let scaledc = 100;
 let scalecb = 100;
 let scalear = 100;
@@ -184,7 +189,7 @@ function drawGradients(haschoices) {
         ctx.drawImage(bvig, 0, canvassize[1] - bvig.height, canvassize[0], bvig.height);
         ctx.globalCompositeOperation = "source-over";
     } else {
-        ctx.font = dsize + "px PSB";
+        ctx.font = dsize + "px PB";
         ctx.letterSpacing = "0.2px";
         ctx.fillStyle = "#dcdcdc";
         ctx.textBaseline = "top";
@@ -1046,7 +1051,7 @@ function generateText(text, subtext) {
 
                 ctx.globalAlpha = 1;
 
-                ctx.font = "21px PSB";
+                ctx.font = "21px PB";
                 ctx.fillStyle = "#ffffff";
                 ctx.letterSpacing = "0.3px";
                 ctx.textBaseline = "top";
@@ -1124,7 +1129,7 @@ function generateText(text, subtext) {
             // ctx.drawImage(img, 0, 0)
             drawGradients(false);
 
-            ctx.font = dsize + "px PSB";
+            ctx.font = dsize + "px " + (localStorage.getItem("fontLanguage") === "Pretendard-*.ttf" ? "PSB" : "PB");
             ctx.letterSpacing = "0.2px";
             ctx.fillStyle = "#dcdcdc";
             ctx.textBaseline = "top";
@@ -1145,11 +1150,11 @@ function generateText(text, subtext) {
             ctx.shadowColor = "#ffffff00";
             ctx.shadowBlur = 0;
 
-            ctx.font = tsize + "px PB";
+            ctx.font = tsize + "px PEB";
             ctx.letterSpacing = "0.4px";
             ctx.fillStyle = "#ffffff";
-            ctx.textBaseline = "top";
-            ctx.fillText(text, tpos[0] + (padding ? (canvassize[0] - canvassize[1]) / 2 : 0), tpos[1] + 8 - yoffset, canvassize[0] - 250);
+            ctx.textBaseline = "middle";
+            ctx.fillText(text, tpos[0] + (padding ? (canvassize[0] - canvassize[1]) / 2 : 0), tpos[1] + 2 - yoffset, canvassize[0] - 250);
 
             ctx.letterSpacing = "0px";
 
@@ -1520,3 +1525,5 @@ Array.prototype.swap = function(x, y){
     this[y] = b;
     return this;
 }
+
+document.promptText = "You might have changes in the current Dialogue. Are you sure you want to change your font?";

@@ -40,7 +40,8 @@ embeddesc: the NIKKE FONT GENERATOR usage guidelines
 
 ## Fonts
 
-Fonts used in this site are **not** made by me. Rightful credits are in the [credits page](/nikke-font-generator/credits).
+Fonts used in this site are **not** made by me. Rightful credits are in the [credits page](/nikke-font-generator/credits).<br>
+The following is **not** legal advise. There's a chance that these fonts disappear too.
 
 | Font | Availability |
 | --- | --- |
@@ -51,6 +52,9 @@ Fonts used in this site are **not** made by me. Rightful credits are in the [cre
 | [**Abolition**](https://fortfoundry.com/fonts/abolition) | Available under **personal use**. [See FortFoundry page](https://fortfoundry.com/fonts/abolition). |
 | [**Voltec (demo)**](https://typefactory.co/product/voltec-futuristic-typeface/) | Available under **personal use**. [See TypeFactory page](https://typefactory.co/product/voltec-futuristic-typeface/). |
 | [**Aire Exterior**](https://www.dafont.com/aire-exterior.font) | Available under **SIL Open Font License 1.1**. [See LICENSE](https://notabug.org/HarvettFox96/ttf-aireexterior/src/master/LICENSE). |
+| [**Gothic MB101**](https://en.morisawa.co.jp/fonts/specimen/2331/) | License unknown. |
+| [**Noto Sans TC**](https://fonts.google.com/noto/specimen/Noto+Sans+TC/) and [**Noto Sans SC**](https://fonts.google.com/noto/specimen/Noto+Sans+SC) | Both are available under **SIL Open Font License 1.1**. See the licenses for [TC](https://fonts.google.com/noto/specimen/Noto+Sans+TC/license/) and [SC](https://fonts.google.com/noto/specimen/Noto+Sans+SC/license/). |
+| [**PSL Imperial Extra**](http://www.fontpsl.com/webpage/myfont/show.php?id=47/) | License unknown. See their [licensing page](http://www.fontpsl.com/webpage/about_font/index.html) (Thai). |
 
 <br>
 

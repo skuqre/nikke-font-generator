@@ -4,6 +4,7 @@ import BlablaDisplay from '../components/BlablaDisplay.astro';
 import BlablaInput from '../components/BlablaInput.astro';
 import Credits from '../components/Credits.astro';
 import UpdatePopup from '../components/UpdatePopup.astro';
+import LanguageSelector from '../components/LanguageSelector.astro';
 ---
 
 <html lang="en">
@@ -53,6 +54,8 @@ import UpdatePopup from '../components/UpdatePopup.astro';
 				look into the <a href="/nikke-font-generator/blabla-pfps">the blabla pfps list</a>!
 			</i>
 		</p>
+		
+		<LanguageSelector />
 		<Credits />
 
 		<div style="text-align: center; margin: 0; margin-top: 128px; display: flex; justify-content: center;">
@@ -86,6 +89,7 @@ import UpdatePopup from '../components/UpdatePopup.astro';
 
 		<UpdatePopup />
 
+		<script src="../scripts/langinit.js"></script>
 		<script src="../scripts/blabla.js"></script>
 		<script src="../scripts/tutorial.js"></script>
 	</body>

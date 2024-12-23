@@ -33,15 +33,13 @@ embeddesc: The site's credits!
 | [**Pretendard**](https://cactus.tistory.com/306) | Made by [Kil Hyung-jin (orioncactus)](https://github.com/orioncactus). Used throughout the site. Found through research. |
 | [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Made by Jonathan Paquette. Used on Logo Generator. Found through research. |
 | [**Butch and Sundance**](https://www.dafont.com/butch-sundance.font) | Made by [Dan Zadorozny (Iconian Fonts)](https://www.iconian.com). Used on Logo Generator. Found through research. |
-| [**SUIT**](https://sun.fo/suit/) | Made by the folks at [sun.fo](https://sun.fo/). Used on the Blabla Generator. |
+| [**SUIT**](https://sun.fo/suit/) | Made by the folks at [sun.fo](https://sun.fo/). Used on the Blabla Generator, and the font for the Korean language. |
 | [**Abolition**](https://fortfoundry.com/fonts/abolition) | Made by [Mattox Shuler (Fort Foundry)](https://fortfoundry.com). Used on Boss Warning Generator. Found through research. |
 | [**Voltec (demo)**](https://typefactory.co/product/voltec-futuristic-typeface/) | Made by the folks at [TypeFactory](https://typefactory.co). Used on Boss Warning Generator. Found through research. |
 | [**Aire Exterior**](https://www.dafont.com/aire-exterior.font) | Made by [Jayvee Enaguas (HarvettFox96)](http://tilde.club/~harvettfox96/). Used on the Card Generator (specifically the core levels). Found through research. |
-
-## Unimplemented fonts
-These fonts are here for future implementation.
-- **Gothic MB101**: Made by [Morisawa Inc.](https://en.morisawa.co.jp). Used on Japanese language in-game.
-
+| [**Gothic MB101**](https://en.morisawa.co.jp/fonts/specimen/2331/) | Made by [Morisawa Inc.](https://en.morisawa.co.jp/). Used as the fonts for the Japanese language. |
+| [**Noto Sans TC**](https://fonts.google.com/noto/specimen/Noto+Sans+TC/) and [**Noto Sans SC**](https://fonts.google.com/noto/specimen/Noto+Sans+SC) | Commissioned by Google. Available directly from [Google Fonts](https://fonts.google.com/). Used as the fonts for the Traditional Chinese and Simplified Chinese language, respectively. |
+| [**PSL Imperial Extra**](http://www.fontpsl.com/webpage/myfont/show.php?id=47/) | Made by [Font PSL](http://www.fontpsl.com/) (HTTP site, click link with caution). Used as the fonts for the Thai language. |
 
 <br>
 

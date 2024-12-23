@@ -1,0 +1,110 @@
+---
+---
+
+<div class="input-wrapper" style="margin: 32px 0;">
+    <div class="input-main">
+        <div class="row takeheight">
+            <h4 style="margin: 0;">Font Language (NOT translations!)</h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="tl-en">
+                <span>Default (English, Deutsch, Français)</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="tl-ko">
+                <span>한국어 (Korean)</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="tl-jp">
+                <span>日本語 (Japanese)</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="tl-th">
+                <span>ภาษาไทย (Thai)</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="tl-tc">
+                <span>中文(繁體) (Traditional Chinese)</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="tl-sc">
+                <span>中文(简体) (Simplified Chinese)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @font-face {
+        font-family: "TC";
+        src: url("/nikke-font-generator/fonts/TC-NotoSans-Regular.otf");
+    }
+    @font-face {
+        font-family: "SC";
+        src: url("/nikke-font-generator/fonts/SC-NotoSans-Regular.otf");
+    }
+    @font-face {
+        font-family: "TH";
+        src: url("/nikke-font-generator/fonts/TH-ImperialExtra-Regular.ttf");
+    }
+    @font-face {
+        font-family: "JP";
+        src: url("/nikke-font-generator/fonts/JP-GothicMB101-Regular.ttf");
+    }
+    @font-face {
+        font-family: "KO";
+        src: url("/nikke-font-generator/fonts/SUIT-Regular.ttf");
+    }
+
+    #tl-tc {
+        font-family: "TC", sans-serif;
+    }
+
+    #tl-sc {
+        font-family: "SC", sans-serif;
+    }
+
+    #tl-th {
+        font-family: "TH", sans-serif;
+    }
+
+    #tl-jp {
+        font-family: "JP", sans-serif;
+    }
+
+    #tl-ko {
+        font-family: "KO", sans-serif;
+    }
+
+    .lang-selected {
+        color: var(--main-color);
+        text-shadow: var(--main-color) 0 0 3px;
+    }
+</style>
+
+<script>
+    const buttons = [...document.querySelectorAll("div.input-button[id^='tl-']")];
+    import { fontNames } from "../scripts/langinit.js";
+
+    buttons.forEach((e) => {
+        e.addEventListener("click", () => {
+            for (const b of buttons) {
+                b.classList.remove("lang-selected");
+            }
+            e.classList.add("lang-selected");
+
+            const item = e.id.split("-")[1].trim();
+
+            localStorage.setItem("fontLanguage", fontNames[item]);
+
+            if (confirm(document["promptText"])) {
+                document.location.reload();
+            }
+        });
+    });
+</script>

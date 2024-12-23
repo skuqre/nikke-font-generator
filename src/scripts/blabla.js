@@ -2,19 +2,24 @@ import { draw9slice, eyeOff, eyeOn } from "./util.js";
 import fuzzysort from "fuzzysort";
 import * as HME from "h264-mp4-encoder";
 import { Buffer } from "buffer";
+import { fontNames } from "./langinit.js"
+
+if (localStorage.getItem("fontLanguage") === null) {
+    localStorage.setItem("fontLanguage", fontNames["en"]);
+}
 
 const canvas = document.getElementById("blabla-canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
-const myFont = new FontFace('PEB', "url('/nikke-font-generator/fonts/Pretendard-ExtraBold.ttf')");
+const myFont = new FontFace('PEB', "url('/nikke-font-generator/fonts/" + localStorage.getItem("fontLanguage").replace("*", "ExtraBold") + "')");
 await myFont.load();
 document.fonts.add(myFont);
 
-const myFont2 = new FontFace('PB', "url('/nikke-font-generator/fonts/Pretendard-Bold.ttf')");
+const myFont2 = new FontFace('PB', "url('/nikke-font-generator/fonts/" + localStorage.getItem("fontLanguage").replace("*", "Bold") + "')");
 await myFont2.load();
 document.fonts.add(myFont2);
 
-const myFont3 = new FontFace('PR', "url('/nikke-font-generator/fonts/Pretendard-Regular.ttf')");
+const myFont3 = new FontFace('PR', "url('/nikke-font-generator/fonts/" + localStorage.getItem("fontLanguage").replace("*", "Regular") + "')");
 await myFont3.load();
 document.fonts.add(myFont3);
 
@@ -483,7 +488,16 @@ function generateBlabla() {
             ctx.textAlign = "left";
             ctx.lineWidth = 0.25;
 
-            let width = ctx.measureText(item.message).width;
+            // look for longest line width and base it off of there
+            // instead of relying on the full width of the image
+            let linesPre = item.message.split("\n");
+            let linePreWidths = [];
+            for (const i of linesPre) {
+                linePreWidths.push(ctx.measureText(i).width)
+            }
+            linePreWidths.sort((a, b) => a - b); // sort to get the highest value
+
+            let width = linePreWidths.pop();
             let innerBubbleWidth = width + 22 * 2 > 420 ? 420 : width + 22 * 2; // the bubble w/o shadow
             let textWidth = innerBubbleWidth - 22 * 2; // could either be 418 - 22 * 2 or width - 22 * 2
             let lines = getLinesForParagraphs(ctx, item.message, textWidth);
@@ -951,7 +965,7 @@ function generateBlabla() {
             ctx.drawImage(wifi, 17, 14);
         }
 
-        ctx.font = "28px PB";
+        ctx.font = "28px PEB";
         ctx.textBaseline = "top";
         ctx.textAlign = "left";
         ctx.letterSpacing = '0.5px';
@@ -1895,3 +1909,5 @@ function getLines(ctx, text, maxWidth) {
     lines.push(currentLine);
     return lines;
 }
+
+document.promptText = "You might have changes in the current BlaBla. Save your BlaBla by clicking \"Export JSON\", and import it after the page refreshes!";

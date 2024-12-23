@@ -5,6 +5,7 @@ import DialogueInput from '../components/DialogueInput.astro'
 import Credits from '../components/Credits.astro';
 import SizingTool from '../components/SizingTool.astro';
 import UpdatePopup from '../components/UpdatePopup.astro';
+import LanguageSelector from '../components/LanguageSelector.astro';
 ---
 
 <html lang="en">
@@ -59,6 +60,8 @@ import UpdatePopup from '../components/UpdatePopup.astro';
 				<b>Please keep the watermark on! I don't want you spreading lies!</b>
 			</p>
 		</div>
+
+		<LanguageSelector />
 		<Credits />
 
 		<div style="text-align: center; margin: 0; margin-top: 128px; display: flex; justify-content: center;">
@@ -92,6 +95,7 @@ import UpdatePopup from '../components/UpdatePopup.astro';
 
 		<UpdatePopup />
 
+		<script src="../scripts/langinit.js"></script>
 		<script src="../scripts/dialogue.js"></script>
 		<script src="../scripts/tutorial.js"></script>
 	</body>
