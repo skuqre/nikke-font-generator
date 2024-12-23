@@ -10,6 +10,16 @@ embeddesc: the update log
 
 <br>
 
+## font language selector `Dec 23, 2024`
+
+you can now select the proper fonts in the Dialogue and the Blabla generator.
+
+<br>
+
+---
+
+<br>
+
 ## call messages????!?!?!!? `Nov 18, 2024`
 
 i've had that image under my radar and i've never really gotten to it.
