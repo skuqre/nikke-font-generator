@@ -69,7 +69,7 @@ The following is **not** legal advise. There's a chance that these fonts disappe
 If you have other concerns about the site, you can contact me through:
 - Reddit ([`u/ANISNO1`](https://reddit.com/u/ANISNO1))
 - Discord (send a message request to `@skuqre`)
-- Twitter ([`@nikkefontgen`](https://x.com/nikkefontgen))
+<!-- - Twitter ([`@nikkefontgen`](https://x.com/nikkefontgen)) -->
 
 I'll attempt to address your concerns to the best of my ability.
 
