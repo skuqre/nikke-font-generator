@@ -1,18 +1,20 @@
 ---
 import {marked} from 'marked';
 
-const updateName = "suspended?!";
-const updateDate = "Jan 7, 2024";
+const updateName = "Image + npcs";
+const updateDate = "Jan 24, 2024";
 const updateContent = `
-Hey all!
+Reorganized where "Send an image" button is because there's
+lots of images where this feature isn't utilized.
 
-The Twitter account associated with this website
-was suspended because of... "Violating their rules against inauthentic accounts."
+![](https://anis.is-ne.at/6XT06W19W.png)
 
-Considering I have done nothing to do this, infact
-I wasnt even using it at all too. So...
-
-To my opps praying on my downfall, idk you but sure you won the account ig /shrug
+Added NPCs:
+- \`rapi: hospitalized\`
+- \`d.e.e.p.\`
+- \`rapi: hospitalized child\`
+- \`rapi: mass produced red\`
+- \`hologram: with a hat\`
 `;
 ---
 
@@ -79,6 +81,10 @@ To my opps praying on my downfall, idk you but sure you won the account ig /shru
     div.update-popup-content p {
         text-align: left !important;
         margin: 16px !important;
+    }
+
+    div.update-popup-content img {
+        max-width: 100%;
     }
 </style>
 

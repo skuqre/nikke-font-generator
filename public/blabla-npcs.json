@@ -117,5 +117,11 @@
     ["vesti: tactical up", "si_c094_00_s"],
     ["eunhwa: tactical up", "si_c095_00_s"],
 
-    ["chloe", "si_c988_00_s"]
+    ["chloe", "si_c988_00_s"],
+
+    ["rapi: hospitalized", "si_c990_00_s"],
+    ["d.e.e.p.", "si_c991_00_s"],
+    ["rapi: hospitalized child", "si_c992_00_s"],
+    ["rapi: mass produced red", "si_c994_00_s"],
+    ["hologram: with a hat", "si_c910_01_s"]
 ]

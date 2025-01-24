@@ -821,10 +821,44 @@ const blablaTutorialScript = [
         where: "top"
     },
     {
+        text: "Now here's something the actual Blabla doesn't have -- visual components for images!",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can send any image through this button. Put in an image here.",
+        selector: "label[for='attachment-up']",
+        yieldUntil: "onChange",
+        where: "top"
+    },
+    {
+        text: "Let's see what you sent...",
+        selector: "#blabla-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "...",
+        selector: "#blabla-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
+        text: "Interesting.",
+        selector: "#blabla-canvas",
+        yieldUntil: null,
+        where: "bottom"
+    },
+    {
         text: "This button sends an opened (gray) gift message from the current sender.",
         selector: "#set-gifto",
         yieldUntil: null,
-        where: "top"
+        where: "top",
+        callback: () => {
+            document.getElementById("ypos").value -= 290;
+            document.getElementById("ypos").oninput();
+        }
     },
     {
         text: "This button sends an unopened (colored) gift message from the current sender.",
@@ -856,7 +890,7 @@ const blablaTutorialScript = [
         yieldUntil: null,
         where: "top",
         callback: () => {
-            document.getElementById("ypos").value = -290;
+            document.getElementById("ypos").value -= 290;
             document.getElementById("ypos").oninput();
         }
     },
@@ -907,36 +941,6 @@ const blablaTutorialScript = [
         selector: "#voicecall-text",
         yieldUntil: null,
         where: "top"
-    },
-    {
-        text: "Now here's something the actual Blabla doesn't have -- visual components for images!",
-        selector: null,
-        yieldUntil: null,
-        where: "top"
-    },
-    {
-        text: "You can send any image through this button. Put in an image here.",
-        selector: "label[for='attachment-up']",
-        yieldUntil: "onChange",
-        where: "top"
-    },
-    {
-        text: "Let's see what you sent...",
-        selector: "#blabla-canvas",
-        yieldUntil: null,
-        where: "bottom"
-    },
-    {
-        text: "...",
-        selector: "#blabla-canvas",
-        yieldUntil: null,
-        where: "bottom"
-    },
-    {
-        text: "Interesting.",
-        selector: "#blabla-canvas",
-        yieldUntil: null,
-        where: "bottom"
     },
     {
         text: "We can now move on to the Choices.",

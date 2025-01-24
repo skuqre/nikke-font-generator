@@ -10,6 +10,26 @@ embeddesc: the update log
 
 <br>
 
+## Image + npcs `Jan 24, 2024`
+
+reorganized where "Send an image" button is because there's
+lots of images where this feature isn't utilized.
+
+![](https://anis.is-ne.at/6XT06W19W.png)
+
+added npcs:
+- rapi: hospitalized
+- d.e.e.p.
+- rapi: hospitalized child
+- rapi: mass produced red
+- hologram: with a hat
+
+<br>
+
+---
+
+<br>
+
 ## font language selector `Dec 23, 2024`
 
 you can now select the proper fonts in the Dialogue and the Blabla generator.
