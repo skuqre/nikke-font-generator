@@ -1,20 +1,15 @@
 ---
 import {marked} from 'marked';
 
-const updateName = "Image + npcs";
-const updateDate = "Jan 24, 2024";
+const updateName = "fixed!";
+const updateDate = "Jan 27, 2024";
 const updateContent = `
-Reorganized where "Send an image" button is because there's
-lots of images where this feature isn't utilized.
+The issues where the site just purely broke because of Nikke.gg breaking
+have been fixed. Sorry about the whole "site genuinely not working" thing.
 
-![](https://anis.is-ne.at/6XT06W19W.png)
-
-Added NPCs:
-- \`rapi: hospitalized\`
-- \`d.e.e.p.\`
-- \`rapi: hospitalized child\`
-- \`rapi: mass produced red\`
-- \`hologram: with a hat\`
+Technical info: The API endpoint that initializes the list,
+<https://api.dotgg.gg/nikke/characters/id>, vanished for
+seemingly no reason. It has been replaced with the NKAS-L2D megalist.
 `;
 ---
 

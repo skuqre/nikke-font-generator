@@ -29,14 +29,14 @@ response2.json().then((e) => {
 const skinFetch = await fetch("https://nkas.pages.dev/nk_data/skins.json");
 const skinData = await skinFetch.json();
 
-const nikkeggFetch = await fetch("https://api.dotgg.gg/nikke/characters/1");
-const nikkeggData = await nikkeggFetch.json();
+const nkasL2dFetch = await fetch("https://nkas-l2d.pages.dev/characters.json");
+const nkasL2dData = await nkasL2dFetch.json();
 
 for (let i = 0; i < skinData.length; i++) {
     const skin = skinData[i];
-    const cid = skin[0].replace(/^0+/, "");
+    const cid = "c" + skin[0] + "_" + skin[1];
 
-    const pngName = (nikkeggData[cid] + ": " + skin[2]).toLowerCase();
+    const pngName = (nkasL2dData[cid] + ": " + skin[2]).toLowerCase();
     const pngSrc = "si_c" + skin[0] + "_" + skin[1] + "_s";
 
     nikkepfps[pngName] = pngSrc;
