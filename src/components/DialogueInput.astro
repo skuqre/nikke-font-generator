@@ -5,13 +5,13 @@
 <div class="input-wrapper">
     <div class="input-main">
         <div class="row">
-            <input type="text" id="character" class="fullwidth" placeholder='Character name here...' />
+            <input type="text" id="character" class="fullwidth" placeholder='Character name here...' autocomplete="off" />
             <div class="input-button" id="generate"><span>Refresh</span></div>
-            <input type="color" id="color" value="#ffffff" style="height: 88px;" />
+            <input type="color" id="color" value="#ffffff" style="height: 88px;" autocomplete="off" />
         </div>
         <div class="row takeheight">
-            <textarea id="dialog" class="fullwidth" placeholder="What the character will be saying..."></textarea>
-            <select id="size">
+            <textarea id="dialog" class="fullwidth" placeholder="What the character will be saying..." autocomplete="off"></textarea>
+            <select id="size" autocomplete="off">
                 <option value="100">100%</option>
                 <option value="75">75%</option>
                 <option value="50">50%</option>
@@ -148,6 +148,11 @@
         <div class="row">
             <div class="input-button fullwidth" id="padding-toggle">
                 <span>Landscape Padding: ON</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="autocolor-toggle">
+                <span>Automatically change Color Bar: ON</span>
             </div>
         </div>
     </div>

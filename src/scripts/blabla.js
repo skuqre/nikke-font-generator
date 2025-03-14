@@ -1704,6 +1704,14 @@ document.getElementById("export").onclick = exportChat;
 
 document.getElementById("export-mp4").onclick = downloadVideo;
 
+document.getElementById("video-perletter").oninput = () => {
+    document.getElementById("video-perletter").value = Math.max(parseFloat(document.getElementById("video-perletter").value), 0)
+}
+
+document.getElementById("video-permessage").oninput = () => {
+    document.getElementById("video-permessage").value = Math.max(parseFloat(document.getElementById("video-permessage").value), 0)
+}
+
 document.getElementById("com-color").onchange = () => {
     generateBlabla();
 }
@@ -1784,6 +1792,9 @@ function downloadVideo() {
     let defaultThought = thoughtOn;
     thoughtOn = false;
 
+    const perLetterDelay = parseFloat(document.getElementById("video-perletter").value);
+    const perMessageDelay = parseFloat(document.getElementById("video-permessage").value)
+
     HME.createH264MP4Encoder().then((encoder) => {
 
         encoder.width = canvas.width % 2 == 0 ? canvas.width : canvas.width + 1;
@@ -1803,7 +1814,7 @@ function downloadVideo() {
             messageBeingAnimated = i;
 
             chats[i] = item;
-            messageMaxFrames = Math.round(10 + (0.05 * item.message.length) * 30);
+            messageMaxFrames = Math.round(10 + (perLetterDelay * item.message.length + perMessageDelay) * 30);
 
             if (mode == "conversation") {
                 if (item.attachment != null) {
@@ -1842,7 +1853,7 @@ function downloadVideo() {
             messageBeingAnimated = chats.length + 1;
 
             resetAnimatables();
-            messageMaxFrames = Math.round(10 + (0.05 * document.getElementById("thought").value.trim().length) * 30);
+            messageMaxFrames = Math.round(10 + (perLetterDelay * document.getElementById("thought").value.trim().length + perMessageDelay) * 30);
 
             while (curMessageFrames < messageMaxFrames) {
                 generateBlabla();

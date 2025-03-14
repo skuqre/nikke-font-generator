@@ -10,7 +10,27 @@ embeddesc: the update log
 
 <br>
 
-## Image + npcs `Jan 24, 2024`
+## Auto color and delays `Mar 14, 2025`
+
+helloooo!!! yes i'm alive
+
+**dialogue gen**
+- added automatic color picking based on character name
+    - **only** playable nikkes
+    - always toggleable! scroll down and click on "automatically change scrollbar: on" to toggle.
+
+**blabla gen**
+- added customizable delays for video export
+    - some languages don't directly cater to what is essentially English-based delays, so why not do it yourself? some languages like japanese only take a handful of characters in order to be expressive -- but messages happen to quickly. i hope this negates that
+- added 0.2s of delay in every message in video export
+
+<br>
+
+---
+
+<br>
+
+## Image + npcs `Jan 24, 2025`
 
 reorganized where "Send an image" button is because there's
 lots of images where this feature isn't utilized.

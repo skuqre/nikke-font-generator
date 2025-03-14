@@ -1,15 +1,20 @@
 ---
 import {marked} from 'marked';
 
-const updateName = "fixed!";
-const updateDate = "Jan 27, 2024";
+const updateName = "Auto color and delays";
+const updateDate = "Mar 14, 2025";
 const updateContent = `
-The issues where the site just purely broke because of Nikke.gg breaking
-have been fixed. Sorry about the whole "site genuinely not working" thing.
+helloooo!!! yes i'm alive
 
-Technical info: The API endpoint that initializes the list,
-<https://api.dotgg.gg/nikke/characters/id>, vanished for
-seemingly no reason. It has been replaced with the NKAS-L2D megalist.
+**dialogue gen**
+- added automatic color picking based on character name
+    - **only** playable nikkes
+    - always toggleable! scroll down and click on "automatically change scrollbar: on" to toggle.
+
+**blabla gen**
+- added customizable delays for video export
+    - some languages don't directly cater to what is essentially English-based delays, so why not do it yourself? some languages like japanese only take a handful of characters in order to be expressive -- but messages happen to quickly. i hope this negates that
+- added 0.2s of delay in every message in video export
 `;
 ---
 
@@ -90,11 +95,13 @@ seemingly no reason. It has been replaced with the NKAS-L2D megalist.
         wrapper.style.display = "flex";
         setTimeout(() => {
             wrapper.style.opacity = 1;
+        }, 3000);
+        setTimeout(() => {
             wrapper.onclick = () => {
                 wrapper.style.opacity = 0;
                 wrapper.style.pointerEvents = "none";
             }
-        }, 3000);
+        }, 4500)
         localStorage.setItem("latestUpdate", updateDate);
     }
 </script>

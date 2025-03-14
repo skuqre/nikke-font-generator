@@ -1,6 +1,9 @@
 import { draw9slice, eyeOn, eyeOff, translateCoordinates } from "./util.js";
 import { fontNames } from "./langinit.js"
 
+const colorFetch = await fetch("https://nkas.pages.dev/nk_data/colors.json");
+const colorData = await colorFetch.json();
+
 if (localStorage.getItem("fontLanguage") === null) {
     localStorage.setItem("fontLanguage", fontNames["en"]);
 }
@@ -41,6 +44,7 @@ let bgpos = [540, 540];
 
 let canvassize = [1080, 1080];
 let padding = true;
+let autocolor = true;
 
 let wmrk = new Image();
 wmrk.crossOrigin = "anonymous"
@@ -238,6 +242,16 @@ document.getElementById('generate').oncontextmenu = (e) => {
 function autogent() {
     if (autogen) {
         var text = document.getElementById('character').value;
+
+        if (autocolor) {
+            for (const i of Object.keys(colorData)) {
+                if (i.toLowerCase().trim() === text.toLowerCase().trim()) {
+                    document.getElementById('color').value = colorData[i];
+                    color = colorData[i];
+                }
+            }
+        }
+
         var subtext = document.getElementById('dialog').value;
         generateText(text, subtext)
     }
@@ -828,6 +842,13 @@ document.querySelectorAll('#padding-toggle')[0].addEventListener('click', () => 
     padding = !padding;
 
     document.querySelectorAll('#padding-toggle')[0].innerHTML = "<span>" + "Landscape Padding: " + (padding ? "ON" : "OFF") + "</span>";
+    generateText(text2, subtext2)
+});
+
+document.querySelectorAll('#autocolor-toggle')[0].addEventListener('click', () => {
+    autocolor = !autocolor;
+
+    document.querySelectorAll('#autocolor-toggle')[0].innerHTML = "<span>" + "Automatically change Color Bar: " + (autocolor ? "ON" : "OFF") + "</span>";
     generateText(text2, subtext2)
 });
 

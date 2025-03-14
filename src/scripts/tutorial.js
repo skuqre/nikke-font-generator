@@ -79,6 +79,24 @@ const dialogueTutorialScript = [
         where: "top"
     },
     {
+        text: "If the person you put in the character name is a playable NIKKE (e.g. Anis, Rapi, Anis: Sparkling Summer), this will change to their corresponding color in game.",
+        selector: "#color",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "You can always toggle that feature using this button.",
+        selector: "#autocolor-toggle",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "If you plan to use an alt's color but use their actual name, you can type out their whole name in the character name field and <i>then</i> turn the feature off after. Then you can put in their original name. (e.g. using Anis: Sparkling Summer but wanted name is actually Anis)",
+        selector: "#autocolor-toggle",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
         text: "This button allows you to upload a background. You can also upload full images over here if you're uploading fanart. We'll also get to moving that image later.",
         selector: "label[for='bg-img-up']",
         yieldUntil: null,
@@ -1403,6 +1421,42 @@ const blablaTutorialScript = [
     {
         text: "Here you can download the video for this conversation. With animations, too!",
         selector: "#export-mp4",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "There are some settings when exporting for video.",
+        selector: null,
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This enables you to change the time that is added for every letter in a message.",
+        selector: "#perletter-group",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "Meaning, you can multiply this number to the amount of characters in your message (including spaces and punctuation marks) in order to estimate how long a message is gonna last.",
+        selector: "#perletter-group",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "This enables you to add a slight delay to add on a message after the estimated duration of the message.",
+        selector: "#permessage-group",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "If you want to have messages stay on screen on a fixed duration, you can set the value of this to 0...",
+        selector: "#perletter-group",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
+        text: "...and set this to the fixed delay you want. Some go for 5, some go for 3. Do whatever you want.",
+        selector: "#permessage-group",
         yieldUntil: null,
         where: "top"
     },
