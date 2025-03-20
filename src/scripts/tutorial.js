@@ -97,6 +97,12 @@ const dialogueTutorialScript = [
         where: "top"
     },
     {
+        text: "This here allows you to view the list of currently available character colors.",
+        selector: "#colors-open",
+        yieldUntil: null,
+        where: "top"
+    },
+    {
         text: "This button allows you to upload a background. You can also upload full images over here if you're uploading fanart. We'll also get to moving that image later.",
         selector: "label[for='bg-img-up']",
         yieldUntil: null,

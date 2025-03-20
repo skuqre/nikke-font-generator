@@ -10,6 +10,23 @@ embeddesc: the update log
 
 <br>
 
+## Custom Colors `Mar 21, 2025`
+
+more color stuff!!
+
+**dialogue gen**
+- added the color list, located below the color changer thing
+    - allows you to add definitions of your own if you have custom characters
+    - allows you to override names to use different colors
+    - delete stuff too!
+    - this was hackled up on just about 2 hours (while half asleep), so expect buggy stuff to occur
+
+<br>
+
+---
+
+<br>
+
 ## Auto color and delays `Mar 14, 2025`
 
 helloooo!!! yes i'm alive

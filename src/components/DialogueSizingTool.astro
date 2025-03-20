@@ -1,0 +1,285 @@
+---
+
+---
+
+<br><br>
+
+<div class="input-wrapper" id="sizing-tool" style="display: flex;">
+    <div class="input-main" id="sizing-tool-main" style="display: flex;">
+        <div class="row">
+            <div class="input-button fullwidth tab-main">
+                <span><b>Main</b></span>
+            </div>
+            <div class="input-button fullwidth tab-ui" id="st-ui-button">
+                <span>UI</span>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Background</h4>
+        </div>
+        <div class="row takeheight" id="bg-transforms">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposbg" step="10" class="fullwidth" value="540" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposbg" step="10" class="fullwidth" value="540" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalebg" class="fullwidth" value="120" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dbg">OFF</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="bgautofit">Auto Fit: ON</div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Align Background</h4>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth icon-button" id="align-bg-top"><i class='bx bx-vertical-top'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-bg-ymid"><i class='bx bx-vertical-center'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-bg-bot"><i class='bx bx-vertical-bottom'></i></div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth icon-button" id="align-bg-left"><i class='bx bx-horizontal-left'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-bg-xmid"><i class='bx bx-horizontal-center'></i></div>
+            <div class="input-button fullwidth icon-button" id="align-bg-right"><i class='bx bx-horizontal-right'></i></div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Camera</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="camx" step="10" class="fullwidth" value="540" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="camy" step="10" class="fullwidth" value="540" />
+            </div>
+            <div class="column">
+                <span>Zoom (x)</span>
+                <input type="number" id="camzoom" class="fullwidth" value="1" step="0.1" min="0" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dcam">OFF</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="recenter-cam">Recenter Camera</div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Filters</h4>
+        </div>
+        <div class="row takeheight" id="filter-transforms">
+            <div class="column">
+                <span>Grayscale (%)</span>
+                <input type="number" id="gsnum" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Blur (px)</span>
+                <input type="number" id="blnum" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Brightness (%)</span>
+                <input type="number" id="brnum" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Draw</span>
+                <div class="input-button square text-button" id="df">ON</div>
+            </div>
+        </div>
+        <div class="row takeheight">
+            <textarea id="customfil" placeholder="Place your custom CSS Filter code here..."></textarea>
+        </div>
+    </div>
+    <div class="input-main" id="sizing-tool-ui" style="display: none;">
+        <div class="row">
+            <div class="input-button fullwidth tab-main">
+                <span>Main</span>
+            </div>
+            <div class="input-button fullwidth tab-ui">
+                <span><b>UI</b></span>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Character Name</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposcn" step="10" class="fullwidth" value="126" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposcn" step="10" class="fullwidth" value="878" />
+            </div>
+            <div class="column">
+                <span>Font Size (px)</span>
+                <input type="number" id="scalecn" class="fullwidth" value="23" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dcn">OFF</div>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Dialogue Text</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposdt" step="10" class="fullwidth" value="125" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposdt" step="10" class="fullwidth" value="929" />
+            </div>
+            <div class="column">
+                <span>Font Size (px)</span>
+                <input type="number" id="scaledt" class="fullwidth" value="23" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="ddt">OFF</div>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Dialogue Controls</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposdc" step="10" class="fullwidth" value="677" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposdc" step="10" class="fullwidth" value="13" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scaledc" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="ddc">OFF</div>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Color Bar</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposcb" step="10" class="fullwidth" value="110" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposcb" step="10" class="fullwidth" value="883" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalecb" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dcb">OFF</div>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Bottom Right Pointer</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Position</span>
+                <input type="number" id="xposar" step="10" class="fullwidth" value="953" />
+            </div>
+            <div class="column">
+                <span>Y Position</span>
+                <input type="number" id="yposar" step="10" class="fullwidth" value="1027" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalear" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dar">OFF</div>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Narration Box</h4>
+        </div>
+        <div class="row takeheight">
+            <div class="column">
+                <span>X Offset</span>
+                <input type="number" id="xposna" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Y Offset</span>
+                <input type="number" id="yposna" step="10" class="fullwidth" value="0" />
+            </div>
+            <div class="column">
+                <span>Scale (%)</span>
+                <input type="number" id="scalena" class="fullwidth" value="100" />
+            </div>
+            <div class="column">
+                <span>Drag</span>
+                <div class="input-button square text-button" id="dna">OFF</div>
+            </div>
+        </div>
+
+        <div class="row takeheight">
+            <h4>Canvas</h4>
+        </div>
+        <div class="row takeheight" id="canvas-transforms">
+            <div class="column">
+                <span>Width</span>
+                <input type="number" id="wca" step="10" class="fullwidth" value="1080" />
+            </div>
+            <div class="column">
+                <span>Height</span>
+                <input type="number" id="hca" step="10" class="fullwidth" value="1080" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-button fullwidth" id="bgtocan">Make canvas size background image size</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const tabUI = document.getElementsByClassName("tab-ui");
+    const tabMain = document.getElementsByClassName("tab-main");
+
+    [...tabUI].forEach((e: HTMLElement) => {
+        e.onclick = (_) => {
+            document.getElementById("sizing-tool-main").style.display = "none";
+            document.getElementById("sizing-tool-ui").style.display = "flex";
+        }
+    });
+
+    [...tabMain].forEach((e: HTMLElement) => {
+        e.onclick = (_) => {
+            document.getElementById("sizing-tool-main").style.display = "flex";
+            document.getElementById("sizing-tool-ui").style.display = "none";
+        }
+    });
+</script>

@@ -1,11 +1,12 @@
 ---
 import '../components/GlobalStyle.astro';
+import Credits from '../components/Credits.astro';
+import DialogueColorList from '../components/DialogueColorList.astro';
 import DialogueDisplay from '../components/DialogueDisplay.astro';
 import DialogueInput from '../components/DialogueInput.astro'
-import Credits from '../components/Credits.astro';
-import SizingTool from '../components/SizingTool.astro';
-import UpdatePopup from '../components/UpdatePopup.astro';
+import DialogueSizingTool from '../components/DialogueSizingTool.astro';
 import LanguageSelector from '../components/LanguageSelector.astro';
+import UpdatePopup from '../components/UpdatePopup.astro';
 ---
 
 <html lang="en">
@@ -43,7 +44,7 @@ import LanguageSelector from '../components/LanguageSelector.astro';
 			</div>
 		</div>
 
-		<SizingTool />
+		<DialogueSizingTool />
 		<p><i>Generated output you see may be barely accurate to inaccurate compared to official media.</i></p>
 		<DialogueInput />
 		<div style="text-align: center; font-style: italic; opacity: 0.75;">
@@ -92,6 +93,8 @@ import LanguageSelector from '../components/LanguageSelector.astro';
 				</div>
 			</div>
 		</div>
+
+		<DialogueColorList />
 
 		<UpdatePopup />
 

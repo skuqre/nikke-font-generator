@@ -1,8 +1,9 @@
 import { draw9slice, eyeOn, eyeOff, translateCoordinates } from "./util.js";
 import { fontNames } from "./langinit.js"
+import fuzzysort from "fuzzysort";
 
 const colorFetch = await fetch("https://nkas.pages.dev/nk_data/colors.json");
-const colorData = await colorFetch.json();
+let colorData = await colorFetch.json();
 
 if (localStorage.getItem("fontLanguage") === null) {
     localStorage.setItem("fontLanguage", fontNames["en"]);
@@ -1548,3 +1549,111 @@ Array.prototype.swap = function(x, y){
 }
 
 document.promptText = "You might have changes in the current Dialogue. Are you sure you want to change your font?";
+
+// color list
+
+const colorsMain = document.getElementById("colors-main");
+const colorsSearch = document.getElementById("colors-search");
+const colorsOpen = document.getElementById("colors-open");
+const colorsClose = document.getElementById("colors-close");
+const colorsList = document.getElementById("colors-list");
+const colorsAdd = document.getElementById("colors-add");
+
+colorsOpen.addEventListener("click", () => {
+    colorsMain.style.display = null;
+});
+
+colorsClose.addEventListener("click", () => {
+    colorsMain.style.display = "none";
+});
+
+colorsSearch.addEventListener("input", () => {
+    updateColorsList();
+});
+
+colorsAdd.addEventListener("click", () => {
+    colorData["New Color Definition"] = "#ffffff";
+    updateColorsList();
+})
+
+// let colorKeyElements = [];
+
+function updateColorsList() {
+    colorsList.innerHTML = "";
+    // colorKeyElements = [];
+    const results = fuzzysort.go(colorsSearch.value, Object.keys(colorData), {all: true});
+
+    for (const i of results) {
+        const div = document.createElement("div");
+        div.classList.add("input-option");
+        div.classList.add("option-no-hover");
+
+        const colorKey = document.createElement("input");
+        colorKey.classList.add("fullwidth");
+        colorKey.type = "text";
+        colorKey.value = i.target;
+        colorKey.onchange = () => {
+            // recreate the entire dict to accomodate for position changes
+            let ass = {};
+            for (const j of Object.keys(colorData)) {
+                if (j === i.target) {
+                    ass[colorKey.value] = colorData[i.target];
+                } else {
+                    ass[j] = colorData[j];
+                }
+            }
+            colorData = ass;
+
+            updateColorsList();
+            // colorKeyElements[Object.keys(colorData).indexOf(colorKey.value)].focus()
+            generateText(text2, subtext2);
+        }
+        // colorKeyElements.push(colorKey);
+
+        const buttonTray = document.createElement("div");
+        buttonTray.classList.add("button-tray");
+
+        const removeColor = document.createElement("div");
+        removeColor.classList.add("input-button");
+        removeColor.classList.add("square");
+        removeColor.innerHTML = `<i class="bx bx-trash"></i>`
+        removeColor.onclick = () => {
+            delete colorData[i.target];
+            updateColorsList();
+            generateText(text2, subtext2);
+        }
+        buttonTray.appendChild(removeColor);
+
+        const setColor = document.createElement("input");
+        setColor.classList.add("input-button");
+        setColor.classList.add("square");
+        setColor.type = "color";
+        setColor.value = colorData[i.target];
+        setColor.oninput = () => {
+            colorData[i.target] = setColor.value;
+            generateText(text2, subtext2);
+        }
+        buttonTray.appendChild(setColor);
+
+        const applyColor = document.createElement("div");
+        applyColor.classList.add("input-button");
+        applyColor.classList.add("square");
+        applyColor.innerHTML = `<i class="bx bxs-paint"></i>`
+        applyColor.onclick = () => {
+            document.getElementById('color').value = colorData[i.target];
+            color = colorData[i.target];
+
+            generateText(text2, subtext2);
+
+            colorsClose.dispatchEvent(new Event("click"));
+        }
+        buttonTray.appendChild(applyColor);
+
+        div.appendChild(colorKey);
+        div.appendChild(buttonTray);
+
+        colorsList.appendChild(div);
+    }
+}
+
+updateColorsList();
