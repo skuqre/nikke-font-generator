@@ -50,7 +50,7 @@ for (let i = 0; i < skinData.length; i++) {
     const skin = skinData[i];
     const cid = "c" + skin[0] + "_" + skin[1];
 
-    const pngName = (nkasL2dData[cid] + ": " + skin[2]).toLowerCase();
+    const pngName = (nkasL2dData[cid] ?? "Name unavailable, check later!").toLowerCase();
     const pngSrc = "si_c" + skin[0] + "_" + skin[1] + "_s";
 
     nikkepfps[pngName] = pngSrc;

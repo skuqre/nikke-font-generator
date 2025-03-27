@@ -136,8 +136,8 @@ import raptures from '../../public/blabla-raptures.json'
 
                 const img = document.createElement("img");
                 img.classList.add('npc');
-                img.alt = (nkasL2dData[cid] + ": " + skin[2]).toLowerCase();
-                img.title = (nkasL2dData[cid] + ": " + skin[2]).toLowerCase();
+                img.alt = (nkasL2dData[cid] ?? "Name unavailable, check later!").toLowerCase();
+                img.title = (nkasL2dData[cid] ?? "Name unavailable, check later!").toLowerCase();
                 img.src = "https://nkas.pages.dev/characters/si_c" + skin[0] + "_" + skin[1] + "_s.png";
                 skinsElement.appendChild(img);
             }
