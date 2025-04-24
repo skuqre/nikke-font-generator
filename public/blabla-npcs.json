@@ -120,5 +120,12 @@
     ["d.e.e.p.", "si_c991_00_s"],
     ["rapi: hospitalized child", "si_c992_00_s"],
     ["rapi: mass produced red", "si_c994_00_s"],
-    ["hologram: with a hat", "si_c910_01_s"]
+    ["hologram: with a hat", "si_c910_01_s"],
+
+    ["laplace: overspec", "si_c103_00_s"],
+    ["drake: overspec", "si_c104_00_s"],
+    ["maxwell: overspec", "si_c105_00_s"],
+
+    ["mint", "si_c600_00_s"],
+    ["prika", "si_c601_00_s"]
 ]
