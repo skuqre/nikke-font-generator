@@ -10,9 +10,13 @@ embeddesc: what does the site get from you? what does the site not get from you?
 
 <br>
 
-## I. What does the site get from me?
+## I. What does the site get from me, and what does it do with it?
 
-**Nothing**.
+The site uses [Rybbit](https://rybbit.io/) for anonymous user tracking. This provides the site owner with actual analytics in order for him to get actual valuable insights on what to do next, what tool is being most used, among many other things.
+
+Your data will never be sold to any third party, advertisers and the like. Count on it.
+
+The following privacy policy outlines what Rybbit does with this data: <https://www.rybbit.io/privacy/>
 
 <br>
 
