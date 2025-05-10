@@ -22,12 +22,16 @@ import UpdatePopup from '../components/UpdatePopup.astro';
 		<meta name="twitter:description" content="Create a spoof of a boss warning in NIKKE easily!">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta property="twitter:image:src" content="/nikke-font-generator/example-warning.png" />
+		
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4D9H1G2HS"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
 
-		<script
-			src="https://app.rybbit.io/api/script.js"
-			data-site-id="319"
-			defer
-		></script>
+			gtag('config', 'G-L4D9H1G2HS');
+		</script>
 
 		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	</head>

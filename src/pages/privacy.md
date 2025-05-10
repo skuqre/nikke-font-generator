@@ -6,17 +6,23 @@ embeddesc: what does the site get from you? what does the site not get from you?
 
 # Privacy
 
+*updated 5/10/25*
+
 ---
 
 <br>
 
 ## I. What does the site get from me, and what does it do with it?
 
-The site uses [Rybbit](https://rybbit.io/) for anonymous user tracking. This provides the site owner with actual analytics in order for him to get actual valuable insights on what to do next, what tool is being most used, among many other things.
+This site uses **Google Analytics**, a web service provided by Google LLC ("Google"), to understand how visitors interact with the website. Google Analytics collects information such as your IP Address, browser type, referring pages, and the time spent on the site. This data helps me analyze traffic and improve the website.
+
+Google Analytics is used with IP anonymization enabled to help me understand how visitors use our site. Google does not share personally identifiable information with me, and I do not send any personal data to Google Analytics.
+
+Google Analytics may use cookies and other tracking technologies to collect this information. The data collected is sent to and stored by Google on servers in the United States or elsewhere. Google may also use this data in accordance with their own [Privacy Policy](https://policies.google.com/privacy/).
 
 Your data will never be sold to any third party, advertisers and the like. Count on it.
 
-The following privacy policy outlines what Rybbit does with this data: <https://www.rybbit.io/privacy/>
+To opt out of Google Analytics, you can download this add-on: <https://tools.google.com/dlpage/gaoptout/>
 
 <br>
 

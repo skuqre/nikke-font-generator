@@ -28,11 +28,15 @@ const assetTitles = Object.keys(import.meta.glob("../../public/images/banner/tit
 		<meta name="twitter:card" content="summary_large_image">
 		<meta property="twitter:image:src" content="/nikke-font-generator/example-banner.png" />
 
-		<script
-			src="https://app.rybbit.io/api/script.js"
-			data-site-id="319"
-			defer
-		></script>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4D9H1G2HS"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-L4D9H1G2HS');
+		</script>
 
 		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	</head>
