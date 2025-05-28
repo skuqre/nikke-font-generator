@@ -8,9 +8,9 @@
     ["female commander", "si_c917_00_s"],
 
     ["andersen", "si_c903_00_s"],
-    ["andersen: soaky shower", "si_c903_01_00_s", ""],
+    ["andersen (full fool day)", "si_c903_01_00_s", ""],
     ["shifty", "si_c907_00_s"],
-    ["shifty: old", "si_c907_01_00_s", ""],
+    ["shifty (old)", "si_c907_01_00_s", ""],
     ["ingrid", "si_c900_00_s"],
     ["syuen", "si_c901_00_s"],
     ["mustang", "si_c902_00_s"],
@@ -74,20 +74,20 @@
     ["peony association member", "si_c922_00_s"],
 
     ["lumi", "si_c970_00_s"],
-    ["ghost: lena", "si_c969_00_s"],
-    ["ghost: lua", "si_c968_00_s"],
-    ["ghost: lumi", "si_c967_00_s"],
+    ["lena", "si_c969_00_s"],
+    ["lua", "si_c968_00_s"],
+    ["lumi (ghost)", "si_c967_00_s"],
 
     ["outer rim generic a", "si_c918_00_s"],
     ["outer rim generic b", "si_c919_00_s"],
 
-    ["mast: old", "si_c350_old_00_s", ""],
-    ["rapi: old", "si_c010_01_00_s", ""],
+    ["mast (old)", "si_c350_old_00_s", ""],
+    ["rapi (old)", "si_c010_01_00_s", ""],
 
     ["flora", "si_c411_00_s"],
     ["hammering", "si_c490_00_s"],
     ["liveryn", "si_c480_00_s"],
-    ["grave: old", "si_c510_00_s"],
+    ["grave (old)", "si_c510_00_s"],
     
     ["t.rony", "si_c976_00_s"],
     ["black ark ranger", "si_c570_00_s"],
@@ -98,6 +98,7 @@
     ["kilo", "si_c977_00_s"],
 
     ["behemoth", "si_c560_00_s"],
+    ["ziz", "si_c561_00_s"],
     ["leviathan", "si_c562_00_s"],
 
     ["yuni: wordless", "si_c985_00_s"],
