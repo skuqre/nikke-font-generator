@@ -120,7 +120,7 @@
     ["rapi: hospitalized", "si_c990_00_s"],
     ["d.e.e.p.", "si_c991_00_s"],
     ["rapi: hospitalized child", "si_c992_00_s"],
-    ["rapi: mass produced red", "si_c994_00_s"],
+    ["rapi: mass produced", "si_c994_00_s"],
     ["hologram: with a hat", "si_c910_01_s"],
 
     ["laplace: overspec", "si_c103_00_s"],
