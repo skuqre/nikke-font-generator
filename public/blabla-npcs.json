@@ -126,5 +126,7 @@
     ["maxwell: overspec", "si_c105_00_s"],
 
     ["mint", "si_c600_00_s"],
-    ["prika", "si_c601_00_s"]
+    ["prika", "si_c601_00_s"],
+
+    ["x", "si_c984_01_s"]
 ]
