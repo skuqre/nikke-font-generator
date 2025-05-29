@@ -68,9 +68,9 @@
 
     ["timi", "si_c975_00"],
 
-    ["hedonia member", "si_c920_00_s"],
-    ["seimeikai member", "si_c921_00_s"],
-    ["peony association member", "si_c922_00_s"],
+    ["consigliere", "si_c920_00_s"],
+    ["genzou", "si_c921_00_s"],
+    ["jin", "si_c922_00_s"],
 
     ["lumi", "si_c970_00_s"],
     ["lena", "si_c969_00_s"],
@@ -98,6 +98,9 @@
     ["behemoth", "si_c560_00_s"],
     ["ziz", "si_c561_00_s"],
     ["leviathan", "si_c562_00_s"],
+
+    ["eyeri", "si_c440_00_s"],
+    ["avistar", "si_c441_00_s"],
 
     ["yuni: wordless", "si_c985_00_s"],
 
