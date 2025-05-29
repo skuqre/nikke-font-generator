@@ -8,9 +8,9 @@
     ["female commander", "si_c917_00_s"],
 
     ["andersen", "si_c903_00_s"],
-    ["andersen (full fool day)", "si_c903_01_00_s", ""],
+    ["andersen: full fool day", "si_c903_01_00_s", ""],
     ["shifty", "si_c907_00_s"],
-    ["shifty (old)", "si_c907_01_00_s", ""],
+    ["shifty: old", "si_c907_01_00_s", ""],
     ["ingrid", "si_c900_00_s"],
     ["syuen", "si_c901_00_s"],
     ["mustang", "si_c902_00_s"],
@@ -43,7 +43,7 @@
 
     ["aki hayakawa", "si_c804_00_s"],
     ["denji", "si_c803_00_s"],
-    ["denji chainsaw man", "si_c803_01_00_s", ""],
+    ["denji: chainsaw man", "si_c803_01_00_s", ""],
     
     ["oswald", "si_c961_00_s"],
     ["freesia", "si_c960_00_s"],
@@ -63,7 +63,7 @@
     ["6000-d", "si_c964_00_s"],
 
     ["rose", "si_c971_00_s"],
-    ["mass produced melee old", "si_c974_00_s"],
+    ["mass produced melee: old", "si_c974_00_s"],
     ["mass produced melee", "si_c974_01_00_s", ""],
 
     ["timi", "si_c975_00"],
@@ -75,17 +75,17 @@
     ["lumi", "si_c970_00_s"],
     ["lena", "si_c969_00_s"],
     ["lua", "si_c968_00_s"],
-    ["lumi (ghost)", "si_c967_00_s"],
+    ["lumi: ghost", "si_c967_00_s"],
 
     ["outer rim generic a", "si_c918_00_s"],
     ["outer rim generic b", "si_c919_00_s"],
 
-    ["mast (old)", "si_c350_old_00_s", ""],
-    ["rapi (old)", "si_c010_01_00_s", ""],
+    ["mast: old", "si_c350_old_00_s", ""],
+    ["rapi: old", "si_c010_01_00_s", ""],
 
     ["hammering", "si_c490_00_s"],
     ["liveryn", "si_c480_00_s"],
-    ["grave (old)", "si_c510_00_s"],
+    ["grave: old", "si_c510_00_s"],
     
     ["t.rony", "si_c976_00_s"],
     ["black ark ranger", "si_c570_00_s"],
@@ -122,6 +122,8 @@
     ["d.e.e.p.", "si_c991_00_s"],
     ["rapi: hospitalized child", "si_c992_00_s"],
     ["rapi: mass produced", "si_c994_00_s"],
+
+    ["manager sweet johnny", "si_c910_00_s"],
     ["sweet johnny ver. 2.14", "si_c910_01_s"],
 
     ["laplace: overspec", "si_c103_00_s"],
