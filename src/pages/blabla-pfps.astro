@@ -109,7 +109,7 @@ import raptures from '../../public/blabla-raptures.json'
         <br>
         <h2>NPCs</h2>
         <div class="npc-table">
-            { npcs.map((e) => <img src={ (e[2] == undefined ? "https://nkas.pages.dev/characters/" : "https://nikke-db-legacy.pages.dev/images/sprite/") + e[1] + ".png"} alt={e[0].toLowerCase()} title={e[0].toLowerCase()} class="npc" />) }
+            { npcs.map((e) => <img src={ (e[2] == undefined ? "https://nkas.pages.dev/characters/" : "https://nikke-db-legacy.pages.dev/images/sprite/") + e[1] + ".png"} alt={e[0]} title={e[0]} class="npc" />) }
         </div>
 
         <br>
@@ -136,8 +136,8 @@ import raptures from '../../public/blabla-raptures.json'
 
                 const img = document.createElement("img");
                 img.classList.add('npc');
-                img.alt = (nkasL2dData[cid] ?? "Name unavailable, check later!").toLowerCase();
-                img.title = (nkasL2dData[cid] ?? "Name unavailable, check later!").toLowerCase();
+                img.alt = (nkasL2dData[cid] ?? "Name unavailable, check later!");
+                img.title = (nkasL2dData[cid] ?? "Name unavailable, check later!");
                 img.src = "https://nkas.pages.dev/characters/si_c" + skin[0] + "_" + skin[1] + "_s.png";
                 skinsElement.appendChild(img);
             }
@@ -153,7 +153,7 @@ import raptures from '../../public/blabla-raptures.json'
 
                         pfp[e.manufacturer.toLowerCase()].push({
                             img: "https://nkas.pages.dev/characters/" + e.img + ".png",
-                            name: e.name.toLowerCase()
+                            name: e.name
                         });
                     });
 
