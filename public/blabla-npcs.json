@@ -144,5 +144,14 @@
     ["Jien", "si_c973_00_s"],
 
     ["Sky", "si_c530_00_s"],
-    ["Cielo", "si_c531_00_s"]
+    ["Cielo", "si_c531_00_s"],
+
+    ["Alfred", "si_c9000_00_s"],
+    ["Neaty", "si_c9000_01_s"],
+    ["Sizzly", "si_c9000_02_s"],
+    ["Fixy", "si_c9000_03_s"],
+    ["Detaily", "si_c9000_05_s"],
+    ["Sellsy", "si_c9000_06_s"],
+    ["Ghost", "si_c9000_07_s"],
+    ["Pinne: Ghost", "si_c9001_00_s"]
 ]
