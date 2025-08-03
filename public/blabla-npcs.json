@@ -110,10 +110,10 @@
     ["Gretel", "si_c981_00_s"],
     ["Red Shoes", "si_c982_00_s"],
 
-    ["Rapi: Tactical Up", "si_c989_00_s"],
-    ["Emma: Tactical Up", "si_c093_00_s"],
-    ["Vesti: Tactical Up", "si_c094_00_s"],
-    ["Eunhwa: Tactical Up", "si_c095_00_s"],
+    ["Rapi: Tactical Upgrade", "si_c989_00_s"],
+    ["Emma: Tactical Upgrade", "si_c093_00_s"],
+    ["Vesti: Tactical Upgrade", "si_c094_00_s"],
+    ["Eunhwa: Tactical Upgrade", "si_c095_00_s"],
 
     ["Chloe", "si_c988_00_s"],
 
@@ -153,5 +153,5 @@
     ["Detaily", "si_c9000_05_s"],
     ["Sellsy", "si_c9000_06_s"],
     ["Ghost", "si_c9000_07_s"],
-    ["Pinne: Ghost", "si_c9001_00_s"]
+    ["Maya", "si_c9001_00_s"]
 ]
