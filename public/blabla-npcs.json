@@ -26,7 +26,7 @@
     ["Legendary Commander", "si_c942_00_s"],
 
     ["Indivilia", "si_c263_00_s"],
-    ["Liberalio", "si_c262_00_s", ""],
+    ["Liberalio", "si_c262_00_s"],
     ["Liliweiss", "si_c943_00_s"],
     ["Papillon", "si_c908_00_s", ""],
     ["Pinne", "si_c941_00_s"],
@@ -153,5 +153,12 @@
     ["Detaily", "si_c9000_05_s"],
     ["Sellsy", "si_c9000_06_s"],
     ["Ghost", "si_c9000_07_s"],
-    ["Maya", "si_c9001_00_s"]
+    ["Maya", "si_c9001_00_s"],
+
+    ["Eternity", "si_c370_00_s"],
+    ["Endless", "si_c371_00_s"],
+
+    ["Nayuta", "si_c9008_00_s"],
+    ["Predator", "si_c9005_00_s"],
+    ["Predator: Light", "si_c9005_01_s"]
 ]
