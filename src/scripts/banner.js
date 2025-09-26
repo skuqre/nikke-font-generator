@@ -70,7 +70,7 @@ bg.onload = (e) => {
 
 let char = new Image();
 char.crossOrigin = "anonymous"
-char.src = `https://nkas.pages.dev/characters/c012_00.png`;
+char.src = `https://nkas.pages.dev/characters_hq/c012_00.png`;
 char.onload = (e) => {
     generateBanner();
 }
@@ -95,14 +95,20 @@ document.getElementById("char-full-search").addEventListener("input", () => {
         if (document.getElementById("char-full-search").value.trim().length > 0) {
             const results = fuzzysort.go(document.getElementById("char-full-search").value, Object.keys(nikkepfps));
             if (results.length > 0) {
-                currentImage = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target].replace("si_", "").replace("_s", "")}.png`;
+                currentImage = `https://nkas.pages.dev/characters_hq/${nikkepfps[results[0].target].replace("si_", "").replace("_s", "")}.png`;
 
                 document.getElementById("full-preview").src = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
+                document.getElementById("full-preview").onerror = () => {
+                    document.getElementById("full-preview").src = `https://nkas.pages.dev/characters_missing_si/${nikkepfps[results[0].target]}.png`;
+                    document.getElementById("full-preview").onerror = () => {
+                        document.getElementById("full-preview").src = `/nikke-font-generator/images/blabla/pfp/nochat.png`;
+                    }
+                }
             } else {
                 document.getElementById("full-preview").src = `/nikke-font-generator/images/blabla/pfp/nochat.png`;
             }
         } else {
-            currentImage = `https://nkas.pages.dev/characters/c928_00.png`;
+            currentImage = `https://nkas.pages.dev/characters_hq/c928_00.png`;
             document.getElementById("full-preview").src = `/nikke-font-generator/images/blabla/pfp/nochat.png`;
         }
     }
@@ -116,7 +122,7 @@ document.getElementById("char-full-upload").onchange = (e) => {
     filer.onload = (e) => {
         char.src = e.target.result.toString();
         char.onerror = (e) => {
-            char.src = "https://nkas.pages.dev/characters/c928_00.png";
+            char.src = "https://nkas.pages.dev/characters_hq/c928_00.png";
         }
     };
     if (fileList.length > 0) {
@@ -130,7 +136,7 @@ let curSelected = null;
 let loadedImages = {};
 
 let chpos = [730, 1060];
-let chscale = 1.2;
+let chscale = 0.7;
 
 document.getElementById("xposch").oninput = () => {
     chpos[0] = parseFloat(document.getElementById("xposch").value);

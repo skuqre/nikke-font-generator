@@ -10,6 +10,23 @@ embeddesc: the update log
 
 <br>
 
+## Quality `September 26, 2025`
+
+higher quality images! provided by yours truly
+
+**banner gen**
+- switched portraits to NKAS's `characters_hq` images
+- FINALLY updated the stickers LMAOOOOOOOOOOOOOOOOOOOOO
+
+**blabla gen**
+- switched missing character profile photos to NKAS's `character_missing_si` images
+
+<br>
+
+---
+
+<br>
+
 ## Custom Colors `Mar 21, 2025`
 
 more color stuff!!

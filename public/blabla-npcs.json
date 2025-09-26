@@ -8,7 +8,7 @@
     ["Female Commander", "si_c917_00_s"],
 
     ["Andersen", "si_c903_00_s"],
-    ["Andersen: Full Fool Day", "si_c903_01_00_s", ""],
+    ["Andersen: Full Fool Day", "si_c903_01_s"],
     ["Shifty", "si_c907_00_s"],
     ["Shifty: Old", "si_c907_01_00_s", ""],
     ["Ingrid", "si_c900_00_s"],
@@ -28,7 +28,7 @@
     ["Indivilia", "si_c263_00_s"],
     ["Liberalio", "si_c262_00_s"],
     ["Liliweiss", "si_c943_00_s"],
-    ["Papillon", "si_c908_00_s", ""],
+    ["Papillon", "si_c890_00_s", "nkas"],
     ["Pinne", "si_c941_00_s"],
     ["Rian", "si_c905_00_s"],
 
@@ -38,7 +38,7 @@
     ["Booboo", "si_c937_00_s"],
     ["Max", "si_c936_00_s"],
 
-    ["9S", "si_c813_00_s", ""],
+    ["9S", "si_c813_00_s", "nkas"],
 
     ["Aki Hayakawa", "si_c804_00_s"],
     ["Denji", "si_c803_00_s"],
@@ -156,9 +156,9 @@
     ["Endless", "si_c371_00_s"],
 
     ["Nayuta", "si_c9008_00_s"],
-    ["Pinocchio", "si_c227_00_s", ""],
+    ["Pinocchio", "si_c227_00_s", "nkas"],
     ["Predator", "si_c9005_00_s"],
     ["Predator: Light", "si_c9005_01_s"],
 
-    ["Mrs. Miss", "si_c9003_00_s", ""]
+    ["Mrs. Miss", "si_c9003_00_s", "nkas"]
 ]

@@ -79,8 +79,10 @@ response2.json().then((e) => {
     for (let i = 0; i < e.length; i++) {
         var toadd = e[i][1];
 
-        if (e[i][2] !== undefined)
+        if (e[i][2] === "")
             toadd += "_NIKKEDB";
+        else if (e[i][2] === "nkas")
+            toadd += "_NKAS"
 
         nikkepfps[e[i][0]] = toadd;
     }
@@ -1425,6 +1427,8 @@ document.getElementById("char-pres-up").oninput = (e) => {
                 } else {
                     if (nikkepfps[results[0].target].endsWith("_NIKKEDB")) {
                         currentImage = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target].replace("_NIKKEDB", "")}.png`;
+                    } else if (nikkepfps[results[0].target].endsWith("_NKAS")) {
+                        currentImage = `https://nkas.pages.dev/characters_missing_si/${nikkepfps[results[0].target].replace("_NKAS", "")}.png`;
                     } else {
                         currentImage = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
                     }
@@ -1448,7 +1452,7 @@ document.getElementById("char-pres-edit").oninput = (e) => {
                     chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nkas.pages.dev/monsters/${nikkepfps[results[0].target]}.png`;
                 } else {
                     if (nikkepfps[results[0].target].endsWith("_NIKKEDB")) {
-                        chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target].replace("_NIKKEDB", "")}.png`;
+                        chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nkas.pages.dev/characters_missing_si/${nikkepfps[results[0].target].replace("_NIKKEDB", "")}.png`;
                     } else {
                         chats[parseInt(document.getElementById("message-index-edit").value)].image = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
                     }
@@ -1477,7 +1481,7 @@ document.getElementById("char-pres-edit-p").oninput = (e) => {
                 }
                 else {
                     if (nikkepfps[results[0].target].endsWith("_NIKKEDB")) {
-                        profile.image = `https://nikke-db-legacy.pages.dev/images/sprite/${nikkepfps[results[0].target].replace("_NIKKEDB", "")}.png`;
+                        profile.image = `https://nkas.pages.dev/characters_missing_si/${nikkepfps[results[0].target].replace("_NIKKEDB", "")}.png`;
                     } else {
                         profile.image = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target]}.png`;
                     }
