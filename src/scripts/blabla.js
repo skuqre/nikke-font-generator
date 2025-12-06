@@ -1582,12 +1582,9 @@ document.getElementById("char-img-edit-p").onchange = (e) => {
     }
 }
 
-document.getElementById("blabla-canvas").onclick = downloadPng;
 document.getElementById("export-png").onclick = downloadPng;
 
 function downloadPng() {
-    if (dragOn) return;
-
     var link = document.createElement('a');
     var canvas = document.getElementById('blabla-canvas')
     link.download = 'nikke-blabla.png';

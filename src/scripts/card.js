@@ -530,7 +530,11 @@ document.getElementById("color").addEventListener("input", () => {
 });
 
 document.getElementById("download").addEventListener("click", () => {
-    document.querySelectorAll('canvas#card-canvas')[0].dispatchEvent(new Event("click"));
+    var link = document.createElement('a');
+    var canvas = document.getElementById('card-canvas');
+    link.download = 'nikke-card.png';
+    link.href = canvas.toDataURL()
+    link.click();
 });
 
 let dragOn = false;
@@ -578,13 +582,4 @@ document.addEventListener('pointerup', (e) => {
     dragging = false;
 
     generateCard();
-});
-
-document.querySelectorAll('canvas#card-canvas')[0].addEventListener('click', () => {
-    if (dragOn) return;
-    var link = document.createElement('a');
-    var canvas = document.getElementById('card-canvas');
-    link.download = 'nikke-card.png';
-    link.href = canvas.toDataURL()
-    link.click();
 });

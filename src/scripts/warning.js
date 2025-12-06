@@ -247,7 +247,11 @@ document.getElementById("yoff").oninput = (_) => {
 }; 
 
 document.getElementById("download").addEventListener("click", () => {
-    document.querySelectorAll('canvas#warning-canvas')[0].dispatchEvent(new Event("click"));
+    var link = document.createElement('a');
+    var canvas = document.getElementById('warning-canvas')
+    link.download = 'nikke-warning.png';
+    link.href = canvas.toDataURL();
+    link.click();
 });
 
 

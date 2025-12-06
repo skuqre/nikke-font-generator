@@ -552,8 +552,6 @@ document.querySelectorAll('#enable-sizing')[0].addEventListener('click', () => {
     document.getElementById('sizing-tool').style['display'] = sizetools ? "flex" : "none";
 });
 
-document.querySelectorAll('canvas#dialogue-canvas')[0].addEventListener('click', downloadImage);
-
 let dragbg = false;
 let dragcam = false;
 
@@ -1518,8 +1516,6 @@ function getLines(ctx, text, maxWidth) {
 }
 
 function downloadImage() {
-    if (dragbg || dragcam || dragcn || dragdt || dragdc || dragcb || dragar || dragna) return;
-    if (curSelected != null) return;
     var link = document.createElement('a');
     var canvas = document.getElementById('dialogue-canvas')
     link.download = 'nikke-dialogue.png';
