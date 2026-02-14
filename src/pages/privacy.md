@@ -18,11 +18,11 @@ This site uses **Google Analytics**, a web service provided by Google LLC ("Goog
 
 Google Analytics is used with IP anonymization enabled to help me understand how visitors use our site. Google does not share personally identifiable information with me, and I do not send any personal data to Google Analytics.
 
-Google Analytics may use cookies and other tracking technologies to collect this information. The data collected is sent to and stored by Google on servers in the United States or elsewhere. Google may also use this data in accordance with their own [Privacy Policy](https://policies.google.com/privacy/).
+Google Analytics may use cookies and other tracking technologies to collect this information. The data collected is sent to and stored by Google on servers in the United States or elsewhere. Google may also use this data in accordance with their own [Privacy Policy](https://policies.google.com/privacy).
 
 Your data will never be sold to any third party, advertisers and the like. Count on it.
 
-To opt out of Google Analytics, you can download this add-on: <https://tools.google.com/dlpage/gaoptout/>
+To opt out of Google Analytics, you can download this add-on: <https://tools.google.com/dlpage/gaoptout>
 
 <br>
 
