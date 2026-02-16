@@ -10,6 +10,19 @@ embeddesc: the update log
 
 <br>
 
+## heeloooooo? `February 16, 2026`
+
+**blabla gen**
+- switched raptures to be NKAS's rapture images
+- removed `blabla-raptures.json`. use NKAS's `https://nkas.pages.dev/nk_data/beastiary_index.json` instead
+- added more NPCs
+
+<br>
+
+---
+
+<br>
+
 ## Quality `September 26, 2025`
 
 higher quality images! provided by yours truly

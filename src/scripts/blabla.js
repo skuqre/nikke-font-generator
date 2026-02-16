@@ -105,10 +105,23 @@ for (let i = 0; i < skinData.length; i++) {
     nikkepfps[pngName] = pngSrc;
 }
 
-const response4 = await fetch('/nikke-font-generator/blabla-raptures.json');
-response4.json().then((e) => {
-    for (let i = 0; i < e.length; i++) {
-        nikkepfps["rapture " + e[i][0]] = e[i][1];
+const rapturesFetch = await fetch("https://nkas.pages.dev/nk_data/beastiary_index.json");
+rapturesFetch.json().then(async rapturesData => {
+    for (const i of rapturesData) {
+        const raptureData = await (await fetch("https://nkas.pages.dev/nk_data/beastiary/" + i.id + ".json")).json()
+    
+        const allValues = Object.values(raptureData["rid"]);
+        if (allValues.every(e => e === allValues[0])) {
+            let pngName = "Rapture: " + raptureData.name;
+            pngName = pngName.toLowerCase();
+            nikkepfps[pngName] = "si_" + allValues[0];
+        } else {
+            for (const j of Object.keys(raptureData["rid"])) {
+                let pngName = "Rapture: " + raptureData.name + " " + j;
+                pngName = pngName.toLowerCase();
+                nikkepfps[pngName] = "si_" + raptureData["rid"][j];
+            }
+        }
     }
 });
 

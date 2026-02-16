@@ -1,8 +1,19 @@
 [
     ["Marian", "si_c013_00_s"],
 
-    ["Male Generic", "si_c911_00_s"],
-    ["Female Generic", "si_c912_00_s"],
+    ["Generic Male", "si_c911_00_s"],
+    ["Generic Female", "si_c912_00_s"],
+
+    ["Rich Man", "si_c923_00_s", "nkas"],
+    ["Rich Woman", "si_c924_00_s", "nkas"],
+
+    ["Generic Male Bystander", "si_c947_00_s", "nkas"],
+    ["Generic Female Bystander", "si_c948_00_s", "nkas"],
+
+    ["Generic Boy", "si_c951_00_s", "nkas"],
+    ["Generic Girl", "si_c952_00_s", "nkas"],
+
+    ["Girl", "si_c913_00_s", "nkas"],
 
     ["Male Commander", "si_c916_00_s"],
     ["Female Commander", "si_c917_00_s"],
@@ -21,12 +32,12 @@
     ["Burningum", "si_c914_00_s"],
     ["Cecil", "si_c929_00_s"],
     ["Doban", "si_c939_00_s"],
-    ["E.H.", "si_c940_00_s"],
+    ["E.H.: Human", "si_c940_00_s"],
+    ["E.H.", "si_c113_00_s", "nkas"],
     ["Johan", "si_c925_00_s"],
     ["Legendary Commander", "si_c942_00_s"],
 
     ["Indivilia", "si_c263_00_s"],
-    ["Liberalio", "si_c262_00_s"],
     ["Liliweiss", "si_c943_00_s"],
     ["Papillon", "si_c890_00_s", "nkas"],
     ["Pinne", "si_c941_00_s"],
@@ -50,22 +61,20 @@
     ["Volt", "si_c933_00_s"],
     ["Volt Junior", "si_c932_00_s"],
 
-    ["Mass Produced Red", "si_c250_00_s"],
-    ["Mass Produced Blue", "si_c251_00_s"],
-    ["Mass Produced Orange", "si_c252_00_s"],
-    ["Mass Produced Green", "si_c253_00_s"],
-    ["Mass Produced Purple", "si_c254_00_s"],
-    ["Mass Produced White", "si_c255_00_s"],
+    ["Mass-Produced Red", "si_c250_00_s"],
+    ["Mass-Produced Blue", "si_c251_00_s"],
+    ["Mass-Produced Orange", "si_c252_00_s"],
+    ["Mass-Produced Green", "si_c253_00_s"],
+    ["Mass-Produced Purple", "si_c254_00_s"],
+    ["Mass-Produced White", "si_c255_00_s"],
 
     ["B-0006", "si_c962_00_s"],
     ["C-1002", "si_c963_00_s"],
     ["6000-D", "si_c964_00_s"],
 
     ["Rose", "si_c971_00_s"],
-    ["Mass Produced Melee: Old", "si_c974_00_s"],
-    ["Mass Produced Melee", "si_c974_01_00_s", ""],
-
-    ["Timi", "si_c975_00"],
+    ["Mass-Produced Melee: Old", "si_c974_00_s"],
+    ["Mass-Produced Melee", "si_c974_01_00_s", ""],
 
     ["Consigliere", "si_c920_00_s"],
     ["Genzou", "si_c921_00_s"],
@@ -110,14 +119,14 @@
     ["Gretel", "si_c981_00_s"],
     ["Red Shoes", "si_c982_00_s"],
 
-    ["Rapi: Tactical Upgrade", "si_c989_00_s"],
+    ["Rapi: Beta Red Hood", "si_c989_00_s"],
 
     ["Chloe", "si_c988_00_s"],
 
     ["Rapi: Hospitalized", "si_c990_00_s"],
     ["D.E.E.P.", "si_c991_00_s"],
     ["Rapi: Hospitalized Child", "si_c992_00_s"],
-    ["Rapi: Mass Produced", "si_c994_00_s"],
+    ["Rapi: Mass-Produced", "si_c994_00_s"],
 
     ["Manager Sweet Johnny", "si_c910_00_s"],
     ["Sweet Johnny Ver. 2.14", "si_c910_01_s"],
@@ -136,7 +145,8 @@
 
     ["Adam", "si_c853_00_s"],
     ["Hermin", "si_c998_00_s"],
-    ["Com", "si_c931_00_s"],
+    ["Roam", "si_c931_00_s", "nkas"],
+    ["Com", "si_c931_01_s", "nkas"],
 
     ["Jien", "si_c973_00_s"],
 
@@ -158,12 +168,26 @@
     ["Nayuta", "si_c9008_00_s"],
     ["Pinocchio", "si_c227_00_s", "nkas"],
     ["Predator", "si_c9005_00_s"],
-    ["Predator: Light", "si_c9005_01_s"],
+    ["Predator: Alpha", "si_c9005_01_s"],
 
-    ["Mrs. Miss", "si_c9003_00_s", "nkas"],
+    ["Mrs. Miss", "si_c9003_00_s"],
 
     ["Nora", "si_c9002_00_s"],
 
     ["Central Government Platoon Leader", "si_c9015_00_s"],
-    ["V.T.C. Priestess", "si_c9016_00_s"]
+    ["V.T.C. Priestess", "si_c9016_00_s"],
+
+    ["Raptillion", "si_c915_00_s", "nkas"],
+    ["Helper Bot", "si_c945_00_s", "nkas"],
+    ["Timi", "si_c975_00_s", "nkas"],
+    ["Nadia", "si_c983_00_s", "nkas"],
+    ["Sound Only", "si_c984_00_s", "nkas"],
+    ["X", "si_c984_01_s"],
+    ["Rapi: Red Haired", "si_c986_00_s", "nkas"],
+    ["Only One", "si_c997_00_s", "nkas"],
+    ["Deipara", "si_c9006_00_s", "nkas"],
+    ["Placeholder-chan", "si_dummy_00_s", "nkas"],
+
+    ["Slot", "si_c999_00_s"],
+    ["Unknown", "si_c000_00_s"]
 ]

@@ -2,7 +2,6 @@
 import '../components/GlobalStyle.astro';
 
 import npcs from '../../public/blabla-npcs.json'
-import raptures from '../../public/blabla-raptures.json'
 ---
 
 <html lang="en">
@@ -114,14 +113,14 @@ import raptures from '../../public/blabla-raptures.json'
 
         <br>
         <h2>Raptures</h2>
-        <div class="npc-table">
-            { raptures.map((e) => <img src={"https://nkas.pages.dev/monsters/" + e[1] + ".png"} alt={"rapture " + e[0]} title={e[0]} class="npc" />) }
+        <div class="npc-table" id="raptures">
         </div>
 
         <p class="alert">Copied!</p>
 
         <script type="module">
             const skinsElement = document.getElementById("skins");
+            const rapturesElement = document.getElementById("raptures");
 
             // populate skin list
             const skinFetch = await fetch("https://nkas.pages.dev/nk_data/skins.json");
@@ -142,71 +141,96 @@ import raptures from '../../public/blabla-raptures.json'
                 skinsElement.appendChild(img);
             }
 
-            fetch('https://api.dotgg.gg/nikke/characters/').then((response) => {
-                response.json().then((jsonresponse) => {
-                    let pfp = {}
+            const rapturesFetch = await fetch("https://nkas.pages.dev/nk_data/beastiary_index.json");
+            const rapturesData = await rapturesFetch.json();
 
-                    jsonresponse.map((e) => {
-                        if (pfp[e.manufacturer.toLowerCase()] == undefined) {
-                            pfp[e.manufacturer.toLowerCase()] = [];
-                        }
+            for (const i of rapturesData) {
+                const raptureData = await (await fetch("https://nkas.pages.dev/nk_data/beastiary/" + i.id + ".json")).json()
 
-                        pfp[e.manufacturer.toLowerCase()].push({
-                            img: "https://nkas.pages.dev/characters/" + e.img + ".png",
-                            name: e.name
-                        });
-                    });
-
-                    (['elysion', 'missilis', 'tetra', 'pilgrim', 'abnormal']).forEach((s) => {
-                        pfp[s].forEach((e) => {
-                            const img = document.createElement("img");
-                            img.classList.add('npc');
-                            img.alt = e.name;
-                            img.title = e.name;
-                            img.src = e.img;
-                            document.getElementById(s).appendChild(img);
-                        });
-                    });
-
-                    const npcs = document.getElementsByClassName("npc");
-                    const alert = document.getElementsByClassName("alert")[0];
-                    var prevTimeout = null;
-
-                    for (let i = 0; i < npcs.length; i++) {
-                        npcs[i].onclick = async (e) => {
-                            try {
-                                await navigator.clipboard.writeText(npcs[i].alt);
-                                alert.innerHTML = 'Copied "' + npcs[i].alt + '" to clipboard.'
-                                alert.style.top = '16px';
-
-                                if (prevTimeout != null) {
-                                    clearTimeout(prevTimeout)
-                                }
-                                prevTimeout = setTimeout(() => {
-                                    alert.style.top = '-300px';
-                                }, 2000);
-                            } catch (err) {
-                                
-                            }
-                        }
-
-                        const originalSrc = npcs[i].src;
-                        const natWidth = npcs[i].naturalWidth;
-                        const natHeight = npcs[i].naturalHeight;
-                        const imgWidthFinal = (128 / natHeight) * natWidth;
-                        const imgHeightFinal = (128 / natWidth) * natHeight;
-
-                        npcs[i].src = "/nikke-font-generator/images/transparent.png";
-                        npcs[i].style.backgroundImage = `url('${originalSrc}')`;
-
-                        if (natHeight >= natWidth) {
-                            npcs[i].style.backgroundSize = `${imgWidthFinal}px 128px`;
-                        } else if (natHeight < natWidth) {
-                            npcs[i].style.backgroundSize = `128px ${imgHeightFinal}px`;
-                        }
+                const allValues = Object.values(raptureData["rid"]);
+                if (allValues.every(e => e === allValues[0])) {
+                    const img = document.createElement("img");
+                    img.classList.add('npc');
+                    img.alt = "Rapture: " + raptureData.name;
+                    img.alt = img.alt.toLowerCase();
+                    img.title = img.alt;
+                    img.src = "https://nkas.pages.dev/monsters/si_" + allValues[0] + ".png";
+                    rapturesElement.appendChild(img);
+                } else {
+                    for (const j of Object.keys(raptureData["rid"])) {
+                        const img = document.createElement("img");
+                        img.classList.add('npc');
+                        img.alt = "Rapture: " + raptureData.name + " " + j;
+                        img.alt = img.alt.toLowerCase();
+                        img.title = img.alt;
+                        img.src = "https://nkas.pages.dev/monsters/si_" + raptureData["rid"][j] + ".png";
+                        rapturesElement.appendChild(img);
                     }
+                }
+            }
+
+            const nikkeggData = await (await fetch('https://api.dotgg.gg/nikke/characters/')).json();
+            let pfp = {}
+
+            nikkeggData.map((e) => {
+                if (pfp[e.manufacturer.toLowerCase()] == undefined) {
+                    pfp[e.manufacturer.toLowerCase()] = [];
+                }
+
+                pfp[e.manufacturer.toLowerCase()].push({
+                    img: "https://nkas.pages.dev/characters/" + e.img + ".png",
+                    name: e.name
                 });
             });
+
+            (['elysion', 'missilis', 'tetra', 'pilgrim', 'abnormal']).forEach((s) => {
+                pfp[s].forEach((e) => {
+                    const img = document.createElement("img");
+                    img.classList.add('npc');
+                    img.alt = e.name;
+                    img.title = e.name;
+                    img.src = e.img;
+                    document.getElementById(s).appendChild(img);
+                });
+            });
+
+            const npcs = document.getElementsByClassName("npc");
+            const alert = document.getElementsByClassName("alert")[0];
+            var prevTimeout = null;
+
+            for (let i = 0; i < npcs.length; i++) {
+                npcs[i].onclick = async (e) => {
+                    try {
+                        await navigator.clipboard.writeText(npcs[i].alt);
+                        alert.innerHTML = 'Copied "' + npcs[i].alt + '" to clipboard.'
+                        alert.style.top = '16px';
+
+                        if (prevTimeout != null) {
+                            clearTimeout(prevTimeout)
+                        }
+                        prevTimeout = setTimeout(() => {
+                            alert.style.top = '-300px';
+                        }, 2000);
+                    } catch (err) {
+                        
+                    }
+                }
+
+                const originalSrc = npcs[i].src;
+                const natWidth = npcs[i].naturalWidth;
+                const natHeight = npcs[i].naturalHeight;
+                const imgWidthFinal = (128 / natHeight) * natWidth;
+                const imgHeightFinal = (128 / natWidth) * natHeight;
+
+                npcs[i].src = "/nikke-font-generator/images/transparent.png";
+                npcs[i].style.backgroundImage = `url('${originalSrc}')`;
+
+                if (natHeight >= natWidth) {
+                    npcs[i].style.backgroundSize = `${imgWidthFinal}px 128px`;
+                } else if (natHeight < natWidth) {
+                    npcs[i].style.backgroundSize = `128px ${imgHeightFinal}px`;
+                }
+            }
         </script>
 
         <p><a href="/nikke-font-generator/blabla">go back</a></p>
