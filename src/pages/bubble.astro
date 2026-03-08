@@ -1,0 +1,54 @@
+---
+import '../components/GlobalStyle.astro';
+import BubbleDisplay from '../components/BubbleDisplay.astro';
+import BubbleInput from '../components/BubbleInput.astro';
+import DialogueColorList from '../components/DialogueColorList.astro';
+import Credits from '../components/Credits.astro';
+import UpdatePopup from '../components/UpdatePopup.astro';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/nikke-font-generator/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Barely Accurate NIKKE Speech Bubble Generator</title>
+
+		<meta name="description" content="Create a spoof of a NIKKE: Goddess of Victory Speech Bubble easily!">
+  		<meta name="keywords" content="nikke">
+		<meta name="theme-color" content="#f4d259">
+
+		<meta name="twitter:title" content="Barely Accurate NIKKE Speech Bubble Generator">
+		<meta name="twitter:description" content="Create a spoof of a NIKKE: Goddess of Victory Speech Bubble easily!">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="twitter:image:src" content="/nikke-font-generator/example-speech-bubble.png" />
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4D9H1G2HS"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-L4D9H1G2HS');
+		</script>
+
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+		<meta name="google-site-verification" content="0pic_QmKDHzjjlJ5MJA9kEiV1bhqyG3G6IfItkjgMjQ" />
+	</head>
+	<body>
+		<h1>Barely Accurate NIKKE Speech Bubble Generator</h1>
+		<BubbleDisplay />
+		<p><i>Generated output you see may be barely accurate to inaccurate compared to official media.</i></p>
+		<BubbleInput />
+		<Credits />
+
+		<UpdatePopup />
+
+		<DialogueColorList />
+
+		<script src="../scripts/bubble.js"></script>
+	</body>
+</html>
