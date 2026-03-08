@@ -332,3 +332,5 @@ function updateColorsList() {
 }
 
 updateColorsList();
+
+document.promptText = "You might have changes in the current Speech Bubble. Are you sure you want to change your font?";
