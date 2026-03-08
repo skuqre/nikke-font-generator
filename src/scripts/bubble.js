@@ -1,5 +1,10 @@
 import { draw9slice, trimCanvas } from "./util";
 import fuzzysort from "fuzzysort";
+import { fontNames } from "./langinit.js"
+
+if (localStorage.getItem("fontLanguage") === null) {
+    localStorage.setItem("fontLanguage", fontNames["en"]);
+}
 
 const colorFetch = await fetch("https://nkas.pages.dev/nk_data/colors.json");
 let colorData = await colorFetch.json();
