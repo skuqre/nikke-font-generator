@@ -187,6 +187,8 @@
     ["Deipara", "si_c9006_00_s", "nkas"],
     ["Placeholder-chan", "si_dummy_00_s", "nkas"],
 
+    ["Amy", "si_c9026_00_s", "nkas"],
+
     ["Slot", "si_c999_00_s"],
     ["Unknown", "si_c000_00_s"]
 ]
