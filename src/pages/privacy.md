@@ -6,7 +6,7 @@ embeddesc: what does the site get from you? what does the site not get from you?
 
 # Privacy
 
-*updated 5/10/25*
+*updated April 2, 2026*
 
 ---
 
@@ -26,9 +26,9 @@ To opt out of Google Analytics, you can download this add-on: <https://tools.goo
 
 <br>
 
-## II. What does the site use cookies for?
+## II. What does the site store in my device?
 
-The site uses cookies to store a date string (e.g. `Aug 27, 2024`) that changes whenever there's a new major update. When the string gets replaced and is unequal to the new string, the update popup will be visible on your first visit. **You are free to clear these cookies whenever.**
+The site uses your device to store a date string (e.g. `Aug 27, 2024`) that changes whenever there's a new major update. When the string gets replaced and is unequal to the new string, an update popup will be visible on your first visit. **You are free to clear the local data in your device whenever.**
 
 <br>
 

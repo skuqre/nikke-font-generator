@@ -1,332 +1,118 @@
-// We out here with the terrible JS code
-// We got that shit running 24/7
+import { trimCanvas } from "./util";
+
 const canvas = document.getElementById("font-canvas");
 const ctx = canvas.getContext("2d");
-let loaded = {}
-let heights = {}
 
-let replacements = {
-    "\\" : "backslash",
-    "/" : "forslash",
-    ":" : "colon",
-    "?" : "qmark",
-    "\"" : "dquote",
-}
+const inputText = document.getElementById("text");
+const inputSubtext = document.getElementById("subtext");
 
-const kerning = {
-    "y": {
-        "l": -32
-    },
-    "j": {
-        "y": -32,
-        "t": -16,
-        "w": -32,
-        "v": -32
-    },
-    "w": {
-        "a": -32,
-        "l": -32,
-        "o": -8,
-        ".": -32,
-        ",": -32
-    },
-    "g": {
-        "a": -8
-    },
-    "a": {
-        "v": -32,
-        "t": -32,
-        "y": -40,
-        "w": -32,
-        "f": -16,
-        "p": -16,
-        "u": -8,
-        "o": -8,
-        "c": -8,
-        "p": -16,
-        "r": -8,
-        "b": -8,
-        "d": -8,
-        "s": -8,
-        "q": -8
-    },
-    "t": {
-        "a": -32,
-        ".": -32,
-        ",": -32
-    },
-    "v": {
-        "a": -40,
-        "l": -32,
-        "o": -8,
-        "p": -16,
-        "g": -8,
-        "b": -8,
-        "q": -8,
-        ".": -32,
-        ",": -32
-    },
-    "y": {
-        "a": -40,
-        "l": -32,
-        "p": -16,
-        "g": -16,
-        "o": -16,
-        "b": -16,
-        "c": -16,
-        "d": -16,
-        ".": -48,
-        ",": -48
-    },
-    "o": {
-        "y": -16,
-        "w": -8,
-        "v": -8,
-        "a": -8,
-        "x": -16,
-        "y": -12,
-        "k": -16
-    },
-    "q": {
-        "a": -8,
-        "v": -8,
-        "x": -16,
-        "k": -16
-    },
-    "c": {
-        "a": -8,
-        "v": -8,
-        "x": -16,
-        "k": -16
-    },
-    "g": {
-        "a": -8,
-        "v": -8,
-        "y": -16,
-        "x": -16,
-        "k": -16
-    },
-    "u": {
-        "a": -8
-    },
-    "x": {
-        "q": -8,
-        "o": -8,
-        "c": -8,
-        "b": -8,
-        "d": -8,
-        "s": -8,
-        "a": -8,
-        "q": -8
-    },
-    "s": {
-        "x": -12
-    },
-    ".": {
-        "v": -32,
-        "t": -32,
-        "y": -48,
-        "w": -32,
+const inputTextColor = document.getElementById("text-color");
+const inputSubtextColor = document.getElementById("subtext-color");
 
-        "f": -32,
-        "p": -32
-    },
-    ",": {
-        "v": -32,
-        "t": -32,
-        "y": -48,
-        "w": -32,
+const inputMainSize = document.getElementById("main-size");
+const inputSubSize = document.getElementById("sub-size");
 
-        "f": -32,
-        "p": -32
-    }
-}
+const download = document.getElementById("download");
 
-let logoglyphs = 'abcdefghijklmnopqrstuvwxyz,.!$&0123456789\'\\/:?"-='
-
-for (let i = 0; i < logoglyphs.length; i++) {
-    let img = new Image();
-
-    let shit = logoglyphs.split('')[i]
-
-    if (shit in replacements) {
-        shit = replacements[shit];
-    }
-
-    img.src = `../nikke-font-generator/images/nikkefont/${shit}.png`;
-    img.onload = function (e) {
-        loaded[shit] = img;
-        heights[shit] = img.height;
-    }
-}
+const myFont1 = new FontFace('Docteur', "url('../nikke-font-generator/fonts/DocteurAtomic-Clean.ttf')");
+await myFont1.load();
+document.fonts.add(myFont1);
 
 const myFont = new FontFace('Butch', "url('../nikke-font-generator/fonts/butch-sundance.ttf')");
 await myFont.load();
 document.fonts.add(myFont);
 
-ctx.font = "48px Butch";
-ctx.letterSpacing = "32px";
-ctx.fillStyle = "white";
-ctx.textAlign = "center";
+const mainConst = 333;
+const subConst = 32;
 
-document.querySelectorAll('#generate')[0].addEventListener('click', () => {
-    var text = document.getElementById('text').value;
-    var subtext = document.getElementById('subtext').value;
+const heightOff = 20;
 
-    generateLogoText(text, subtext);
-});
+let mainSize = mainConst;
+let subSize = subConst;
 
-let autogen = true;
+const letterSpacingMain = 16;
+const letterSpacingSub = 22;
 
-document.getElementById('generate').oncontextmenu = (e) => {
-    e.preventDefault();
-
-    autogen = !autogen;
-
-    document.getElementById('generate').innerHTML = autogen ? 'Refresh' : 'Generate';
-    document.getElementById('generate').disabled = autogen;
+function setMain() {
+    ctx.fillStyle = inputTextColor.value;
+    ctx.font = `${mainSize}px Docteur`;
+    ctx.letterSpacing = `${letterSpacingMain * (mainSize / mainConst)}px`;
+    ctx.textBaseline = "top";
+    ctx.textAlign = "center";
 }
 
-let color = '#ffffff';
-let color2 = '#ffffff';
-let size = 100;
+function setSub() {
+    ctx.fillStyle = inputSubtextColor.value;
+    ctx.font = `${subSize}px Butch`;
+    ctx.letterSpacing = `${letterSpacingSub * (subSize / subConst)}px`;
+    // ctx.textBaseline = "top";
+    ctx.textAlign = "center";
+}
 
-document.querySelectorAll('#color')[0].addEventListener('change', () => {
-    var text = document.getElementById('text').value;
-    var subtext = document.getElementById('subtext').value;
-    color = document.getElementById('color').value;
-    generateLogoText(text, subtext)
+function draw() {
+    // doc 333 7px spacing
+    // butch 59 24px spacing
+
+    const title = inputText.value.trim() || " ";
+    const subtitle = inputSubtext.value.trim() || " ";
+    
+    setMain();
+    const mainWidth = ctx.measureText(title).width;
+    
+    setSub();
+    const subWidth = ctx.measureText(subtitle).width;
+
+    const maxWidth = Math.max(mainWidth, subWidth);
+
+    const subY = 229 * (mainSize / mainConst);
+
+    canvas.width = maxWidth;
+    canvas.height = subY + 60 * (subSize / subConst) + heightOff;
+
+    setMain();
+
+    ctx.fillText(title, canvas.width / 2, -75 * (mainSize / mainConst) + heightOff);
+
+    setSub();
+
+    ctx.fillText(subtitle, canvas.width / 2, subY + heightOff);
+
+    const newCanvas = trimCanvas(canvas);
+    canvas.width = newCanvas.width;
+    canvas.height = newCanvas.height;
+    ctx.drawImage(newCanvas, 0, 0);
+}
+
+setTimeout(() => {
+    inputText.value = "BARELY";
+    inputSubtext.value = "ACCURATE NIKKE FONT GENERATOR";
+    draw();
+    inputText.value = "";
+    inputSubtext.value = "";
+}, 1000);
+
+inputText.addEventListener("input", draw);
+inputSubtext.addEventListener("input", draw);
+
+inputMainSize.addEventListener("input", () => {
+    mainSize = parseInt(inputMainSize.value);
+    draw();
+});
+inputSubSize.addEventListener("input", () => {
+    subSize = parseInt(inputSubSize.value);
+    draw();
 });
 
-document.querySelectorAll('#color2')[0].addEventListener('change', () => {
-    var text = document.getElementById('text').value;
-    var subtext = document.getElementById('subtext').value;
-    color2 = document.getElementById('color2').value;
-    generateLogoText(text, subtext)
-});
+inputTextColor.addEventListener("input", draw);
+inputSubtextColor.addEventListener("input", draw);
 
-document.querySelectorAll('#size')[0].addEventListener('change', () => {
-    var text = document.getElementById('text').value;
-    var subtext = document.getElementById('subtext').value;
-    size = parseInt(document.getElementById('size').value);
-    generateLogoText(text, subtext)
-});
+inputMainSize.value = mainSize;
+inputSubSize.value = subSize;
 
-document.querySelectorAll('#download')[0].addEventListener('click', () => {
+download.addEventListener("click", () => {
     var link = document.createElement('a');
-    var canvas = document.getElementById('font-canvas');
     link.download = 'nikke-logo.png';
     link.href = canvas.toDataURL();
     link.click();
+    link.remove();
 });
-
-function autogent() {
-    if (autogen) {
-        var text = document.getElementById('text').value;
-        var subtext = document.getElementById('subtext').value;
-        generateLogoText(text, subtext)
-    }
-}
-
-document.getElementById('text').oninput = autogent;
-document.getElementById('subtext').oninput = autogent;
-
-setTimeout(() => {
-    generateLogoText('BARELY', 'ACCURATE NIKKE FONT GENERATOR')
-}, 1000, 1);
-
-const canvasTemp = document.createElement("canvas");
-const ctxTemp = canvasTemp.getContext("2d");
-
-let curx = 0;
-let cury = 0;
-function generateLogoText(text, subtext) {
-    text = text.trim();
-    subtext = subtext.trim();
-    
-    let lower = text.toLowerCase();
-    let shit = lower.split('')
-    curx = 0;
-    cury = 0;
-
-    let textwidth = ctx.measureText(subtext).width
-
-    let tallest = 0;
-
-    for (let i = 0; i < shit.length; i++) { 
-        if (shit[i] == ' ') {
-            curx += 64;
-            continue
-        }
-
-        if (logoglyphs.indexOf(shit[i].toLowerCase()) == -1) continue;
-
-        if (shit[i] in replacements) {
-            shit[i] = replacements[shit[i]]
-        }
-
-        if (loaded[shit[i]].height > tallest) {
-            tallest = loaded[shit[i]].height;
-        }
-
-        if (i > 0) {
-            if (shit[i].toLowerCase() in kerning) {
-                if (shit[i - 1].toLowerCase() in kerning[shit[i].toLowerCase()]) {
-                    curx += kerning[shit[i].toLowerCase()][shit[i - 1].toLowerCase()];
-                }
-            }
-        }
-
-        curx += loaded[shit[i]].width + (i + 1 == lower.length ? 0 : 32);
-        if (loaded[shit[i]].height >= cury) {
-            cury = loaded[shit[i]].height;
-        }
-    }
-
-    canvas.width = (textwidth > curx ? textwidth : curx) * size / 100;
-    let xoffset = 0
-    if (textwidth > curx) {
-        xoffset = (textwidth - curx) / 2
-    }
-    canvas.height = (cury + 100) * size / 100;
-
-    ctx.scale(size / 100, size / 100);
-
-    curx = xoffset;
-
-    for (let i = 0; i < shit.length; i++) {
-        if (shit[i] == ' ') {
-            curx += 64;
-            continue;
-        }
-
-        if (logoglyphs.indexOf(shit[i].toLowerCase()) == -1 && !(Object.values(replacements).includes(shit[i]))) continue;
-
-        let image = loaded[shit[i]];
-
-        canvasTemp.width = image.width;
-        canvasTemp.height = image.height;
-        ctxTemp.fillStyle = color;
-        ctxTemp.fillRect(0, 0, image.width, image.height);
-        ctxTemp.globalCompositeOperation = "destination-in";
-        ctxTemp.drawImage(image, 0, 0);
-        ctxTemp.globalCompositeOperation = "source-over";
-
-        if (i > 0) {
-            if (shit[i].toLowerCase() in kerning) {
-                if (shit[i - 1].toLowerCase() in kerning[shit[i].toLowerCase()]) {
-                    curx += kerning[shit[i].toLowerCase()][shit[i - 1].toLowerCase()];
-                }
-            }
-        }
-
-        ctx.drawImage(canvasTemp, curx > 0 ? curx : 0, (tallest - image.height) / 2);
-        curx += image.width + 32;
-    }
-
-    ctx.font = "48px Butch";
-    ctx.letterSpacing = "32px";
-    ctx.fillStyle = color2;
-    ctx.textAlign = "center";
-    ctx.fillText(subtext.trim(), Math.abs(textwidth - canvas.width) <= 5 ? textwidth / 2 + 16 : curx / 2, cury + 90);
-}

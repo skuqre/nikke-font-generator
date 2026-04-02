@@ -9,10 +9,10 @@ embeddesc: The site's credits!
 | <h2>Site</h2> | |
 | --- | --- |
 | **skuqre** | Programming, some research, and all that jazz. |
-| [**NIKKE-DB**](https://nikke-db.pages.dev) | This site uses some assets from NIKKE-DB.<br>Their work has been really helpful for the dialogue generator!<br>This site also uses their GitHub Database for character profile pictures for the BlaBla generator!!! |
+| [**NIKKE-DB**](https://nikke-db.pages.dev) | This site uses some assets from NIKKE-DB! |
 | [**NIKKE.GG**](https://nikke.gg) | This site gets NIKKE data from NIKKE.GG! |
 | [**GitHub Pages**](https://pages.github.com) | Site hosting. Where else can I tend to? |
-| [**Boxicons**](https://boxicons.com) | Some good web icons for everyone to use. No freemium bullshit. |
+| [**Boxicons**](https://v2.boxicons.com) | Some good web icons for everyone to use. ~~No freemium bullshit~~. *What the hell happened??? It became this weird "pay for more" website randomly.* |
 | [**Astro**](https://astro.build) | For being dope to work with. |
 
 ---
@@ -31,7 +31,7 @@ embeddesc: The site's credits!
 | <h2>Fonts</h2> | |
 | --- | --- |
 | [**Pretendard**](https://cactus.tistory.com/306) | Made by [Kil Hyung-jin (orioncactus)](https://github.com/orioncactus). Used throughout the site. Found through research. |
-| [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Made by Jonathan Paquette. Used on Logo Generator. Found through research. |
+| [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Made by Jonathan Paquette. Used on Logo Generator. Found through research.<br><br>**NOTE: The Logo Generator uses a modified font that cleans up the look and removes most of the erosion in the font.** |
 | [**Butch and Sundance**](https://www.dafont.com/butch-sundance.font) | Made by [Dan Zadorozny (Iconian Fonts)](https://www.iconian.com). Used on Logo Generator. Found through research. |
 | [**SUIT**](https://sun.fo/suit/) | Made by the folks at [sun.fo](https://sun.fo/). Used on the Blabla Generator, and the font for the Korean language. |
 | [**Abolition**](https://fortfoundry.com/fonts/abolition) | Made by [Mattox Shuler (Fort Foundry)](https://fortfoundry.com). Used on Boss Warning Generator. Found through research. |
@@ -48,13 +48,14 @@ embeddesc: The site's credits!
 <br>
 
 ## Some things
-
-I hope to god that this site does not get used for misinformation *(hence the watermarks...)*.
-
-The main inspiration of this site is the [GD Font Generator](https://gdcolon.com/gdfont) by GD Colon. <br>
+The main inspiration of this site is the [GD Font Generator](https://gdcolon.com/gdfont) by GD Colon!<br>
 I had the fonts on standby, so why not make some use out of them? It had to be done at some point.
 
-I'll do more NIKKE-related projects in the future.<br>
+> *"I'll do more NIKKE-related projects in the future."*
+
+I have done more NIKKE-related projects!<br>
+The project that is directly related to this project is the Ultimate Scenario Creator! Please check it out! https://skuqre.itch.io/ultimate-scenario-creator/
+
 These projects are created by me for both you and me.
 
 If you're wondering about usage guidelines, please head [here](/nikke-font-generator/usage).<br>
@@ -72,10 +73,6 @@ Here's how much time it took for me to make this site:
 | **Boss Warning Generator** | A whole day to get the base down. It was quite some time looking for the fonts... |
 
 For the sake of experience!
-
-<br>
-
-*Also; if you're wondering, my NIKKE username is indeed ANISNO1 -- I post on Reddit as ANISNO1 on NIKKE subreddits.*
 
 <br>
 

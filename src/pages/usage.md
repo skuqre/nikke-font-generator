@@ -27,10 +27,12 @@ embeddesc: the NIKKE FONT GENERATOR usage guidelines
         - **Dialogue Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
         - **Blabla Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
         - **Boss Warning Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
+        - **Card Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
         - **Banner Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
+        - **Speech Bubble Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
     - Various assets belong to SHIFT UP CORP. and Proxima Beta Ltd.
     - Only the **code** and **a number of assets** made by skuqre is under MIT License, which allows for commercial use.
-    - You are however allowed to create physical objects (e.g. Acrylic keychains, Plastic cards, etc), but **NOT SELL THEM**!
+    - You are of course allowed to create physical objects (e.g. Acrylic keychains, Plastic cards, etc), but **NOT SELL THEM**!
 - Some common sense as well, **credit the artist if you're using fanart for your creations**! *Not mandatory, but it'd be AWESOME if you did!!!*
 
 <br>
