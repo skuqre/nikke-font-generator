@@ -2,6 +2,19 @@
 
 ---
 
+<div id="shooting-stars">
+    <span class="shooting-star"></span>
+    <span class="shooting-star"></span>
+    <span class="shooting-star"></span>
+    <span class="shooting-star"></span>
+    <span class="shooting-star"></span>
+    <span class="shooting-star"></span>
+    <span class="shooting-star"></span>
+    <span class="shooting-star"></span>
+    <span class="shooting-star"></span>
+    <span class="shooting-star"></span>
+</div>
+
 <div>
     <p style="opacity: 1;">
         <b><a href="https://forms.gle/1vjafHbnhteQURTY7">Caught a bug? Report it here!</a></b>
@@ -38,6 +51,9 @@
             </a>
         </div>
     </p>
+    <div id="stars">
+        <i class="bx bxs-star"></i>
+    </div>
     <p>
         made by skuqre. more at <a href="https://skuqre.github.io">skuqre.github.io</a><br>
         <a href="/nikke-font-generator/credits">credits</a> | 
@@ -48,6 +64,40 @@
         <a href="https://x.com/nikkefontgen">twitter</a> -->
     </p>
 </div>
+
+<script>
+    //@ts-ignore
+
+    const shootingStars = document.getElementById("shooting-stars");
+    const starsToggle = document.getElementById("stars");
+
+    if (localStorage.getItem("stars") !== null) {
+        if (localStorage.getItem("stars") === "yes") {
+            shootingStars.style.display = null;
+        } else {
+            shootingStars.style.display = "none";
+        }
+    } else {
+        localStorage.setItem("stars", "yes");
+    }
+
+    starsToggle.innerHTML = `<i class="bx ${localStorage.getItem("stars") === "yes" ? "bxs-star" : "bx-star"}"></i>`;
+
+    starsToggle.addEventListener("click", () => {
+        if (localStorage.getItem("stars") !== null) {
+            if (localStorage.getItem("stars") === "yes") {
+                localStorage.setItem("stars", "no")
+            } else {
+                localStorage.setItem("stars", "yes")
+            }
+        } else {
+            localStorage.setItem("stars", "yes")
+        }
+
+        starsToggle.innerHTML = `<i class="bx ${localStorage.getItem("stars") === "yes" ? "bxs-star" : "bx-star"}"></i>`;
+        shootingStars.style.display = localStorage.getItem("stars") === "yes" ? null : "none";
+    });
+</script>
 
 <style>
     div > p {
@@ -98,5 +148,134 @@
         transition-property: filter, opacity, scale;
         transition: 0.2s ease-in-out;
         text-decoration: none;
+    }
+
+    /* shooting stars */
+    div#shooting-stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+
+        z-index: -1;
+    }
+    div#stars {
+        cursor: pointer;
+        text-align: center;
+    }
+    span.shooting-star {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 4px;
+        height: 4px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow:
+            0 0 0 4px rgba(255, 255, 255, 0.1),
+            0 0 0 8px rgba(255, 255, 255, 0.1),
+            0 0 20px rgba(255, 255, 255, 1);
+        animation: animate 3s linear infinite;
+    }
+    span.shooting-star::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 300px;
+        height: 1px;
+        background: linear-gradient(90deg, #fff, transparent);
+    }
+    @keyframes animate {
+        0% {
+            transform: rotate(315deg) translateX(0);
+            opacity: 1;
+        }
+        70% {
+            opacity: 1;
+        }
+        100% {
+            transform: rotate(315deg) translateX(-1500px);
+            opacity: 0;
+        }
+    }
+    span.shooting-star:nth-child(1) {
+        top: 0;
+        right: 0;
+        left: initial;
+        animation-delay: 0;
+        animation-duration: 1s;
+    }
+
+    span.shooting-star:nth-child(2) {
+        top: 0;
+        right: 80px;
+        left: initial;
+        animation-delay: 0.2s;
+        animation-duration: 3s;
+    }
+
+    span.shooting-star:nth-child(3) {
+        top: 80px;
+        right: 0px;
+        left: initial;
+        animation-delay: 0.4s;
+        animation-duration: 2s;
+    }
+
+    span.shooting-star:nth-child(4) {
+        top: 0;
+        right: 180px;
+        left: initial;
+        animation-delay: 0.6s;
+        animation-duration: 1.5s;
+    }
+
+    span.shooting-star:nth-child(5) {
+        top: 0;
+        right: 400px;
+        left: initial;
+        animation-delay: 0.8s;
+        animation-duration: 2.5s;
+    }
+
+    span.shooting-star:nth-child(6) {
+        top: 0;
+        right: 600px;
+        left: initial;
+        animation-delay: 1s;
+        animation-duration: 3s;
+    }
+    span.shooting-star:nth-child(7) {
+        top: 300px;
+        right: 0px;
+        left: initial;
+        animation-delay: 1s;
+        animation-duration: 1.75s;
+    }
+
+    span.shooting-star:nth-child(8) {
+        top: 0px;
+        right: 700px;
+        left: initial;
+        animation-delay: 1.4s;
+        animation-duration: 1.25s;
+    }
+
+    span.shooting-star:nth-child(9) {
+        top: 0px;
+        right: 1000px;
+        left: initial;
+        animation-delay: 0.75s;
+        animation-duration: 2.25s;
+    }
+
+    span.shooting-star:nth-child(10) {
+        top: 0px;
+        right: 1000px;
+        left: initial;
+        animation-delay: 2.75s;
+        animation-duration: 2.25s;
     }
 </style>
