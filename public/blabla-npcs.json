@@ -135,9 +135,6 @@
     ["Drake: Power Up", "si_c104_00_s"],
     ["Maxwell: Power Up", "si_c105_00_s"],
 
-    ["Mint", "si_c600_00_s"],
-    ["Prika", "si_c601_00_s"],
-
     ["X", "si_c984_01_s"],
     ["Levi", "si_c996_00_s"],
 
@@ -191,6 +188,8 @@
     ["Mekami Shifty", "si_c610_00_s"],
 
     ["Yoyo", "si_c9024_00_s"],
+    ["Anis: Star Student", "si_c9021_00_s"],
+    ["Anis: Twinkle Tri Star", "si_c9021_01_s"],
     ["Mint: Idol", "si_c600_00_s", "nkas"],
     ["Mint: Casual", "si_c600_01_s", "nkas"],
     ["Mint: Twinkle Tri Star", "si_c600_02_s", "nkas"],
