@@ -105,6 +105,7 @@
     ["Behemoth", "si_c560_00_s"],
     ["Ziz", "si_c561_00_s"],
     ["Leviathan", "si_c562_00_s"],
+    ["Bahamut", "si_c563_00_s"],
 
     ["Eyeri", "si_c440_00_s"],
 
@@ -197,6 +198,7 @@
     ["Prika: Casual", "si_c601_01_s", "nkas"],
     ["Prika: Twinkle Tri Star", "si_c601_02_s", "nkas"],
 
+    ["Altruia", "si_c9017_00_s"],
     ["Egovista", "si_c9025_00_s"],
 
     ["Slot", "si_c999_00_s"],
