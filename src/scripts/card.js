@@ -4,7 +4,7 @@ import fuzzysort from "fuzzysort";
 const canvas = document.getElementById("card-canvas");
 const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
-const myFont = new FontFace('PSB', "url('/nikke-font-generator/fonts/Pretendard-SemiBold.ttf')");
+const myFont = new FontFace('PB', "url('/nikke-font-generator/fonts/Pretendard-Bold.ttf')");
 await myFont.load();
 document.fonts.add(myFont);
 
@@ -103,13 +103,25 @@ let classSupporter = new Image();
 classSupporter.crossOrigin = "anonymous"
 classSupporter.src = `/nikke-font-generator/images/card/icn_class_supporter.png`;
 
-let hexFrame = new Image();
-hexFrame.crossOrigin = "anonymous"
-hexFrame.src = `/nikke-font-generator/images/card/hex_frame.png`;
+let hexFrameDark = new Image();
+hexFrameDark.crossOrigin = "anonymous"
+hexFrameDark.src = `/nikke-font-generator/images/card/hex_frame_dark.png`;
 
-let hexFrameInv = new Image();
-hexFrameInv.crossOrigin = "anonymous"
-hexFrameInv.src = `/nikke-font-generator/images/card/hex_frame_inv.png`;
+let hexFrameLight = new Image();
+hexFrameLight.crossOrigin = "anonymous"
+hexFrameLight.src = `/nikke-font-generator/images/card/hex_frame_light.png`;
+
+let hexStroke1 = new Image();
+hexStroke1.crossOrigin = "anonymous"
+hexStroke1.src = `/nikke-font-generator/images/card/hex_stroke_1.png`;
+
+let hexStroke2 = new Image();
+hexStroke2.crossOrigin = "anonymous"
+hexStroke2.src = `/nikke-font-generator/images/card/hex_stroke_2.png`;
+
+let favoriteIcon = new Image();
+favoriteIcon.crossOrigin = "anonymous"
+favoriteIcon.src = `/nikke-font-generator/images/card/favorite.png`;
 
 let burst1 = new Image();
 burst1.crossOrigin = "anonymous"
@@ -156,6 +168,12 @@ const bursts = {
     burstall: burstall
 }
 
+const favItemColor = {
+    "ssr": "#fe6c00",
+    "sr": "#bd53fe",
+    "r": "#00bffe"
+}
+
 const elements = {}
 const elementColors = {
     "fire": "#fe0000",
@@ -192,6 +210,8 @@ let curName = "Einkk";
 let curElement = "wind"
 let curWeapon = "ar";
 let curTransforms = [0, 0, 1];
+let curFavStatus = "maxed";
+let curFavRarity = "ssr";
 
 function generateCard() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -206,7 +226,6 @@ function generateCard() {
         case "normal":
             break;
         case "synchro":
-            // ctx.drawImage(synchroBorder, 0, canvas.height - synchroBorder.height);
             draw9slice(ctx, synchroBorder, [22, 456, 261, 4], 0, canvas.height - synchroBorder.height, canvas.width, synchroBorder.height + 10)
             break;
         case "trial":
@@ -243,6 +262,11 @@ function generateCard() {
     if (curBorder === "synchro") {
         const synchroWidth = decoSynchro.width * 54 / 406;
         const synchroHeight = decoSynchro.height * 54 / 406;
+
+        for (let i = 0; i < 3; i++) {
+            ctx.drawImage(recolorImage(decoSynchro, "#fe6c00"), canvas.width - synchroWidth - 17 + 5, canvas.height - synchroHeight - 421, synchroWidth, synchroHeight);
+        }
+
         ctx.drawImage(decoSynchro, canvas.width - synchroWidth - 17 + 5, canvas.height - synchroHeight - 421, synchroWidth, synchroHeight)
     }
 
@@ -250,42 +274,75 @@ function generateCard() {
     ctx.drawImage(recolorImage(decoBar, curColor), 11, canvas.height - decoBar.height + 1)
 
     // draw element
-    ctx.drawImage(recolorImage(hexFrame, elementColors[curElement]), 6, canvas.height - synchroBorder.height + 2, 84, 84)
-    const elementWidth = elements[curElement].width * 44 / 226;
-    const elementHeight = elements[curElement].height * 44 / 226;
-    ctx.drawImage(recolorImage(elements[curElement], elementColors[curElement]), 6 + (84 - elementWidth) / 2, canvas.height - synchroBorder.height + 2 + (84 - elementHeight) / 2, elementWidth, elementHeight)
+    // ctx.drawImage(recolorImage(hexFrame, elementColors[curElement]), 6, canvas.height - synchroBorder.height + 2, 84, 84)
 
-    // draw weapon (27px)
-    ctx.drawImage(hexFrameInv, 6, canvas.height - synchroBorder.height + 2 + 72, 84, 84)
-    const weaponWidth = weapons[curWeapon].width * 32 / 73;
-    const weaponHeight = weapons[curWeapon].height * 32 / 73;
-    ctx.drawImage(recolorImage(weapons[curWeapon], "#323232"), 6 + (84 - weaponWidth) / 2, canvas.height - synchroBorder.height + 2 + 72 + (84 - weaponHeight) / 2, weaponWidth, weaponHeight)
+    const frameWidth = 68;
+    const frameHeight = hexFrameDark.naturalHeight * frameWidth / hexFrameDark.naturalWidth;
 
-    // draw burst (30px)
-    ctx.drawImage(hexFrame, 6, canvas.height - synchroBorder.height + 2 + 144, 84, 84)
-    const burstWidth = bursts["burst" + curBurst].width * 33 / 79;
-    const burstHeight = bursts["burst" + curBurst].height * 33 / 79;
-    ctx.drawImage(bursts["burst" + curBurst], 6 + (84 - burstWidth) / 2, canvas.height - synchroBorder.height + 2 + 144 + (84 - burstHeight) / 2, burstWidth, burstHeight)
+    const strokeWidth = 57;
+    const strokeHeight = hexStroke1.naturalHeight * strokeWidth / hexStroke1.naturalWidth;
+
+    // draw element
+    ctx.drawImage(recolorImage(hexFrameDark, elementColors[curElement]), 14, canvas.height - synchroBorder.height + 4, frameWidth, frameHeight);
+    ctx.drawImage(recolorImage(hexStroke2, elementColors[curElement]), 14 + (frameWidth - strokeWidth) / 2, canvas.height - synchroBorder.height + 4 + (frameHeight - strokeHeight) / 2, strokeWidth, strokeHeight);
+
+    const elementWidth = elements[curElement].naturalWidth * 44 / 226;
+    const elementHeight = elements[curElement].naturalHeight * 44 / 226;
+    ctx.drawImage(recolorImage(elements[curElement], elementColors[curElement]), 14 + (frameWidth - elementWidth) / 2, canvas.height - synchroBorder.height + 4 + (frameHeight - elementHeight) / 2, elementWidth, elementHeight)
+
+
+    // draw weapon
+    ctx.drawImage(hexFrameLight, 14, canvas.height - synchroBorder.height + 4 + 72, frameWidth, frameHeight);
+    ctx.drawImage(recolorImage(hexStroke1, "#323232"), 14 + (frameWidth - strokeWidth) / 2, canvas.height - synchroBorder.height + 4 + 72 + (frameHeight - strokeHeight) / 2, strokeWidth, strokeHeight);
+
+    const weaponWidth = weapons[curWeapon].naturalWidth * 32 / 73;
+    const weaponHeight = weapons[curWeapon].naturalHeight * 32 / 73;
+    ctx.drawImage(recolorImage(weapons[curWeapon], "#323232"), 14 + (frameWidth - weaponWidth) / 2, canvas.height - synchroBorder.height + 4 + 72 + (frameHeight - weaponHeight) / 2, weaponWidth, weaponHeight)
+
+    // draw burst
+    ctx.drawImage(hexFrameDark, 14, canvas.height - synchroBorder.height + 4 + 144, frameWidth, frameHeight);
+    ctx.drawImage(hexStroke1, 14 + (frameWidth - strokeWidth) / 2, canvas.height - synchroBorder.height + 4 + 144 + (frameHeight - strokeHeight) / 2, strokeWidth, strokeHeight);
+
+    const burstWidth = bursts["burst" + curBurst].naturalWidth * 33 / 79;
+    const burstHeight = bursts["burst" + curBurst].naturalHeight * 33 / 79;
+    ctx.drawImage(bursts["burst" + curBurst], 14 + (frameWidth - burstWidth) / 2, canvas.height - synchroBorder.height + 4 + 144 + (frameHeight - burstHeight) / 2, burstWidth, burstHeight)
+
+    // draw favorite
+
+    if (curFavStatus !== 'none') {
+        if (curFavStatus === 'maxed') {
+            ctx.drawImage(hexFrameDark, 14, canvas.height - synchroBorder.height + 4 + 216, frameWidth, frameHeight);
+        } else {
+            ctx.drawImage(hexFrameLight, 14, canvas.height - synchroBorder.height + 4 + 216, frameWidth, frameHeight);
+        }
+
+        const favoriteWidth = 40;
+        const favoriteHeight = favoriteIcon.naturalHeight * 40 / favoriteIcon.width;
+
+        ctx.drawImage(recolorImage(favoriteIcon, favItemColor[curFavRarity]), 14 + (frameWidth - favoriteWidth) / 2, canvas.height - synchroBorder.height + 4 + 216 + (frameHeight - favoriteHeight) / 2, favoriteWidth, favoriteHeight)
+        ctx.drawImage(recolorImage(hexStroke1, favItemColor[curFavRarity]), 14 + (frameWidth - strokeWidth) / 2, canvas.height - synchroBorder.height + 4 + 216 + (frameHeight - strokeHeight) / 2, strokeWidth, strokeHeight);
+    }
 
     // draw name
     if (curBorder === "synchro") {
-        ctx.fillStyle = "#efb935";
+        ctx.fillStyle = "#ffbe1a";
     } else {
         ctx.fillStyle = "#ffffff";
     }
 
-    ctx.letterSpacing = "1.2px";
+    // ctx.letterSpacing = "0.8px";
     ctx.textBaseline = "bottom"
     ctx.textAlign = "right";
     ctx.strokeStyle = "#202020";
-    ctx.lineWidth = 5;
-    ctx.font = "34px PSB";
-    ctx.strokeText(curName, canvas.width - 29, canvas.height - 12);
-    ctx.fillText(curName, canvas.width - 29, canvas.height - 12);
+    ctx.lineWidth = 3;
+    ctx.shadowColor = "#202020";
+    ctx.shadowBlur = 4;
+    ctx.font = "36px PB";
+    ctx.strokeText(curName, canvas.width - 29, canvas.height - 15);
+    ctx.fillText(curName, canvas.width - 29, canvas.height - 15);
 
     // draw level
     ctx.font = "73px ABOL"
-    ctx.letterSpacing = "1.2px"
     ctx.textAlign = "left";
     ctx.strokeText(curLevel.toString().padStart(2, "0"), 20, canvas.height - 11);
     ctx.fillText(curLevel.toString().padStart(2, "0"), 20, canvas.height - 11);
@@ -405,6 +462,16 @@ document.getElementById("nikke-type").addEventListener("input", () => {
     generateCard();
 });
 
+document.getElementById("nikke-fav-status").addEventListener("input", () => {
+    curFavStatus = document.getElementById("nikke-fav-status").value;
+    generateCard();
+});
+
+document.getElementById("nikke-fav-rarity").addEventListener("input", () => {
+    curFavRarity = document.getElementById("nikke-fav-rarity").value;
+    generateCard();
+});
+
 document.getElementById("burst").addEventListener("input", () => {
     curBurst = document.getElementById("burst").value;
     generateCard();
@@ -443,7 +510,7 @@ document.getElementById("sr").addEventListener("click", () => {
     }
 
     document.getElementById("sr").style.fontWeight = "bold";
-    curColor = "#ce00ff";
+    curColor = "#fe28fe";
     curRarity = "sr";
     generateCard();
 });
@@ -454,7 +521,7 @@ document.getElementById("r").addEventListener("click", () => {
     }
 
     document.getElementById("r").style.fontWeight = "bold";
-    curColor = "#00ceff";
+    curColor = "#00fefe";
     curRarity = "r";
     generateCard();
 });
@@ -483,12 +550,18 @@ document.getElementById("char-card-search").addEventListener("input", () => {
             if (results.length > 0) {
                 currentImage = `https://nkas.pages.dev/characters/${nikkepfps[results[0].target].replace("si", "mi")}.png`;
 
-                console.log(currentImage.match(/\_\d+/gm))
                 if (currentImage.match(/\_\d+/gm).length === 2) {
                     currentImage = currentImage.replace("_00", "");
                 }
 
                 document.getElementById("card-preview").src = currentImage.replace("mi", "si");
+
+                document.getElementById("card-preview").onerror = () => {
+                    document.getElementById("card-preview").src = currentImage.replace("mi", "si").replace("characters/", "characters_missing_si/");
+                    document.getElementById("card-preview").onerror = () => {
+                        document.getElementById("card-preview").src = `/nikke-font-generator/images/blabla/pfp/nochat.png`;
+                    }
+                }
             } else {
                 document.getElementById("card-preview").src = `/nikke-font-generator/images/blabla/pfp/nochat.png`;
             }
