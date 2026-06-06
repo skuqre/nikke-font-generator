@@ -8,32 +8,29 @@ embeddesc: the NIKKE FONT GENERATOR usage guidelines
 
 ---
 
-### Thank you for going here in the first place. Please read the contents carefully.
+### Please read the contents carefully.
 
 ---
 <br>
 
-- Anything you create with these tools are **your own**, you're free to do anything you want with it.
-- When creations from this tool are posted in official channels (e.g. Official Discord, Reddit, Facebook), **I am not liable for anything that happens to you**.
-    - On the [Official Discord](https://discord.gg/nikke-en), creations that use images from NIKKE-DB are prohibited from being posted. *Use fanart for your creations if you'd like to post something with this to there instead*.
-    - On the [Official Reddit](https://reddit.com/r/NikkeMobile), the tool is widely used! Feel free to post your creations there, but don't do it too excessively!
-        - Moreover, when posting creations from this site, please flair your post with **Fanfic** or **Meme**.
-    - On various Facebook groups, it seems to be fine posting images created from this tool (however, I was told most posts were reposts). Feel free!
-- When sharing your creations, **I recommend you keep the "NFG" watermark on to prevent people from being misinformed**. *Cropping it out is fine, I know the watermark's annoying, but I don't want the site to get taken down as well*.
-    - When you post it, <u>credit is not mandatory, but very much appreciated</u>. **However, when someone asks you of how the image was made/"is this real?", inform them of this site**. *This goes for both watermarked/watermarkless posts.*
-- You are **not** allowed to sell <u>ANYTHING</u> created from this site.
-    - This encompasses every generator and future generators created after this statement has been added.
-        - **Logo Generator** - the font for the "NIKKE" word mark is under personal use.
-        - **Dialogue Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
-        - **Blabla Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
-        - **Boss Warning Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
-        - **Card Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
-        - **Banner Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
-        - **Speech Bubble Generator** - contains assets made by SHIFT UP CORP. and Proxima Beta Ltd.
-    - Various assets belong to SHIFT UP CORP. and Proxima Beta Ltd.
-    - Only the **code** and **a number of assets** made by skuqre is under MIT License, which allows for commercial use.
-    - You are of course allowed to create physical objects (e.g. Acrylic keychains, Plastic cards, etc), but **NOT SELL THEM**!
-- Some common sense as well, **credit the artist if you're using fanart for your creations**! *Not mandatory, but it'd be AWESOME if you did!!!*
+**Anything you create with this site's tools are yours**. You are free to do anything you want with it. Whatever you do with it, however, **the site and I (skuqre) will not be responsible for anything that happens to you**.
+- On the [Official NIKKE Discord](https://discord.gg/nikke-en), creations that use assets from sites like NIKKE-DB are **strictly prohibited** from being posted.
+- On the [Official NIKKE Reddit](https://reddit.com/r/NikkeMobile), the site's tools are widely used! Feel free to post your creations there under the flairs "Fanfic", "Meme", or "Fanedit".
+- Creations from this site are posted on various Facebook groups, and some NIKKE-oriented Facebook pages post memes created with this site!
+- Various X (formerly Twitter) NIKKE accounts use this site to create their images.
+- There are many subcommunities in the NIKKE community that would gladly accept your creation. If you have a story worth reading, why not check out the [r/PeakKitchenOutpost](https://www.reddit.com/r/PeakKitchenOutpost/) subreddit?
+
+When sharing creations in public spaces, it is highly recommended to **keep the "NFG" watermark to prevent people from being misinformed**.
+- Credit for the site isn't really needed, but heavily appreciated! Thank you!
+  - The site is called "NIKKE Font Generator", by the way. *Better yet, the name of the specific tool you're using is always at the top of the page...*
+- Cropping the watermark, or editing the watermark, while technically unstoppable on my end, is something I personally frown upon.
+- When asked about the reality of an image that came from this site, please inform them of the site.
+
+Assuming you are following the licenses for everything the site uses, then you are **not able to sell anything created from this site**. It would be best to ask an actual lawyer for this if you want to be lawful.
+- Various assets used in this site are owned and created by *SHIFT UP CORP.* and *Proxima Beta Ltd.*.
+- Only a handful of assets and code apply to the MIT license.
+- Of course, you can create physical trinkets and charms.
+- See the Fonts table below to see the fonts used in this site and their licenses.
 
 <br>
 
@@ -48,7 +45,7 @@ The following is **not** legal advise. There's a chance that these fonts disappe
 | Font | Availability |
 | --- | --- |
 | [**Pretendard**](https://cactus.tistory.com/306) | Available under **SIL Open Font License 1.1**. See [LICENSE](https://github.com/orioncactus/pretendard/blob/main/LICENSE). |
-| [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Available under **personal use**. [See DAFONT page](https://www.dafont.com/docteur-atomic.font). |
+| [**Docteur Atomic**](https://www.dafont.com/docteur-atomic.font) | Available under **personal use**. [See DAFONT page](https://www.dafont.com/docteur-atomic.font).<br>*This site uses a modified version of the font that removes all the erosion.* |
 | [**Butch and Sundance**](https://www.dafont.com/butch-sundance.font) | Available under **donationware**. [See DAFONT page](https://www.dafont.com/butch-sundance.font).  |
 | [**SUIT**](https://sun.fo/suit/) | Available under **SIL Open Font License 1.1**. See [LICENSE](https://scripts.sil.org/OFL).  |
 | [**Abolition**](https://fortfoundry.com/fonts/abolition) | Available under **personal use**. [See FortFoundry page](https://fortfoundry.com/fonts/abolition). |
@@ -63,15 +60,14 @@ The following is **not** legal advise. There's a chance that these fonts disappe
 ---
 <br>
 
-**This site is <u>not</u> endorsed by, created by, or affiliated with SHIFT UP CORP. and Proxima Beta Ltd.**<br>
-**All characters and various assets belong to SHIFT UP CORP. and Proxima Beta Ltd.**
+**This site is <u>not</u> endorsed by, created by, or affiliated with *SHIFT UP CORP.* and *Proxima Beta Ltd.*.**<br>
+**All characters and various assets belong to *SHIFT UP CORP.* and *Proxima Beta Ltd.***
 
-**No revenue is being generated from this site. Moreover, there is no way to do so.
+*No revenue is being generated from this site. There is no way to do so.*
 
 If you have other concerns about the site, you can contact me through:
 - Reddit ([`u/ANISNO1`](https://reddit.com/u/ANISNO1))
-- Discord (send a message request to `@skuqre`)
-<!-- - Twitter ([`@nikkefontgen`](https://x.com/nikkefontgen)) -->
+- Discord (send a message request to `@skuqre`, privacy options may vary)
 
 I'll attempt to address your concerns to the best of my ability.
 
