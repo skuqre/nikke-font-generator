@@ -1,212 +1,253 @@
 [
-    ["Marian", "si_c013_00_s"],
+    ["Unknown","si_c000_00_s"],
 
-    ["Generic Male", "si_c911_00_s"],
-    ["Generic Female", "si_c912_00_s"],
+    ["Rapi: Old","si_c010_01_00_s",""],
+    ["Marian","si_c013_00_s"],
 
-    ["Rich Man", "si_c923_00_s", "nkas"],
-    ["Rich Woman", "si_c924_00_s", "nkas"],
+    ["Laplace: Power Up","si_c103_00_s"],
+    ["Drake: Power Up","si_c104_00_s"],
+    ["Maxwell: Power Up","si_c105_00_s"],
 
-    ["Generic Male Bystander", "si_c947_00_s", "nkas"],
-    ["Generic Female Bystander", "si_c948_00_s", "nkas"],
+    ["Pinocchio","si_c227_00_s","nkas"],
 
-    ["Generic Boy", "si_c951_00_s", "nkas"],
-    ["Generic Girl", "si_c952_00_s", "nkas"],
+    ["Mass-Produced Red","si_c250_00_s"],
+    ["Mass-Produced Blue","si_c251_00_s"],
+    ["Mass-Produced Orange","si_c252_00_s"],
+    ["Mass-Produced Green","si_c253_00_s"],
+    ["Mass-Produced Purple","si_c254_00_s"],
+    ["Mass-Produced White","si_c255_00_s"],
 
-    ["Girl", "si_c913_00_s", "nkas"],
+    ["Indivilia","si_c263_00_s"],
+    ["Mast: Old","si_c350_old_00_s",""],
+    ["T.A.L.O.S.","si_c361_00_s"],
 
-    ["Male Commander", "si_c916_00_s"],
-    ["Female Commander", "si_c917_00_s"],
+    ["Eternity","si_c370_00_s"],
+    ["Endless","si_c371_00_s"],
 
-    ["Andersen", "si_c903_00_s"],
-    ["Andersen: Full Fool Day", "si_c903_01_s"],
-    ["Shifty", "si_c907_00_s"],
-    ["Shifty: Old", "si_c907_01_00_s", ""],
-    ["Ingrid", "si_c900_00_s"],
-    ["Syuen", "si_c901_00_s"],
-    ["Mustang", "si_c902_00_s"],
-
-    ["Einkk", "si_c928_00_s"],
-    ["Enikk", "si_c904_00_s"],
-
-    ["Burningum", "si_c914_00_s"],
-    ["Cecil", "si_c929_00_s"],
-    ["Doban", "si_c939_00_s"],
-    ["E.H.: Human", "si_c940_00_s"],
-    ["Johan", "si_c925_00_s"],
-    ["Legendary Commander", "si_c942_00_s"],
-
-    ["Indivilia", "si_c263_00_s"],
-    ["Liliweiss", "si_c943_00_s"],
-    ["Papillon", "si_c890_00_s", "nkas"],
-    ["Pinne", "si_c941_00_s"],
-    ["Rian", "si_c905_00_s"],
-
-    ["Angelina", "si_c934_00_s"],
-    ["Joseph", "si_c935_00_s"],
-    ["Beatrice", "si_c930_00_s"],
-    ["Booboo", "si_c937_00_s"],
-    ["Max", "si_c936_00_s"],
-
-    ["9S", "si_c813_00_s", "nkas"],
-
-    ["Aki Hayakawa", "si_c804_00_s"],
-    ["Denji", "si_c803_00_s"],
-    ["Denji: Chainsaw Man", "si_c803_01_00_s", ""],
+    ["Eyeri","si_c440_00_s"],
     
-    ["Oswald", "si_c961_00_s"],
-    ["Freesia", "si_c960_00_s"],
-    ["Ruru", "si_c946_00_s"],
-    ["Volt", "si_c933_00_s"],
-    ["Volt Junior", "si_c932_00_s"],
+    ["Liveryn","si_c480_00_s"],
+    ["Fragile","si_c481_00_s"],
+    ["Hammering","si_c490_00_s"],
+    ["Drilley","si_c491_00_s"],
 
-    ["Mass-Produced Red", "si_c250_00_s"],
-    ["Mass-Produced Blue", "si_c251_00_s"],
-    ["Mass-Produced Orange", "si_c252_00_s"],
-    ["Mass-Produced Green", "si_c253_00_s"],
-    ["Mass-Produced Purple", "si_c254_00_s"],
-    ["Mass-Produced White", "si_c255_00_s"],
+    ["Commander: Really Big Fan","si_c5028_00_s"],
 
-    ["B-0006", "si_c962_00_s"],
-    ["C-1002", "si_c963_00_s"],
-    ["6000-D", "si_c964_00_s"],
+    ["Grave: Old","si_c510_00_s"],
 
-    ["Rose", "si_c971_00_s"],
-    ["Mass-Produced Melee: Old", "si_c974_00_s"],
-    ["Mass-Produced Melee", "si_c974_01_00_s", ""],
+    ["Sky","si_c530_00_s"],
+    ["Cielo","si_c531_00_s"],
 
-    ["Consigliere", "si_c920_00_s"],
-    ["Genzou", "si_c921_00_s"],
-    ["Jin", "si_c922_00_s"],
+    ["Behemoth","si_c560_00_s"],
+    ["Ziz","si_c561_00_s"],
+    ["Leviathan","si_c562_00_s"],
+    ["Bahamut","si_c563_00_s"],
 
-    ["Lumi", "si_c970_00_s"],
-    ["Lena", "si_c969_00_s"],
-    ["Lua", "si_c968_00_s"],
-    ["Lumi: Ghost", "si_c967_00_s"],
+    ["Ark Ranger Black: Hooded","si_c570_99_s"],
+    ["Ark Ranger Red","si_c571_00_s"],
+    ["Ark Ranger Blue","si_c572_00_s"],
 
-    ["Outer Rim Generic A", "si_c918_00_s"],
-    ["Outer Rim Generic B", "si_c919_00_s"],
+    ["Phantom: Mask Off","si_c580_00_maskoff_s"],
 
-    ["Mast: Old", "si_c350_old_00_s", ""],
-    ["Rapi: Old", "si_c010_01_00_s", ""],
+    ["Mint: Twinkle Tri Star","si_c600_02_s","nkas"],
+    ["Prika: Twinkle Tri Star","si_c601_02_s","nkas"],
 
-    ["Hammering", "si_c490_00_s"],
-    ["Liveryn", "si_c480_00_s"],
-    ["Grave: Old", "si_c510_00_s"],
+    ["Mekami Shifty","si_c610_00_s"],
+
+    ["Blanc and Noir","si_c8001_00_s"],
+
+    ["Denji","si_c803_00_s"],
+    ["Denji: Chainsaw Man","si_c803_01_00_s",""],
+    ["Aki Hayakawa","si_c804_00_s"],
+
+    ["9S","si_c813_00_s","nkas"],
+
+    ["Adam","si_c853_00_s"],
+
+    ["Papillon","si_c890_00_s","nkas"],
+
+    ["Ingrid","si_c900_00_s"],
+    ["Syuen","si_c901_00_s"],
+    ["Mustang","si_c902_00_s"],
+
+    ["Andersen","si_c903_00_s"],
+    ["Andersen: Full Fool Day","si_c903_01_s"],
+
+    ["Enikk","si_c904_00_s"],
+    ["Rian","si_c905_00_s"],
+    ["Shifty","si_c907_00_s"],
+    ["Shifty: Old","si_c907_01_00_s",""],
+
+    ["Manager Sweet Johnny","si_c910_00_s"],
+    ["Sweet Johnny Ver. 2.14","si_c910_01_s"],
+
+    ["Generic Male","si_c911_00_s"],
+    ["Generic Female","si_c912_00_s"],
+
+    ["Girl","si_c913_00_s","nkas"],
+
+    ["Burningum","si_c914_00_s"],
+
+    ["Raptillion","si_c915_00_s","nkas"],
+
+    ["Male Commander","si_c916_00_s"],
+    ["Female Commander","si_c917_00_s"],
+
+    ["Outer Rim Generic A","si_c918_00_s"],
+    ["Outer Rim Generic B","si_c919_00_s"],
+
+    ["Consigliere","si_c920_00_s"],
+    ["Genzou","si_c921_00_s"],
+    ["Jin","si_c922_00_s"],
+
+    ["Rich Man","si_c923_00_s","nkas"],
+    ["Rich Woman","si_c924_00_s","nkas"],
+
+    ["Johan","si_c925_00_s"],
+
+    ["Einkk","si_c928_00_s"],
+
+    ["Cecil","si_c929_00_s"],
+
+    ["Beatrice","si_c930_00_s"],
+
+    ["Roam","si_c931_00_s","nkas"],
+    ["Com","si_c931_01_s","nkas"],
+
+    ["Volt Junior","si_c932_00_s"],
+    ["Volt","si_c933_00_s"],
+
+    ["Angelina","si_c934_00_s"],
+
+    ["Joseph","si_c935_00_s"],
     
-    ["T.Rony", "si_c976_00_s"],
-    ["Black Ark Ranger", "si_c570_00_s"],
+    ["Max","si_c936_00_s"],
+    ["Booboo","si_c937_00_s"],
 
-    ["Fragile", "si_c481_00_s"],
-    ["Drilley", "si_c491_00_s"],
-    ["T.A.L.O.S.", "si_c361_00_s"],
-    ["Kilo", "si_c977_00_s"],
+    ["Doban","si_c939_00_s"],
 
-    ["Behemoth", "si_c560_00_s"],
-    ["Ziz", "si_c561_00_s"],
-    ["Leviathan", "si_c562_00_s"],
-    ["Bahamut", "si_c563_00_s"],
+    ["E.H.: Human","si_c940_00_s"],
 
-    ["Eyeri", "si_c440_00_s"],
+    ["Pinne","si_c941_00_s"],
 
-    ["Yuni: Wordless", "si_c985_00_s"],
+    ["Legendary Commander","si_c942_00_s"],
+    ["Liliweiss","si_c943_00_s"],
 
-    ["Phantom: Mask Off", "si_c580_00_maskoff_s"],
+    ["Helper Bot","si_c945_00_s","nkas"],
 
-    ["Abe", "si_c979_00_s"],
-    ["Hansel", "si_c980_00_s"],
-    ["Gretel", "si_c981_00_s"],
-    ["Red Shoes", "si_c982_00_s"],
+    ["Ruru","si_c946_00_s"],
 
-    ["Rapi: Beta Red Hood", "si_c989_00_s"],
+    ["Generic Male Bystander","si_c947_00_s","nkas"],
+    ["Generic Female Bystander","si_c948_00_s","nkas"],
 
-    ["Chloe", "si_c988_00_s"],
+    ["Generic Boy","si_c951_00_s","nkas"],
+    ["Generic Girl","si_c952_00_s","nkas"],
 
-    ["Rapi: Hospitalized", "si_c990_00_s"],
-    ["D.E.E.P.", "si_c991_00_s"],
-    ["Rapi: Hospitalized Child", "si_c992_00_s"],
-    ["Rapi: Mass-Produced", "si_c994_00_s"],
+    ["Freesia","si_c960_00_s"],
+    ["Oswald","si_c961_00_s"],
+    ["Oswald: Casual","si_c961_01_s"],
 
-    ["Manager Sweet Johnny", "si_c910_00_s"],
-    ["Sweet Johnny Ver. 2.14", "si_c910_01_s"],
+    ["B-0006","si_c962_00_s"],
+    ["C-1002","si_c963_00_s"],
+    ["6000-D","si_c964_00_s"],
 
-    ["Mecha Shifty", "si_c993_00_s"],
+    ["Lumi: Ghost","si_c967_00_s"],
+    ["Lua","si_c968_00_s"],
+    ["Lena","si_c969_00_s"],
+    ["Lumi","si_c970_00_s"],
 
-    ["Laplace: Power Up", "si_c103_00_s"],
-    ["Drake: Power Up", "si_c104_00_s"],
-    ["Maxwell: Power Up", "si_c105_00_s"],
+    ["Rose","si_c971_00_s"],
+    ["Rose: Goddess Fall","si_c971_01_s"],
 
-    ["X", "si_c984_01_s"],
-    ["Levi", "si_c996_00_s"],
+    ["Jien","si_c973_00_s"],
 
-    ["Adam", "si_c853_00_s"],
-    ["Hermin", "si_c998_00_s"],
-    ["Roam", "si_c931_00_s", "nkas"],
-    ["Com", "si_c931_01_s", "nkas"],
+    ["Mass-Produced Melee: Old","si_c974_00_s"],
+    ["Mass-Produced Melee","si_c974_01_00_s",""],
 
-    ["Jien", "si_c973_00_s"],
+    ["Timi","si_c975_00_s","nkas"],
 
-    ["Sky", "si_c530_00_s"],
-    ["Cielo", "si_c531_00_s"],
+    ["T.Rony","si_c976_00_s"],
 
-    ["Alfred", "si_c9000_00_s"],
-    ["Neaty", "si_c9000_01_s"],
-    ["Sizzly", "si_c9000_02_s"],
-    ["Fixy", "si_c9000_03_s"],
-    ["Detaily", "si_c9000_05_s"],
-    ["Sellsy", "si_c9000_06_s"],
-    ["Ghost", "si_c9000_07_s"],
-    ["Maya", "si_c9001_00_s"],
+    ["Kilo","si_c977_00_s"],
 
-    ["Eternity", "si_c370_00_s"],
-    ["Endless", "si_c371_00_s"],
+    ["Abe","si_c979_00_s"],
+    ["Hansel","si_c980_00_s"],
+    ["Gretel","si_c981_00_s"],
+    ["Red Shoes","si_c982_00_s"],
 
-    ["Nayuta", "si_c9008_00_s"],
-    ["Pinocchio", "si_c227_00_s", "nkas"],
-    ["Predator", "si_c9005_00_s"],
-    ["Predator: Alpha", "si_c9005_01_s"],
+    ["Nadia","si_c983_00_s","nkas"],
 
-    ["Mrs. Miss", "si_c9003_00_s"],
+    ["Sound Only","si_c984_00_s","nkas"],
 
-    ["Nora", "si_c9002_00_s"],
+    ["X","si_c984_01_s"],
 
-    ["Central Government Platoon Leader", "si_c9015_00_s"],
-    ["V.T.C. Priestess", "si_c9016_00_s"],
+    ["Yuni: Wordless","si_c985_00_s"],
 
-    ["Raptillion", "si_c915_00_s", "nkas"],
-    ["Helper Bot", "si_c945_00_s", "nkas"],
-    ["Timi", "si_c975_00_s", "nkas"],
-    ["Nadia", "si_c983_00_s", "nkas"],
-    ["Sound Only", "si_c984_00_s", "nkas"],
-    ["X", "si_c984_01_s"],
-    ["Rapi: Red Haired", "si_c986_00_s", "nkas"],
-    ["Only One", "si_c997_00_s", "nkas"],
-    ["Deipara", "si_c9006_00_s", "nkas"],
-    ["Placeholder-chan", "si_dummy_00_s", "nkas"],
+    ["Rapi: Red Haired","si_c986_00_s","nkas"],
 
-    ["Amy", "si_c9026_00_s", "nkas"],
+    ["Chloe","si_c988_00_s"],
 
-    ["Mekami Shifty", "si_c610_00_s"],
+    ["Rapi: Beta Red Hood","si_c989_00_s"],
+    ["Rapi: Hospitalized","si_c990_00_s"],
 
-    ["Hanson", "si_c9023_00_s"],
-    ["Pretty", "si_c9020_00_s"],
-    ["Freesia: Pretty Casual", "si_c9020_01_s"],
-    ["Oswald: Casual", "si_c961_01_s"],
-    ["Mustang: Past", "si_c9022_00_s"],
+    ["D.E.E.P.","si_c991_00_s"],
+    ["Rapi: Hospitalized Child","si_c992_00_s"],
 
-    ["Yoyo", "si_c9024_00_s"],
-    ["Anis: Star Student", "si_c9021_00_s"],
-    ["Anis: Twinkle Tri Star", "si_c9021_01_s"],
-    ["Mint: Idol", "si_c600_00_s", "nkas"],
-    ["Mint: Casual", "si_c600_01_s", "nkas"],
-    ["Mint: Twinkle Tri Star", "si_c600_02_s", "nkas"],
-    ["Prika: Idol", "si_c601_00_s", "nkas"],
-    ["Prika: Casual", "si_c601_01_s", "nkas"],
-    ["Prika: Twinkle Tri Star", "si_c601_02_s", "nkas"],
+    ["Mecha Shifty","si_c993_00_s"],
 
-    ["Altruia", "si_c9017_00_s"],
-    ["Egovista", "si_c9025_00_s"],
+    ["Rapi: Mass-Produced","si_c994_00_s"],
 
-    ["Slot", "si_c999_00_s"],
-    ["Unknown", "si_c000_00_s"]
+    ["Levi","si_c996_00_s"],
+    ["Only One","si_c997_00_s","nkas"],
+    
+    ["Hermin","si_c998_00_s"],
+    ["Slot","si_c999_00_s"],
+    
+    ["Alfred","si_c9000_00_s"],
+    ["Neaty","si_c9000_01_s"],
+    ["Sizzly","si_c9000_02_s"],
+    ["Fixy","si_c9000_03_s"],
+    ["Detaily","si_c9000_05_s"],
+    ["Sellsy","si_c9000_06_s"],
+    ["Ghost","si_c9000_07_s"],
+    ["Maya","si_c9001_00_s"],
+
+    ["Nora","si_c9002_00_s"],
+
+    ["Mrs. Miss","si_c9003_00_s"],
+
+    ["Predator","si_c9005_00_s"],
+    ["Predator: Alpha","si_c9005_01_s"],
+
+    ["Deipara","si_c9006_00_s","nkas"],
+
+    ["Nayuta: Hat","si_c9008_00_s"],
+    ["Nihilister: Goddess Fall","si_c9009_00_s"],
+
+    ["Jane","si_c9010_00_s"],
+    ["Rain","si_c9011_00_s"],
+
+    ["Central Government Platoon Leader","si_c9015_00_s"],
+    ["V.T.C. Priestess","si_c9016_00_s"],
+    
+    ["Altruia","si_c9017_00_s"],
+
+    ["Princess","si_c9018_00_s"],
+    ["Stall III","si_c9019_00_s"],
+
+    ["Pretty","si_c9020_00_s"],
+    ["Freesia: Pretty Casual","si_c9020_01_s"],
+    ["Anis: Star Student","si_c9021_00_s"],
+    ["Anis: Twinkle Tri Star","si_c9021_01_s"],
+    ["Mustang: Past","si_c9022_00_s"],
+    ["Hanson","si_c9023_00_s"],
+    ["Yoyo","si_c9024_00_s"],
+
+    ["Egovista","si_c9025_00_s"],
+
+    ["Amy","si_c9026_00_s","nkas"],
+
+    ["Luke","si_c9028_00_s"],
+
+    ["Placeholder-chan","si_dummy_00_s","nkas"]
 ]
