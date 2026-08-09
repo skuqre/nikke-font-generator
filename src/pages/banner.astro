@@ -31,6 +31,7 @@ const assetTitles = Object.keys(import.meta.glob("../../public/images/banner/tit
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4D9H1G2HS"></script>
 		<script>
+			// @ts-nocheck
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
@@ -99,7 +100,7 @@ const assetTitles = Object.keys(import.meta.glob("../../public/images/banner/tit
 
 				stickerSelector.innerHTML += `
 				<div class="input-option" style="aspect-ratio: 1; width: 64px; height: 64px; padding: 4px" id="sticker-option-${n.replaceAll(".png", "").replaceAll("icn_profile_sticker_", "")}">
-                    <div style="background-image: url(/nikke-font-generator/images/banner/si_stickers/${n.replace("icn", "si")}); background-size: contain; background-repeat: no-repeat;"></div>
+                    <div style="background-image: url(/nikke-font-generator/images/banner/stickers/${n}); background-size: contain; background-repeat: no-repeat;"></div>
                 </div>
 				`
 			}
@@ -109,7 +110,7 @@ const assetTitles = Object.keys(import.meta.glob("../../public/images/banner/tit
 				
 				titleSelector.innerHTML += `
 				<div class="input-option" style="aspect-ratio: 1; width: 64px; height: 64px; padding: 4px" id="title-option-${n.replaceAll(".png", "").replaceAll("icn_profile_title_", "")}">
-                    <div style="background-image: url(/nikke-font-generator/images/banner/si_titles/${n.replace("icn", "si")}); background-size: contain; background-repeat: no-repeat;"></div>
+                    <div style="background-image: url(/nikke-font-generator/images/banner/titles/${n}); background-size: contain; background-repeat: no-repeat;"></div>
                 </div>
 				`
 			}

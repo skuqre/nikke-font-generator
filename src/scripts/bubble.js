@@ -29,7 +29,7 @@ bubble.src = `/nikke-font-generator/images/bubble/bubble.png`;
 
 const randomBubble = [
     "Into the fire, to the flames...",
-    "I'm caught in your spell...",
+    "I'm caught in your whisper...",
     "Blazing fire within my veins!",
     "Uh, feelin' like I'm ready for the limelight, waitin' for the right time to unleash...",
     "Mind over matter, coming straight from underground...",
@@ -41,8 +41,50 @@ const randomBubble = [
     "I may be a weap; my heart is alive and cries...",
     "Steel in stillness...",
     "Rêve d'ordinarie, vis d'espérance...",
-    "Heart is racing here now... Never wanna wake out...", // Cosmo really loves his samples from Splice, huh? This is from the "Vocal Future Pop" sample pack by Arcando!
-    "La tristesse est futile\nLes promesses sont galvanisées\nAinsi l'espoir se répare\nPour que s'éveille l'aube rêvée\nNon....."
+    "Heart is racing here now... Never wanna wake out...",
+    "La tristesse est futile\nLes promesses sont galvanisées\nAinsi l'espoir se répare\nPour que s'éveille l'aube rêvée\nNon.....",
+    "I'm so hypnotized, by the sound of your heartbeat...",
+    "Free my mind, no longer blind...",
+    "You can never judge my ways...",
+    "My oath, a soldier and protector...",
+    "A light of hope and through justice...",
+    "This one is real fire!",
+    "It's time to slay them, to claim our names back...",
+    "Hear the storm awaken me!",
+    "Conquer and claim everything that shines bright, for I will give it a new life, perfection...",
+    "Stepping on the gas, no brake light...",
+    "Get up! Daybreak! Look at the light!",
+    "Woah oh... you call me by my name... like you always knew... on my way to you...!",
+    "We have no idea the damage we have done...",
+
+    "All eyes on me...",
+    "Made for TV, I know they whisper when they walk by...",
+    "24/7 I'm in the spotlight, twinkle, twinkle!",
+    "Shining head to toe, I don't know, but I'm just glowing everywhere...",
+    "Funny how I'm so feeling sweet, by just walking down the street...",
+
+    "Count on me like one, two three...",
+    "Spell on you like ABC...",
+    "Twinkle, twinkle, shining stars...",
+    "Sometimes I, cannot find, what's in front of me because of blurry vision...",
+    "Sometimes I, don't know why, but it doesn't matter finally I'm free, to follow my instinct!",
+
+    "I'm chasing your heart!",
+    "I'm sentimental, microromantic...",
+    "When you need a hand, promise I'll be there for you...",
+    "Peep peep peep, Perseid's comet, the danger's getting deeper...",
+    "Cosmic gals, we're here to solve it, dare you to chase your dream...",
+
+    "Click me, double tap, fill up my heart...",
+    "I'll be your, clickbait, clickbait, 마치 팝업처럼...",
+    "I can't get enough 'til you click, click, click, click!",
+    "Scroll... all the way down, and it's still me!",
+    "Popping on your every single feed...",
+    "We the headline, not the ending...",
+
+    "The cosmos graphed a plane to make the stars align...",
+    "Not just pixels on Discord!",
+    "I just, wanna, fly me, to the moon..."
 ];
 
 //

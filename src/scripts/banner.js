@@ -299,7 +299,7 @@ function updateLayerDisplay() {
         div.append(divHighlight);
 
         const image = document.createElement("img");
-        image.src = "/nikke-font-generator/images/banner/si_" + i.type + "s/si_profile_" + i.type + "_" + i.id + ".png";
+        image.src = "/nikke-font-generator/images/banner/" + i.type + "s/icn_profile_" + i.type + "_" + i.id + ".png";
         image.style.maxWidth = "48px";
         image.style.maxHeight = "48px";
         div.append(image);
