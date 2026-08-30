@@ -23,6 +23,9 @@
     ["Endless","si_c371_00_s"],
 
     ["Eyeri","si_c440_00_s"],
+
+    ["Scarlet: Eden", "si_c472_00_s"],
+    ["Rapunzel: Eden", "si_c473_00_s"],
     
     ["Liveryn","si_c480_00_s"],
     ["Fragile","si_c481_00_s"],
@@ -251,6 +254,10 @@
     ["Enme","si_c9030_00_s"],
     ["Syuen: Young","si_c9031_00_s"],
     ["Jien: Young","si_c9032_00_s"],
+
+    ["Teddie", "si_c9038_00_s"],
+    ["Morgana", "si_c9039_00_s"],
+    ["Morgana: Real", "si_c9040_00_s"],
 
     ["Placeholder-chan","si_dummy_00_s","nkas"]
 ]
