@@ -6,13 +6,15 @@ embeddesc: what does the site get from you? what does the site not get from you?
 
 # Privacy
 
-*updated April 2, 2026*
+*updated September 20, 2026*
 
 ---
 
 <br>
 
 ## I. What does the site get from me, and what does it do with it?
+
+### Google Analytics
 
 This site uses **Google Analytics**, a web service provided by Google LLC ("Google"), to understand how visitors interact with the website. Google Analytics collects information such as your IP Address, browser type, referring pages, and the time spent on the site. This data helps me analyze traffic and improve the website.
 
@@ -23,6 +25,12 @@ Google Analytics may use cookies and other tracking technologies to collect this
 Your data will never be sold to any third party, advertisers and the like. Count on it.
 
 To opt out of Google Analytics, you can download this add-on: <https://tools.google.com/dlpage/gaoptout>
+
+### No uploaded assets
+
+Buttons labeled with "Upload \_\_\_\_\_" **do not upload anything to any server**. Everything runs locally and is loaded within your device. No one can see the text and contents of what you're making, and no one will be able to stop you. Go ahead and do whatever you want. You can even inspect the [source code](https://github.com/skuqre/nikke-font-generator/) to make sure of it.
+
+These buttons are labelled that way for intuitiveness.
 
 <br>
 
