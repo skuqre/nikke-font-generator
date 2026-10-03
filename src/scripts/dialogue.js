@@ -175,6 +175,9 @@ action.crossOrigin = "anonymous"
 action.src = `/nikke-font-generator/images/dialogue/actionbox.png`;
 
 function drawGradients(haschoices) {
+    if (uiOnlyToggle) {
+        return;
+    }
     ctx.globalCompositeOperation = "multiply";
     ctx.drawImage(uvig, 0, 0, canvassize[0], uvig.height);
 
@@ -837,6 +840,15 @@ document.querySelectorAll('#ui-toggle')[0].addEventListener('click', () => {
     generateText(text2, subtext2)
 });
 
+let uiOnlyToggle = false;
+
+document.querySelectorAll('#ui-only-toggle')[0].addEventListener('click', () => {
+    uiOnlyToggle = !uiOnlyToggle;
+
+    document.querySelectorAll('#ui-only-toggle')[0].innerHTML = "<span>" + "UI Only: " + (uiOnlyToggle ? "ON" : "OFF") + "</span>";
+    generateText(text2, subtext2)
+});
+
 document.querySelectorAll('#padding-toggle')[0].addEventListener('click', () => {
     padding = !padding;
 
@@ -987,8 +999,10 @@ function generateText(text, subtext) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.scale(size / 100, size / 100);
 
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    if (!uiOnlyToggle) {
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
 
     let bgs = scalebg / 100;
 
@@ -1005,7 +1019,9 @@ function generateText(text, subtext) {
     var canvasX = bgpos[0] + (dx * camzoom) * (camzoom >= 0 ? 1 : -1) + ((canvassize[0] / 2) - campos[0]) * 0.1;
     var canvasY = bgpos[1] + (dy * camzoom) * (camzoom >= 0 ? 1 : -1)  + ((canvassize[1] / 2) - campos[1]) * 0.1;
 
-    ctx.drawImage(bg, canvasX - bgWidth / 2, canvasY - bgHeight / 2, bgWidth, bgHeight);
+    if (!uiOnlyToggle) {
+        ctx.drawImage(bg, canvasX - bgWidth / 2, canvasY - bgHeight / 2, bgWidth, bgHeight);
+    }
 
     document.getElementById('xposbg').value = bgpos[0];
     document.getElementById('yposbg').value = bgpos[1];
@@ -1032,6 +1048,8 @@ function generateText(text, subtext) {
     for (let i of chars) {
         if (!i.visible)
             continue;
+        if (uiOnlyToggle)
+            continue;
 
         let img = loadedImages[i.id];
 
@@ -1056,7 +1074,7 @@ function generateText(text, subtext) {
             shit = shit.replaceAll('\\n', String.fromCharCode(13, 10));
 
             let split = shit.trim().split('\n').reverse();
-            if (split.length > 1) {
+            if (split.length > 1 && !uiOnlyToggle) {
                 ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
                 ctx.fillRect(0, 0, canvassize[0], canvassize[1]);
             }
@@ -1187,8 +1205,10 @@ function generateText(text, subtext) {
             ctx.drawImage(controls, copos[0], copos[1], controls.width * scaledc / 100, controls.height * scaledc / 100);
         }
 
-        ctx.globalAlpha = 0.1;
-        ctx.drawImage(wmrk, 16 + (padding ? (canvassize[0] - canvassize[1]) / 2 : 0), -16, 128, 128);
+        if (!uiOnlyToggle) {
+            ctx.globalAlpha = 0.1;
+            ctx.drawImage(wmrk, 16 + (padding ? (canvassize[0] - canvassize[1]) / 2 : 0), -16, 128, 128);
+        }
     } else {
         drawGradients(true);
     }
