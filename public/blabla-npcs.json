@@ -21,9 +21,6 @@
     ["Endless","si_c371_00_s"],
 
     ["Eyeri","si_c440_00_s"],
-
-    ["Scarlet: Eden", "si_c472_00_s"],
-    ["Rapunzel: Eden", "si_c473_00_s"],
     
     ["Liveryn","si_c480_00_s"],
     ["Fragile","si_c481_00_s"],
@@ -130,6 +127,7 @@
     ["Pinne","si_c941_00_s"],
 
     ["Legendary Commander","si_c942_00_s"],
+    ["Legendary Commander: Andersen","si_c942_01_s"],
     ["Liliweiss","si_c943_00_s"],
 
     ["Helper Bot","si_c945_00_s","nkas"],
@@ -256,6 +254,14 @@
     ["Teddie", "si_c9038_00_s"],
     ["Morgana", "si_c9039_00_s"],
     ["Morgana: Real", "si_c9040_00_s"],
+
+    ["Noah: Reborn", "si_c235_00_s"],
+    ["Papillon: Reborn", "si_c236_00_s"],
+
+    ["Dorothy: Corrupted", "si_c474_00_s"],
+    ["Dorothy: Corrupted Nostalgia", "si_c9027_00_s"],
+
+    ["Doctor Maria", "si_c9041_00_s"],
 
     ["Placeholder-chan","si_dummy_00_s","nkas"]
 ]
