@@ -26,7 +26,7 @@ document.fonts.add(myFont5);
 
 // same ol, just replace si with mi
 let nikkepfps = {}
-const response = await fetch('https://api.dotgg.gg/nikke/characters/');
+const response = await fetch('https://nkas.pages.dev/nk_data/nikkegg/characters.json');
 response.json().then((e) => {
     for (let i = 0; i < e.length; i++) {
         nikkepfps[e[i].name.toLowerCase()] = e[i].img;
